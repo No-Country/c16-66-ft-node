@@ -6,6 +6,8 @@ import { AdminStore } from "./StoreGeneral/AdminsStore"; //zustand
 import { useUserStore } from "./hooks/userUserStore"; //hook
 import { useDoctorStore } from "./hooks/useDoctorStore"; //hook
 import { useAdminStore } from "./hooks/userAdminStore"; //hook
+import { AsideComponent } from "./components/AsideComponent";
+
 function App() {
 	//carga general de Users.
 	const { getUserApiResponse } = useUserStore(); //hook
@@ -30,14 +32,8 @@ function App() {
 
 	return (
 		<>
-			<Card sx={{ display: "flex", gap: "4%" }}>
-				<h1 className=' text-primaryGreen bg-darkBlue font-bold'>
-					No Country Frontend App
-				</h1>
-				<Button sx={{ width: "20%" }} variant='outlined'>
-					Comprobando instalaciones
-				</Button>
-			</Card>
+			<p>ESTE ES EL APP, ACA VA EL RUTEADOR</p>
+			<AsideComponent />
 		</>
 	);
 }
