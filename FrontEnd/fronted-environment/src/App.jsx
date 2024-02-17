@@ -1,14 +1,10 @@
-import { Card, Button } from "@mui/material/";
+import { AsideComponent } from "./components/AsideComponent"
 
 function App() {
 	return (
 		<>
-			<Card sx={{ display: "flex", gap: "4%" }}>
-				<h1 className=' text-primaryGreen bg-darkBlue font-bold'>No Country Frontend App</h1>
-				<Button sx={{ width: "20%" }} variant='outlined'>
-					Comprobando instalaciones
-				</Button>
-			</Card>
+			<p>ESTE ES EL APP, ACA VA EL RUTEADOR</p>
+			<AsideComponent />
 		</>
 	);
 }
