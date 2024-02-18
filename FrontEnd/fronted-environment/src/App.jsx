@@ -6,6 +6,7 @@ import { AdminStore } from "./StoreGeneral/AdminsStore"; //zustand
 import { useUserStore } from "./hooks/userUserStore"; //hook
 import { useDoctorStore } from "./hooks/useDoctorStore"; //hook
 import { useAdminStore } from "./hooks/userAdminStore"; //hook
+import { Home } from "./components/HomeComponent";
 import { AsideComponent } from "./components/AsideComponent";
 
 function App() {
@@ -23,17 +24,18 @@ function App() {
 		getDoctorApiResponse(); // idem => doctors
 		getAdminApiResponse();
 	}, []);
-	console.log("users : ");
-	console.log(users);
-	console.log("doctors :");
-	console.log(doctors);
-	console.log("admins :");
-	console.log(admins);
+	// console.log("users : ");
+	// console.log(users);
+	// console.log("doctors :");
+	// console.log(doctors);
+	// console.log("admins :");
+	// console.log(admins);
 
 	return (
 		<>
 			<p>ESTE ES EL APP, ACA VA EL RUTEADOR</p>
 			<AsideComponent />
+			<Home />
 		</>
 	);
 }
