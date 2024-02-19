@@ -1,0 +1,16 @@
+{
+    "doctors": [
+        {
+            "id": 1,
+            "name": "Chapatin"
+        },
+        {
+            "id": 2,
+            "name": "Strange"
+        },
+        {
+            "id": 3,
+            "name": "Silva"
+        }
+    ]
+}
