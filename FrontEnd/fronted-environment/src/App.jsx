@@ -7,7 +7,6 @@ import { useUserStore } from "./hooks/userUserStore"; //hook
 import { useDoctorStore } from "./hooks/useDoctorStore"; //hook
 import { useAdminStore } from "./hooks/userAdminStore"; //hook
 import { Home } from "./pages/home";
-import { AsideComponent } from "./components/AsideComponent";
 
 function App() {
 	//carga general de Users.
@@ -33,8 +32,6 @@ function App() {
 
 	return (
 		<>
-			<p>ESTE ES EL APP, ACA VA EL RUTEADOR</p>
-			<AsideComponent />
 			<Home />
 		</>
 	);

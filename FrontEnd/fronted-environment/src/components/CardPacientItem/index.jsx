@@ -22,38 +22,19 @@ export function CardPacientItem(user) {
 				/>
 			</figure>
 			<article
-				style={{ width: "135px", height: "43px" }}
-				className='flex flex-col gap-2 items-start truncate'
+				style={{ width: "135px" }}
+				className=' h-44 flex flex-col gap-2 items-start truncate'
 			>
-				<h3
-					style={{
-						color: "#2B2B2B",
-
-						lineHeight: "normal",
-					}}
-					className='text-black text-ellipsis font-medium text-base'
-				>
+				<h3 className='text-black text-ellipsis font-medium text-base'>
 					{user.name}
 				</h3>
-				<p
-					style={{
-						color: "#7D7D7D",
-						fontFamily: "Roboto",
-						fontSize: "14px",
-						fontStyle: "normal",
-						fontWeight: "400",
-						lineHeight: "normal",
-					}}
-				>
+				<p className='text-gray text-sm font-normal'>
 					{today}
 					{/* Cambiar today por fecha del turno */}
 				</p>
 			</article>
 
-			<article
-				style={{ background: "#E3EEF2" }}
-				className='flex py-2 px-4 align-middle gap-4 rounded-2xl'
-			>
+			<article className='flex py-2 px-4 align-middle gap-4 rounded-2xl'>
 				<div
 					style={{ width: "78px" }}
 					className=' bg-lightBlue h-7 flex py-1 px-1 gap-2.5 justify-center rounded-lg'

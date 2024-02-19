@@ -1,0 +1,14 @@
+header{
+    background: var(--Background-Background-Header, linear-gradient(180deg, rgba(198, 241, 191, 0.56) 0%, rgba(103, 189, 234, 0.00) 471.67%), #FFF);
+
+/* Header Web */
+box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+.secction__Principal-doctorHome{
+
+background: var(--Background-Background-Grande, #EBF8EA);
+
+/* Card Home Med */
+box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.10);
+}
