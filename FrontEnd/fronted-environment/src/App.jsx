@@ -6,7 +6,7 @@ import { AdminStore } from "./StoreGeneral/AdminsStore"; //zustand
 import { useUserStore } from "./hooks/userUserStore"; //hook
 import { useDoctorStore } from "./hooks/useDoctorStore"; //hook
 import { useAdminStore } from "./hooks/userAdminStore"; //hook
-import { Home } from "./components/HomeComponent";
+import { Home } from "./pages/home";
 import { AsideComponent } from "./components/AsideComponent";
 
 function App() {
