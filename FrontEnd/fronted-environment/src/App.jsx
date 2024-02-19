@@ -24,12 +24,12 @@ function App() {
 		getDoctorApiResponse(); // idem => doctors
 		getAdminApiResponse();
 	}, []);
-	// console.log("users : ");
-	// console.log(users);
-	// console.log("doctors :");
-	// console.log(doctors);
-	// console.log("admins :");
-	// console.log(admins);
+	console.log("users : ");
+	console.log(users);
+	console.log("doctors :");
+	console.log(doctors);
+	console.log("admins :");
+	console.log(admins);
 
 	return (
 		<>

@@ -37,8 +37,8 @@ export function AsideComponent() {
 						</div>
 					</div>
 				</Button>
-				<div className='flex flex-nowrap mt-2'>
-					<Button><img className='w-10 h-10' src={isotipo}/></Button>
+				<div className='flex flex-nowrap mt-2 overflow-hidden'>
+					<Button><img className='cover-fit' src={isotipo}/></Button>
 					<div style={{display: openClose ? 'block': 'none'}} className='flex-wrap textHiddenAside'>
 						<p>Dr. Roberto García</p>
 						<p className='font-normal'>Clínica médica</p>
@@ -80,11 +80,14 @@ export function AsideComponent() {
 			<div className='flex p-4 gap-4 flex-col mt-3'>
 				<div className='flex flex-nowrap'>
 					<IconButton><img src={notifications} /><img src={spacer} /></IconButton>
-					<p style={{display: openClose ? 'block': 'none'}} className='textHiddenAside'>Notificaciones</p>
+					<div className='flex flex-nowrap items-center' style={{display: openClose ? 'flex': 'none'}}>
+						<p className='textHiddenAside'>Notificaciones</p>
+						<img className='bg-red size-3 p-1 rounded-full' src={badge}/>
+					</div>
 				</div>
 				<div className='flex flex-nowrap'>
 					<IconButton><img src={settings}/></IconButton>
-					<p style={{display: openClose ? 'block': 'none'}} className='textHiddenAside'>Configuración<img src={badge}/></p>
+					<p style={{display: openClose ? 'block': 'none'}} className='textHiddenAside'>Configuración</p>
 				</div>
 				<div className='flex flex-nowrap'>
 					<IconButton><img src={suportAgent}/></IconButton>
