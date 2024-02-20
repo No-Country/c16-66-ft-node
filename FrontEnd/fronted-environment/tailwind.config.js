@@ -14,6 +14,7 @@ export default {
 				gray: "#797979",
 				lightGray: "#CDCDCD",
 				mostLighthBlue: "#E3EEF2",
+				celestBgWrapper: "#D1E9F5",
 				red: "#B3261E",
 			},
 		},

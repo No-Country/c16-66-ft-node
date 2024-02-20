@@ -1,51 +1,43 @@
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import dayjs from "dayjs";
+import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
+import { esES } from "@mui/x-date-pickers/locales";
+import { CardPacientItem } from "../CardPacientItem/index";
+import "./index.css";
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import dayjs from 'dayjs';
-import { DemoContainer,DemoItem } from '@mui/x-date-pickers/internals/demo';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
-import { esES } from '@mui/x-date-pickers/locales';
-import {CardPacientItem} from  '../CardPacientItem/index'
-import './index.css'
-
-
-
-const theme = createTheme({
-palette: {
- primary: { main: '#1976d2' },
+const theme = createTheme(
+	{
+		palette: {
+			primary: { main: "#1976d2" },
 		},
-  },esES );
-  
-
-
-
+	},
+	esES
+);
 
 export function CalendarComponent() {
+	return (
+		<ThemeProvider theme={theme}>
+			<LocalizationProvider
+				sx={{ border: "solid 1px red" }}
+				dateAdapter={AdapterDayjs}
+			>
+				<div className='calendarContainer'>
+					<div className='calendarTitle'>Calendario</div>
+					<DemoContainer components={["StaticDatePicker"]}>
+						<DemoItem>
+							<StaticDatePicker defaultValue={dayjs()} />
+						</DemoItem>
+					</DemoContainer>
 
-
-  return (
-<ThemeProvider theme={theme}>
-<LocalizationProvider dateAdapter={AdapterDayjs}>
-
-	<div className="calendarContainer">
-        <div className="calendarTitle">Calendario</div>
-        <DemoContainer components={['StaticDatePicker']}> 
-  <DemoItem>
-  <StaticDatePicker defaultValue={dayjs()} />
-  </DemoItem>
-        </DemoContainer>
-	
-		<div className="calendarTitle">Próximo paciente</div>
-
-			<CardPacientItem />
-		
-		
-
-    </div>
-</LocalizationProvider>
-</ThemeProvider>
-  
-   
-  );
+					<div className='-mt-10 w-full ml-4 '>
+						<h3 className='calendarTitle'> Próximo paciente</h3>
+						<CardPacientItem />
+					</div>
+				</div>
+			</LocalizationProvider>
+		</ThemeProvider>
+	);
 }
