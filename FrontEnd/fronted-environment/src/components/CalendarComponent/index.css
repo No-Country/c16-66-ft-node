@@ -1,0 +1,56 @@
+.css-1hbyad5-MuiTypography-root {
+	/* select date */
+	display: none !important;
+}
+
+.css-4pax7l-MuiPickersLayout-root .MuiPickersLayout-actionBar{
+	/* boton de ok/cancel */
+	display: none !important;
+}
+
+.css-4pax7l-MuiPickersLayout-root{
+	/* contenedor calendario MUI */
+	max-width:320px;
+	border-radius: 20px;
+	background: linear-gradient(
+		180deg,
+		rgba(198, 241, 191, 0.56) 0%,
+		rgba(103, 189, 234, 0.38) 49.99%,
+		rgba(103, 189, 234, 0.38) 99.99%
+	),
+	#fff;
+
+
+}
+
+.calendarContainer{
+	max-width:320px;
+	border-radius: 20px;
+	background: linear-gradient(
+		180deg,
+		rgba(198, 241, 191, 0.56) 0%,
+		rgba(103, 189, 234, 0.38) 49.99%,
+		rgba(103, 189, 234, 0.38) 99.99%
+	),
+	#fff;
+
+}
+
+.calendarTitle{
+	padding-left: 24px;
+	padding-top: 10px;
+	font-weight: 500;
+	font-size: 20px;
+
+
+}
+
+.css-3jvy96-MuiTypography-root-MuiDatePickerToolbar-title {
+	/* dia y fecha elegida */
+	
+	font-size: medium !important;
+}
+
+.css-1eurbeq-MuiPickersToolbar-root-MuiDatePickerToolbar-root{
+	padding: 0px 24px !important;
+}
