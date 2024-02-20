@@ -1,4 +1,5 @@
-import { IconButton } from '@mui/material'
+import { useState } from 'react'
+import { Button } from '@mui/base'
 import close from './Icons/close.png'
 import menu from './Icons/menu.png'
 import isotipo from './Icons/Doctor.jpg'
@@ -9,15 +10,13 @@ import clinicalNotes from './Icons/clinical_notes.png'
 import duo from './Icons/duo.png'
 import book from './Icons/book.png'
 import star from './Icons/star.png'
-import badge from './Icons/BadgeLabel.png'
-import spacer from './Icons/Spacer.png'
 import notifications from './Icons/notifications_unread.png'
 import settings from './Icons/settings.png'
 import suportAgent from './Icons/support_agent.png'
 import logOut from './Icons/logout.png'
+import { BoxIcon } from './components/BoxIcon'
 import './index.css'
-import { useState } from 'react'
-import { Button } from '@mui/base'
+
 export function AsideComponent() {
 
 	const [openClose,setOpenClose] = useState(false)
@@ -26,81 +25,49 @@ export function AsideComponent() {
 	}
 
 	return( 
-	<div className='asideContainerLg flex-col flex items-start gap-10 justify-between' style={{width: !openClose ? '120px' : '264px'}}>
-		<div className='flex-col flex'>
-			<div className='flex p-4 gap-4 flex-col'>
-				<Button onClick={handleAsideOpenClose}>
-					<div className='flex'>
-						<img src={menu} style={{display: ! openClose ? 'block': 'none'}} className='ml-2' />
-						<div className='absolute right-8' style={{display: openClose ? 'block': 'none'}}>
-							<img src={close}/>
-						</div>
-					</div>
-				</Button>
-				<div className='flex flex-nowrap mt-2 overflow-hidden'>
-					<Button><img className='cover-fit' src={isotipo}/></Button>
-					<div style={{display: openClose ? 'block': 'none'}} className='flex-wrap textHiddenAside'>
-						<p>Dr. Roberto García</p>
-						<p className='font-normal'>Clínica médica</p>
-					</div>
+
+	<aside className={`asideBackground h-screen z-10 flex flex-col justify-evenly py-4 px-6 gap-2.5 ${openClose ? ' w-1/5' : 'w-1/12'}`} >
+		<section className={`h-1/12 flex mx-auto ${openClose ?'w-full justify-end':'w-1/2 justify-center'}`}>
+			<Button className='w-full h-full' onClick={handleAsideOpenClose}>
+					<img src={menu}className={`${openClose ? 'hidden ':'flex'}`}/>
+					<img className={`h-full ${openClose ? 'flex ml-44':'hidden'}`}  src={close}/>
+			</Button>
+		</section>
+		<section className={`flex flex-col ${openClose ? 'justify-between h-4/6' : 'justify-between h-4/6'} `}> 
+
+			<artile className={`flex mx-auto w-full ${openClose ? 'justify-start gap-4' : 'justify-center'}`}>
+				<figure className={`w-8 h-8 rounded-full overflow-hidden ${openClose}`}>
+				<img className='objet-cover object-center'src={isotipo}/>
+				</figure>
+				<div style={{display: openClose ? 'block': 'none'}} className=' textHiddenAside'>
+					<p className='font-medium'>Dr. Roberto García</p>
+					<p className='font-normal'>Clínica médica</p>
+				</div>
+			</artile>
+			<artile className={`flex hover:bg-white p-2 rounded-xl mx-auto ${openClose ? 'w-full justify-start gap-4' : 'w-2/3 h-auto justify-center'}`}>
+				<img src={group}/>
+				<p style={{display: openClose ? 'block': 'none'}} className='textHiddenAside'>Home</p>
+			</artile>
+			<BoxIcon openClose={openClose} text={'Mi perfil'} icon={person}/>
+			<BoxIcon openClose={openClose} text={'Agenda de consultas'} icon={calendar}/>
+			<BoxIcon openClose={openClose} text={'Mis pacientes'} icon={clinicalNotes}/>
+			<BoxIcon openClose={openClose} text={'Consulta virtual'} icon={duo}/>
+			<BoxIcon openClose={openClose} text={'Cartilla médica'} icon={book}/>
+			<BoxIcon openClose={openClose} text={'Mi billetera'} icon={star}/>
+		</section>
+		<br/>
+		<section className={`flex flex-col justify-between ${openClose ? 'h-1/5' : 'h-1/5'}`}> 
+			<div className={`flex hover:bg-white p-2 rounded-xl mx-auto ${openClose ? 'w-full justify-start gap-4' : 'w-2/3 h-auto justify-center'}`} >
+				<img  src={notifications} />
+				<div className={`${openClose ? 'flex -ml-1 w-2/3': 'hidden'}`} >
+					<p className='textHiddenAside'>Notificaciones</p>
+					<p className='text-white rounded-full ml-2 flex justify-center  h-5 w-5 text-xs bg-red'>8</p>
 				</div>
 			</div>
-			<div className='flex p-4 gap-4 flex-col'>
-				<div className='flex flex-nowrap rounded-2xl bg-white'>
-					<IconButton><img src={group} /></IconButton>
-					<p style={{display: openClose ? 'block': 'none'}} className='textHiddenAside'>Home</p>
-				</div>
-				<div className='flex flex-nowrap'>
-					<IconButton><img src={person}/></IconButton>
-					<p style={{display: openClose ? 'block': 'none'}} className='textHiddenAside'>Mi perfil</p>
-				</div>
-				<div className='flex flex-nowrap'>
-					<IconButton><img src={calendar}/></IconButton>
-					<p style={{display: openClose ? 'block': 'none'}} className='textHiddenAside'>Agenda de consultas</p>
-				</div>
-				<div className='flex flex-nowrap'>
-					<IconButton><img src={clinicalNotes} /></IconButton>
-					<p style={{display: openClose ? 'block': 'none'}} className='textHiddenAside'>Mis pacientes</p>
-				</div>
-				<div className='flex flex-nowrap'>
-					<IconButton><img src={duo}/></IconButton>
-					<p style={{display: openClose ? 'block': 'none'}} className='textHiddenAside'>Consulta virtual</p>
-				</div>
-				<div className='flex flex-nowrap'>
-					<IconButton><img src={book}/></IconButton>
-					<p style={{display: openClose ? 'block': 'none'}} className='textHiddenAside'>Cartilla médica</p>
-				</div>
-				<div className='flex flex-nowrap'>
-					<IconButton><img src={star}/></IconButton>
-					<p style={{display: openClose ? 'block': 'none'}} className='textHiddenAside'>Mi billetera</p>
-				</div>
-			</div>
-		</div>
-		<div className='flex flex-col'>
-			<div className='flex p-4 gap-4 flex-col mt-3'>
-				<div className='flex flex-nowrap'>
-					<IconButton><img src={notifications} /><img src={spacer} /></IconButton>
-					<div className='flex flex-nowrap items-center' style={{display: openClose ? 'flex': 'none'}}>
-						<p className='textHiddenAside'>Notificaciones</p>
-						<img className='bg-red size-3 p-1 rounded-full' src={badge}/>
-					</div>
-				</div>
-				<div className='flex flex-nowrap'>
-					<IconButton><img src={settings}/></IconButton>
-					<p style={{display: openClose ? 'block': 'none'}} className='textHiddenAside'>Configuración</p>
-				</div>
-				<div className='flex flex-nowrap'>
-					<IconButton><img src={suportAgent}/></IconButton>
-					<p style={{display: openClose ? 'block': 'none'}} className='textHiddenAside'>Centro de ayuda</p>
-				</div>
-			</div>
-			<div className='flex p-4 gap-4 flex-col mt-3'>
-				<div className='flex flex-nowrap'>
-					<IconButton><img src={logOut}/></IconButton>
-					<p style={{display: openClose ? 'block' : 'none'}}className='textHiddenAside'>Cerrar sesión</p>
-				</div>
-			</div>
-		</div>
-	</div>
+			<BoxIcon openClose={openClose} text={'Configuración'} icon={settings}/>
+			<BoxIcon openClose={openClose} text={'Centro de ayuda'} icon={suportAgent}/>
+		</section>
+			<BoxIcon openClose={openClose} text={'Cerrar sesión'} icon={logOut}/>
+	</aside>
 	);
 }
