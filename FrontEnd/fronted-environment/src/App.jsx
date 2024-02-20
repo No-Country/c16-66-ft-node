@@ -8,6 +8,7 @@ import { useDoctorStore } from "./hooks/useDoctorStore"; //hook
 import { useAdminStore } from "./hooks/userAdminStore"; //hook
 import { Home } from "./pages/home";
 import { AsideComponent } from "./components/AsideComponent";
+import { CalendarComponent } from "./components/CalendarComponent";
 
 function App() {
 	//carga general de Users.
@@ -34,8 +35,9 @@ function App() {
 	return (
 		<>
 			<p>ESTE ES EL APP, ACA VA EL RUTEADOR</p>
-			<AsideComponent />
-			<Home />
+			 <AsideComponent /> 
+			<CalendarComponent/>
+		  <Home /> 
 		</>
 	);
 }
