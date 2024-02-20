@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
                 allowNull: false,
                 autoIncrement: true,
                 startAt: 1001,
-                increment: 1,
+                increment: 10,
             },
             name: {
                 type: DataTypes.STRING,
@@ -34,6 +34,10 @@ module.exports = (sequelize) => {
             },
             specialty: {
                 type: DataTypes.ENUM("General Medicine","Pediatrics","Gynecology and Obstetrics","Internal Medicine","General Surgery","Orthopedics","Dermatology","Ophthalmology","Psychiatry","Cardiology"),
+                allowNull: true,
+            },
+            imagen: {
+                type: DataTypes.STRING,
                 allowNull: true,
             }
         }, {timestamps : false},

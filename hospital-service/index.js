@@ -10,7 +10,7 @@ server.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
     const {doctors} = api
     
-    doctors.map(async({id,name, lastname, email, password, licensenumber, specialty}) => { await
+    doctors.map(async({name, lastname, email, password, licensenumber, specialty, imagen}) => { await
      
      Doctor.findOrCreate({
         where: {
@@ -23,6 +23,7 @@ server.listen(PORT, () => {
             password,
             licensenumber,
             specialty,
+            imagen,
         }
      })   
      }
