@@ -34,10 +34,10 @@ function App() {
 
 	return (
 		<>
-			<p>ESTE ES EL APP, ACA VA EL RUTEADOR</p>
-			 <AsideComponent /> 
+		<p>ESTE ES EL APP, ACA VA EL RUTEADOR</p>
+		<AsideComponent /> 
 			<CalendarComponent/>
-		  <Home /> 
+		<Home />
 		</>
 	);
 }
