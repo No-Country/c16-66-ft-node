@@ -8,7 +8,7 @@ const updateDoctor = async (
     email,
     licensenumber,
     specialty,
-    imagen
+    image
 
     ) => {
         
@@ -23,7 +23,7 @@ const updateDoctor = async (
         doctor.email = email ? email : doctor.email;
         doctor.licensenumber = licensenumber ? licensenumber : doctor.licensenumber;
         doctor.specialty = specialty ? specialty : doctor.specialty;
-        doctor.imagen = imagen ? imagen : doctor.imagen;
+        doctor.image = image ? image : doctor.image;
 
         await doctor.save();
         return doctor;

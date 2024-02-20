@@ -36,7 +36,7 @@ module.exports = (sequelize) => {
                 type: DataTypes.ENUM("General Medicine","Pediatrics","Gynecology and Obstetrics","Internal Medicine","General Surgery","Orthopedics","Dermatology","Ophthalmology","Psychiatry","Cardiology"),
                 allowNull: true,
             },
-            imagen: {
+            image: {
                 type: DataTypes.STRING,
                 allowNull: true,
             }

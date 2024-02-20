@@ -7,7 +7,7 @@
         "password": "password1",
         "licensenumber": 987654,
         "specialty": "General Medicine",
-        "imagen": "https://drluisalbertolee.files.wordpress.com/2018/05/foto-carnet1.jpg"
+        "image": "https://drluisalbertolee.files.wordpress.com/2018/05/foto-carnet1.jpg"
       },
       {
         "name": "Ervin Howell",
@@ -16,7 +16,7 @@
         "password": "password2",
         "licensenumber": 876543,
         "specialty": "Pediatrics",
-        "imagen": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fclinicadelriohortega.es%2Freconocimientos-medicos%2F&psig=AOvVaw2_UlqSS4peWt3ijop6c9V9&ust=1708479366890000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNDckOLjuIQDFQAAAAAdAAAAABAI"
+        "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fclinicadelriohortega.es%2Freconocimientos-medicos%2F&psig=AOvVaw2_UlqSS4peWt3ijop6c9V9&ust=1708479366890000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNDckOLjuIQDFQAAAAAdAAAAABAI"
       },
       {
         "name": "Clementine Bauch",
@@ -25,7 +25,7 @@
         "password": "password3",
         "licensenumber": 765432,
         "specialty": "Gynecology and Obstetrics",
-        "imagen": "https://thumbs.dreamstime.com/z/joven-hermosa-latina-con-estetoscopio-doctor-y-carnet-de-identidad-expresi%C3%B3n-seria-en-rostro-simple-natural-mirando-la-c%C3%A1mara-219535830.jpg"
+        "image": "https://thumbs.dreamstime.com/z/joven-hermosa-latina-con-estetoscopio-doctor-y-carnet-de-identidad-expresi%C3%B3n-seria-en-rostro-simple-natural-mirando-la-c%C3%A1mara-219535830.jpg"
       },
       {
         "name": "Patricia Lebsack",
@@ -34,7 +34,7 @@
         "password": "password4",
         "licensenumber": 654321,
         "specialty": "Internal Medicine",
-        "imagen": "https://img.freepik.com/foto-gratis/doctor-vista-frontal-sonriendo-espacio-copia_23-2148728410.jpg?size=626&ext=jpg&ga=GA1.1.1803636316.1701302400&semt=ais"
+        "image": "https://img.freepik.com/foto-gratis/doctor-vista-frontal-sonriendo-espacio-copia_23-2148728410.jpg?size=626&ext=jpg&ga=GA1.1.1803636316.1701302400&semt=ais"
       },
       {
         "name": "Chelsey Dietrich",
@@ -43,7 +43,7 @@
         "password": "password5",
         "licensenumber": 543210,
         "specialty": "General Surgery",
-        "imagen": "https://s3.amazonaws.com/prod-wp-tvc/wp-content/uploads/2021/08/principal_Hugo_Fiallos_carnet_de_vacunacion_doctor.jpg"
+        "image": "https://s3.amazonaws.com/prod-wp-tvc/wp-content/uploads/2021/08/principal_Hugo_Fiallos_carnet_de_vacunacion_doctor.jpg"
       },
       {
         "name": "Mrs. Dennis Schulist",
@@ -52,7 +52,7 @@
         "password": "password6",
         "licensenumber": 432109,
         "specialty": "Orthopedics",
-        "imagen": "https://img.freepik.com/foto-gratis/doctora-alegre-estetoscopio_53876-129968.jpg"
+        "image": "https://img.freepik.com/foto-gratis/doctora-alegre-estetoscopio_53876-129968.jpg"
       },
       {
         "name": "Kurtis Weissnat",
@@ -61,7 +61,7 @@
         "password": "password7",
         "licensenumber": 321098,
         "specialty": "Dermatology",
-        "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpPD3wBQBJYtyN2w4prwa94mSOngPJ0rpINw&usqp=CAU"
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpPD3wBQBJYtyN2w4prwa94mSOngPJ0rpINw&usqp=CAU"
       },
       {
         "name": "Nicholas Runolfsdottir V",
@@ -70,7 +70,7 @@
         "password": "password8",
         "licensenumber": 210987,
         "specialty": "Ophthalmology",
-        "imagen": "https://splendidam990.com/media/k2/items/cache/0076865e56acfaac636121ae00681216_L.webp"
+        "image": "https://splendidam990.com/media/k2/items/cache/0076865e56acfaac636121ae00681216_L.webp"
       },
       {
         "name": "Glenna Reichert",
@@ -79,7 +79,7 @@
         "password": "password9",
         "licensenumber": 109876,
         "specialty": "Psychiatry",
-        "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgSoCzqv-8aPALhfDB2VGp6U9C_rEjj5QN_g&usqp=CAU"
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgSoCzqv-8aPALhfDB2VGp6U9C_rEjj5QN_g&usqp=CAU"
       },
       {
         "name": "Clementina DuBuque",
@@ -88,7 +88,7 @@
         "password": "password10",
         "licensenumber": 98765,
         "specialty": "Cardiology",
-        "imagen": "https://www.certificadomedico-laspalmas.com/wp-content/uploads/2022/02/certificado-medico-y-psicotecnico.jpg"
+        "image": "https://www.certificadomedico-laspalmas.com/wp-content/uploads/2022/02/certificado-medico-y-psicotecnico.jpg"
       }
     ]
   }
