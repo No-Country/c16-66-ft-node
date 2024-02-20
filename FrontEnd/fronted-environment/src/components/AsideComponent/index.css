@@ -14,6 +14,10 @@
 	font-style: normal;
 	font-weight: 500;
 	line-height: normal;
-	text-align: center;
+	text-align: start;
 	margin: auto 0;
+}
+.badge {
+	top: 9px;
+	left: 21px;
 }
