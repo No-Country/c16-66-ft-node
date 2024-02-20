@@ -9,14 +9,20 @@ conn.sync({force: true}).then(()=> {
 server.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
     const {doctors} = api
-    doctors.map(async({id,name}) => { await
-
+    
+    doctors.map(async({id,name, lastname, email, password, licensenumber, specialty}) => { await
+     
      Doctor.findOrCreate({
         where: {
-            id: id,
+            name,
         },
         defaults: {
-            name: name,
+            name,
+            lastname,
+            email,
+            password,
+            licensenumber,
+            specialty,
         }
      })   
      }

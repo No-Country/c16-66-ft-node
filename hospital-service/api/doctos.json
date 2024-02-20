@@ -1,16 +1,85 @@
 {
     "doctors": [
-        {
-            "id": 1,
-            "name": "Chapatin"
-        },
-        {
-            "id": 2,
-            "name": "Strange"
-        },
-        {
-            "id": 3,
-            "name": "Silva"
-        }
+      {
+        "name": "Leanne Graham",
+        "lastname": "Graham",
+        "email": "Sincere@april.biz",
+        "password": "password1",
+        "licensenumber": 987654,
+        "specialty": "General Medicine"
+      },
+      {
+        "name": "Ervin Howell",
+        "lastname": "Howell",
+        "email": "Shanna@melissa.tv",
+        "password": "password2",
+        "licensenumber": 876543,
+        "specialty": "Pediatrics"
+      },
+      {
+        "name": "Clementine Bauch",
+        "lastname": "Bauch",
+        "email": "Nathan@yesenia.net",
+        "password": "password3",
+        "licensenumber": 765432,
+        "specialty": "Gynecology and Obstetrics"
+      },
+      {
+        "name": "Patricia Lebsack",
+        "lastname": "Lebsack",
+        "email": "Julianne.OConner@kory.org",
+        "password": "password4",
+        "licensenumber": 654321,
+        "specialty": "Internal Medicine"
+      },
+      {
+        "name": "Chelsey Dietrich",
+        "lastname": "Dietrich",
+        "email": "Lucio_Hettinger@annie.ca",
+        "password": "password5",
+        "licensenumber": 543210,
+        "specialty": "General Surgery"
+      },
+      {
+        "name": "Mrs. Dennis Schulist",
+        "lastname": "Schulist",
+        "email": "Karley_Dach@jasper.info",
+        "password": "password6",
+        "licensenumber": 432109,
+        "specialty": "Orthopedics"
+      },
+      {
+        "name": "Kurtis Weissnat",
+        "lastname": "Weissnat",
+        "email": "Telly.Hoeger@billy.biz",
+        "password": "password7",
+        "licensenumber": 321098,
+        "specialty": "Dermatology"
+      },
+      {
+        "name": "Nicholas Runolfsdottir V",
+        "lastname": "Runolfsdottir",
+        "email": "Sherwood@rosamond.me",
+        "password": "password8",
+        "licensenumber": 210987,
+        "specialty": "Ophthalmology"
+      },
+      {
+        "name": "Glenna Reichert",
+        "lastname": "Reichert",
+        "email": "Chaim_McDermott@dana.io",
+        "password": "password9",
+        "licensenumber": 109876,
+        "specialty": "Psychiatry"
+      },
+      {
+        "name": "Clementina DuBuque",
+        "lastname": "DuBuque",
+        "email": "Rey.Padberg@karina.biz",
+        "password": "password10",
+        "licensenumber": 98765,
+        "specialty": "Cardiology"
+      }
     ]
-}
+  }
+  
