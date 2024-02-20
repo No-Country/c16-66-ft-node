@@ -8,7 +8,7 @@ export function CardPacientItem({ user, handlerSelect }) {
 	console.log(user);
 	return (
 		<div
-			className='w-full h-3/5 mb-4 py-2 px-4 flex align-middle gap-4 rounded-2xl  bg-white hover:bg-mostLighthBlue flex-wrap lg:flex-nowrap'
+			className=' w-11/12 h-3/5 mb-4 py-2 px-4 flex align-middle gap-4 rounded-2xl  bg-white hover:bg-mostLighthBlue flex-wrap lg:flex-nowrap'
 			onClick={() => handlerSelect(user?.id)}
 		>
 			<figure className='w-12 h-12 rounded-full overflow-hidden'>

@@ -20,7 +20,10 @@ const theme = createTheme(
 export function CalendarComponent() {
 	return (
 		<ThemeProvider theme={theme}>
-			<LocalizationProvider dateAdapter={AdapterDayjs}>
+			<LocalizationProvider
+				sx={{ border: "solid 1px red" }}
+				dateAdapter={AdapterDayjs}
+			>
 				<div className='calendarContainer'>
 					<div className='calendarTitle'>Calendario</div>
 					<DemoContainer components={["StaticDatePicker"]}>
@@ -29,9 +32,10 @@ export function CalendarComponent() {
 						</DemoItem>
 					</DemoContainer>
 
-					<div className='calendarTitle'>Próximo paciente</div>
-
-					<CardPacientItem />
+					<div className='-mt-10 w-full ml-4 '>
+						<h3 className='calendarTitle'> Próximo paciente</h3>
+						<CardPacientItem />
+					</div>
 				</div>
 			</LocalizationProvider>
 		</ThemeProvider>

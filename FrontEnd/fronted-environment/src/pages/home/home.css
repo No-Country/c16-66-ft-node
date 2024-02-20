@@ -12,3 +12,13 @@ background: var(--Background-Background-Grande, #EBF8EA);
 /* Card Home Med */
 box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.10);
 }
+
+.turnosWraperBg{
+    background-image: url('../../assets/photosBGWraperDoctor/Card1Wraper.png'); width: 100; height: 100;
+}
+.pacientsWraperBg{
+    background-image: url('../../assets/photosBGWraperDoctor/Card2Wraper.png'); width: 100; height: 100;
+}
+.videosWraperBg{
+    background-image: url('../../assets/photosBGWraperDoctor/Card3Wraper.png'); width: 100; height: 100;
+}

@@ -4,9 +4,9 @@ import { AsideComponent } from "../../components/AsideComponent/index";
 import { UserStore } from "../../StoreGeneral/UsersStore";
 import { CalendarComponent } from "../../components/CalendarComponent/index";
 import logo from "../../assets/FakeLOGO/Logo 3.png";
-import calendarIcon from "../../components/AsideComponent/Icons/calendar_month.png";
-import userIcon from "../../components/AsideComponent/Icons/person.png";
-import videoIcon from "../../components/AsideComponent/Icons/duo.png";
+import calendarIcon from "../../assets/svg/calendar.svg";
+import userIcon from "../../assets/svg/person.svg";
+import videoIcon from "../../assets/svg/duo.svg";
 
 import "./home.css";
 import { useState } from "react";
@@ -24,7 +24,7 @@ export function Home() {
 	console.log(selectPacient);
 	return (
 		<>
-			<body className='flex w-screen h-screen box-border'>
+			<body className='flex w-screen h-screen box-border z-0'>
 				<AsideComponent />
 				<main className='w-9/12 flex'>
 					{/* header con logo de APP =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */}
@@ -53,10 +53,10 @@ export function Home() {
 						</section>
 
 						{/* Seccion de scrol lateral con .. higlights? =-=-=-=-=-=-=-= */}
-						<section className='md:ml-8 lg:ml-10 w-4/6 lg:w-11/12 h-1/5 gap-4 flex rounded-3xl bg-lightBlue overflow-scroll justify-around px-2'>
-							<div className='w-1/3 h-3/4 rounded-lg border-2 my-auto '>
+						<section className='md:ml-8 lg:ml-10 w-4/6 lg:w-11/12 h-1/5 gap-4 flex rounded-3xl bg-celestBgWrapper overflow-scroll justify-around px-2'>
+							<div className='w-1/3 h-3/4 rounded-lg  my-auto turnosWraperBg'>
 								<div className=' w-7/12 h-3/6 rounded-lg m-auto mt-7 bg-white flex justify-between'>
-									<div className='w-fit h-fit p-2 mt-2 ml-1 rounded-full bg-lightBlue hidden lg:flex justify-center'>
+									<div className='w-fit h-fit p-1 mt-2 ml-1 rounded-full bg-lightBlue hidden lg:flex justify-center'>
 										<img
 											className='objet-cover objet-center inline'
 											src={calendarIcon}
@@ -73,9 +73,9 @@ export function Home() {
 									</div>
 								</div>
 							</div>
-							<div className='w-1/3 h-3/4 rounded-lg border-2 my-auto'>
+							<div className='w-1/3 h-3/4 rounded-lg pacientsWraperBg my-auto'>
 								<div className=' w-7/12 h-3/6 rounded-lg m-auto mt-7 bg-white flex justify-between'>
-									<div className='w-fit h-fit p-2 mt-2 ml-1 rounded-full bg-lightBlue hidden lg:flex justify-center'>
+									<div className='w-fit h-fit p-1 mt-2 ml-1 rounded-full bg-lightBlue hidden lg:flex justify-center'>
 										<img
 											className='objet-cover objet-center inline'
 											src={userIcon}
@@ -90,9 +90,9 @@ export function Home() {
 									</div>
 								</div>
 							</div>
-							<div className='w-1/3 h-3/4 rounded-lg border-2 my-auto'>
+							<div className='w-1/3 h-3/4 rounded-lg videosWraperBg my-auto'>
 								<div className=' w-7/12 h-3/6 rounded-lg m-auto mt-7 bg-white flex justify-between'>
-									<div className='w-fit h-fit p-2 mt-2 ml-1 rounded-full bg-lightBlue hidden lg:flex justify-center'>
+									<div className='w-fit h-fit p-1 mt-2 ml-1 rounded-full bg-lightBlue hidden lg:flex justify-center'>
 										<img
 											className='objet-cover objet-center inline'
 											src={videoIcon}
@@ -110,7 +110,7 @@ export function Home() {
 						</section>
 
 						{/* Seccion de reenderizado de lista de pacientes y consulta de c/u =-=-*/}
-						<section className='w-4/6 lg:w-11/12 h-2/3 md:ml-8 lg:ml-10 mt-2 secction__Principal-doctorHome flex py-3 px-4  items-start gap-10 shrink-0 rounded-3xl'>
+						<section className='w-4/6 lg:w-11/12 h-3/6  md:ml-8 lg:ml-10 mt-2 secction__Principal-doctorHome flex py-3 px-4  items-start gap-10 shrink-0 rounded-3xl overflow-scroll'>
 							<div className='flex-col '>
 								<h2 className=' text-2xl text-black font-medium mb-3'>
 									Lista de pacientes
@@ -141,8 +141,8 @@ export function Home() {
 							</div>
 						</section>
 					</div>
-					<section className=' mt-20 w-1/4 flex-col box-border'>
-						<div className='w-full h-2/5 m-auto box-border'>
+					<section className='-ml-6 mt-20 w-2/5 flex-col box-border'>
+						<div className=' m-auto box-border'>
 							<CalendarComponent />
 						</div>
 					</section>
