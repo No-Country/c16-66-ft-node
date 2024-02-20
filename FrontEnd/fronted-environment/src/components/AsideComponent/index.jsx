@@ -1,19 +1,20 @@
 import { useState } from "react";
-import { Button } from "@mui/base";
-import close from "./Icons/close.png";
-import menu from "./Icons/menu.png";
-import isotipo from "./Icons/Doctor.jpg";
-import group from "./Icons/Group.png";
-import person from "./Icons/person.png";
-import calendar from "./Icons/calendar_month.png";
-import clinicalNotes from "./Icons/clinical_notes.png";
-import duo from "./Icons/duo.png";
-import book from "./Icons/book.png";
-import star from "./Icons/star.png";
-import notifications from "./Icons/notifications_unread.png";
-import settings from "./Icons/settings.png";
-import suportAgent from "./Icons/support_agent.png";
-import logOut from "./Icons/logout.png";
+import { Badge, Button } from "@mui/base";
+import close from "../../assets/svg/close.svg";
+import menu from "../../assets/svg/menu.svg";
+import isotipo from "../../assets/svg/Isotipo.svg";
+import group from "../../assets/svg/group.svg";
+import person from "../../assets/svg/person.svg";
+import calendar from "../../assets/svg/calendar.svg";
+import clinicalNotes from "../../assets/svg/clinicalNotes.svg";
+import duo from "../../assets/svg/duo.svg";
+import book from "../../assets/svg/book.svg";
+import star from "../../assets/svg/star.svg";
+import notification from "../../assets/svg/notification.svg";
+import notificationUnread from "../../assets/svg/notificationUnread.svg";
+import settings from "../../assets/svg/settings.svg";
+import suportAgent from "../../assets/svg/suportAgent.svg";
+import logOut from "../../assets/svg/logout.svg";
 import { BoxIcon } from "./components/BoxIcon";
 import "./index.css";
 
@@ -25,23 +26,18 @@ export function AsideComponent() {
 
 	return (
 		<aside
-			className={`asideBackground h-screen z-10 flex flex-col justify-evenly py-4 px-6 gap-2.5 ${
+			className={`asideBackground h-screen z-10 flex flex-col justify-evenly py-5 px-6 gap-2.5 ${
 				openClose ? " w-1/5" : "w-1/12"
 			}`}
 		>
-			<section
-				className={`h-1/12 flex mx-auto ${
-					openClose ? "w-full justify-end" : "w-1/2 justify-center"
-				}`}
-			>
-				<Button className='w-full h-full' onClick={handleAsideOpenClose}>
-					<img src={menu} className={`${openClose ? "hidden " : "flex"}`} />
-					<img
-						className={`h-full ${openClose ? "flex ml-44" : "hidden"}`}
-						src={close}
-					/>
-				</Button>
-			</section>
+			<Button className='flex justify-end mb-4' onClick={handleAsideOpenClose}>
+				{openClose ? (
+					<img src={close} />
+				) : (
+					<img src={menu} className='mx-auto' />
+				)}
+			</Button>
+
 			<section
 				className={`flex flex-col ${
 					openClose ? "justify-between h-4/6" : "justify-between h-4/6"
@@ -105,13 +101,24 @@ export function AsideComponent() {
 					className={`flex hover:bg-white p-2 rounded-xl mx-auto ${
 						openClose
 							? "w-full justify-start gap-4"
-							: "w-2/3 h-auto justify-center"
+							: "w-2/3 h-auto relative justify-center"
 					}`}
 				>
-					<img src={notifications} />
-					<div className={`${openClose ? "flex -ml-1 w-2/3" : "hidden"}`}>
+					{openClose ? (
+						<img src={notification} />
+					) : (
+						<>
+							<img src={notificationUnread} />
+							<Badge className='w-0.5 h-0.5 bg-red p-1 rounded-md absolute badge' />
+						</>
+					)}
+					<div
+						className={`${
+							openClose ? "flex -ml-1 w-2/3 items-center" : "hidden"
+						}`}
+					>
 						<p className='textHiddenAside'>Notificaciones</p>
-						<p className='text-white rounded-full ml-2 flex justify-center  h-5 w-5 text-xs bg-red'>
+						<p className='text-white rounded-full ml-2 flex justify-center h-4 w-4 text-xs items-center bg-red'>
 							8
 						</p>
 					</div>
