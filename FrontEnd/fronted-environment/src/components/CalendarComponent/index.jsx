@@ -31,11 +31,6 @@ export function CalendarComponent() {
 							<StaticDatePicker defaultValue={dayjs()} />
 						</DemoItem>
 					</DemoContainer>
-
-					<div className='-mt-10 w-full ml-4 '>
-						<h3 className='calendarTitle'> Próximo paciente</h3>
-						<CardPacientItem />
-					</div>
 				</div>
 			</LocalizationProvider>
 		</ThemeProvider>

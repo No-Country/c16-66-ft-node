@@ -8,7 +8,7 @@ export function CardPacientItem({ user, handlerSelect }) {
 	console.log(user);
 	return (
 		<div
-			className=' w-11/12 h-3/5 mb-4 py-2 px-4 flex align-middle gap-4 rounded-2xl  bg-white hover:bg-mostLighthBlue flex-wrap lg:flex-nowrap'
+			className=' w-10/12 h-3/5 mb-4 py-2 px-3 flex align-middle gap-4 rounded-2xl  bg-white hover:bg-mostLighthBlue flex-wrap lg:flex-nowrap'
 			onClick={() => handlerSelect(user?.id)}
 		>
 			<figure className='w-12 h-12 rounded-full overflow-hidden'>
@@ -21,12 +21,12 @@ export function CardPacientItem({ user, handlerSelect }) {
 			</figure>
 			<article
 				// style={{ width: "135px" }}
-				className='w-3/6 h- flex flex-col gap-2 items-start truncate'
+				className='w-3/5  flex flex-col gap-2 items-start truncate'
 			>
-				<h3 className='text-black text-ellipsis font-medium text-base'>
+				<h3 className='text-black font-medium text-base truncate'>
 					{user?.name}
 				</h3>
-				<p className='text-gray text-sm font-normal'>
+				<p className='text-gray text-sm font-normal truncate'>
 					{today}
 					{/* Cambiar today por fecha del turno */}
 				</p>
@@ -41,9 +41,8 @@ export function CardPacientItem({ user, handlerSelect }) {
 						style={{
 							fontFamily: "Roboto",
 							letterSpacing: " 0.1px",
-							fontSize: "16px",
 						}}
-						className=' text-darkBlue text-center font-medium'
+						className=' text-darkBlue text-center font-medium truncate'
 					>
 						10:00 AM
 						{/* Cambiar por horario del turno */}
