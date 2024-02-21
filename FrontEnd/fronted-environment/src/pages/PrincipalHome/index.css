@@ -1,5 +1,33 @@
-.bgHeader {
-	background-image: url('../../assets/Start-SideMenu.png');
-	width: 100;
-	height: 100;
+.header {
+	background: var(
+		--Background-Background-pgina-de-inicio,
+		linear-gradient(
+			180deg,
+			rgba(198, 241, 191, 0.56) 0%,
+			rgba(103, 189, 234, 0.38) 90.92%,
+			rgba(255, 255, 255, 0.75) 127.47%
+		),
+		#fff
+	);
+	backdrop-filter: blur(2px);
+}
+.nav {
+	background: var(
+		--Background-Background-Header,
+		linear-gradient(
+			180deg,
+			rgba(198, 241, 191, 0.56) 0%,
+			rgba(103, 189, 234, 0) 471.67%
+		),
+		#fff
+	);
+	box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+}
+.text {
+	color: var(--Colores-Principales-Texto-principal, #2b2b2b);
+	font-family: Roboto;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
 }
