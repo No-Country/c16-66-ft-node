@@ -5,8 +5,8 @@ export function MedicConsult(user) {
 
 	return (
 		<>
-			<article className='w-full h-16 my-4 py-2 px-4 flex align-middle gap-4 rounded-2xl  bg-white hover:bg-mostLighthBlue'>
-				<figure className='w-12 h-12 rounded-full overflow-hidden'>
+			<article className='w-full h-16 my-2 px-4 flex align-middle gap-4 rounded-2xl  bg-white hover:bg-mostLighthBlue'>
+				<figure className='w-12 h-12 rounded-full overflow-hidden overflow-x-hidden'>
 					{/* Cambiar imagen por la que venga de db */}
 					<img
 						className='object-cover object-center'
@@ -26,7 +26,7 @@ export function MedicConsult(user) {
 				</article>
 			</article>
 			<section className='w-full max-h-96 flex flex-col items-start gap-4 overflow-scroll '>
-				<article className='w-full h-fit flex flex-col lg:flex-row gap-4 items-start'>
+				<article className='w-full h-fit flex flex-col xl:flex-row gap-4 items-start'>
 					<div>
 						<h3 className='text-black font-medium text-base'>Sintomas</h3>
 					</div>
@@ -39,7 +39,7 @@ export function MedicConsult(user) {
 						</p>
 					</div>
 				</article>
-				<article className='w-full h-fit flex flex-col lg:flex-row gap-4 items-start '>
+				<article className='w-full h-fit flex flex-col xl:flex-row gap-4 items-start '>
 					<div>
 						<h3 className='text-black font-medium text-base'>
 							Úiltima revisión
@@ -55,7 +55,7 @@ export function MedicConsult(user) {
 						</p>
 					</div>
 				</article>
-				<article className='w-full h-fit flex flex-col lg:flex-row gap-4 items-start '>
+				<article className='w-full h-fit flex flex-col xl:flex-row gap-4 items-start '>
 					<div>
 						<h3 className='text-black font-medium text-base'>Observación</h3>
 					</div>
@@ -68,7 +68,7 @@ export function MedicConsult(user) {
 						</p>
 					</div>
 				</article>
-				<article className='w-full h-fit flex flex-col lg:flex-row gap-4 items-start'>
+				<article className='w-full h-fit flex flex-col xl:flex-row gap-4 items-start'>
 					<div>
 						<h3 className='text-black font-medium text-base'>Prescripcíon</h3>
 					</div>
@@ -79,7 +79,7 @@ export function MedicConsult(user) {
 						</p>
 					</div>
 				</article>
-				<article className='w-full h-fit flex flex-col lg:flex-row gap-4 items-start '>
+				<article className='w-full h-fit flex flex-col xl:flex-row gap-4 items-start '>
 					<div>
 						<h3 className='text-black font-medium text-base'>Sintomas</h3>
 					</div>
