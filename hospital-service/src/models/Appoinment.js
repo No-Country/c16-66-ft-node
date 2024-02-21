@@ -2,15 +2,18 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
     sequelize.define(
-        "Pacient",
+        "Appoinment",
         {
-            pacientId: {
+            id: {
                 primaryKey: true,
                 type: DataTypes.INTEGER,
                 allowNull: false,
-                autoIncrement: true,
             },
-            name: {
+            date: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            hour: {
                 type: DataTypes.STRING,
                 allowNull: false,
             }

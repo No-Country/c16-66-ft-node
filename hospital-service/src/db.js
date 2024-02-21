@@ -41,15 +41,23 @@ let capsEntries = entries.map((entry) => [
 
 sequelize.models = Object.fromEntries(capsEntries);
 
-doctorModels(sequelize);
-
 const {
     Pacient,
     Doctor,
+    Appoinment,
 } = sequelize.models;
+
+/*1:N*/
+Appoinment.belongsTo(Doctor, {foreignKey: "doctorId"});
+Doctor.hasMany(Appoinment, {foreignKey: "doctorId"});
+
+Appoinment.belongsTo(Pacient, {foreignKey: "PacientId"});
+Pacient.hasMany(Appoinment, {foreignKey: "PacientId"});
 
 module.exports = {
     ...sequelize.models,
     Doctor,
+    Appoinment,
+    Pacient,
     conn: sequelize,
 }

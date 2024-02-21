@@ -1,12 +1,12 @@
 const { Doctor } = require("../../db");
 
-const deleteDoctorById = async (id) => {
+const deleteDoctorById = async (doctorId) => {
     
-    if(!id) throw new Error("Doctor not found")
-    const doctorToDelete = await Doctor.findByPk(id);
+    if(!doctorId) throw new Error("Doctor not found")
+    const doctorToDelete = await Doctor.findByPk(doctorId);
     await Doctor.destroy({
     where: {
-        id: id,
+        doctorId: doctorId,
     },
     });
 

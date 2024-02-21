@@ -3,8 +3,8 @@ const {deleteDoctorById} = require("../../controllers/doctors/deleteDoctorById")
 const deleteDoctorByIdHandler = async (req, res) => {
     try {
 
-        const {id} = req.params;
-        const doctor = await deleteDoctorById(id)
+        const {doctorId} = req.params;
+        const doctor = await deleteDoctorById(doctorId)
         res.status(201).json(doctor)
 
     } catch(error) {

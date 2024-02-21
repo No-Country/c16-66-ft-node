@@ -4,7 +4,7 @@ module.exports = (sequelize) => {
     sequelize.define(
         "Doctor",
         {
-            id: {
+            doctorId: {
                 primaryKey: true,
                 type: DataTypes.INTEGER,
                 allowNull: false,

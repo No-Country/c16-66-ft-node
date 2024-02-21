@@ -4,11 +4,14 @@ const {createDoctorHandler} = require("../handlers/doctors/createDoctorHandler")
 const {updateDoctorHandler} = require("../handlers/doctors/updateDoctorHandler")
 const {getDoctorsByIdHandler} = require("../handlers/doctors/getDoctorByIdHandler")
 const {deleteDoctorByIdHandler} = require("../handlers/doctors/deleteDoctorByIdHandler")
+const {getAllPacientsHandler} = require("../handlers/pacients/getPacientsHandler")
+const {getPacientByIdHandler} = require("../handlers/pacients/getPacientByIdHandler")
 
 //express config
 const {Router} = require("express");
 const router = Router();
 
+//doctors routes
 router.get("/doctors", getAllDoctors);
 
 router.get("/doctors/:id", getDoctorsByIdHandler);
@@ -17,6 +20,13 @@ router.post("/doctors", createDoctorHandler);
 
 router.put("/doctors", updateDoctorHandler);
 
-router.delete("/doctors/:id", deleteDoctorByIdHandler);
+router.delete("/doctors/:doctorId", deleteDoctorByIdHandler);
+
+//pacient routes
+router.get("/pacients", getAllPacientsHandler);
+
+router.get("/pacients/:pacientId", getPacientByIdHandler);
+
+//appoinment routes
 
 module.exports = router; 
