@@ -51,8 +51,8 @@ const {
 Appoinment.belongsTo(Doctor, {foreignKey: "doctorId"});
 Doctor.hasMany(Appoinment, {foreignKey: "doctorId"});
 
-Appoinment.belongsTo(Pacient, {foreignKey: "PacientId"});
-Pacient.hasMany(Appoinment, {foreignKey: "PacientId"});
+Appoinment.belongsTo(Pacient, {foreignKey: "pacientId"});
+Pacient.hasMany(Appoinment, {foreignKey: "pacientId"});
 
 module.exports = {
     ...sequelize.models,

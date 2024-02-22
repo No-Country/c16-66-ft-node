@@ -11,12 +11,23 @@ module.exports = (sequelize) => {
                 autoIncrement: true,
             },
             date: {
-                type: DataTypes.STRING,
+                type: DataTypes.DATEONLY,
                 allowNull: false,
+                validate: {
+                    isDate: true
+                }
             },
             hour: {
-                type: DataTypes.STRING,
+                type: DataTypes.TIME,
                 allowNull: false,
+                validate: {
+                    is: /^([01]\d|2[0-3]):([0-5]\d)$/,
+                },
+            },
+            pending: {
+                type: DataTypes.BOOLEAN,
+                allowNull: false,
+                defaultValue: true,
             }
         }, {timestamps : false},
     );

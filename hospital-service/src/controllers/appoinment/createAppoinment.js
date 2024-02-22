@@ -2,22 +2,18 @@ const {Appoinment} = require("../../db")
 const {Doctor} = require("../../db")
 const {Pacient} = require("../../db")
 
-const createAppoinment = async(date, hour, doctorId, pacientId) => {
+const createAppoinment = async(date, hour, pending, doctorId, pacientId) => {
 
-    const newAppoinment = await Appoinment.create({date, hour, doctorId, pacientId})
+    const newAppoinment = await Appoinment.create({date, hour, pending, doctorId, pacientId})
     
-    const doctoradd = await Doctor.findAll({
-        where: {doctorId: doctorId}
-    })
-    console.log(doctoradd)
-    await newAppoinment.add(doctoradd)
+    const doctoradd = await Doctor.findByPk(doctorId)
+    
+    await newAppoinment.setDoctor(doctoradd)
+    
+    const pacientadd = await Pacient.findByPk(pacientId)
 
-    const pacientadd = await Pacient.findAll({
-        where: {pacientId: pacientId}
-    })
-
-    await newAppoinment.addPacient(pacientadd)
-
+    await newAppoinment.setPacient(pacientadd)
+    
     return newAppoinment
 }
 

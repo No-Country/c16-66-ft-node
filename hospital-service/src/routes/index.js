@@ -8,6 +8,8 @@ const {getAllPacientsHandler} = require("../handlers/pacients/getPacientsHandler
 const {getPacientByIdHandler} = require("../handlers/pacients/getPacientByIdHandler")
 const {createAppoinmentHandler} = require("../handlers/appoinments/createAppoinmentHandler")
 const {getAllAppoinment} = require("../handlers/appoinments/getAppoinmentHandler")
+const {getAppoinmentByIdHandler} = require("../handlers/appoinments/getAppoinmentByIdHandler")
+const {deleteAppoinmentByIdHandler} = require("../handlers/appoinments/deleteAppoinmentByIdHandler") 
 
 //express config
 const {Router} = require("express");
@@ -32,6 +34,10 @@ router.get("/pacients/:pacientId", getPacientByIdHandler);
 //appoinment routes
 router.get("/appoinment", getAllAppoinment)
 
+router.get("/appoinment/:id", getAppoinmentByIdHandler);
+
 router.post("/appoinment", createAppoinmentHandler);
+
+router.delete("/appoinment/:id", deleteAppoinmentByIdHandler);
 
 module.exports = router; 
