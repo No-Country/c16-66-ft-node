@@ -31,11 +31,32 @@
 	font-weight: 500;
 	line-height: normal;
 }
-.cardHome {
-	border-radius: 24px;
+.modal {
 	background: var(
-		--Colores-Principales-Blanco-50-side-menu,
-		rgba(255, 255, 255, 0.5)
+		--Background-Background-Side-menu,
+		linear-gradient(
+			180deg,
+			rgba(198, 241, 191, 0.56) 0%,
+			rgba(103, 189, 234, 0.38) 49.99%,
+			rgba(188, 236, 195, 0.56) 99.99%
+		),
+		#fff
 	);
-	backdrop-filter: blur(3px);
+	backdrop-filter: blur(2px);
+}
+.shadow {
+	box-shadow: 6px 6px 8px 0px rgba(70, 123, 62, 0.3);
+}
+.footer {
+	background: var(
+		--Background-Background-Footer-web,
+		linear-gradient(
+			180deg,
+			rgba(198, 241, 191, 0.56) 0%,
+			rgba(103, 189, 234, 0.38) 90.92%,
+			rgba(255, 255, 255, 0.75) 127.47%
+		),
+		#fff
+	);
+	backdrop-filter: blur(2px);
 }
