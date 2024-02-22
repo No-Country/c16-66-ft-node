@@ -67,17 +67,7 @@ export default function HomeDoctor() {
 			: (consult = doctors.filter((user) => user.id === id));
 		setSelectTypeUser(...consult);
 	};
-	// const style = {
-	// 	position: "absolute",
-	// 	top: "50%",
-	// 	left: "50%",
-	// 	transform: "translate(-50%, -50%)",
-	// 	width: 400,
-	// 	bgcolor: "background.paper",
-	// 	border: "2px solid #000",
-	// 	boxShadow: 24,
-	// 	p: 4,
-	// };
+
 	return (
 		<>
 			<body className='flex w-screen h-screen box-border z-0'>
@@ -187,7 +177,7 @@ export default function HomeDoctor() {
 							aria-labelledby='modal-modal-title'
 							aria-describedby='modal-modal-description'
 						>
-							<section className='absolute -mt-20 top-1/4 left-1/3 w-96 bg-mostLighthBlue rounded-2xl border-2 shadow-2xl p-4'>
+							<section className='absolute -mt-60 top-1/4 left-1/3 w-96 bg-mostLighthBlue rounded-2xl border-2 shadow-2xl p-4'>
 								{selectTypeUser.name != undefined ? (
 									<MedicConsult user={selectTypeUser} />
 								) : doctorLogged ? (
