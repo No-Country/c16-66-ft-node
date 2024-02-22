@@ -55,7 +55,7 @@
     ],
     "doctors":[
         { "id":"0973hd755h5", 
-        "registration number": "X-675739-bg",
+        "registrationNumber": "X-675739-bg",
         "name" : "Lucia Rodriguez",
         "email": "luciaDo@hotmail.com",
         "specialty": "Cardiologia",
@@ -69,7 +69,7 @@
      }, 
         {
         "id":"0973hd75pk5", 
-        "registration number": "P-565739-bg",
+        "registrationNumber": "P-565739-bg",
         "name" : "Federico CampoAmor",
         "email": "FedeDoc@hotmail.com",
         "specialty": "oftalmologia",
@@ -82,7 +82,7 @@
         "town": "Pilar" }, 
         { 
         "id":"0973huejw5pk5", 
-        "registration number": "B-4e739-bg",
+        "registrationNumber": "B-4e739-bg",
         "name" : "Federica Amendolara",
         "email": "FedericaDoc@hotmail.com",
         "specialty": "gastroenterologia",
@@ -95,7 +95,7 @@
         "town": "Zarate" }, 
         { 
             "id":"0glk3hd75pk5", 
-            "registration number": "A-465739-bg",
+            "registrationNumber": "A-465739-bg",
             "name" : "Roberto Ciansolo",
             "email": "RobertDoc@hotmail.com",
             "specialty": "psicologia",

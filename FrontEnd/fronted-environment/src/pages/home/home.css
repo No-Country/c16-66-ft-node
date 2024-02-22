@@ -22,3 +22,21 @@ box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.10);
 .videosWraperBg{
     background-image: url('../../assets/photosBGWraperDoctor/Card3Wraper.png'); width: 100; height: 100;
 }
+
+.agendaWraperBg{
+    background-image: url('../../assets/photosBGWraperDoctor/miAgendabg.png'); width: 100; height: 100;
+}
+.cartillaWraperBg{
+    background-image: url('../../assets/photosBGWraperDoctor/cartillaBg.png'); width: 100; height: 100;
+}
+.estudiosWraperBg{
+    background-image: url('../../assets/photosBGWraperDoctor/turnosBg.png'); width: 100; height: 100;
+}
+
+.blurData{
+    filter: blur(2px)
+}
+
+.blurCard{
+    filter: blur(3px)
+}

@@ -1,27 +1,73 @@
 import { CardPacientItem } from "../../components/CardPacientItem";
 import { MedicConsult } from "../../components/MedicCosult";
 import { AsideComponent } from "../../components/AsideComponent/index";
-import { UserStore } from "../../StoreGeneral/UsersStore";
 import { CalendarComponent } from "../../components/CalendarComponent/index";
-import logo from "../../assets/FakeLOGO/Logo 3.png";
-import calendarIcon from "../../assets/svg/calendar.svg";
-import userIcon from "../../assets/svg/person.svg";
-import videoIcon from "../../assets/svg/duo.svg";
+import { HomeHiglights } from "../../components/homeHiglihts";
+//
+import { UserStore } from "../../StoreGeneral/UsersStore";
+import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
 
+//
+import logo from "../../assets/FakeLOGO/Logo 3.png";
+import credencialIcon from "../../assets/svg/contact_emergency.svg";
+import { Modal } from "@mui/material";
+//
 import "./home.css";
 import { useState } from "react";
+
+//
+//objeto inicial debajo, solo para probar flujo --> a remplazar por state cuando haya loggin
+// const doctorInfo = {
+// 	id: "0973hd755h5",
+// 	registrationNumber: "X-675739-bg",
+// 	name: "Lucia Rodriguez",
+// 	email: "luciaDo@hotmail.com",
+// 	specialty: "Cardiologia",
+// 	password: "123456",
+// 	birthdate: "2087-02-15T15:01:12.688Z",
+// 	"social Security Add": ["Ioma", "Ospe", "Amemop", "Galeno", "Pami", "Osde"],
+// 	tel: 22461847578,
+// 	address: "Calle 34 251",
+// 	province: "Buenos Aires",
+// 	town: "La Plata",
+// };
+const userInfo = {
+	id: "0973hd34h5",
+	dni: 34783921,
+	name: "Lucia Camps",
+	email: "Luciacamps@hotmail.com",
+	password: "123456",
+	birthdate: "2097-02-15T15:01:12.688Z",
+	"social Security": "Ioma",
+	weight: 58,
+	tel: 221847578,
+	address: "Calle 7 251",
+	province: "Buenos Aires",
+	town: "La Plata",
+};
+
 export default function HomeDoctor() {
+	let doctorLogged; // test objet hasta que funcione loggin
+	let userLogged = userInfo;
 	const { users } = UserStore();
-	const [selectPacient, setSelectPacient] = useState({});
+	const { doctors } = DoctorStore();
+	const [selectTypeUser, setSelectTypeUser] = useState({});
+	//abajo, states para modal  credencial. Solo manejo del dom
+	const [credAnim, setCredAnim] = useState(false);
+
+	const [open, setOpen] = useState(false);
+	const handleModalConsult = () => setOpen(!open);
 
 	const handlerSelect = (id) => {
 		console.log("en la funcion");
 		console.log(id);
-		const consult = users.filter((user) => user.id === id);
-		setSelectPacient(...consult);
+		let consult;
+		doctorLogged
+			? (consult = users.filter((user) => user.id === id))
+			: (consult = doctors.filter((user) => user.id === id));
+		setSelectTypeUser(...consult);
 	};
-	console.log("en home, el seleccionado es");
-	console.log(selectPacient);
+
 	return (
 		<>
 			<body className='flex w-screen h-screen box-border z-0'>
@@ -41,120 +87,182 @@ export default function HomeDoctor() {
 						</header>
 
 						{/* Seccion de Titulo de la pagina ==-=-=-=-=-=-=-==-=-=-=-=-=-= */}
-						<section className=' mt-4 mb-2 w-full h-3/12 flex-col mr-4'>
+						<section className=' mt-2 mb-1 w-full h-3/12 flex-col mr-4'>
 							<h2 className='text-3xl font-bold text-black'>
-								Bien venido <span className=' text-darkBlue'>Dr. Roberto </span>
+								{" "}
+								Bienvenido/a
+								<span className=' text-darkBlue'>
+									{doctorLogged
+										? ` Dr. ${doctorLogged.name}`
+										: ` ${userLogged.name}`}
+								</span>
 							</h2>
-							{/* cambiar por el doctor logeado
-							 */}
-							<p className=' text-lg font-normal text-gray'>
-								!Ten un gran día de trabajo, excelentes consultas¡
-							</p>
+							{doctorLogged ? (
+								<p className=' text-lg font-normal text-gray'>
+									¡Ten un gran día de trabajo, excelentes consultas!
+								</p>
+							) : (
+								<p className=' text-lg font-normal text-gray'>
+									¡Ten un gran día, y accede a las mejores consultas médicas!
+								</p>
+							)}
 						</section>
 
-						{/* Seccion de scrol lateral con .. higlights? =-=-=-=-=-=-=-= */}
-						<section className='w-11/12 h-1/5 max-h-40 gap-4 flex rounded-3xl bg-celestBgWrapper justify-around px-2'>
-							<div className='w-1/3 h-3/4 rounded-lg  my-auto turnosWraperBg'>
-								<div className=' w-7/12 h-3/6 rounded-lg m-auto mt-7 bg-white flex justify-between'>
-									<div className='w-fit h-fit p-1 mt-2 ml-1 rounded-full bg-lightBlue hidden lg:flex justify-center'>
-										<img
-											className='objet-cover objet-center inline'
-											src={calendarIcon}
-											alt='Icono de Calendario'
-										/>
-									</div>
-									<div className='w-2/3 pl-2 pt-1 flex-col justify-center truncate'>
-										<stron className='text-sm font-semibold text-black'>
-											30.5K
-										</stron>
-										<p className=' text-sm font-normal text-gray truncate'>
-											Total turnos
-										</p>
-									</div>
-								</div>
-							</div>
-							<div className='w-1/3 h-3/4 rounded-lg pacientsWraperBg my-auto'>
-								<div className=' w-7/12 h-3/6 rounded-lg m-auto mt-7 bg-white flex justify-between'>
-									<div className='w-fit h-fit p-1 mt-2 ml-1 rounded-full bg-lightBlue hidden lg:flex justify-center'>
-										<img
-											className='objet-cover objet-center inline'
-											src={userIcon}
-											alt='Icono de Calendario'
-										/>
-									</div>
-									<div className='w-2/3 pl-2 pt-1 flex-col justify-center truncate'>
-										<stron className='text-sm font-semibold text-black'>
-											120.3K
-										</stron>
-										<p className=' text-sm font-normal text-gray truncate'>
-											Pacientes
-										</p>
-									</div>
-								</div>
-							</div>
-							<div className='w-1/3 h-3/4 rounded-lg videosWraperBg my-auto'>
-								<div className=' w-7/12 h-3/6 rounded-lg m-auto mt-7 bg-white flex justify-between'>
-									<div className='w-fit h-fit p-1 mt-2 ml-1 rounded-full bg-lightBlue hidden lg:flex justify-center'>
-										<img
-											className='objet-cover objet-center inline'
-											src={videoIcon}
-											alt='Icono de Calendario'
-										/>
-									</div>
-									<div className='w-2/3 pl-2 pt-1 flex-col justify-center truncate'>
-										<stron className='text-sm font-semibold text-black'>
-											47.0K
-										</stron>
-										<p className=' text-sm font-normal text-gray truncate'>
-											Consultas
-										</p>
-									</div>
-								</div>
-							</div>
+						{/* Seccion de  higlights? =-=-=-=-=-=-=-= */}
+						<section className='w-11/12 h-1/6 max-h-32 gap-4 flex rounded-3xl bg-celestBgWrapper justify-around px-2'>
+							<HomeHiglights />
 						</section>
 
-						{/* Seccion de reenderizado de lista de pacientes y consulta de c/u =-=-*/}
-						<section className='w-4/6 lg:w-11/12 h-72 xl:h-80 mt-8 secction__Principal-doctorHome flex py-2 px-4 items-start gap-6 shrink-0 rounded-3xl overflow-hidden'>
-							<div className=' w-3/5 flex-col'>
+						{/* Seccion de reenderizado de lista de pacientes y consulta de c/u =-=-=-=-=-=-=*/}
+						<section className='w-11/12 h-80 xl:h-96 mt-4 xl:mt-2 secction__Principal-doctorHome flex py-2 px-4 items-start gap-6 shrink-0 rounded-3xl overflow-hidden'>
+							<div className=' w-6/12 flex-col'>
 								<h2 className=' text-2xl text-black font-medium mb-3'>
-									Lista de pacientes
+									{doctorLogged ? "Lista de pacientes" : "Próximos turnos "}
 								</h2>
-								<section className=' h-56 flex-col overflow-scroll'>
-									<div>
-										{users?.map((user) => {
-											return (
-												<CardPacientItem
-													key={user.id}
-													user={user}
-													handlerSelect={handlerSelect}
-												/>
-											);
-										})}
-									</div>
+								<section className='w-full h-64 xl:h-72 flex-col overflow-scroll'>
+									{doctorLogged ? (
+										<div className='w-full'>
+											{users?.map((user) => {
+												return (
+													<CardPacientItem
+														key={user.id}
+														user={user}
+														handlerSelect={handlerSelect}
+													/>
+												);
+											})}
+										</div>
+									) : (
+										<div className='ml-2'>
+											{doctors?.map((doctor) => {
+												return (
+													<CardPacientItem
+														key={doctor.id}
+														user={doctor}
+														handlerSelect={handlerSelect}
+													/>
+												);
+											})}
+										</div>
+									)}
 								</section>
 							</div>
-							{/* =-=-=-=-=segundo bloque de la seccion  - Turno -=-=-=-=-=- */}
-							<div className='w-full h-full flex-col gap-6'>
+							{/* -=-=segundo bloque de la seccion - Turno/ doctor info --=-=-=- */}
+							<div className='w-6/12 h-full flex-col gap-6'>
 								<div className='flex justify-between'>
 									<h2 className=' font-medium text-xl text-black'>
 										Consulta Médica
 									</h2>
-									<p className='text-darkBlue mr-2'> Ver más.. </p>
+									<button
+										className='text-darkBlue mr-2 hover:cursor-pointer'
+										onClick={handleModalConsult}
+									>
+										{" "}
+										Ver más..{" "}
+									</button>
 								</div>
-								{selectPacient.name != undefined && (
-									<MedicConsult user={selectPacient} />
+								{selectTypeUser.name != undefined ? (
+									<MedicConsult user={selectTypeUser} />
+								) : doctorLogged ? (
+									<MedicConsult user={users[0]} />
+								) : (
+									<MedicConsult user={doctors[0]} />
 								)}
 							</div>
 						</section>
-					</div>
-					<section className='-ml-4 xl:ml-0 mt-20 mb-2 w-5/12 h-2/5 flex-col box-border'>
-						<div className='m-auto box-border'>
-							<CalendarComponent />
-							<div className='w-full h-32  m-auto mt-2 pt-2 flex justify-center items-center bg-mostLighthBlue rounded-lg box-border overflow-scroll'>
-								{selectPacient.name != undefined && (
-									<CardPacientItem user={selectPacient} />
+
+						<Modal
+							open={open}
+							onClose={handleModalConsult}
+							aria-labelledby='modal-modal-title'
+							aria-describedby='modal-modal-description'
+						>
+							<section className='absolute -mt-60 top-1/4 left-1/3 w-96 bg-mostLighthBlue rounded-2xl border-2 shadow-2xl p-4'>
+								{selectTypeUser.name != undefined ? (
+									<MedicConsult user={selectTypeUser} />
+								) : doctorLogged ? (
+									<MedicConsult user={users[0]} />
+								) : (
+									<MedicConsult user={doctors[0]} />
 								)}
-							</div>
+							</section>
+						</Modal>
+					</div>
+					<section className='-ml-4 xl:ml-0 mt-16 mb-2 w-5/12 h-2/5 flex-col box-border'>
+						<div className='m-auto mt-2 box-border'>
+							<CalendarComponent />
+
+							{doctorLogged ? (
+								<div className='w-full h-32  m-auto mt-2 pt-2 flex justify-center items-center bg-mostLighthBlue rounded-lg box-border overflow-scroll'>
+									{selectTypeUser.name != undefined && (
+										<CardPacientItem user={selectTypeUser} />
+									)}
+								</div>
+							) : (
+								<div
+									className='mt-1 w-full h-44 pt-1 flex-col items-center bg-mostLighthBlue rounded-xl box-border hover:cursor-pointer relative'
+									onClick={() => setCredAnim(!credAnim)}
+								>
+									<h3 className='ml-4 text-lg font-semibold text-black over'>
+										{" "}
+										Mi Credencial{" "}
+									</h3>
+
+									<article
+										className={`w-5/6 h-10/12 m-auto mt-2 border-2 rounded-xl border-lightBlue py-1 px-2 bg-white absolute right-7  ${
+											credAnim ? "animate-rotate-x" : "blurCard opacity-80 "
+										} `}
+									>
+										<div className=' text-sm font-normal'>
+											Nombre y Apellido:{" "}
+											<span className=' ml-1 text-xs blurData text-darkBlue '>
+												{userLogged.name}
+											</span>
+										</div>
+										<div>
+											DNI:
+											<span className='ml-1  text-xs blurData  text-darkBlue'>
+												{userLogged.dni}
+											</span>
+										</div>
+										<div>
+											Cuil:{" "}
+											<span className=' ml-1 text-xs blurData  text-darkBlue'>
+												20-{userLogged.dni}-09
+											</span>
+										</div>
+										<div>
+											N° Afiliado:{" "}
+											<span className='ml-1  text-xs blurData  text-darkBlue'>
+												{userLogged.id}
+											</span>
+										</div>
+									</article>
+									<article className='w-5/6 h-10/12 rounded-xl flex  m-auto mt-6 pl-6'>
+										<div
+											className={`bg-blue flex  ${
+												credAnim ? "opacity-0 z-0" : "opacity-100 z-20"
+											} `}
+										>
+											<div className='w-fit h-fit p-1 mt-2 ml-1 rounded-full flex justify-center'>
+												<img
+													src={credencialIcon}
+													className='objet-cover objet-center inline'
+													alt='Icono de credencial'
+												/>
+											</div>
+											<div className='w-full pl-1 pt-1 flex-col'>
+												<p className=' text-md font-semibold text-black '>
+													Accede acá a tu
+												</p>
+												<strong className='text-md font-bold	 text-black'>
+													Credencial Digital
+												</strong>
+											</div>
+										</div>
+									</article>
+								</div>
+							)}
 						</div>
 					</section>
 				</main>
