@@ -5,7 +5,6 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
 import { esES } from "@mui/x-date-pickers/locales";
-import { CardPacientItem } from "../CardPacientItem/index";
 import "./index.css";
 
 const theme = createTheme(
