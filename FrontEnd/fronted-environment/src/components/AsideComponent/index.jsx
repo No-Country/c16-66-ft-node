@@ -43,7 +43,7 @@ export function AsideComponent() {
 					openClose ? "justify-between h-4/6" : "justify-between h-4/6"
 				} `}
 			>
-				<artile
+				<article
 					className={`flex mx-auto w-full ${
 						openClose ? "justify-start gap-4" : "justify-center"
 					}`}
@@ -60,8 +60,8 @@ export function AsideComponent() {
 						<p className='font-medium'>Dr. Roberto García</p>
 						<p className='font-normal'>Clínica médica</p>
 					</div>
-				</artile>
-				<artile
+				</article>
+				<article
 					className={`flex hover:bg-white p-2 rounded-xl mx-auto ${
 						openClose
 							? "w-full justify-start gap-4"
@@ -75,7 +75,7 @@ export function AsideComponent() {
 					>
 						Home
 					</p>
-				</artile>
+				</article>
 				<BoxIcon openClose={openClose} text={"Mi perfil"} icon={person} />
 				<BoxIcon
 					openClose={openClose}

@@ -6,8 +6,8 @@ import { useDoctorStore } from "./hooks/useDoctorStore"; //hook
 import { useAdminStore } from "./hooks/userAdminStore"; //hook
 
 //Rutas a requerimento
-const PrincipalHome = lazy(() => import ("./pages/PrincipalHome/PrincipalHome") )
-const HomeDoctor = lazy(() => import("./pages/home")); // en Page exportar por DEFAULT
+const PrincipalHome = lazy(() => import("./pages/PrincipalHome/PrincipalHome"));
+const Home = lazy(() => import("./pages/home")); // en Page exportar por DEFAULT
 
 function App() {
 	//carga general de Users.
@@ -32,8 +32,8 @@ function App() {
 					fallback={
 						// <div className=' bg-slate-700 w-2/3 h-2/3 m-auto'> Loading... </div>
 						<Skeleton
-							sx={{ bgcolor: '#82C3E4' }}
-							variant="rectangular"
+							sx={{ bgcolor: "#82C3E4" }}
+							variant='rectangular'
 							width={screen}
 							height={1280}
 						/>
@@ -41,7 +41,7 @@ function App() {
 				>
 					<Routes>
 						<Route path='/' element={<PrincipalHome />} />
-						<Route path='/home-doctor' element={<HomeDoctor />} />
+						<Route path='/home' element={<Home />} />
 						{/* Aqui solo rutas. A la de arriba le cambiaremos el path cuando haya mas */}
 					</Routes>
 				</Suspense>
