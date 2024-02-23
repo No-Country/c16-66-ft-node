@@ -108,8 +108,8 @@ export function ViewFromSm() {
 				</section>
 
 				{/* Seccion calendario y Card de matricula o credencial        */}
-				<section className='mt-2 mb-2 w-/12 h-1/5 flex flex-row box-border'>
-					<article className='w-1/2 border-2 h-44  bg-lightBlue'>
+				<section className='mt-2 mb-2 h-fit p-2 pr-4 w-/12 flex flex-row box-border border-2'>
+					<article className='w-1/2 pr-4 border-2 h-44  bg-lightBlue'>
 						<h2> Calendario </h2>
 						<Modal
 							open={open}
@@ -121,7 +121,7 @@ export function ViewFromSm() {
 						</Modal>
 					</article>
 					<div
-						className='mt-1 pl-6 w-1/2 h-44 pt-1 flex-col items-center bg-mostLighthBlue rounded-xl box-border hover:cursor-pointer relative'
+						className='mt-1 pl-4 w-1/2 h-44 pt-1 flex-col items-center bg-mostLighthBlue rounded-xl box-border hover:cursor-pointer relative'
 						onClick={() => setCredAnim(!credAnim)}
 					>
 						<h3 className='ml-4 text-lg font-semibold text-black over'>
@@ -225,6 +225,7 @@ export function ViewFromSm() {
 					</div>
 					{/* -=-=segundo bloque de la seccion - Turno/ doctor info --=-=-=- */}
 					<div className='w-10/12 m-auto h-full flex-col gap-6'>
+						<h3>Próximo turno :</h3>
 						<div className='w-full h-32 m-auto mt-2 pt-2 xs:flex justify-center items-center bg-mostLighthBlue rounded-lg box-border overflow-scroll'>
 							{selectTypeUser?.name != undefined ? (
 								<CardPacientItem user={selectTypeUser} />

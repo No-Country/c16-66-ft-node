@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 export const UserStore = create((set, get) => ({
 	users: [],
+	userLogged: null,
 	addUser: (newUser) => {
 		// traigo el users que hay en el state
 		const { users } = get();
@@ -12,6 +13,10 @@ export const UserStore = create((set, get) => ({
 			? (usersCopy = usersCopy[usersCopy.length] = newUser)
 			: (usersCopy = [newUser]);
 		set(() => ({ users: usersCopy }));
+	},
+	addUserLogged: (user) => {
+		console.log(user);
+		set(() => ({ userLogged: user }));
 	},
 	resetUser: () => {
 		set(() => ({ users: [] }));

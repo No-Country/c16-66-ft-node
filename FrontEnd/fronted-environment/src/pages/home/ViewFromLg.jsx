@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { CardPacientItem } from "../../components/CardPacientItem";
 import { MedicConsult } from "../../components/MedicCosult";
@@ -16,40 +16,26 @@ import credencialIcon from "../../assets/svg/contact_emergency.svg";
 import { Modal } from "@mui/material";
 
 //objeto inicial debajo, solo para probar flujo --> a remplazar por state cuando haya loggin
-const doctorInfo = {
-	id: "0973hd755h5",
-	registrationNumber: "X-675739-bg",
-	name: "Lucia Rodriguez",
-	email: "luciaDo@hotmail.com",
-	specialty: "Cardiologia",
-	password: "123456",
-	birthdate: "2087-02-15T15:01:12.688Z",
-	socialSecurityAdd: ["Ioma", "Ospe", "Amemop", "Galeno", "Pami", "Osde"],
-	tel: 22461847578,
-	address: "Calle 34 251",
-	province: "Buenos Aires",
-	town: "La Plata",
-};
-// const userInfo = {
-// 	id: "0973hd34h5",
-// 	dni: 34783921,
-// 	name: "Lucia Camps",
-// 	email: "Luciacamps@hotmail.com",
+// const doctorInfo = {
+// 	id: "0973hd755h5",
+// 	registrationNumber: "X-675739-bg",
+// 	name: "Lucia Rodriguez",
+// 	email: "luciaDo@hotmail.com",
+// 	specialty: "Cardiologia",
 // 	password: "123456",
-// 	birthdate: "2097-02-15T15:01:12.688Z",
-// 	"social Security": "Ioma",
-// 	weight: 58,
-// 	tel: 221847578,
-// 	address: "Calle 7 251",
+// 	birthdate: "2087-02-15T15:01:12.688Z",
+// 	socialSecurityAdd: ["Ioma", "Ospe", "Amemop", "Galeno", "Pami", "Osde"],
+// 	tel: 22461847578,
+// 	address: "Calle 34 251",
 // 	province: "Buenos Aires",
 // 	town: "La Plata",
 // };
 
 export function ViewFromLg() {
-	let doctorLogged = doctorInfo; // test objet hasta que funcione loggin
-	let userLogged;
+	let doctorLogged; // test objet hasta que funcione loggin
 
-	const { users } = UserStore();
+	const { users, userLogged } = UserStore();
+
 	const { doctors } = DoctorStore();
 	const [selectTypeUser, setSelectTypeUser] = useState({});
 	const [credAnim, setCredAnim] = useState(false);
@@ -64,7 +50,8 @@ export function ViewFromLg() {
 			: (consult = doctors.filter((user) => user.id === id));
 		setSelectTypeUser(...consult);
 	};
-
+	useEffect(() => {}, [userLogged]);
+	console.log(userLogged);
 	return (
 		<>
 			{/* header con logo de APP =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */}

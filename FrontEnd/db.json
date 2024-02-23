@@ -3,6 +3,7 @@
         {
         "id":"748jdbsh34h5", 
         "name" : "Ernesto Rodriguez",
+        "dni" : "54637282",
         "email": "ErnestoRodriguez@hotmail.com",
         "password": "123456",
         "birthdate": "2074-02-15T15:01:12.688Z",
@@ -15,6 +16,7 @@
     }, 
     {
         "id":"748jdblandb34h5", 
+        "dni" : "54637282",
         "name" : "Mario Sanz",
         "email": "Mariosanz@hotmail.com",
         "password": "123456",
@@ -28,6 +30,7 @@
     }, 
     {
         "id":"783dfgdbsh34h5", 
+        "dni" : "34637282",
         "name" : "Mariana Nope",
         "email": "nopeMariana@hotmail.com",
         "password": "123456",
@@ -41,6 +44,7 @@
     }, 
     {
         "id":"0973hd34h5", 
+        "dni" : "54637282",
         "name" : "Lucia Camps",
         "email": "Luciacamps@hotmail.com",
         "password": "123456",
@@ -56,6 +60,7 @@
     "doctors":[
         { "id":"0973hd755h5", 
         "registrationNumber": "X-675739-bg",
+        "dni" : "54637282",
         "name" : "Lucia Rodriguez",
         "email": "luciaDo@hotmail.com",
         "specialty": "Cardiologia",
@@ -70,6 +75,7 @@
         {
         "id":"0973hd75pk5", 
         "registrationNumber": "P-565739-bg",
+        "dni" : "54637282",
         "name" : "Federico CampoAmor",
         "email": "FedeDoc@hotmail.com",
         "specialty": "oftalmologia",
@@ -82,6 +88,7 @@
         "town": "Pilar" }, 
         { 
         "id":"0973huejw5pk5", 
+        "dni" : "54637282",
         "registrationNumber": "B-4e739-bg",
         "name" : "Federica Amendolara",
         "email": "FedericaDoc@hotmail.com",
@@ -95,6 +102,7 @@
         "town": "Zarate" }, 
         { 
             "id":"0glk3hd75pk5", 
+            "dni" : "54637282",
             "registrationNumber": "A-465739-bg",
             "name" : "Roberto Ciansolo",
             "email": "RobertDoc@hotmail.com",
@@ -110,6 +118,7 @@
     "admin":[
         {
             "id":"74678landb34h5", 
+            "dni" : "54637282",
             "name" : "sistemAdmin",
             "email": "sistemAdmin@hotmail.com",
             "password": "123456"

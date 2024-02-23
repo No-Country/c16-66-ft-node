@@ -32,18 +32,18 @@ export const addDoctor = async (doctor) => {
 export const addAdmin = async (admin) => {
 	await Api.post("/admin/", admin);
 };
-// Solo trae uno con un id que es String
-export const getOneUser = async (id) => {
-	const { data } = await Api.get(`/users/${id}`);
+// Solo trae uno con un email que es String
+export const getOneUser = async (email) => {
+	const { data } = await Api.get(`/users?email=${email}`);
 	return data;
 };
-export const getOneDoctor = async (id) => {
-	const { data } = await Api.get(`/doctors/${id}`);
+export const getOneDoctor = async (email) => {
+	const { data } = await Api.get(`/doctors?email=${email}`);
 	return data;
 };
 
-export const getOneAdmin = async (id) => {
-	const { data } = await Api.get(`/admin/${id}`);
+export const getOneAdmin = async (email) => {
+	const { data } = await Api.get(`/admin?email=${email}`);
 	return data;
 };
 

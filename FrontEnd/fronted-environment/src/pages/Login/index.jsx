@@ -7,11 +7,12 @@ import {
 	Typography,
 	alpha,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useForm } from "../../hooks/useForm";
 import background from "../../assets/AuthBG/loginBG.png";
 import logo from "../../assets/FakeLOGO/Logo 3.png";
+import { useUserStore } from "../../hooks/userUserStore";
 
 const formData = {
 	email: "",
@@ -28,12 +29,16 @@ const theme = createTheme({
 });
 
 export default function LoginPage() {
+	const navigate = useNavigate();
+	const { validationUserToLogin } = useUserStore();
 	const { email, password, onInputChange } = useForm(formData);
 
 	const onSubmit = (event) => {
 		event.preventDefault();
 
+		validationUserToLogin(email);
 		//    pendiente funcion de manejo de login
+		navigate("/home");
 	};
 
 	return (

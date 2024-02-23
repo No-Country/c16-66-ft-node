@@ -40,14 +40,14 @@ export default function Home() {
 		<>
 			<body className='flex w-screen h-screen box-border z-0'>
 				<AsideComponent />
-				<main className='hidden w-9/12 lg:flex'>
+				<main className=' w-9/12 flex'>
 					<ViewFromLg />
 					{/* se ve a partir de 1024 px */}
 				</main>
-				<main className='hidden w-9/12 xs:hidden sm:flex lg:hidden xl:hidden'>
-					<ViewFromSm />
-					{/* se renderiza a partir de 640px  */}
-				</main>
+				{/* <main className='hidden w-9/12 xs:hidden sm:flex lg:hidden xl:hidden'>
+						<ViewFromSm /> */}
+				{/* se renderiza a partir de 640px  */}
+				{/* </main> */}
 			</body>
 		</>
 	);
