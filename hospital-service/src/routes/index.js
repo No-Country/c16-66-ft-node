@@ -1,15 +1,21 @@
-//controllers
+//controllers Doctors
 const {getAllDoctors} = require("../handlers/getDoctorsHandler");
 const {createDoctorHandler} = require("../handlers/doctors/createDoctorHandler")
 const {updateDoctorHandler} = require("../handlers/doctors/updateDoctorHandler")
 const {getDoctorsByIdHandler} = require("../handlers/doctors/getDoctorByIdHandler")
 const {deleteDoctorByIdHandler} = require("../handlers/doctors/deleteDoctorByIdHandler")
+
+//controllers Pacients
 const {getAllPacientsHandler} = require("../handlers/pacients/getPacientsHandler")
 const {getPacientByIdHandler} = require("../handlers/pacients/getPacientByIdHandler")
+
+//controllers Appoinments
 const {createAppoinmentHandler} = require("../handlers/appoinments/createAppoinmentHandler")
 const {getAllAppoinment} = require("../handlers/appoinments/getAppoinmentHandler")
 const {getAppoinmentByIdHandler} = require("../handlers/appoinments/getAppoinmentByIdHandler")
 const {deleteAppoinmentByIdHandler} = require("../handlers/appoinments/deleteAppoinmentByIdHandler")
+
+//controllers Reviews
 const {createReviewHandler} = require("../handlers/reviews/createReviewHandler")
 
 //express config
