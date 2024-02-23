@@ -1,6 +1,5 @@
 require("dotenv").config();
 const {Sequelize} = require("sequelize");
-const doctorModels = require("./models/Doctor");
 
 const fs = require("fs");
 const path = require("path");
@@ -45,6 +44,7 @@ const {
     Pacient,
     Doctor,
     Appoinment,
+    Review
 } = sequelize.models;
 
 /*1:N*/
@@ -54,10 +54,14 @@ Doctor.hasMany(Appoinment, {foreignKey: "doctorId"});
 Appoinment.belongsTo(Pacient, {foreignKey: "pacientId"});
 Pacient.hasMany(Appoinment, {foreignKey: "pacientId"});
 
+Review.belongsTo(Pacient, {foreignKey: "pacientId"});
+Pacient.hasMany(Review, {foreignKey: "pacientId"});
+
 module.exports = {
     ...sequelize.models,
     Doctor,
     Appoinment,
     Pacient,
+    Review,
     conn: sequelize,
 }
