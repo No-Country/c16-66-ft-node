@@ -12,9 +12,9 @@ export function Autogestion () {
             </section>
             <div className=" p-8 md:p-16 xl:p-20">
                 <section className="4/4 sm:w-3/4 flex flex-col items-start p-4">
-                    <h2 className="pt-4 text-2xl font-bold">¡Bienvenidos/as!</h2>
-                    <h4 className="pt-4 text-lg font-bold">¿Qué tipo de usuario eres?</h4>
-                    <p className="pt-2 text-base">Seleccioná el tipo de usuario, y comenzá a realizar todas tus gestiones de forma online.</p>
+                    <h2 className="pt-4 text-5xl font-bold">¡Bienvenidos/as!</h2>
+                    <h4 className="pt-4 text-4xl font-bold">¿Qué tipo de usuario eres?</h4>
+                    <p className="pt-2 text-xl">Seleccioná el tipo de usuario, y comenzá a realizar todas tus gestiones de forma online.</p>
                 </section>
                 <section className="pt-4 flex flex-col items-center md:flex-row md:justify-center">
                     <CardAutogestion img={User} border={'border-lightGreen'} user={'Paciente'}/>

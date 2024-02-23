@@ -1,4 +1,4 @@
-
+import './index.css'
 // eslint-disable-next-line react/prop-types
 export function CardBenefit ({icon, title, text}) {
     return (

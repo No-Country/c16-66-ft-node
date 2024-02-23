@@ -20,12 +20,12 @@ export function NavPrincipalHome () {
         setOpenModal(false)
     }
     return (
-        <nav className='nav flex lg:justify-around items-center p-1 xl:p-2 h-1/4'>
+        <nav className='nav flex lg:justify-around items-center p-1 xl:p-2 h-1/12'>
                 {openModal && <ModalMenu menuClose={menuClose} />}
                 <button onClick={menuOpen}>
                 <img src={menu} className='h-5 p-1 ml-3 mr-56 lg:hidden' alt='menu' />
                 </button>
-                <img src={logo} className='h-8 -ml-32 sm:-ml-1 lg:h-12 xl:h-14' alt='logo medConnect' />
+                <img src={logo} className='h-8 -ml-32 sm:-ml-1 lg:h-12 xl:h-14 cursor-pointer' alt='logo medConnect' onClick={()=>{navigate('/')}} />
                 <Link to='/servicios' className='text-xs hidden lg:inline-flex items-center lg:text-base xl:text-2xl'>
                     Servicios<img src={arrowDown} className='w-1/5 h-1/2' alt='flecha selectora hacia abajo' />
                 </Link>
@@ -36,7 +36,7 @@ export function NavPrincipalHome () {
                     Contactos
                 </Link>
                 <button 
-                className='hidden lg:flex items-center bg-darkBlue text-white rounded-xl p-2 text-center hover:bg-primaryBlue -xs lg:text-base xl:text-2xl' 
+                className='hidden lg:flex items-center bg-darkBlue text-white rounded-xl p-2 text-center hover:bg-primaryBlue -xs lg:text-base xl:text-2xl xl:p-3' 
                 onClick={goSession} 
                 >
                     Autogestión

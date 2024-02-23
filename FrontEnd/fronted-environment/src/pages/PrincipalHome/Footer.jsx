@@ -16,8 +16,8 @@ export function Footer () {
         <footer className="footer w-full h-fit p-6">
             <img src={logo} className="flex items-start w-3/6 md:w-1/3 lg:w-1/6 h-auto mb-2"/>
             <div className='flex flex-col'>
-                <section className='flex flex-nowrap flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:justify-between xl:justify-around'>
-                    <div className='flex w-2/3 md:w-1/3 mb-4 lg:mb-0 self-center justify-around bg-white border-gray border-2 rounded-full h-1/2 lg:w-1/6 '>
+                <section className='flex flex-nowrap flex-col justify-center items-center lg:flex-row lg:flex-wrap lg:justify-between xl:justify-around xl:items-start'>
+                    <div className='flex w-2/3 md:w-1/3 mb-4 lg:mb-0 self-center justify-around bg-white border-gray border-2 rounded-full h-1/2 lg:w-1/6 xl:self-start'>
                         <img src={search}/>
                         <input placeholder=' Buscador...  ' className='w-1/2 text-sm lg:text-base xl:text-lg' />
                         <img src={keyboard}/>
@@ -43,7 +43,7 @@ export function Footer () {
                     <div className='flex flex-col items-center mt-2 xl:mt-8'>
 
                     <h6 className='text-sm lg:text-base xl:text-lg font-semibold mt-4 lg:mt-0'>Ubicación</h6>
-                    <iframe src="https://www.google.com/maps/d/embed?mid=1NsaSVjfje-Alfk1sktD3GXxmhYc&hl=en_US&ehbc=2E312F" width="750" height="350" className='w-3/4'></iframe>
+                    <iframe src="https://www.google.com/maps/d/embed?mid=1NsaSVjfje-Alfk1sktD3GXxmhYc&hl=en_US&ehbc=2E312F" width="750" height="350" className='w-8/12 rounded-xl'></iframe>
                     </div>
                     <div className='flex justify-between mt-2'>
                         {/* <img src={map} className='w-40'/> */}
