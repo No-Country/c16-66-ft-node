@@ -1,6 +1,5 @@
 import { useEffect, Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Skeleton } from "@mui/material";
 import { useUserStore } from "./hooks/userUserStore"; //hook
 import { useDoctorStore } from "./hooks/useDoctorStore"; //hook
 import { useAdminStore } from "./hooks/userAdminStore"; //hook
@@ -9,6 +8,7 @@ import { useAdminStore } from "./hooks/userAdminStore"; //hook
 const PrincipalHome = lazy(() => import("./pages/PrincipalHome/PrincipalHome"));
 const Home = lazy(() => import("./pages/home")); // en Page exportar por DEFAULT
 const Loading = lazy(() => import("./pages/Loading"));
+
 function App() {
 	//carga general de Users.
 	const { getUserApiResponse } = useUserStore(); //hook
@@ -38,7 +38,7 @@ function App() {
 								<h2 className=' font-bold'>Error 404. Page not Found ...</h2>
 							}
 						/>
-						{/* Aqui solo rutas. A la de arriba le cambiaremos el path cuando haya mas */}
+						{/* Aqui solo rutas */}
 					</Routes>
 				</Suspense>
 			</BrowserRouter>
