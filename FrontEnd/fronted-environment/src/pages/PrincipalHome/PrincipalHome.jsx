@@ -16,7 +16,7 @@ export default function PrincipalHome () {
     return (
         <div className='w-screen h-screen overflow-y-scroll'>
             <Header />    
-            <main className='h-fit w-full mx-auto mt-4 xl:mt-8'>
+            <main className='h-fit w-full mx-auto mt-4 xl:mt-8 xl:py-6 xl:px-10'>
                 <section className='w-full px-6 mx-auto h-fit'>
                     <h2 className='font-bold text-xl xl:text-2xl text-black'>¿Con qué tipo de especialistas contamos?</h2>
                     <p className='text-xs lg:text-base xl:text-2xl mt-1 xl:mt-4'>En MedConnect contamos con atención en más de 30 especialidades y más de mil médicos estaán a tu servicio como: psicologos, dermatólogos, oftalmólogos, urólogos, ortopedistas, pediatras, psiquiatras y muchos más. </p>
