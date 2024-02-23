@@ -8,7 +8,7 @@ import { useAdminStore } from "./hooks/userAdminStore"; //hook
 const PrincipalHome = lazy(() => import("./pages/PrincipalHome/PrincipalHome"));
 const Home = lazy(() => import("./pages/home")); // en Page exportar por DEFAULT
 const Loading = lazy(() => import("./pages/Loading"));
-//const LoginPage = lazy(() => import("./pages/Login"));
+const LoginPage = lazy(() => import("./pages/Login"));
 const RegisterPatient = lazy(() => import("./pages/Register/RegisterPaciente"));
 
 function App() {
@@ -32,9 +32,10 @@ function App() {
 			<BrowserRouter>
 				<Suspense fallback={<Loading />}>
 					<Routes>
-						<Route path='/p' element={<PrincipalHome />} />
+						<Route path='/' element={<PrincipalHome />} />
 						<Route path='/home' element={<Home />} />
-						<Route path='/' element={<RegisterPatient />} />
+						<Route path='/register' element={<RegisterPatient />} />
+						<Route path='/login' element={<LoginPage />} />
 						<Route
 							path='/*'
 							element={
