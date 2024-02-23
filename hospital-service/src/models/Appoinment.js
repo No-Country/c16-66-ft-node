@@ -5,10 +5,10 @@ module.exports = (sequelize) => {
         "Appoinment",
         {
             id: {
+                type: DataTypes.UUID,
+                defaultValue: DataTypes.UUIDV4,
                 primaryKey: true,
-                type: DataTypes.INTEGER,
                 allowNull: false,
-                autoIncrement: true,
             },
             date: {
                 type: DataTypes.DATEONLY,
