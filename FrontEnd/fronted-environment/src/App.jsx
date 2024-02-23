@@ -4,6 +4,7 @@ import { Skeleton } from "@mui/material";
 import { useUserStore } from "./hooks/userUserStore"; //hook
 import { useDoctorStore } from "./hooks/useDoctorStore"; //hook
 import { useAdminStore } from "./hooks/userAdminStore"; //hook
+import { Autogestion } from "./pages/autogestion/Autogestion";
 
 //Rutas a requerimento
 const PrincipalHome = lazy(() => import("./pages/PrincipalHome/PrincipalHome"));
@@ -31,6 +32,7 @@ function App() {
 				<Suspense fallback={<Loading />}>
 					<Routes>
 						<Route path='/' element={<PrincipalHome />} />
+						<Route path='/autogestion' element={<Autogestion />} />
 						<Route path='/home' element={<Home />} />
 						<Route
 							path='/*'
