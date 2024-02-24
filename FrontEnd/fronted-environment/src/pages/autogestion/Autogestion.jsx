@@ -1,5 +1,5 @@
-import { NavPrincipalHome } from "../PrincipalHome/NavPrincipalHome";
-import { CardAutogestion } from "./CardAutogestion";
+import { NavPrincipalHome } from "../../components/principalHome/NavPrincipalHome";
+import { CardAutogestion } from "../../components/autogestion/CardAutogestion";
 import Doc from '../../assets/autogestion/Doc.png'
 import User from '../../assets/autogestion/User.png'
 import Admin from '../../assets/autogestion/Admin.png'

@@ -3,9 +3,10 @@ import logo from '../../assets/FakeLOGO/Logo 3.png'
 import arrowDown from '../../assets/svg/arrowDown.svg'
 import person from '../../assets/svg/personWhite.svg'
 import menu from '../../assets/svg/menu.svg'
-import './index.css'
 import { useState } from 'react'
 import { ModalMenu } from './ModalMenu'
+import '../../pages/PrincipalHome/index.css'
+
 export function NavPrincipalHome () {
     const navigate = useNavigate()
     const [openModal, setOpenModal] = useState(false)
