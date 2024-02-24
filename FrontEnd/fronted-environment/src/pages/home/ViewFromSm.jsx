@@ -30,26 +30,11 @@ const doctorInfo = {
 	province: "Buenos Aires",
 	town: "La Plata",
 };
-// const userInfo = {
-// 	id: "0973hd34h5",
-// 	dni: 34783921,
-// 	name: "Lucia Camps",
-// 	email: "Luciacamps@hotmail.com",
-// 	password: "123456",
-// 	birthdate: "2097-02-15T15:01:12.688Z",
-// 	"social Security": "Ioma",
-// 	weight: 58,
-// 	tel: 221847578,
-// 	address: "Calle 7 251",
-// 	province: "Buenos Aires",
-// 	town: "La Plata",
-// };
 
 export function ViewFromSm() {
-	let doctorLogged = doctorInfo; // test objet hasta que funcione loggin
-	let userLogged;
+	let doctorLogged; // test objet hasta que funcione loggin
 
-	const { users } = UserStore();
+	const { users, userLogged } = UserStore();
 	const { doctors } = DoctorStore();
 	const [selectTypeUser, setSelectTypeUser] = useState({});
 	const [credAnim, setCredAnim] = useState(false);
@@ -68,7 +53,7 @@ export function ViewFromSm() {
 	return (
 		<>
 			{/* header con logo de APP =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */}
-			<div className='ml-4 xl:ml-6 lg:w-4/5 xl:w-5/6 h-12/12 flex-col lg:flex-nowrap '>
+			<div className=' w-11/12 h-12/12 flex-col lg:flex-nowrap '>
 				<header
 					// style={{ width: "1320px" }}
 					className='-ml-28 w-screen h-16 py-2.5 flex justify-center'
@@ -81,8 +66,8 @@ export function ViewFromSm() {
 				</header>
 
 				{/* Seccion de Titulo de la pagina ==-=-=-=-=-=-=-==-=-=-=-=-=-= */}
-				<section className=' mt-2 mb-1 w-full h-3/12 flex-col mr-4'>
-					<h2 className='text-3xl font-bold text-black'>
+				<section className=' mt-2 mb-1 h-3/12 flex-col '>
+					<h2 className='text-2xl font-bold text-black'>
 						{" "}
 						Bienvenido/a
 						<span className=' text-darkBlue'>
@@ -92,12 +77,12 @@ export function ViewFromSm() {
 						</span>
 					</h2>
 					{doctorLogged ? (
-						<p className=' text-lg font-normal text-gray'>
+						<p className=' text-base font-normal text-gray'>
 							¡Ten un gran día de trabajo, excelentes consultas!
 						</p>
 					) : (
 						<p className=' text-lg font-normal text-gray'>
-							¡Ten un gran día, y accede a las mejores consultas médicas!
+							¿Estas listo/a para tu próxima cita?
 						</p>
 					)}
 				</section>
