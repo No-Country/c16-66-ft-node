@@ -1,6 +1,6 @@
-import { Header } from './Header'
-import { CardBenefit } from './CardBenefit'
-import { CardStars } from './CardStars'
+import { Header } from '../../components/principalHome/Header'
+import { CardBenefit } from '../../components/principalHome/CardBenefit'
+import { CardStars } from '../../components/principalHome/CardStars'
 import searchBlue from '../../assets/svg/searchBlue.svg'
 import archive from '../../assets/svg/archive.svg'
 import calendary from '../../assets/svg/calendar.svg'
@@ -8,8 +8,8 @@ import imgDr1 from '../../assets/svg/Imgdr1.png'
 import imgDr2 from '../../assets/svg/Imgdr2.png'
 import imgDr3 from '../../assets/svg/Imgdr3.png'
 import imgDr4 from '../../assets/svg/Imgdr4.png'
+import { Footer } from '../../components/principalHome/Footer'
 import './index.css'
-import { Footer } from './Footer'
 
 export default function PrincipalHome () {
    
