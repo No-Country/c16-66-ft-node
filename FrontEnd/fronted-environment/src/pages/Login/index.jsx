@@ -63,7 +63,7 @@ export default function LoginPage() {
 			navigate("/home");
 		}
 	};
-	console.log(dbErrors);
+
 	return (
 		<ThemeProvider theme={theme}>
 			<Grid

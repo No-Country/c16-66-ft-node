@@ -36,7 +36,6 @@ export default function RegisterAdmin() {
 
 		//    pendiente funcion de manejo de login
 	};
-	console.log(email);
 
 	return (
 		<ThemeProvider theme={theme}>

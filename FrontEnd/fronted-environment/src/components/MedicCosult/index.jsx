@@ -7,8 +7,6 @@ import starIcon from "../../assets/svg/StarBgBlue.svg";
 // eslint-disable-next-line react/prop-types
 export function MedicConsult({ user }) {
 	const doctorLogged = user.specialty ? user : {};
-	console.log("en el card medicos");
-	console.log(user);
 
 	return (
 		<>

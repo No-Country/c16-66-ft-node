@@ -5,8 +5,6 @@ let today = new Date(nowInMs).toLocaleString().split(" ");
 today = today[0];
 
 export function CardPacientItem({ user, handlerSelect }) {
-	console.log("en el card");
-	console.log(user);
 	return (
 		<div
 			className=' w-11/12 h-2/3 mb-4 py-1 px-2 flex  gap-1 rounded-2xl  bg-white hover:bg-mostLighthBlue flex-nowrap'
