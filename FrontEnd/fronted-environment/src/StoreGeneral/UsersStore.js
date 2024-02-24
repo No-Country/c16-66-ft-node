@@ -15,7 +15,6 @@ export const UserStore = create((set, get) => ({
 		set(() => ({ users: usersCopy }));
 	},
 	addUserLogged: (user) => {
-		console.log(user);
 		set(() => ({ userLogged: user }));
 	},
 	resetUser: () => {
