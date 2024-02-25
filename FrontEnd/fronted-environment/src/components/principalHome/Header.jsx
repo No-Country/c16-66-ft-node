@@ -1,9 +1,9 @@
-import cardiology from '../../assets/svg/cardiology.svg'
-import personSearch from '../../assets/svg/personSearch.svg'
-import duoWhite from '../../assets/svg/duoWhite.svg'
-import medicoPortada from '../../assets/PrincipalHome/medicoPortada.png'
-import { NavPrincipalHome } from './NavPrincipalHome'
-import '../../pages/PrincipalHome/index.css'
+import cardiology from "../../assets/svg/cardiology.svg";
+import personSearch from "../../assets/svg/personSearch.svg";
+import duoWhite from "../../assets/svg/duoWhite.svg";
+import medicoPortada from "../../assets/PrincipalHome/medicoPortada.png";
+import { NavPrincipalHome } from "./NavPrincipalHome";
+import "../../pages/PrincipalHome/index.css";
 
 export function Header () {
    

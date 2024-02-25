@@ -27,7 +27,7 @@ export function AsideComponent() {
 	return (
 		<aside
 			style={{ maxHeight: "1024px" }}
-			className={`asideBackground h-screen z-10 flex flex-col justify-evenly p-1 gap-2.5 ${
+			className={`asideBackground h-screen absolute z-30 flex flex-col justify-evenly p-1 gap-2.5 ${
 				openClose
 					? " w-1/2 sm:w-2/5 sm:p-4 md:w-1/4 lg:w-2/12"
 					: "w-4/12 sm:w-2/12 lg:w-1/12"

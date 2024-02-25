@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 import {
 	Button,
 	Box,
@@ -7,17 +10,17 @@ import {
 	Typography,
 	alpha,
 } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useForm } from "../../hooks/useForm";
-import background from "../../assets/AuthBG/loginBG.png";
 import logo from "../../assets/FakeLOGO/Logo 3.png";
-import { useUserStore } from "../../hooks/userUserStore";
+// import { useForm } from "../../hooks/useForm";
+import background from "../../assets/AuthBG/loginBG.png";
 
-const formData = {
-	email: "",
-	password: "",
-};
+import { useUserStore } from "../../hooks/userUserStore";
+import { UserStore } from "../../StoreGeneral/UsersStore";
+// const formData = {
+// 	email: "",
+// 	password: "",
+// };
 
 const { palette } = createTheme();
 const { augmentColor } = palette;
@@ -29,16 +32,36 @@ const theme = createTheme({
 });
 
 export default function LoginPage() {
+	const { addUserLogged } = UserStore();
+	const [dbErrors, setDbErros] = useState("");
 	const navigate = useNavigate();
 	const { validationUserToLogin } = useUserStore();
-	const { email, password, onInputChange } = useForm(formData);
+	// const { email, password, onInputChange } = useForm(formData);
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
 
-	const onSubmit = (event) => {
+	const onSubmitLoggin = async (userToLogin) => {
 		event.preventDefault();
-
-		validationUserToLogin(email);
-		//    pendiente funcion de manejo de login
-		navigate("/home");
+		if (userToLogin.email.includes(".net")) {
+			setDbErros("La aplicacion no permite correos con el dominio '.net'");
+			return;
+		}
+		const response = await validationUserToLogin(userToLogin.email);
+		response == undefined &&
+			setDbErros("No se encontro el email en la Base de datos");
+		if (response.password != userToLogin.password) {
+			setDbErros(
+				"La contraseña no coincide con la guardada en la base de datos.	"
+			);
+			return;
+		} else {
+			addUserLogged(response);
+			setDbErros("");
+			navigate("/home");
+		}
 	};
 
 	return (
@@ -109,7 +132,7 @@ export default function LoginPage() {
 
 					<form
 						aria-label='submit-form'
-						onSubmit={onSubmit}
+						onSubmit={handleSubmit(onSubmitLoggin)}
 						className='animate__animated animate__fadeIn animate__faster '
 					>
 						<Grid container>
@@ -131,10 +154,26 @@ export default function LoginPage() {
 									placeholder='something@something.com'
 									fullWidth
 									name='email'
-									value={email}
-									onChange={onInputChange}
+									//abajo logica del react-hook-fomr
+									{...register("email", {
+										required: {
+											value: true,
+											message: "Debes escribir tu correo electronico",
+										},
+										pattern: {
+											value: /\S+@\S+\.\S+/,
+											message: "El email debe ser valido",
+										},
+									})}
 								/>
-
+								{errors.email && (
+									<span
+										className='pl-2 pt-2 flex text-xs font-bold text-red-700'
+										style={{ color: "red" }}
+									>
+										{errors.email.message}
+									</span>
+								)}
 								<Typography
 									sx={{
 										fontWeight: "bold",
@@ -153,13 +192,36 @@ export default function LoginPage() {
 									placeholder='contraseña'
 									fullWidth
 									name='password'
-									inputProps={{
-										"data-testid": "password",
-									}}
-									value={password}
-									onChange={onInputChange}
+									//abajo logica del react-hook-fomr
+									{...register("password", {
+										required: {
+											value: true,
+											message: "Debes completar el campo",
+										},
+										minLength: {
+											value: 6,
+											message:
+												"La contraseña debe contener al menos 6 caracteres",
+										},
+									})}
 								/>
+								{errors.password && (
+									<span
+										className='pl-2 pt-2 flex text-xs font-bold text-red-700'
+										style={{ color: "red" }}
+									>
+										{errors.password.message}
+									</span>
+								)}
 							</Grid>
+							{dbErrors && (
+								<span
+									className='pl-2 pt-2 flex text-xs font-bold text-red-700'
+									style={{ color: "red" }}
+								>
+									{dbErrors}
+								</span>
+							)}
 							{/*  // pendiente pop up para manejo de errores
    <Grid container
    display={!!errorMessage ? "": "none"}

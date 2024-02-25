@@ -15,8 +15,7 @@ const style = {
 };
 export function SeeMoreModalConsult(props) {
 	const user = props.selectTypeUser;
-	console.log("here!!");
-	console.log(user);
+
 	return (
 		<>
 			<section className='absolute top-2/4 left-1/2 transition-transform -translate-x-2/4 -translate-y-2/4 w-96 bg-lightBlue'>
