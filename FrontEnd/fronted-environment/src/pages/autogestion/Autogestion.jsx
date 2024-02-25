@@ -4,7 +4,7 @@ import Doc from '../../assets/autogestion/Doc.png'
 import User from '../../assets/autogestion/User.png'
 import Admin from '../../assets/autogestion/Admin.png'
 
-export function Autogestion () {
+export default function Autogestion () {
     return (
         <main className="w-full h-screen">
             <section>

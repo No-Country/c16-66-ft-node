@@ -52,3 +52,11 @@
 	);
 	backdrop-filter: blur(2px);
 }
+.footerFinal {
+	background: linear-gradient(
+			180deg,
+			rgba(198, 241, 191, 0.56) 0%,
+			rgba(103, 189, 234, 0) 471.67%
+		),
+		var(--color-gray-10, #fff);
+}

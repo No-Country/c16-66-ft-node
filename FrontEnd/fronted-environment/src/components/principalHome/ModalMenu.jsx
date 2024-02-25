@@ -1,33 +1,40 @@
 import { Link } from 'react-router-dom'
 import close from '../../assets/svg/close.svg'
-import arrowDown from '../../assets/svg/arrowDown.svg'
+// import arrowDown from '../../assets/svg/arrowDown.svg'
 import personWhite from '../../assets/svg/personWhite.svg'
 import search from '../../assets/svg/search.svg'
 
 // eslint-disable-next-line react/prop-types
 export function ModalMenu ({menuClose}) {
+
+    function goTo(contacto) {
+        location.hash = "#" + contacto;
+    }
+
     return (
-        <section className="w-1/2 sm:2/5 modal h-screen p-2 sm:p-6 z-10 absolute top-0 left-0 lg:hidden">
+        <section className="z-10 p-3 w-1/2 sm:w-2/6 modal h-screen absolute top-0 left-0 lg:hidden">
             <div className='flex justify-end mb-8'>
                 <button onClick={menuClose}>
-                    <img src={close} className="" />
+                    <img src={close} />
                 </button>
             </div>
-            <div className='mx-auto h-full flex flex-col'>
-                <Link to='/servicios' className='pl-4 py-1 w-full mb-2 text bg-whiteOpacity rounded-xl flex items-center text-sm'>
-                    Servicios<img src={arrowDown} className='w-1/6 h-2/3' alt='flecha selectora hacia abajo' />
+            <div className='mx-auto h-fit flex flex-col'>
+                <Link to='/servicios' className='p-3 w-full mb-3 bg-whiteOpacity rounded-xl flex items-center text-sm sm:text-base'>
+                    Servicios
+                    {/* <img src={arrowDown} className='w-1/6 h-2/3' alt='flecha selectora hacia abajo' /> */}
                 </Link>
-                <Link to='/cartilla-medica' className='pl-4 py-1 mb-2 w-full text bg-whiteOpacity rounded-xl text-sm'>
+                <Link to='/medical-list' className='p-3 w-full mb-3 bg-whiteOpacity rounded-xl flex items-center text-sm sm:text-base'>
                     Cartilla médica
                 </Link>
-                <Link to='/contacto' className='pl-4 py-1 mb-2 w-full text bg-whiteOpacity rounded-xl text-sm'>
+                <a href='#contacto' onClick={()=>{goTo('contacto')}} className='p-3 w-full mb-3 bg-whiteOpacity rounded-xl flex items-center text-sm sm:text-base'>
                     Contacto
+                </a>
+                <Link to='/login' className='p-3 w-full bg-darkBlue rounded-xl flex items-center self-center justify-center text-sm sm:text-base text-white mb-12'>
+                    INICIAR SESIÓN<img src={personWhite} className='w-2/12'/>
                 </Link>
-                <Link to='/login' className='pl-4 py-1 mb-16 w-full bg-darkBlue text-white rounded-xl flex items-center text-sm'>
-                    INICIAR SESIÓN<img src={personWhite} className='w-1/6 h-2/3'/>
-                </Link>
-                <button className='pl-4 w-full bg-white text-gray rounded-3xl flex items-center border-gray border-2 text-sm'>
-                    <img src={search} className='w-1/6 h-2/3'/> Buscador...
+                <button className='p-1 w-full bg-white text-gray rounded-3xl flex items-center border-gray border-2'>
+                    <img src={search} className='w-1/6 h-2/3 text-sm sm:text-base'/> 
+                    Buscador...
                 </button>
             </div>
         </section>

@@ -3,13 +3,15 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useUserStore } from "./hooks/userUserStore"; //hook
 import { useDoctorStore } from "./hooks/useDoctorStore"; //hook
 import { useAdminStore } from "./hooks/userAdminStore"; //hook
-import { Autogestion } from "./pages/autogestion/Autogestion";
+
 //Rutas a requerimento
 const PrincipalHome = lazy(() => import("./pages/PrincipalHome/PrincipalHome"));
 const Home = lazy(() => import("./pages/home")); // en Page exportar por DEFAULT
 const Loading = lazy(() => import("./pages/Loading"));
 const LoginPage = lazy(() => import("./pages/Login"));
 const RegisterPatient = lazy(() => import("./pages/Register/RegisterPaciente"));
+const Autogestion = lazy(() => import("./pages/autogestion/Autogestion"))
+const MedicalList = lazy(() => import("./pages/cartillaMedica/MedicalList"))
 
 function App() {
 	//carga general de Users.
@@ -37,6 +39,7 @@ function App() {
 						<Route path='/home' element={<Home />} />
 						<Route path='/register' element={<RegisterPatient />} />
 						<Route path='/login' element={<LoginPage />} />
+						<Route path='/medical-list' element={<MedicalList />} />
 						<Route
 							path='/*'
 							element={
