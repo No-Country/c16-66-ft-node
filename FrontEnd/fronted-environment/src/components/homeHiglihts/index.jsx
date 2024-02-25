@@ -10,7 +10,7 @@ export function HomeHiglights() {
 			{doctorLogged ? (
 				<>
 					<div className='w-1/3 h-3/4 rounded-lg  my-auto turnosWraperBg'>
-						<div className=' w-7/12 h-3/6 rounded-lg m-auto mt-7 bg-white flex justify-between'>
+						<div className='w-10/12 lg:w-7/12 h-3/6 rounded-lg m-auto mt-7 bg-white flex justify-between'>
 							<div className='w-fit h-fit p-1 mt-2 ml-1 rounded-full bg-lightBlue hidden lg:flex justify-center'>
 								<img
 									className='objet-cover objet-center inline'
@@ -70,9 +70,9 @@ export function HomeHiglights() {
 			) : (
 				// Renderizado condicional, abajo si ha Paciente Logeado
 				<>
-					<div className='w-1/3 h-3/4 rounded-lg  my-auto agendaWraperBg'>
-						<div className=' w-7/12 h-3/6 rounded-lg m-auto mt-7 bg-white flex justify-evenly items-center'>
-							<div className='w-fit h-fit p-1 rounded-full bg-lightBlue hidden lg:flex justify-center'>
+					<div className='w-1/3 sm:h-2/3 lg:h-3/4 rounded-lg my-auto agendaWraperBg'>
+						<div className='sm:w-9/12 lg:w-7/12 h-3/6 rounded-lg m-auto mt-7 bg-white flex justify-evenly items-center'>
+							<div className='w-fit h-fit p-1 rounded-full bg-lightBlue flex justify-center'>
 								<img
 									className='objet-cover objet-center inline'
 									src={calendarIcon}
@@ -87,8 +87,8 @@ export function HomeHiglights() {
 						</div>
 					</div>
 					<div className='w-1/3 h-3/4 rounded-lg cartillaWraperBg my-auto'>
-						<div className='  w-7/12 h-3/6 rounded-lg m-auto mt-7 bg-white flex justify-evenly items-center'>
-							<div className='w-fit h-fit p-1 rounded-full bg-lightBlue hidden lg:flex justify-center'>
+						<div className='sm:w-9/12 lg:w-7/12 h-3/6 rounded-lg m-auto mt-7 bg-white flex justify-evenly items-center'>
+							<div className='w-fit h-fit p-1 rounded-full bg-lightBlue flex justify-center'>
 								<img
 									className='objet-cover objet-center inline'
 									src={bookIcon}
@@ -103,8 +103,8 @@ export function HomeHiglights() {
 						</div>
 					</div>
 					<div className='w-1/3 h-3/4 rounded-lg turnosWraperBg my-auto'>
-						<div className=' w-7/12 h-3/6 rounded-lg m-auto mt-7 bg-white flex justify-evenly items-center'>
-							<div className='w-fit h-fit p-1 rounded-full bg-lightBlue hidden lg:flex justify-center'>
+						<div className='sm:w-9/12 lg:w-7/12 h-3/6 rounded-lg m-auto mt-7 bg-white flex justify-evenly items-center'>
+							<div className='w-fit h-fit p-1 rounded-full bg-lightBlue flex justify-center'>
 								<img
 									className='objet-cover objet-center inline'
 									src={studiesIcon}

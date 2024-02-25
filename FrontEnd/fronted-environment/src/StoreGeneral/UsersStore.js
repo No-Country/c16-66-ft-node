@@ -8,7 +8,7 @@ console.log(state);
 export const UserStore = create(
 	persist(
 		(set, get) => ({
-			users: [],
+			users: state.users ? state.users : [],
 			userLogged: state.userLogged ? state.userLogged : null,
 			addUser: (newUser) => {
 				// traigo el users que hay en el state
@@ -16,7 +16,7 @@ export const UserStore = create(
 				let usersCopy = [...users];
 				const isArray = Array.isArray(newUser);
 				// Dependiendo si renderiza por primera vez recibe [] o solo agrega un usurario, recibe {}
-				isArray
+				!isArray
 					? (usersCopy = usersCopy[usersCopy.length] = newUser)
 					: (usersCopy = [newUser]);
 				set(() => ({ users: usersCopy }));

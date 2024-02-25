@@ -11,25 +11,28 @@ import { UserStore } from "../../StoreGeneral/UsersStore";
 import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
 
 //
+import FakePacient1 from "../../assets/imgFakePacient/FakePacient1.png";
 import logo from "../../assets/FakeLOGO/Logo 3.png";
+import calendarIcon from "../../assets/svg/calendar.svg";
+import editIcon from "../../assets/svg/mode_edit_24px.svg";
 import credencialIcon from "../../assets/svg/contact_emergency.svg";
 import { Modal } from "@mui/material";
 
 //objeto inicial debajo, solo para probar flujo --> a remplazar por state cuando haya loggin
-const doctorInfo = {
-	id: "0973hd755h5",
-	registrationNumber: "X-675739-bg",
-	name: "Lucia Rodriguez",
-	email: "luciaDo@hotmail.com",
-	specialty: "Cardiologia",
-	password: "123456",
-	birthdate: "2087-02-15T15:01:12.688Z",
-	socialSecurityAdd: ["Ioma", "Ospe", "Amemop", "Galeno", "Pami", "Osde"],
-	tel: 22461847578,
-	address: "Calle 34 251",
-	province: "Buenos Aires",
-	town: "La Plata",
-};
+// const doctorInfo = {
+// 	id: "0973hd755h5",
+// 	registrationNumber: "X-675739-bg",
+// 	name: "Lucia Rodriguez",
+// 	email: "luciaDo@hotmail.com",
+// 	specialty: "Cardiologia",
+// 	password: "123456",
+// 	birthdate: "2087-02-15T15:01:12.688Z",
+// 	socialSecurityAdd: ["Ioma", "Ospe", "Amemop", "Galeno", "Pami", "Osde"],
+// 	tel: 22461847578,
+// 	address: "Calle 34 251",
+// 	province: "Buenos Aires",
+// 	town: "La Plata",
+// };
 
 export function ViewFromSm() {
 	let doctorLogged; // test objet hasta que funcione loggin
@@ -41,6 +44,8 @@ export function ViewFromSm() {
 
 	const [open, setOpen] = useState(false);
 	const handleModalConsult = () => setOpen(!open);
+	const [openCalendar, setOpenCalendar] = useState(false);
+	const handleModalCalendar = () => setOpenCalendar(!openCalendar);
 
 	const handlerSelect = (id) => {
 		let consult;
@@ -53,7 +58,10 @@ export function ViewFromSm() {
 	return (
 		<>
 			{/* header con logo de APP =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */}
-			<div className=' w-11/12 h-12/12 flex-col lg:flex-nowrap '>
+			<div
+				style={{ maxHeight: "1024px" }}
+				className=' w-11/12 h-12/12 flex-col lg:flex-nowrap overflow-y-scroll'
+			>
 				<header
 					// style={{ width: "1320px" }}
 					className='-ml-28 w-screen h-16 py-2.5 flex justify-center'
@@ -66,7 +74,7 @@ export function ViewFromSm() {
 				</header>
 
 				{/* Seccion de Titulo de la pagina ==-=-=-=-=-=-=-==-=-=-=-=-=-= */}
-				<section className=' mt-2 mb-1 h-3/12 flex-col '>
+				<section className=' mt-2 mb-1 h-3/12 flex-col sticky top-0 z-50 bg-white'>
 					<h2 className='text-2xl font-bold text-black'>
 						{" "}
 						Bienvenido/a
@@ -88,17 +96,54 @@ export function ViewFromSm() {
 				</section>
 
 				{/* Seccion de  higlights? =-=-=-=-=-=-=-= */}
-				<section className='w-11/12 h-1/6 max-h-32 gap-4 flex rounded-3xl bg-celestBgWrapper justify-around px-2'>
+				<section className='w-12/12 m-auto h-1/6 max-h-32 gap-2 flex rounded-3xl bg-celestBgWrapper justify-around px-2'>
 					<HomeHiglights />
 				</section>
 
 				{/* Seccion calendario y Card de matricula o credencial        */}
-				<section className='mt-2 mb-2 h-fit p-2 pr-4 w-/12 flex flex-row box-border border-2'>
-					<article className='w-1/2 pr-4 border-2 h-44  bg-lightBlue'>
-						<h2> Calendario </h2>
+				<section className='mt-2 mb-2 h-1/4 md:h-1/5 p-1 pr-4 ml-4 flex flex-row box-border'>
+					<article className='w-1/2 mr-4 p-2 h-full rounded-xl bg-mostLighthBlue'>
+						<section>
+							<h2 className='pl-1 font-semibold'> Calendario </h2>
+							<div className='flex justify-between px-2'>
+								<p>Viernes 16, julio</p>
+								<img src={editIcon} alt='Icono de edicion' className='pr-2' />
+							</div>
+						</section>
+						<div className='mt-6 md:mt-1 flex justify-between md:justify-around  bg-mostLighthBlue	'>
+							<h3 className='pl-1 font-semibold'> Próximo turno :</h3>
+							<span
+								className='text-darkBlue mr-4 hover:cursor-pointer'
+								onClick={handleModalCalendar}
+							>
+								Ver mas..
+							</span>
+						</div>
+						<div className='flex justify-between md:justify-around items-center mt-6 md:mt-1 bg-white p-1 mx-1 rounded-xl'>
+							<img
+								src={FakePacient1}
+								alt='Imagen de perfil'
+								className='w-12 h-12 '
+							/>
+							<div className='w-full ml-2 md:ml-7 flex-col'>
+								<h4 className=' text-sm font-bold text-black'>
+									Nombre de Usuario
+								</h4>
+								<p className=' text-xs font-normal text-gray'>
+									Fecha del turno y horario
+								</p>
+							</div>
+							<img
+								src={calendarIcon}
+								alt='Icono de calendario'
+								className='hidden mr-3 md:flex'
+							/>
+						</div>
+
 						<Modal
-							open={open}
-							onClose={handleModalConsult}
+							sx={{ top: "15%", left: "35%" }}
+							open={openCalendar}
+							onClose={handleModalCalendar}
 							aria-labelledby='modal-modal-title'
 							aria-describedby='modal-modal-description'
 						>
@@ -106,7 +151,9 @@ export function ViewFromSm() {
 						</Modal>
 					</article>
 					<div
-						className='mt-1 pl-4 w-1/2 h-44 pt-1 flex-col items-center bg-mostLighthBlue rounded-xl box-border hover:cursor-pointer relative'
+						//el div tiene el click para destapar la caja del credencial o matricula
+						className='
+						w-1/2 p-2 h-full flex-col items-center bg-mostLighthBlue rounded-xl box-border hover:cursor-pointer relative  '
 						onClick={() => setCredAnim(!credAnim)}
 					>
 						<h3 className='ml-4 text-lg font-semibold text-black over'>
@@ -115,7 +162,7 @@ export function ViewFromSm() {
 						</h3>
 
 						<article
-							className={`w-5/6 h-10/12 m-auto mt-2 border-2 rounded-xl border-lightBlue py-1 px-2 bg-white absolute right-7  ${
+							className={`w-5/6 h-11/12  mt-3 md:mt-0 border-2 rounded-xl border-lightBlue py-1 px-2 bg-white absolute right-5 md:right-7  ${
 								credAnim ? "animate-rotate-x" : "blurCard opacity-80 "
 							} `}
 						>
@@ -148,24 +195,24 @@ export function ViewFromSm() {
 								</span>
 							</div>
 						</article>
-						<article className='w-5/6 h-10/12 rounded-xl flex  m-auto mt-6 pl-6'>
+						<article className='w-5/6 md:w-4/6 h-10/12 rounded-xl flex justify-center absolute right-5 top-16 md:top-16 md:right-12 '>
 							<div
-								className={`bg-blue flex  ${
+								className={` flex sm:flex-col md:flex-row   ${
 									credAnim ? "opacity-0 z-0" : "opacity-100 z-20"
 								} `}
 							>
-								<div className='w-fit h-fit p-1 mt-2 ml-1 rounded-full flex justify-center'>
+								<div className='w-fit h-fit p-1 pl-0 md:mt-2 md:-ml-6 md:mr-4 rounded-full flex justify-center'>
 									<img
 										src={credencialIcon}
-										className='objet-cover objet-center inline'
+										className='objet-cover objet-center inline ml-12'
 										alt='Icono de credencial'
 									/>
 								</div>
-								<div className='w-full pl-1 pt-1 flex-col'>
+								<div className='w-full md:pl-1 md:pt-1 flex-col '>
 									<p className=' text-md font-semibold text-black '>
 										Accede acá a tu
 									</p>
-									<strong className='text-md font-bold	 text-black'>
+									<strong className='text-md font-bold text-black'>
 										{doctorLogged ? "Matricula" : "Credencial"} Digital
 									</strong>
 								</div>
@@ -175,12 +222,12 @@ export function ViewFromSm() {
 				</section>
 
 				{/* Seccion de reenderizado de lista de pacientes y consulta de c/u =-=-=-=-=-=-=*/}
-				<section className='w-11/12 mt-4 secction__Principal-doctorHome flex flex-col-reverse py-2 px-4 items-start gap-6 shrink-0 rounded-3xl overflow-hidden'>
-					<div className=' w-10/12 m-auto flex-col'>
+				<section className='w-12/12 mt-3 secction__Principal-doctorHome flex flex-col-reverse py-2 px-2 gap-4 shrink-0 rounded-3xl overflow-hidden'>
+					<div className=' w-10/12 mx-auto flex-col '>
 						<h2 className=' text-2xl text-black font-medium mb-3'>
 							{doctorLogged ? "Lista de pacientes" : "Próximos turnos "}
 						</h2>
-						<section className='w-full h-64 xl:h-72 flex-col overflow-scroll'>
+						<section className='w-full h-64 xl:h-72 flex-col overflow-scroll pl-4 md:pl-6'>
 							{doctorLogged ? (
 								<div className='w-full'>
 									{users?.map((user) => {
@@ -209,13 +256,13 @@ export function ViewFromSm() {
 						</section>
 					</div>
 					{/* -=-=segundo bloque de la seccion - Turno/ doctor info --=-=-=- */}
-					<div className='w-10/12 m-auto h-full flex-col gap-6'>
+					<div className='w-11/12 mx-auto h-full flex-col gap-6 '>
 						<h3>Próximo turno :</h3>
-						<div className='w-full h-32 m-auto mt-2 pt-2 xs:flex justify-center items-center bg-mostLighthBlue rounded-lg box-border overflow-scroll'>
+						<div className='w-11/12 h-32 mx-auto mt-2 pt-2 xs:flex justify-center items-center  rounded-lg box-border overflow-scroll'>
 							{selectTypeUser?.name != undefined ? (
 								<CardPacientItem user={selectTypeUser} />
 							) : (
-								<CardPacientItem user={users[0]} />
+								<CardPacientItem user={doctors[0]} />
 							)}
 						</div>
 
@@ -233,10 +280,10 @@ export function ViewFromSm() {
 						</div>
 						{selectTypeUser?.name != undefined ? (
 							<MedicConsult user={selectTypeUser} />
-						) : doctorLogged ? (
-							<MedicConsult user={users[0]} />
-						) : (
+						) : userLogged ? (
 							<MedicConsult user={doctors[0]} />
+						) : (
+							<MedicConsult user={users[0]} />
 						)}
 					</div>
 				</section>
@@ -248,8 +295,8 @@ export function ViewFromSm() {
 					aria-describedby='modal-modal-description'
 				>
 					<section
-						style={{ marginTop: "2%", marginLeft: "33%" }}
-						className='absolute   w-96 bg-mostLighthBlue rounded-2xl border-2 shadow-2xl p-4'
+						style={{ top: "5%", left: "25%" }}
+						className='absolute  w-96 bg-mostLighthBlue rounded-2xl border-2 shadow-2xl p-4'
 					>
 						{selectTypeUser?.name != undefined ? (
 							<MedicConsult user={selectTypeUser} />

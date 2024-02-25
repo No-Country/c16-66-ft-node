@@ -55,7 +55,10 @@ export function ViewFromLg() {
 	return (
 		<>
 			{/* header con logo de APP =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */}
-			<div className='ml-4 xl:ml-6 lg:w-4/5 xl:w-5/6 h-12/12 flex-col lg:flex-nowrap'>
+			<div
+				style={{ maxWidth: "1440px" }}
+				className='ml-4 xl:ml-6 lg:w-4/5 xl:w-5/6 h-12/12 flex-col lg:flex-nowrap'
+			>
 				<header
 					// style={{ width: "1320px" }}
 					className='-ml-28 w-screen h-16 py-2.5 flex justify-center'
@@ -152,10 +155,10 @@ export function ViewFromLg() {
 						</div>
 						{selectTypeUser?.name != undefined ? (
 							<MedicConsult user={selectTypeUser} />
-						) : doctorLogged ? (
-							<MedicConsult user={users[0]} />
-						) : (
+						) : userLogged ? (
 							<MedicConsult user={doctors[0]} />
+						) : (
+							<MedicConsult user={users[0]} />
 						)}
 					</div>
 				</section>

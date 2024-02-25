@@ -2,10 +2,7 @@ import { AsideComponent } from "../../components/aside/index";
 import { ViewFromLg } from "./ViewFromLg";
 import { ViewFromSm } from "./ViewFromSm";
 
-//
 import "./home.css";
-
-//
 
 export default function Home() {
 	return (
