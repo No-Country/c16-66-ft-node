@@ -4,10 +4,10 @@ const {Doctor, Pacient} = require("./src/db")
 const api = require("./api/doctos.json")
 const api2 = require("./api/pacient.json")
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 conn.sync({force: true}).then(()=> {
-server.listen(PORT, () => {
+server.listen(PORT, "0.0.0.0", () => {
     console.log(`Listening on port: ${PORT}`);
     const {doctors} = api
     const {pacient} = api2
