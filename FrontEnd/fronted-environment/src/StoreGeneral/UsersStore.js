@@ -1,15 +1,9 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-const { state } = JSON.parse(localStorage.getItem("medConnectUpacientInfo"));
-console.log("en storage");
-console.log(state);
-
 export const UserStore = create(
 	persist(
 		(set, get) => ({
-			// users: state.users ? state.users : [],
-			// userLogged: state.userLogged ? state.userLogged : null,
 			users: [],
 			userLogged: null,
 			addUser: (newUser) => {
@@ -30,6 +24,6 @@ export const UserStore = create(
 				set(() => ({ users: [] }));
 			},
 		}),
-		{ name: "medConnectUpacientInfo" }
+		{ name: "medConnectPacientInfo" }
 	)
 );
