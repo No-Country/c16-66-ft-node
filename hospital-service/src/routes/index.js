@@ -17,6 +17,7 @@ const {deleteAppoinmentByIdHandler} = require("../handlers/appoinments/deleteApp
 
 //controllers Reviews
 const {createReviewHandler} = require("../handlers/reviews/createReviewHandler")
+const {getAllReviesHandler} = require("../handlers/reviews/getReviewsHandler")
 
 //express config
 const {Router} = require("express");
@@ -49,5 +50,7 @@ router.delete("/appoinment/:id", deleteAppoinmentByIdHandler);
 
 //reviews routes
 router.post("/reviews", createReviewHandler);
+
+router.get("/reviews", getAllReviesHandler);
 
 module.exports = router; 
