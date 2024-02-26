@@ -8,8 +8,10 @@ console.log(state);
 export const UserStore = create(
 	persist(
 		(set, get) => ({
-			users: state.users ? state.users : [],
-			userLogged: state.userLogged ? state.userLogged : null,
+			// users: state.users ? state.users : [],
+			// userLogged: state.userLogged ? state.userLogged : null,
+			users: [],
+			userLogged: null,
 			addUser: (newUser) => {
 				// traigo el users que hay en el state
 				const { users } = get();
