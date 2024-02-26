@@ -20,6 +20,9 @@ export const UserStore = create(
 			addUserLogged: (user) => {
 				set(() => ({ userLogged: user }));
 			},
+			loggOutUser: () => {
+				set(() => ({ userLogged: null }));
+			},
 			resetUser: () => {
 				set(() => ({ users: [] }));
 			},

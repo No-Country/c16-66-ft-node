@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
 	Button,
 	Box,
@@ -12,16 +12,15 @@ import {
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import logo from "../../assets/FakeLOGO/Logo 3.png";
-// import { useForm } from "../../hooks/useForm";
+
 import background from "../../assets/AuthBG/loginBG.png";
 
 import { useUserStore } from "../../hooks/userUserStore";
+import { useDoctorStore } from "../../hooks/useDoctorStore";
 import { UserStore } from "../../StoreGeneral/UsersStore";
-// const formData = {
-// 	email: "",
-// 	password: "",
-// };
+import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
 
+// Estilos de material ui
 const { palette } = createTheme();
 const { augmentColor } = palette;
 const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
@@ -30,12 +29,17 @@ const theme = createTheme({
 		anger: createColor("#115E86"),
 	},
 });
-
+// Comienzo del componente
 export default function LoginPage() {
+	const params = useParams();
+	console.log("en loggin de params");
+	console.log(params.types);
 	const { addUserLogged } = UserStore();
+	const { addDoctorLogged } = DoctorStore();
 	const [dbErrors, setDbErros] = useState("");
 	const navigate = useNavigate();
 	const { validationUserToLogin } = useUserStore();
+	const { validationDoctorToLogin } = useDoctorStore();
 	// const { email, password, onInputChange } = useForm(formData);
 	const {
 		register,
@@ -45,11 +49,16 @@ export default function LoginPage() {
 
 	const onSubmitLoggin = async (userToLogin) => {
 		event.preventDefault();
+		let response;
 		if (userToLogin.email.includes(".net")) {
 			setDbErros("La aplicacion no permite correos con el dominio '.net'");
 			return;
-		}
-		const response = await validationUserToLogin(userToLogin.email);
+		} //segun params, ver a que service pegarle
+		params.types == "pacient"
+			? (response = await validationUserToLogin(userToLogin.email))
+			: (response = await validationDoctorToLogin(userToLogin.email));
+		console.log("chusmeando el response");
+		console.log(response);
 		response == undefined &&
 			setDbErros("No se encontro el email en la Base de datos");
 		if (response.password != userToLogin.password) {
@@ -58,7 +67,8 @@ export default function LoginPage() {
 			);
 			return;
 		} else {
-			addUserLogged(response);
+			params.types == "pacient" && addUserLogged(response);
+			params.types == "doctor" && addDoctorLogged(response);
 			setDbErros("");
 			navigate("/home");
 		}

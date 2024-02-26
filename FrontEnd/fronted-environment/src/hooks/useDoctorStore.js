@@ -1,4 +1,4 @@
-import { fetchDoctors } from "../Service";
+import { fetchDoctors, getOneDoctor } from "../Service";
 import { DoctorStore } from "../StoreGeneral/DoctorsStore";
 export function useDoctorStore() {
 	const { addDoctor } = DoctorStore();
@@ -8,5 +8,11 @@ export function useDoctorStore() {
 		await addDoctor(doctorApiResponse);
 	};
 
-	return { getDoctorApiResponse };
+	const validationDoctorToLogin = async (email) => {
+		const userApiResponse = await getOneDoctor(email);
+
+		return userApiResponse[0];
+	};
+
+	return { getDoctorApiResponse, validationDoctorToLogin };
 }

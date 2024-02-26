@@ -22,6 +22,9 @@ export const DoctorStore = create(
 			addDoctorLogged: (doctor) => {
 				set(() => ({ doctorLogged: doctor }));
 			},
+			loggOutDoctor: () => {
+				set(() => ({ doctorLogged: null }));
+			},
 			resetDoctor: () => set(() => ({ doctors: [] })),
 		}),
 		{ name: "medConnectDoctorInfo" }
