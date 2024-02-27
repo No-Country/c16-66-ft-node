@@ -35,13 +35,14 @@ export function AsideComponent() {
 		userLogged ? loggOutUser() : loggOutDoctor();
 		navigate("/");
 	};
+
 	return (
 		<aside
 			style={{ maxHeight: "1024px" }}
 			className={`asideBackground h-screen absolute z-50 flex flex-col justify-evenly p-1 gap-2.5 ${
 				openClose
 					? " w-1/2 sm:w-2/5 sm:p-4 md:w-1/4 lg:w-2/12"
-					: "w-4/12 sm:w-2/12 lg:w-1/12"
+					: "w-2/12 lg:w-1/12"
 			}`}
 		>
 			<Button className='flex justify-end' onClick={handleAsideOpenClose}>
@@ -70,13 +71,13 @@ export function AsideComponent() {
 
 			<section className={`flex flex-col justify-center items-start h-fit`}>
 				<article
-					className={`flex hover:bg-white p-2 rounded-xl mx-auto ${
+					className={`flex cursor-pointer hover:bg-white p-2 rounded-xl mx-auto ${
 						openClose
 							? "w-full justify-start gap-4"
 							: "w-2/3 h-auto justify-center"
 					}`}
 				>
-					<img src={group} className='max-w-none' />
+					<img src={group} className='max-w-none' title='Home'/>
 					<p
 						style={{ display: openClose ? "block" : "none" }}
 						className='text-sm'
@@ -84,7 +85,9 @@ export function AsideComponent() {
 						Home
 					</p>
 				</article>
-				<BoxIcon openClose={openClose} text={"Mi perfil"} icon={person} onClick={navigate('/perfil')} />
+				<div className={`${openClose ? 'mx-inherit w-full' : 'mx-auto w-2/3 hover:bg-white rounded-xl'}`} onClick={()=>navigate('/perfil')} >
+					<BoxIcon openClose={openClose} text={"Mi perfil"} icon={person} />
+				</div>
 				<BoxIcon openClose={openClose} text={"Agenda"} icon={calendar} />
 				<BoxIcon
 					openClose={openClose}
@@ -93,7 +96,8 @@ export function AsideComponent() {
 				/>
 				<BoxIcon openClose={openClose} text={"Consulta virtual"} icon={duo} />
 				<BoxIcon openClose={openClose} text={"Cartilla médica"} icon={book} />
-				<BoxIcon openClose={openClose} text={"Mi billetera"} icon={star} />
+				<BoxIcon openClose={openClose} text={"Mi billetera"} icon={star} 
+				/>
 			</section>
 			<br />
 			<section
@@ -109,17 +113,17 @@ export function AsideComponent() {
 					}`}
 				>
 					{openClose ? (
-						<img src={notification} className='max-w-none' />
+						<img src={notification} className='max-w-none cursor-pointer' title='Notificaciones' />
 					) : (
 						<>
-							<img src={notificationUnread} className='max-w-none' />
+							<img src={notificationUnread} className='max-w-none cursor-pointer' title='Notificaciones'/>
 							<Badge className='w-0.5 h-0.5 bg-red p-1 rounded-md absolute badge' />
 						</>
 					)}
 					<div
-						className={`${openClose ? "flex  w-2/3 items-center" : "hidden"}`}
+						className={`${openClose ? "flex cursor-pointer w-2/3 items-center" : "hidden"}`}
 					>
-						<p className='text-sm'> Notificaciones</p>
+						<p className='text-sm cursor-pointer'> Notificaciones</p>
 						<p className='text-white rounded-full ml-2 flex justify-center h-4 w-4 text-xs items-center bg-red'>
 							8
 						</p>

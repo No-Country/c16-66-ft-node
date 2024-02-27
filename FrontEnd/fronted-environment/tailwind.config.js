@@ -12,6 +12,7 @@ export default {
 				whiteOpacity: "#ffffff80",
 				darkBlue: "#115E86",
 				lightBlue: "#82C3E4",
+				bgLightGreen: "#EBF8EA",
 				darkGreen: "#467b3e4d",
 				lightGreen: "#C6F1BF",
 				gray: "#797979",
