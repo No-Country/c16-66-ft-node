@@ -18,24 +18,8 @@ import editIcon from "../../assets/svg/mode_edit_24px.svg";
 import credencialIcon from "../../assets/svg/contact_emergency.svg";
 import { Modal } from "@mui/material";
 
-//objeto inicial debajo, solo para probar flujo --> a remplazar por state cuando haya loggin
-// const doctorInfo = {
-// 	id: "0973hd755h5",
-// 	registrationNumber: "X-675739-bg",
-// 	name: "Lucia Rodriguez",
-// 	email: "luciaDo@hotmail.com",
-// 	specialty: "Cardiologia",
-// 	password: "123456",
-// 	birthdate: "2087-02-15T15:01:12.688Z",
-// 	socialSecurityAdd: ["Ioma", "Ospe", "Amemop", "Galeno", "Pami", "Osde"],
-// 	tel: 22461847578,
-// 	address: "Calle 34 251",
-// 	province: "Buenos Aires",
-// 	town: "La Plata",
-// };
-
 export function ViewFromSm() {
-	let doctorLogged; // test objet hasta que funcione loggin
+	const { doctorLogged } = DoctorStore();
 
 	const { users, userLogged } = UserStore();
 	const { doctors } = DoctorStore();
@@ -74,7 +58,7 @@ export function ViewFromSm() {
 				</header>
 
 				{/* Seccion de Titulo de la pagina ==-=-=-=-=-=-=-==-=-=-=-=-=-= */}
-				<section className=' mt-2 mb-1 h-3/12 flex-col sticky top-0 z-50 bg-white'>
+				<section className=' mt-2 mb-1 h-3/12 flex-col sticky top-0 z-40 bg-white'>
 					<h2 className='text-2xl font-bold text-black'>
 						{" "}
 						Bienvenido/a

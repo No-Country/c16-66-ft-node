@@ -8,7 +8,7 @@ export function useUserStore() {
 		await addUser(userApiResponse);
 	};
 
-	const validationUserToLogin = async (email, paswordForLoggin) => {
+	const validationUserToLogin = async (email) => {
 		const userApiResponse = await getOneUser(email);
 
 		// await addUserLogged(userApiResponse[0]);

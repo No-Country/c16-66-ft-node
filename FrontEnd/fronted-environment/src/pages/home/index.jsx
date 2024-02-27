@@ -1,10 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import { AsideComponent } from "../../components/aside/index";
 import { ViewFromLg } from "./ViewFromLg";
 import { ViewFromSm } from "./ViewFromSm";
-
+//Store Zustand debajo
+import { UserStore } from "../../StoreGeneral/UsersStore";
+import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
 import "./home.css";
 
 export default function Home() {
+	const navigate = useNavigate();
+	const { userLogged } = UserStore();
+	const { doctorLogged } = DoctorStore();
+	if (!userLogged && !doctorLogged) {
+		navigate("/autogestion");
+	}
+
 	return (
 		<>
 			<main className='flex w-screen h-screen box-border z-0'>

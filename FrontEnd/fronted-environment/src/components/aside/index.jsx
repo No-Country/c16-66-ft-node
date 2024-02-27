@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Badge, Button } from "@mui/base";
 import close from "../../assets/svg/close.svg";
 import menu from "../../assets/svg/menu.svg";
@@ -18,16 +19,26 @@ import logOut from "../../assets/svg/logout.svg";
 import { BoxIcon } from "./BoxIcon";
 import "./index.css";
 
+import { UserStore } from "../../StoreGeneral/UsersStore";
+import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
+
 export function AsideComponent() {
+	const navigate = useNavigate();
+	const { loggOutUser, userLogged } = UserStore();
+	const { loggOutDoctor } = DoctorStore();
 	const [openClose, setOpenClose] = useState(false);
 	const handleAsideOpenClose = () => {
 		setOpenClose(!openClose);
 	};
 
+	const logOutFuncion = () => {
+		userLogged ? loggOutUser() : loggOutDoctor();
+		navigate("/");
+	};
 	return (
 		<aside
 			style={{ maxHeight: "1024px" }}
-			className={`asideBackground h-screen absolute z-30 flex flex-col justify-evenly p-1 gap-2.5 ${
+			className={`asideBackground h-screen absolute z-50 flex flex-col justify-evenly p-1 gap-2.5 ${
 				openClose
 					? " w-1/2 sm:w-2/5 sm:p-4 md:w-1/4 lg:w-2/12"
 					: "w-4/12 sm:w-2/12 lg:w-1/12"
@@ -121,7 +132,9 @@ export function AsideComponent() {
 					icon={suportAgent}
 				/>
 			</section>
-			<BoxIcon openClose={openClose} text={"Cerrar sesión"} icon={logOut} />
+			<div onClick={() => logOutFuncion()}>
+				<BoxIcon openClose={openClose} text={"Cerrar sesión"} icon={logOut} />
+			</div>
 		</aside>
 	);
 }
