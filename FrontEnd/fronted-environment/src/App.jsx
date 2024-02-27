@@ -9,7 +9,7 @@ const PrincipalHome = lazy(() => import("./pages/PrincipalHome/PrincipalHome"));
 const Home = lazy(() => import("./pages/home")); // en Page exportar por DEFAULT
 const Loading = lazy(() => import("./pages/Loading"));
 const LoginPage = lazy(() => import("./pages/Login"));
-const RegisterPatient = lazy(() => import("./pages/Register/RegisterPaciente"));
+const RegisterPatient = lazy(() => import("./pages/Register/Register"));
 const Autogestion = lazy(() => import("./pages/autogestion/Autogestion"));
 const MedicalList = lazy(() => import("./pages/cartillaMedica/MedicalList"));
 const Perfil = lazy(() => import("./pages/Perfil/Perfil"));
@@ -38,7 +38,7 @@ function App() {
 						<Route path='/' element={<PrincipalHome />} />
 						<Route path='/autogestion' element={<Autogestion />} />
 						<Route path='/home' element={<Home />} />
-						<Route path='/register' element={<RegisterPatient />} />
+						<Route path='/register/:types' element={<RegisterPatient />} />
 						<Route path='/login/:types' element={<LoginPage />} />
 						<Route path='/medical-list' element={<MedicalList />} />
 						<Route path='/perfil' element={<Perfil />} />

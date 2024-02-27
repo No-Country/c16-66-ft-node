@@ -5,7 +5,7 @@ import {
 	Button,
 	Box,
 	Grid,
-	Link as LinkMui,
+	// Link as LinkMui,
 	TextField,
 	Typography,
 	alpha,
@@ -32,8 +32,7 @@ const theme = createTheme({
 // Comienzo del componente
 export default function LoginPage() {
 	const params = useParams();
-	console.log("en loggin de params");
-	console.log(params.types);
+
 	const { addUserLogged } = UserStore();
 	const { addDoctorLogged } = DoctorStore();
 	const [dbErrors, setDbErros] = useState("");
@@ -57,8 +56,7 @@ export default function LoginPage() {
 		params.types == "pacient"
 			? (response = await validationUserToLogin(userToLogin.email))
 			: (response = await validationDoctorToLogin(userToLogin.email));
-		console.log("chusmeando el response");
-		console.log(response);
+
 		response == undefined &&
 			setDbErros("No se encontro el email en la Base de datos");
 		if (response.password != userToLogin.password) {
@@ -271,17 +269,21 @@ export default function LoginPage() {
 									¿No tenés una cuenta?
 								</Typography>
 								{
-									<LinkMui
-										to='/auth/register'
-										sx={{
+									<span
+										to={`/register/${params.types}`}
+										style={{
 											fontWeight: "bold",
 											fontSize: { xs: 13, sm: 16 },
 											color: "#115E86",
 											mt: 2,
 										}}
+										className='mt-4'
 									>
-										<Link to='/register'> Crea tu cuenta ahora</Link>
-									</LinkMui>
+										<Link to={`/register/${params.types}`}>
+											{" "}
+											Crea tu cuenta ahora
+										</Link>
+									</span>
 
 									// acomodar con las rutas adecuadas
 									/* <Link component={RouterLink} color="inherit" to="/auth/register">

@@ -1,23 +1,22 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useUserStore } from "../../hooks/userUserStore";
+import { useDoctorStore } from "../../hooks/useDoctorStore";
+import { useParams, useNavigate } from "react-router-dom";
 import {
 	Button,
 	Box,
 	Grid,
-	Link,
+	// Link as LinkMui,
 	TextField,
 	Typography,
 	alpha,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useForm } from "../../hooks/useForm";
+
 import background from "../../assets/AuthBG/RBackground.png";
 import logo from "../../assets/FakeLOGO/Logo 3.png";
-
-const formData = {
-	name: "",
-	email: "",
-	password: "",
-	DNI: "",
-};
 
 const { palette } = createTheme();
 const { augmentColor } = palette;
@@ -29,12 +28,35 @@ const theme = createTheme({
 });
 
 export default function RegisterAdmin() {
-	const { email, password, onInputChange, DNI, name } = useForm(formData);
+	const [dbErrors, setDbErros] = useState("");
+	const params = useParams();
 
-	const onSubmit = (event) => {
+	const navigate = useNavigate();
+	const { addUserFromRegister } = useUserStore();
+	const { addDoctorFromRegister } = useDoctorStore();
+
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
+
+	const onSubmitRegister = async (userToRegister) => {
 		event.preventDefault();
 
-		//    pendiente funcion de manejo de login
+		if (userToRegister.email.includes(".net")) {
+			setDbErros("La aplicacion no permite correos con el dominio '.net'");
+			return;
+		} //segun params, ver a que service pegarle
+		params.types == "pacient"
+			? await addUserFromRegister(userToRegister)
+			: params.types == "doctor" &&
+			  (await addDoctorFromRegister(userToRegister));
+
+		setDbErros("");
+		params.types == "pacient" && navigate("/login/pacient");
+		params.types == "doctor" && navigate("/login/doctor");
+		// }
 	};
 
 	return (
@@ -105,7 +127,7 @@ export default function RegisterAdmin() {
 
 					<form
 						aria-label='submit-form'
-						onSubmit={onSubmit}
+						onSubmit={handleSubmit(onSubmitRegister)}
 						className='animate__animated animate__fadeIn animate__faster '
 					>
 						<Grid container>
@@ -126,9 +148,26 @@ export default function RegisterAdmin() {
 									placeholder='Juan Perez'
 									fullWidth
 									name='name'
-									value={name}
-									onChange={onInputChange}
+									{...register("name", {
+										required: {
+											value: true,
+											message: "Debes completar el campo",
+										},
+										minLength: {
+											value: 6,
+											message:
+												"El nombre no debe contener menos de 6 caracteres",
+										},
+									})}
 								/>
+								{errors.name && (
+									<span
+										className='pl-2 pt-2 flex text-xs font-bold text-red-700'
+										style={{ color: "red" }}
+									>
+										{errors.name.message}
+									</span>
+								)}
 							</Grid>
 
 							<Typography
@@ -149,9 +188,25 @@ export default function RegisterAdmin() {
 									placeholder='something@something.com'
 									fullWidth
 									name='email'
-									value={email}
-									onChange={onInputChange}
+									{...register("email", {
+										required: {
+											value: true,
+											message: "Debes escribir tu correo electronico",
+										},
+										pattern: {
+											value: /\S+@\S+\.\S+/,
+											message: "El email debe ser valido",
+										},
+									})}
 								/>
+								{errors.email && (
+									<span
+										className='pl-2 pt-2 flex text-xs font-bold text-red-700'
+										style={{ color: "red" }}
+									>
+										{errors.email.message}
+									</span>
+								)}
 							</Grid>
 							<Typography
 								sx={{
@@ -170,12 +225,26 @@ export default function RegisterAdmin() {
 									placeholder='contraseña'
 									fullWidth
 									name='password'
-									inputProps={{
-										"data-testid": "password",
-									}}
-									value={password}
-									onChange={onInputChange}
+									{...register("password", {
+										required: {
+											value: true,
+											message: "Debes completar el campo",
+										},
+										minLength: {
+											value: 6,
+											message:
+												"La contraseña debe contener al menos 6 caracteres",
+										},
+									})}
 								/>
+								{errors.password && (
+									<span
+										className='pl-2 pt-2 flex text-xs font-bold text-red-700'
+										style={{ color: "red" }}
+									>
+										{errors.password.message}
+									</span>
+								)}
 							</Grid>
 							<Typography
 								sx={{
@@ -190,32 +259,41 @@ export default function RegisterAdmin() {
 							<Grid item xs={12} sx={{ mb: { xs: 3 } }}>
 								<TextField
 									label='Ingresa tu número de DNI'
-									type='Number'
+									type='text'
 									placeholder='123456'
 									fullWidth
-									name='DNI'
-									value={DNI}
-									onChange={onInputChange}
+									name='dni'
+									{...register("dni", {
+										required: {
+											value: true,
+											message: "Debes completar el campo",
+										},
+										minLength: {
+											value: 8,
+											message: "El dni no debe contener menos de 8 caracteres",
+										},
+									})}
 								/>
+								{errors.dni && (
+									<span
+										className='pl-2 pt-2 flex text-xs font-bold text-red-700'
+										style={{ color: "red" }}
+									>
+										{errors.dni.message}
+									</span>
+								)}
 							</Grid>
-							{/*  // pendiente pop up para manejo de errores
-   <Grid container
-   display={!!errorMessage ? "": "none"}
-   sx={{mt:1}}
-   >
-   <Grid 
-   item
-    xs={12}
-    >
-      <Alert severity="error">{errorMessage}</Alert>
-     </Grid>
-   </Grid> */}
-
+							{dbErrors && (
+								<span
+									className='pl-2 pt-2 flex text-xs font-bold text-red-700'
+									style={{ color: "red" }}
+								>
+									{dbErrors}
+								</span>
+							)}
 							<Grid container spacing={2} sx={{ mt: 0.5, mb: 2 }}>
 								<Grid item xs={12} sx={{ color: "#115E86" }}>
 									<Button
-										//   campo para bloquear boton durante el proceso de logueo
-										// disabled ={isAuthenticating}
 										type='submit'
 										color='darckBlue'
 										variant='contained'
@@ -237,17 +315,18 @@ export default function RegisterAdmin() {
 									¿Ya tenés una cuenta?
 								</Typography>
 								{
-									<Link
-										to='/auth/register'
-										sx={{
+									<span
+										to={`/login/${params.types}`}
+										style={{
 											fontWeight: "bold",
 											fontSize: { xs: 13, sm: 16 },
 											color: "#115E86",
 											mt: 2,
 										}}
+										className='mt-4'
 									>
 										Inicia Sesion
-									</Link>
+									</span>
 
 									// acomodar con las rutas adecuadas
 									/* <Link component={RouterLink} color="inherit" to="/auth/register">
