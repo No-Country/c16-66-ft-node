@@ -85,7 +85,7 @@ export function ViewFromSm() {
 				</section>
 
 				{/* Seccion calendario y Card de matricula o credencial        */}
-				<section className='mt-2 mb-2 h-1/4 md:h-1/5 p-1 pr-4 ml-4 flex flex-row box-border'>
+				<section className='mt-2 mb-2 h-2/6  p-1 pr-4 ml-4 flex flex-row box-border'>
 					<article className='w-1/2 mr-4 p-2 h-full rounded-xl bg-mostLighthBlue'>
 						<section>
 							<h2 className='pl-1 font-semibold'> Calendario </h2>
@@ -158,7 +158,7 @@ export function ViewFromSm() {
 							</div>
 							<div>
 								{doctorLogged ? "Email:" : "DNI:"}
-								<span className='ml-2  text-xs   text-darkBlue'>
+								<span className='ml-1  text-xs   text-darkBlue'>
 									{doctorLogged ? doctorLogged.email : userLogged?.dni}
 								</span>
 							</div>

@@ -16,7 +16,6 @@ const MedicalList = lazy(() => import("./pages/cartillaMedica/MedicalList"));
 function App() {
 	//carga general de Users.
 	const { getUserApiResponse } = useUserStore(); //hook
-
 	// carga de Doctors
 	const { getDoctorApiResponse } = useDoctorStore(); //hook
 
