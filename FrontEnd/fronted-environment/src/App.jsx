@@ -1,4 +1,4 @@
-import { useEffect, Suspense, lazy } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useUserStore } from "./hooks/userUserStore"; //hook
 import { useDoctorStore } from "./hooks/useDoctorStore"; //hook
