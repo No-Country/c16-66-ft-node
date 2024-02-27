@@ -34,8 +34,8 @@ function App() {
 			<BrowserRouter>
 				<Suspense fallback={<Loading />}>
 					<Routes>
+						{/* <Route path='/' element={<PrincipalHome />} /> */}
 						<Route path='/' element={<PrincipalHome />} />
-
 						<Route path='/autogestion' element={<Autogestion />} />
 						<Route path='/home' element={<Home />} />
 						<Route path='/register' element={<RegisterPatient />} />
