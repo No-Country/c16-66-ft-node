@@ -1,47 +1,73 @@
 const server = require("./src/server");
-const {conn} = require("./src/db");
-const {Doctor, Pacient} = require("./src/db")
-const api = require("./api/doctos.json")
-const api2 = require("./api/pacient.json")
+const { conn } = require("./src/db");
+const { Doctor, Pacient } = require("./src/db");
+const api = require("./api/doctos.json");
+const api2 = require("./api/pacient.json");
 
 const PORT = 3001;
 
-conn.sync({force: true}).then(()=> {
-server.listen(PORT, () => {
-    console.log(`Listening on port: ${PORT}`);
-    const {doctors} = api
-    const {pacient} = api2
-    
-    doctors.map(async({name, lastname, email, password, licensenumber, specialty, image}) => { await
-     
-     Doctor.findOrCreate({
-        where: {
-            name,
-        },
-        defaults: {
-            name,
-            lastname,
-            email,
-            password,
-            licensenumber,
-            specialty,
-            image,
-        }
-     })   
-     }
-    )
+conn
+  .sync({ force: true })
+  .then(() => {
+    server.listen(PORT, () => {
+      console.log(`Listening on port: ${PORT}`);
+      const { doctors } = api;
+      const { pacient } = api2;
 
-    pacient.map(async({name}) => {await
-    
-     Pacient.findOrCreate({
-        where: {
-            name,
-        },
-        defaults: {
-            name,
+      doctors.map(
+        async ({
+          name,
+          lastname,
+          email,
+          password,
+          licensenumber,
+          specialty,
+          image,
+        }) => {
+          await Doctor.findOrCreate({
+            where: {
+              name,
+            },
+            defaults: {
+              name,
+              lastname,
+              email,
+              password,
+              licensenumber,
+              specialty,
+              image,
+            },
+          });
         }
-    })
-    }
-    )
-})
-}).catch(error => console.error(error))
+      );
+
+      pacient.map(
+        async ({
+          name,
+          lastname,
+          email,
+          password,
+          image,
+          city,
+          country,
+          role,
+        }) => {
+          await Pacient.findOrCreate({
+            where: {
+              name,
+            },
+            defaults: {
+              name,
+              lastname,
+              email,
+              password,
+              image,
+              city,
+              country,
+            },
+          });
+        }
+      );
+    });
+  })
+  .catch((error) => console.error(error));
