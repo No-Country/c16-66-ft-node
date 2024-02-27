@@ -12,7 +12,7 @@ const LoginPage = lazy(() => import("./pages/Login"));
 const RegisterPatient = lazy(() => import("./pages/Register/RegisterPaciente"));
 const Autogestion = lazy(() => import("./pages/autogestion/Autogestion"));
 const MedicalList = lazy(() => import("./pages/cartillaMedica/MedicalList"));
-const Perfil = lazy ( () => import ('./pages/Perfil/Perfil'))
+const Perfil = lazy(() => import("./pages/Perfil/Perfil"));
 
 function App() {
 	//carga general de Users.
@@ -35,12 +35,13 @@ function App() {
 				<Suspense fallback={<Loading />}>
 					<Routes>
 						<Route path='/' element={<PrincipalHome />} />
+
 						<Route path='/autogestion' element={<Autogestion />} />
 						<Route path='/home' element={<Home />} />
 						<Route path='/register' element={<RegisterPatient />} />
 						<Route path='/login/:types' element={<LoginPage />} />
 						<Route path='/medical-list' element={<MedicalList />} />
-						<Route path="/perfil" element={<Perfil />} />
+						<Route path='/perfil' element={<Perfil />} />
 						<Route
 							path='/*'
 							element={
