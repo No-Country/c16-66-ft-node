@@ -25,9 +25,9 @@ export function Footer () {
                     <div className='flex flex-col items-starts pb-4 w-1/2 sm:w-auto sm:pb-0'>
                         <h4 className='text-xs lg:text-lg xl:text-xl mb-2 font-semibold'>Menú</h4>
                         <hr className='text-black h-2 w-11/12'/>
-                        <Link to='/nosotros' className='text-xs lg:text-lg xl:text-xl flex flex-wrap'>  <img src={vector} className='pr-1' /> Servicios </Link>
-                        <Link to='/servicios' className='text-xs lg:text-lg xl:text-xl flex flex-wrap'>  <img src={vector} className='pr-1' /> Cartilla médica </Link>
-                        <Link to='/contacto' id='contacto' className='text-xs lg:text-lg xl:text-xl flex flex-wrap'>  <img src={vector} className='pr-1' /> Contacto </Link>
+                        <Link to='/' className='text-xs lg:text-lg xl:text-xl flex flex-wrap'>  <img src={vector} className='pr-1' /> Servicios </Link>
+                        <Link to='/medical-list' className='text-xs lg:text-lg xl:text-xl flex flex-wrap'>  <img src={vector} className='pr-1' /> Cartilla médica </Link>
+                        <Link to='/' id='contacto' className='text-xs lg:text-lg xl:text-xl flex flex-wrap'>  <img src={vector} className='pr-1' /> Contacto </Link>
                     </div>
                     <div className='flex flex-col items-starts pb-4  sm:pb-0'>
                         <h4 className='text-xs lg:text-lg xl:text-xl mb-2 font-semibold'>Autogestión</h4>

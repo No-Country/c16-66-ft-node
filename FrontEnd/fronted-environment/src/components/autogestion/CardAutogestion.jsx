@@ -5,9 +5,15 @@ export function CardAutogestion({ img, border, user }) {
 	const navigate = useNavigate();
 
 	const handleLogin = () => {
-		// navigate(`/login/${user}`) despues hacer las rutas a donde sea cuando tengamos las vistas distintas de login de doc, patient, o adm
-		navigate("/login/pacient");
-	};
+		
+		if (user === 'Paciente'){
+		navigate("/login/pacient")
+		} else if (user === 'Especialista médico'){
+			navigate("/login/doctor")
+		} else {
+			navigate("/login/admin")
+		}
+	}
 
 	return (
 		<div

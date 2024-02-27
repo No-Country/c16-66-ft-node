@@ -84,7 +84,7 @@ export function AsideComponent() {
 						Home
 					</p>
 				</article>
-				<BoxIcon openClose={openClose} text={"Mi perfil"} icon={person} />
+				<BoxIcon openClose={openClose} text={"Mi perfil"} icon={person} onClick={navigate('/perfil')} />
 				<BoxIcon openClose={openClose} text={"Agenda"} icon={calendar} />
 				<BoxIcon
 					openClose={openClose}
