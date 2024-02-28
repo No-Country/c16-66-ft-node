@@ -4,8 +4,9 @@
   "description": "Initials Config:",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    
+    "start_old": "nodemon index.js",
+    "start": "node ./index.js"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,7 @@
     "axios": "^1.6.7",
     "bcrypt": "^5.1.1",
     "connect-session-sequelize": "^7.1.7",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.4",
     "express": "^4.18.2",
     "express-session": "^1.18.0",
@@ -26,5 +28,8 @@
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }

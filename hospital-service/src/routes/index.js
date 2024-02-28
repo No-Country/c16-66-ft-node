@@ -49,9 +49,13 @@ const {
 } = require("../handlers/appoinments/deleteAppoinmentByIdHandler");
 
 //controllers Reviews
+
 const {
   createReviewHandler,
 } = require("../handlers/reviews/createReviewHandler");
+const {
+  getAllReviesHandler,
+} = require("../handlers/reviews/getReviewsHandler");
 
 //express config
 const { Router } = require("express");
@@ -83,6 +87,18 @@ router.post(
   }
 );
 
+router.post(
+  "/doctors/login",
+  passport.authenticate("loginDoctor", { failureRedirect: "/failurelogin" }),
+  (req, res) => {
+    try {
+      res.send("Doctor logueado");
+    } catch (err) {
+      res.send(err.message);
+    }
+  }
+);
+
 //pacient routes
 router.get("/pacients", getAllPacientsHandler);
 
@@ -110,7 +126,7 @@ router.post(
 
 router.post(
   "/pacients/login",
-  passport.authenticate("loginPacient", { failureRedirect: "/FailureLogin" }),
+  passport.authenticate("loginPacient", { failureRedirect: "/failureLogin" }),
   (req, res) => {
     try {
       res.status(200).send("Paciente logueado");
@@ -131,5 +147,9 @@ router.delete("/appoinment/:id", deleteAppoinmentByIdHandler);
 
 //reviews routes
 router.post("/reviews", createReviewHandler);
+
+module.exports = router;
+
+router.get("/reviews", getAllReviesHandler);
 
 module.exports = router;

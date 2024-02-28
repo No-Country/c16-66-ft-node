@@ -3,13 +3,18 @@ const { Sequelize } = require("sequelize");
 
 const fs = require("fs");
 const path = require("path");
-const { DB_USER, DB_HOST, DB_PASSWORD, DB_NAME } = process.env;
 
-const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
-  host: DB_HOST,
-  port: 3000,
-  dialect: "postgres",
-});
+const { DATABASE_URL } = process.env;
+
+const sequelize = new Sequelize(
+  //`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, // para local
+  `${DATABASE_URL}`, // para deploy
+  {
+    logging: false,
+    native: false,
+    timestamps: false,
+  }
+);
 
 const basename = path.basename(__filename);
 
@@ -48,6 +53,9 @@ Pacient.hasMany(Appoinment, { foreignKey: "pacientId" });
 
 Review.belongsTo(Pacient, { foreignKey: "pacientId" });
 Pacient.hasMany(Review, { foreignKey: "pacientId" });
+
+Review.belongsTo(Doctor, { foreignKey: "doctorId" });
+Doctor.hasMany(Review, { foreignKey: "doctorId" });
 
 module.exports = {
   ...sequelize.models,

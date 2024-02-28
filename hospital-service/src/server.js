@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const router = require("./routes");
 require("dotenv").config();
-
+const cors = require("cors");
 const { initializePassport } = require("../src/config/passport.config");
 
 const server = express();
@@ -31,6 +31,14 @@ server.use(morgan("dev"));
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(bodyParser.json());
+
+server.use(cors(
+    {
+        origin: "*",
+        methods: "GET,PUT,PATCH,HEAD,DELETED,POST",
+        credentials: true,
+    }
+));
 
 server.use(passport.session());
 initializePassport();
