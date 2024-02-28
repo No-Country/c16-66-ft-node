@@ -13,6 +13,8 @@ const RegisterPatient = lazy(() => import("./pages/Register/Register"));
 const Autogestion = lazy(() => import("./pages/autogestion/Autogestion"));
 const MedicalList = lazy(() => import("./pages/cartillaMedica/MedicalList"));
 const Perfil = lazy(() => import("./pages/Perfil/Perfil"));
+const PatientsOrSpecialists = lazy ( () => import("./components/PerfilForm/PatientsOrSpecialists"))
+const MyAgenda = lazy (() => import ("./pages/MyAgenda"))
 
 function App() {
 	//carga general de Users.
@@ -42,6 +44,8 @@ function App() {
 						<Route path='/login/:types' element={<LoginPage />} />
 						<Route path='/medical-list' element={<MedicalList />} />
 						<Route path='/perfil' element={<Perfil />} />
+						<Route path='/my-list' element={<PatientsOrSpecialists />} />
+						<Route path='/my-agenda' element={<MyAgenda />} />
 						<Route
 							path='/*'
 							element={

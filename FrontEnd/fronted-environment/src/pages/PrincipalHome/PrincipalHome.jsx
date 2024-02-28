@@ -11,9 +11,16 @@ import imgDr4 from '../../assets/svg/Imgdr4.png'
 import { Footer } from '../../components/principalHome/Footer'
 import {CarouselHome, Slide} from '../../components/principalHome/CarouselHome'
 import './index.css'
+import { useEffect, useState } from 'react'
 
 export default function PrincipalHome () {
+ const [isAutoplay, setIsAutoplay] = useState(false)
 
+    useEffect(()=>{
+        if (window.location.pathname === '/'){
+            setIsAutoplay(true)
+        }
+    },[])
     return (
         <div className='w-screen h-screen overflow-y-scroll'>
             <Header />    
@@ -44,8 +51,10 @@ export default function PrincipalHome () {
 
                         <CardStars img={imgDr4} nameDr={'Amanda Ortega'} doctorType={'Médico cardiólogo'} stars={5} text1={'Llevé a mi mamá a una consulta he hizo una amplia exploración para poder atender antecedentes médicos, le brindó un excelente tratamiento y hoy mi mamá tiene mejor salud.'} name1={'Nahuél Lozano'} text2={'Se tomó el tiempo necesario para poder atenderme, priorizando mis enfermedades hereditarias, actualmente mi tratamiento ha mejorado.'} name2={'Mario Salcedo'}/>
                     </div> */}
+                   
+                    {window.location.pathname === '/' &&
                     
-			<CarouselHome controles={true} autoplay={true} velocity="18000" interval="3000">
+            <CarouselHome controles={true} autoplay={isAutoplay} velocity="3000" interval="5000">
 				<Slide>
                     <CardStars img={imgDr1} nameDr={'Alejandro Samano Orduña'} doctorType={'Médico pediátra'} stars={5} text1={'Te explica con claridad y te genera mucha confianza, muy atento a todos los comentarios que le brindas.'} name1={'Camila García'} text2={'Muy amena la consulta, fue una ventaja tener acceso a mi historial médico porque de esa manera pudo asesorarme mejor.'} name2={'Fely Carnalla'}/>
 				</Slide>
@@ -59,6 +68,7 @@ export default function PrincipalHome () {
                     <CardStars img={imgDr4} nameDr={'Amanda Ortega'} doctorType={'Médico cardiólogo'} stars={5} text1={'Llevé a mi mamá a una consulta he hizo una amplia exploración para poder atender antecedentes médicos, le brindó un excelente tratamiento y hoy mi mamá tiene mejor salud.'} name1={'Nahuél Lozano'} text2={'Se tomó el tiempo necesario para poder atenderme, priorizando mis enfermedades hereditarias, actualmente mi tratamiento ha mejorado.'} name2={'Mario Salcedo'}/>
                 </Slide>
 			</CarouselHome>
+                    }
                 <br className='mt-6'/>
                 </section>
             </main>

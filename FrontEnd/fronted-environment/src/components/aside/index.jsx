@@ -71,6 +71,7 @@ export function AsideComponent() {
 
 			<section className={`flex flex-col justify-center items-start h-fit`}>
 				<article
+					onClick={()=>navigate('/home')} 
 					className={`flex cursor-pointer hover:bg-white p-2 rounded-xl mx-auto ${
 						openClose
 							? "w-full justify-start gap-4"
@@ -88,16 +89,34 @@ export function AsideComponent() {
 				<div className={`${openClose ? 'mx-inherit w-full' : 'mx-auto w-2/3 hover:bg-white rounded-xl'}`} onClick={()=>navigate('/perfil')} >
 					<BoxIcon openClose={openClose} text={"Mi perfil"} icon={person} />
 				</div>
+				<div className={`${openClose ? 'mx-inherit w-full' : 'mx-auto w-2/3 hover:bg-white rounded-xl'}`} onClick={()=>navigate('/my-agenda')}>
 				<BoxIcon openClose={openClose} text={"Agenda"} icon={calendar} />
-				<BoxIcon
-					openClose={openClose}
-					text={"Mis pacientes"}
-					icon={clinicalNotes}
-				/>
+				</div>
+				{
+					userLogged ? 
+					<div className={`${openClose ? 'mx-inherit w-full' : 'mx-auto w-2/3 hover:bg-white rounded-xl'}`} onClick={()=>navigate('/my-list')}>
+
+						<BoxIcon
+						openClose={openClose}
+						text={"Mis especialistas"}
+						icon={clinicalNotes}
+						
+						/> 
+					</div> :
+					<div className={`${openClose ? 'mx-inherit w-full' : 'mx-auto w-2/3 hover:bg-white rounded-xl'}`} onClick={()=>navigate('/my-list')}>
+						<BoxIcon
+						openClose={openClose}
+						text={"Mis pacientes"}
+						icon={clinicalNotes}
+						/>
+					</div>
+				}
 				<BoxIcon openClose={openClose} text={"Consulta virtual"} icon={duo} />
+				<div className={`${openClose ? 'mx-inherit w-full' : 'mx-auto w-2/3 hover:bg-white rounded-xl'}`} onClick={()=>navigate('/medical-list')}>
 				<BoxIcon openClose={openClose} text={"Cartilla médica"} icon={book} />
-				<BoxIcon openClose={openClose} text={"Mi billetera"} icon={star} 
-				/>
+				</div>
+				{/* <BoxIcon openClose={openClose} text={"Mi billetera"} icon={star} 
+				/> */}
 			</section>
 			<br />
 			<section

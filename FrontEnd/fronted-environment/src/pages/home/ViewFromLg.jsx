@@ -14,6 +14,7 @@ import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
 import logo from "../../assets/FakeLOGO/Logo 3.png";
 import credencialIcon from "../../assets/svg/contact_emergency.svg";
 import { Modal } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export function ViewFromLg() {
 	const { doctorLogged } = DoctorStore();
@@ -25,6 +26,8 @@ export function ViewFromLg() {
 
 	const [open, setOpen] = useState(false);
 	const handleModalConsult = () => setOpen(!open);
+
+	const navigate = useNavigate()
 
 	const handlerSelect = (id) => {
 		let consult;
@@ -47,9 +50,10 @@ export function ViewFromLg() {
 					className='-ml-28 w-screen h-16 py-2.5 flex justify-center'
 				>
 					<img
-						className='w-2.5/12 h-12'
+						className='w-2.5/12 h-12 cursor-pointer'
 						src={logo}
 						alt='Imagen del logo de la empresa'
+						onClick={()=>navigate('/')}
 					/>
 				</header>
 

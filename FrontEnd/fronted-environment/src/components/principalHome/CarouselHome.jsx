@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+
 import {useRef, useEffect, useCallback} from 'react';
 import arrowBack from '../../assets/svg/arrow_back.png';
 import arrowNext from '../../assets/svg/arrow_next.png';
@@ -8,14 +9,13 @@ const CarouselHome = ({
 		children,
 		controles = false,
 		autoplay = false,
-		velocity="10000",
-		interval="10000"
+		velocity="500",
+		interval="5000",
 	}) => {
 	const carouselHome = useRef(null);
 	const intervalCarouselHome = useRef(null);
 
 	const next = useCallback(() => {
-	
 		if(carouselHome.current.children.length > 0){
 			
 			const firstItem = carouselHome.current.children[0];
@@ -45,7 +45,7 @@ const CarouselHome = ({
 			setTimeout(() => {
 				carouselHome.current.style.transition = `${velocity}ms ease-out all`;
 				carouselHome.current.style.transform = `translateX(0)`;
-			}, 90);
+			}, 30);
 		}
 	}
 
@@ -73,12 +73,12 @@ const CarouselHome = ({
 				{children}
 			</ContainerCarousel>
 			{controles && <Ctls>
-				<Button onClick={before}>
+				<ButtonL onClick={before}>
 					<img src={arrowBack}/>
-				</Button>
-				<Button derecho onClick={next}>
+				</ButtonL>
+				<ButtonR  onClick={next}>
 					<img src={arrowNext} />
-				</Button>
+				</ButtonR>
 			</Ctls>}
 		</Container>
 	);
@@ -139,7 +139,7 @@ const Ctls = styled.div`
 	pointer-events: none;
 `;
 
-const Button = styled.button`
+const ButtonL = styled.button`
 	pointer-events: all;
 	background: none;
 	border: none;
@@ -149,12 +149,22 @@ const Button = styled.button`
 	height: 100%;
 	text-align: center;
 	position: absolute;
+	left: 0;
 	transition: .9s ease all;
+`;
 
-	path {
-		filter: ${props => props.derecho ? 'drop-shadow(-2px 0px 0px #fff)' : 'drop-shadow(2px 0px 0px #fff)'};
-	}
-	${props => props.derecho ? 'right: 0' : 'left: 0'}
+const ButtonR = styled.button`
+	pointer-events: all;
+	background: none;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	width: 50px;
+	height: 100%;
+	text-align: -moz-right;
+	position: absolute;
+	right: 0;
+	transition: .1s ease all;
 `;
  
 export {CarouselHome, Slide};

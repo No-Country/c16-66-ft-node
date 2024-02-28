@@ -3,7 +3,6 @@ import {AsideComponent} from '../../components/aside/index'
 import { DoctorStore } from '../../StoreGeneral/DoctorsStore'
 import { UserStore } from '../../StoreGeneral/UsersStore'
 import { PerfilForm } from '../../components/PerfilForm/index'
-import logo from '../../assets/FakeLOGO/Logo 3.png'
 import doctor from '../../assets/imgFakePacient/FakePacient1.png'
 import historial from '../../assets/svg/historialProfesional.svg'
 import matricula from '../../assets/svg/matricula.svg'
@@ -11,6 +10,8 @@ import personEdit from '../../assets/svg/person_edit.svg'
 import '../../pages/PrincipalHome/index.css'
 import HistoryClinic from '../../components/PerfilForm/HistoryClinic'
 import HistoryProfesional from '../../components/PerfilForm/HistoryProfesional'
+import { NavHome } from '../../components/NavComponent.js/NavHome'
+
 
 export default function Perfil () {
     const { doctorLogged } = DoctorStore();
@@ -19,6 +20,7 @@ export default function Perfil () {
     const [btn1, setBtn1] = useState(true)
     const [btn2, setBtn2] = useState(false)
     const [btn3, setBtn3] = useState(false)
+   
 
     useEffect(()=>{
         if (doctorLogged !== null) {
@@ -47,13 +49,7 @@ export default function Perfil () {
     return (
         <main className='flex flex-col w-screen h-screen box-border z-0'>
 			<AsideComponent />
-            <header className='w-full footerFinal h-16 py-2.5 flex p-6 sm:px-0 justify-end sm:justify-center shadow-lg shadow-black'>
-				<img
-					className='w-auto h-10 sm:h-12'
-					src={logo}
-					alt='Imagen del logo de la empresa'
-				/>
-			</header>
+            <NavHome />
             <section className='h-full w-10/12 lg:w-11/12 self-end bg-bgLightGreen w-inherit'>
 
                 <div className='flex flex-col justify-center items-center mx-auto md:w-2/5 md:pt-6 md:ml-0 md:h-2/6 md:justify-start'>
@@ -83,7 +79,7 @@ export default function Perfil () {
                     </button>
                 </div>
 
-                <div style={{ maxHeight:'615px'}} className='w-11/12 mt-6 mx-auto p-2 overflow-y-auto rounded-xl md:fixed md:top-24 md:right-1 md:w-1/2'>  
+                <div style={{ maxHeight:'600px'}} className='w-9/12 mt-6 mx-auto p-2 overflow-y-auto rounded-xl md:fixed md:top-24 md:right-1 md:w-1/2'>  
                 {
                     btn1 && <PerfilForm userLogged={user}/>
                 }

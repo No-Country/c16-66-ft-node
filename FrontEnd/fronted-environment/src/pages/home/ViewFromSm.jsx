@@ -17,6 +17,7 @@ import calendarIcon from "../../assets/svg/calendar.svg";
 import editIcon from "../../assets/svg/mode_edit_24px.svg";
 import credencialIcon from "../../assets/svg/contact_emergency.svg";
 import { Modal } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export function ViewFromSm() {
 	const { doctorLogged } = DoctorStore();
@@ -30,6 +31,8 @@ export function ViewFromSm() {
 	const handleModalConsult = () => setOpen(!open);
 	const [openCalendar, setOpenCalendar] = useState(false);
 	const handleModalCalendar = () => setOpenCalendar(!openCalendar);
+
+	const navigate = useNavigate()
 
 	const handlerSelect = (id) => {
 		let consult;
@@ -51,9 +54,10 @@ export function ViewFromSm() {
 					className='-ml-28 w-screen h-16 py-2.5 flex justify-center'
 				>
 					<img
-						className='w-2.5/12 h-12'
+						className='w-2.5/12 h-12 cursor-pointer'
 						src={logo}
 						alt='Imagen del logo de la empresa'
+						onClick={()=>navigate('/')}
 					/>
 				</header>
 
