@@ -60,14 +60,14 @@ export const deleteAdmin = async (id) => {
 };
 
 // Recibe un item, y en base al id, lo reenvia para edit.================
-export const updatUser = async (item) => {
-	await Api.put(`/users/${item._id}`, item);
+export const updateUser = async (item) => {
+	await Api.put(`/users/${item.id}`, item);
 };
 export const updateDoctor = async (item) => {
-	await Api.put(`/doctors/${item._id}`, item);
+	await Api.put(`/doctors/${item.id}`, item);
 };
 export const updateAdmin = async (item) => {
-	await Api.put(`/admin/${item._id}`, item);
+	await Api.put(`/admin/${item.id}`, item);
 };
 
 // RUTAS REVIEW   =======================================================

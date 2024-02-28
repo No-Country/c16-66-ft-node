@@ -1,7 +1,12 @@
-import { fetchUsers, getOneUser, addUser as addUserService } from "../Service";
+import {
+	fetchUsers,
+	getOneUser,
+	addUser as addUserService,
+	updateUser,
+} from "../Service";
 import { UserStore } from "../StoreGeneral/UsersStore";
 export function useUserStore() {
-	const { addUser } = UserStore();
+	const { addUser, addUserLogged } = UserStore();
 
 	const getUserApiResponse = async () => {
 		const userApiResponse = await fetchUsers();
@@ -25,5 +30,17 @@ export function useUserStore() {
 		// return userApiResponse[0];
 	};
 
-	return { getUserApiResponse, validationUserToLogin, addUserFromRegister };
+	const editUserWithNewDate = async (newData) => {
+		console.log("en hook");
+		console.log(newData);
+		await updateUser(newData);
+		addUserLogged(newData);
+	};
+
+	return {
+		getUserApiResponse,
+		validationUserToLogin,
+		addUserFromRegister,
+		editUserWithNewDate,
+	};
 }
