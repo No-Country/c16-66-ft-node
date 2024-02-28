@@ -61,8 +61,8 @@ export function PerfilForm() {
 
 	return (
 		<section
-			style={{ maxWidth: "720px", maxHeight: "700px" }}
-			className='overflow-scroll flex flex-col bg-whiteOpacity border-2 shadow-xl rounded-2xl border-gray p-8'
+			// style={{ maxWidth: "720px", maxHeight: "700px" }}
+			className='overflow-scroll flex flex-col bg-whiteOpacity border-2 shadow-xl rounded-2xl border-gray p-8 xl:overflow-hidden'
 		>
 			{" "}
 			<div className='flex-col mb-1'>
