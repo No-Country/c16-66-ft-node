@@ -24,6 +24,8 @@ export function useDoctorStore() {
 	};
 
 	const editDoctorWithNewDate = async (newData) => {
+		console.log("en user hok");
+		console.log(newData);
 		await updateDoctor(newData);
 		addDoctorLogged(newData);
 	};

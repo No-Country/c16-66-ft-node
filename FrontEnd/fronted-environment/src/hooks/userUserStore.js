@@ -33,8 +33,8 @@ export function useUserStore() {
 	const editUserWithNewDate = async (newData) => {
 		console.log("en hook");
 		console.log(newData);
+		await addUserLogged(newData);
 		await updateUser(newData);
-		addUserLogged(newData);
 	};
 
 	return {

@@ -399,14 +399,14 @@ export function PerfilForm() {
 							Editar
 						</button>
 
-						<div
+						<button
 							type='cancel'
 							className='w-1/3 md:w-1/3 py-3 sm:text-sm md:text-lg sm:font-semibold md:font-bold px-4 border-2 rounded-xl  border-red flex justify-center bg-white text-red hover:bg-red hover:text-white	 hover:cursor-pointer'
 							onClick={() => reset()}
 						>
 							{" "}
 							Cancelar
-						</div>
+						</button>
 					</article>
 				</form>
 			) : (

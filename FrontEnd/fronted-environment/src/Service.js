@@ -61,6 +61,8 @@ export const deleteAdmin = async (id) => {
 
 // Recibe un item, y en base al id, lo reenvia para edit.================
 export const updateUser = async (item) => {
+	console.log("en service");
+	console.log(item);
 	await Api.put(`/users/${item.id}`, item);
 };
 export const updateDoctor = async (item) => {
