@@ -46,9 +46,7 @@ export function PerfilForm() {
 	const onSubmitEdit = async (newData) => {
 		event.preventDefault();
 		const fullName = [...nameArray] + " " + lastNameDb;
-
 		newData = { ...newData, name: fullName };
-
 		!doctorLogged
 			? (newData = { ...newData, id: userLogged.id })
 			: (newData = { ...newData, id: doctorLogged.id });
