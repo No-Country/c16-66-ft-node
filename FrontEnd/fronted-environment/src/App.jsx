@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useUserStore } from "./hooks/userUserStore"; //hook
 import { useDoctorStore } from "./hooks/useDoctorStore"; //hook
 import { useAdminStore } from "./hooks/userAdminStore"; //hook
-
+import { PerfilForm } from "./components/PerfilForm";
 //Rutas a requerimento
 const PrincipalHome = lazy(() => import("./pages/PrincipalHome/PrincipalHome"));
 const Home = lazy(() => import("./pages/home")); // en Page exportar por DEFAULT
@@ -36,7 +36,6 @@ function App() {
 			<BrowserRouter>
 				<Suspense fallback={<Loading />}>
 					<Routes>
-						{/* <Route path='/' element={<PrincipalHome />} /> */}
 						<Route path='/' element={<PrincipalHome />} />
 						<Route path='/autogestion' element={<Autogestion />} />
 						<Route path='/home' element={<Home />} />
