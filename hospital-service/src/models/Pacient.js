@@ -16,20 +16,49 @@ module.exports = (sequelize) => {
       lastname: {
         type: DataTypes.STRING,
       },
+      birthdate: {
+        type: DataTypes.DATE,
+      },
       email: {
         type: DataTypes.STRING,
       },
       password: {
         type: DataTypes.STRING,
       },
+      dni: {
+        type: DataTypes.INTEGER,
+      },
+      cuil: {
+        type: DataTypes.STRING,
+      },
       image: {
         type: DataTypes.STRING,
       },
-      city: {
+      adress: {
+        type: DataTypes.STRING,
+      },
+      town: {
+        type: DataTypes.STRING,
+      },
+      province: {
         type: DataTypes.STRING,
       },
       country: {
         type: DataTypes.STRING,
+      },
+      tel: {
+        type: DataTypes.INTEGER,
+      },
+      socialSecurity: {
+        type: DataTypes.ENUM("Ioma", "OSDE", "Swiss Medical"),
+        allowNull: true,
+      },
+      planSocialSecurity: {
+        type: DataTypes.STRING,
+      },
+      reviews: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        defaultValue: [],
       },
       appointments: {
         type: DataTypes.ARRAY(DataTypes.STRING),

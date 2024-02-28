@@ -6,31 +6,40 @@ const api2 = require("./api/pacient.json");
 
 const PORT = process.env.PORT || 3001;
 
-conn.sync({force: true}).then(()=> {
-server.listen(PORT, "0.0.0.0", () => {
-    console.log(`Listening on port: ${PORT}`);
-    const {doctors} = api
-    const {pacient} = api2
-    
-    doctors.map(async({name, lastname, email, password, licensenumber, specialty, image}) => { await
-     
-     Doctor.findOrCreate({
-        where: {
-            name,
-        },
-        defaults: {
-            name,
-            lastname,
-            email,
-            password,
-            licensenumber,
-            specialty,
-            image,
-        }
-     })   
-     }
-    )
+conn
+  .sync({ force: true })
+  .then(() => {
+    server.listen(PORT, "0.0.0.0", () => {
+      console.log(`Listening on port: ${PORT}`);
+      const { doctors } = api;
+      const { pacient } = api2;
 
+      doctors.map(
+        async ({
+          name,
+          lastname,
+          email,
+          password,
+          licensenumber,
+          specialty,
+          image,
+        }) => {
+          await Doctor.findOrCreate({
+            where: {
+              name,
+            },
+            defaults: {
+              name,
+              lastname,
+              email,
+              password,
+              licensenumber,
+              specialty,
+              image,
+            },
+          });
+        }
+      );
 
       doctors.map(
         async ({
@@ -63,11 +72,19 @@ server.listen(PORT, "0.0.0.0", () => {
         async ({
           name,
           lastname,
+          birthdate,
           email,
           password,
+          dni,
+          cuil,
           image,
-          city,
+          adress,
+          town,
+          province,
           country,
+          tel,
+          socialSecurity,
+          planSocialSecurity,
           role,
         }) => {
           await Pacient.findOrCreate({
@@ -77,11 +94,20 @@ server.listen(PORT, "0.0.0.0", () => {
             defaults: {
               name,
               lastname,
+              birthdate,
               email,
               password,
+              dni,
+              cuil,
               image,
-              city,
+              adress,
+              town,
+              province,
               country,
+              tel,
+              socialSecurity,
+              planSocialSecurity,
+              role,
             },
           });
         }
@@ -89,4 +115,3 @@ server.listen(PORT, "0.0.0.0", () => {
     });
   })
   .catch((error) => console.error(error));
-

@@ -34,6 +34,8 @@ const {
   updatePacientHandler,
 } = require("../handlers/pacients/updatePacientHandler");
 
+const { loginPacientHandler } = require("../handlers/pacients/loginPacientsHandler");
+
 //controllers Appoinments
 const {
   createAppoinmentHandler,
@@ -56,6 +58,10 @@ const {
 const {
   getAllReviesHandler,
 } = require("../handlers/reviews/getReviewsHandler");
+
+const {
+  checkSessionHandler,
+} = require("../handlers/session/checkSessionHandler");
 
 //express config
 const { Router } = require("express");
@@ -117,7 +123,7 @@ router.post(
   }),
   (req, res) => {
     try {
-      res.send("Registrado");
+      res.send("Paciente egistrado");
     } catch (err) {
       console.error(err.message);
     }
@@ -127,13 +133,7 @@ router.post(
 router.post(
   "/pacients/login",
   passport.authenticate("loginPacient", { failureRedirect: "/failureLogin" }),
-  (req, res) => {
-    try {
-      res.status(200).send("Paciente logueado");
-    } catch (err) {
-      res.send(err);
-    }
-  }
+  loginPacientHandler
 );
 
 //appoinment routes
@@ -151,5 +151,7 @@ router.post("/reviews", createReviewHandler);
 module.exports = router;
 
 router.get("/reviews", getAllReviesHandler);
+
+router.get("/session", checkSessionHandler);
 
 module.exports = router;
