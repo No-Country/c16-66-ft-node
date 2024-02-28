@@ -1,9 +1,12 @@
+/* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
 
-import { useState } from "react";
-export function PerfilForm(userLogged) {
+import { useEffect, useState } from "react";
+export function PerfilForm({ userLogged }) {
 	const [userToEdit, setUserToEdit] = useState(userLogged);
-
+	useEffect(() => {
+		setUserToEdit(userLogged);
+	}, [userLogged]);
 	const {
 		register,
 		handleSubmit,
