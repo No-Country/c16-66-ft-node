@@ -18,6 +18,27 @@ module.exports = (sequelize) => {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
+            adress: {
+                type: DataTypes.STRING,
+            },
+            birthdate: {
+                type: DataTypes.DATE,
+            },
+            dni: {
+                type: DataTypes.INTEGER,
+            },
+            cuil: {
+                type: DataTypes.STRING,
+            },
+            province: {
+                type: DataTypes.STRING
+            },
+            telephone: {
+                type: DataTypes.STRING,
+            },
+            SocialSecurity: {
+                type: DataTypes.ARRAY(DataTypes.STRING),
+            },
             email: {
                 type: DataTypes.STRING,
                 allowNull: false,

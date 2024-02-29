@@ -1,7 +1,7 @@
 const server = require("./src/server");
 const { conn } = require("./src/db");
 const { Doctor, Pacient } = require("./src/db");
-const api = require("./api/doctos.json");
+const api = require("./api/doctors.json");
 const api2 = require("./api/pacient.json");
 
 const PORT = process.env.PORT || 3001;
@@ -12,7 +12,7 @@ server.listen(PORT, "0.0.0.0", () => {
     const {doctors} = api
     const {pacient} = api2
     
-    doctors.map(async({name, lastname, email, password, licensenumber, specialty, image}) => { await
+    doctors.map(async({name, lastname, adress, birthdate, dni, cuil, province, telephone, SocialSecurity, email, password, licensenumber, specialty, image}) => { await
      
      Doctor.findOrCreate({
         where: {
@@ -21,6 +21,13 @@ server.listen(PORT, "0.0.0.0", () => {
         defaults: {
             name,
             lastname,
+            adress,
+            birthdate,
+            dni,
+            cuil,
+            province,
+            telephone,
+            SocialSecurity,
             email,
             password,
             licensenumber,
@@ -30,34 +37,6 @@ server.listen(PORT, "0.0.0.0", () => {
      })   
      }
     )
-
-
-      doctors.map(
-        async ({
-          name,
-          lastname,
-          email,
-          password,
-          licensenumber,
-          specialty,
-          image,
-        }) => {
-          await Doctor.findOrCreate({
-            where: {
-              name,
-            },
-            defaults: {
-              name,
-              lastname,
-              email,
-              password,
-              licensenumber,
-              specialty,
-              image,
-            },
-          });
-        }
-      );
 
       pacient.map(
         async ({
