@@ -1,7 +1,7 @@
 const { Doctor } = require("../../db");
 
 const updateDoctor = async (
-  id,
+  doctorId,
   name,
   lastname,
   birthdate,
@@ -21,8 +21,7 @@ const updateDoctor = async (
   image,
   role
 ) => {
-  const doctor = await Doctor.findByPk(id);
-
+  const doctor = await Doctor.findByPk(doctorId);
   if (!doctor) {
     throw new Error("doctor not found");
   }

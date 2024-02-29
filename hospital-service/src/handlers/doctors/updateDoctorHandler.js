@@ -2,8 +2,8 @@ const { updateDoctor } = require("../../controllers/doctors/updateDoctor");
 
 const updateDoctorHandler = async (req, res) => {
   try {
-    const { doctorId } = req.params;
     const {
+      doctorId,
       name,
       lastname,
       birthdate,
@@ -23,6 +23,7 @@ const updateDoctorHandler = async (req, res) => {
       image,
       role,
     } = req.body;
+
     const doctor = await updateDoctor(
       doctorId,
       name,
