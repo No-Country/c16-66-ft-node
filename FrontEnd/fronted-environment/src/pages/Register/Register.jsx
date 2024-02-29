@@ -43,7 +43,10 @@ export default function RegisterAdmin() {
 
 	const onSubmitRegister = async (userToRegister) => {
 		event.preventDefault();
-
+		const fullName = userToRegister.name.split(" ");
+		const lastName = fullName.pop();
+		const onlyName = fullName.join(" ");
+		(userToRegister.name = onlyName), (userToRegister.lastname = lastName);
 		if (userToRegister.email.includes(".net")) {
 			setDbErros("La aplicacion no permite correos con el dominio '.net'");
 			return;
