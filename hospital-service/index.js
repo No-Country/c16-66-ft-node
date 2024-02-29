@@ -6,37 +6,62 @@ const api2 = require("./api/pacient.json");
 
 const PORT = process.env.PORT || 3001;
 
-conn.sync({force: true}).then(()=> {
-server.listen(PORT, "0.0.0.0", () => {
-    console.log(`Listening on port: ${PORT}`);
-    const {doctors} = api
-    const {pacient} = api2
-    
-    doctors.map(async({name, lastname, adress, birthdate, dni, cuil, province, telephone, SocialSecurity, email, password, licensenumber, specialty, image}) => { await
-     
-     Doctor.findOrCreate({
-        where: {
-            name,
-        },
-        defaults: {
-            name,
-            lastname,
-            adress,
-            birthdate,
-            dni,
-            cuil,
-            province,
-            telephone,
-            SocialSecurity,
-            email,
-            password,
-            licensenumber,
-            specialty,
-            image,
+conn
+  .sync({ force: true })
+  .then(() => {
+    server.listen(PORT, "0.0.0.0", () => {
+      console.log(`Listening on port: ${PORT}`);
+      const { doctors } = api;
+      const { pacient } = api2;
+
+      doctors.map(
+        async ({
+          name,
+          lastname,
+          birthdate,
+          email,
+          password,
+          dni,
+          cuil,
+          adress,
+          town,
+          province,
+          country,
+          telephone,
+          licensenumber,
+          specialty,
+          socialSecurity,
+          registrationNumber,
+          image,
+          role,
+        }) => {
+          await Doctor.findOrCreate({
+            where: {
+              name,
+            },
+            defaults: {
+              name,
+              lastname,
+              birthdate,
+              email,
+              password,
+              dni,
+              cuil,
+              adress,
+              town,
+              province,
+              country,
+              telephone,
+              licensenumber,
+              specialty,
+              socialSecurity,
+              registrationNumber,
+              image,
+              role,
+            },
+          });
         }
-     })   
-     }
-    )
+      );
 
       pacient.map(
         async ({

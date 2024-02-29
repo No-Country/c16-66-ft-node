@@ -1,9 +1,12 @@
 const checkSessionHandler = (req, res) => {
   try {
-    // Verifica si el usuario está autenticado
     if (req.session.isLogged) {
+      const sessionDTO = {
+        sesion: req.session,
+        sesionId: req.session.id,
+      };
       console.log(req.session);
-      res.status(200).send("Sesion OK");
+      res.status(200).send({ status: "sesion OK", payload: sessionDTO });
     } else {
       // Si el usuario no está autenticado, devuelve un mensaje de error
       res.status(401).send("Usuario no autenticado");

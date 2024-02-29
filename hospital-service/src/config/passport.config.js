@@ -72,7 +72,23 @@ const initializePassport = () => {
     new LocalStrategy(
       { passReqToCallback: true, usernameField: "email" },
       async (req, username, password, done) => {
-        const { name, lastname, licensenumber, specialty, image } = req.body;
+        const {
+          name,
+          lastname,
+          birthdate,
+          dni,
+          cuil,
+          adress,
+          town,
+          province,
+          country,
+          telephone,
+          licensenumber,
+          specialty,
+          socialSecurity,
+          registrationNumber,
+          image,
+        } = req.body;
 
         try {
           const exists = await Doctor.findOne({
@@ -91,8 +107,18 @@ const initializePassport = () => {
           const newDoctor = await Doctor.create({
             name,
             lastname,
+            birthdate,
             email: username,
             password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)),
+            dni,
+            cuil,
+            adress,
+            town,
+            province,
+            country,
+            telephone,
+            socialSecurity,
+            registrationNumber,
             licensenumber,
             specialty,
             image,

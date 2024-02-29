@@ -3,7 +3,7 @@ const loginPacientHandler = (req, res) => {
     console.log(req.session);
     console.log(req.user);
 
-    const newPacient = {
+    const newPacientDTO = {
       id: req.user.pacientId,
       name: req.user.name,
       lastname: req.user.lastname,
@@ -24,17 +24,18 @@ const loginPacientHandler = (req, res) => {
       appointments: req.user.appointments,
       role: req.user.role,
     };
-    (req.session.isLogged = true),
-      // req.session.name = req.user.name;
-      // req.session.lastname = req.user.lastname;
-      // req.session.email = req.user.email;
-      // req.session.password = req.user.password;
-      // req.session.image = req.user.image;
-      // req.session.city = req.user.city;
-      // req.session.role = req.user.role;
-      // req.session.isLogged = true;
+    req.session.isLogged = true;
 
-      res.status(200).send(newPacient);
+    // req.session.name = req.user.name;
+    // req.session.lastname = req.user.lastname;
+    // req.session.email = req.user.email;
+    // req.session.password = req.user.password;
+    // req.session.image = req.user.image;
+    // req.session.city = req.user.city;
+    // req.session.role = req.user.role;
+    // req.session.isLogged = true;
+
+    res.status(200).send(newPacientDTO);
   } catch (err) {
     res.status(500).send("Error al loguear");
     throw new Error(err);

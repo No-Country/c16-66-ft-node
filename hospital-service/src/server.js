@@ -24,6 +24,11 @@ server.use(
     secret: DB_PASSWORD,
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      maxAge: 30 * 60 * 1000,
+      expires: new Date(Date.now() + 30 * 60 * 1000),
+    },
   })
 );
 
@@ -32,13 +37,13 @@ server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 
-server.use(cors(
-    {
-        origin: "*",
-        methods: "GET,PUT,PATCH,HEAD,DELETED,POST",
-        credentials: true,
-    }
-));
+server.use(
+  cors({
+    origin: "*",
+    methods: "GET,PUT,PATCH,HEAD,DELETED,POST",
+    credentials: true,
+  })
+);
 
 server.use(passport.session());
 initializePassport();

@@ -15,6 +15,10 @@ const {
   deleteDoctorByIdHandler,
 } = require("../handlers/doctors/deleteDoctorByIdHandler");
 
+const {
+  loginDoctorHandler,
+} = require("../handlers/doctors/loginDoctorHandler");
+
 //controllers Pacients
 const {
   getAllPacientsHandler,
@@ -34,7 +38,9 @@ const {
   updatePacientHandler,
 } = require("../handlers/pacients/updatePacientHandler");
 
-const { loginPacientHandler } = require("../handlers/pacients/loginPacientsHandler");
+const {
+  loginPacientHandler,
+} = require("../handlers/pacients/loginPacientsHandler");
 
 //controllers Appoinments
 const {
@@ -63,6 +69,10 @@ const {
   checkSessionHandler,
 } = require("../handlers/session/checkSessionHandler");
 
+const {
+  destroySessionHandler,
+} = require("../handlers/session/destroySessionHandler");
+
 //express config
 const { Router } = require("express");
 
@@ -86,9 +96,9 @@ router.post(
   }),
   (req, res) => {
     try {
-      res.send("Registrado");
+      res.status(200).send("Doctor Registrado");
     } catch (err) {
-      res.send("El usuario ya existe en la base de datos", err.message);
+      res.status(500).send("Error al registrar al Doctor", err.message);
     }
   }
 );
@@ -96,13 +106,7 @@ router.post(
 router.post(
   "/doctors/login",
   passport.authenticate("loginDoctor", { failureRedirect: "/failurelogin" }),
-  (req, res) => {
-    try {
-      res.send("Doctor logueado");
-    } catch (err) {
-      res.send(err.message);
-    }
-  }
+  loginDoctorHandler
 );
 
 //pacient routes
@@ -123,9 +127,10 @@ router.post(
   }),
   (req, res) => {
     try {
-      res.send("Paciente egistrado");
+      res.status(200).send("Paciente Registrado");
     } catch (err) {
       console.error(err.message);
+      res.status(500).send("Error al registrar al Paciente");
     }
   }
 );
@@ -152,6 +157,10 @@ module.exports = router;
 
 router.get("/reviews", getAllReviesHandler);
 
+//sessions routes
+
 router.get("/session", checkSessionHandler);
+
+router.get("/logout", destroySessionHandler);
 
 module.exports = router;
