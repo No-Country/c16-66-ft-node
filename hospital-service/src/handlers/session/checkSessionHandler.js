@@ -4,8 +4,11 @@ const checkSessionHandler = (req, res) => {
       const sessionDTO = {
         sesion: req.session,
         sesionId: req.session.id,
+        cookieMaxAge: req.session.cookie.maxAge,
+        cookieExpires: req.session.cookie.expires,
       };
       console.log(req.session);
+      console.log(sessionDTO);
       res.status(200).send({ status: "sesion OK", payload: sessionDTO });
     } else {
       // Si el usuario no está autenticado, devuelve un mensaje de error

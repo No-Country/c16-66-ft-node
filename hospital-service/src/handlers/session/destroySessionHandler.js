@@ -1,6 +1,6 @@
 const destroySessionHandler = (req, res) => {
   req.session.destroy();
-  res.redirect("/main");
+  res.redirect("/");
 };
 
 module.exports = { destroySessionHandler };
