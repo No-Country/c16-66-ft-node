@@ -6,7 +6,7 @@ import { ViewFromSm } from "./ViewFromSm";
 import { UserStore } from "../../StoreGeneral/UsersStore";
 import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
 import "./home.css";
-import { Footer } from "../../components/principalHome/Footer";
+// import { Footer } from "../../components/principalHome/Footer";
 
 export default function Home() {
 	const navigate = useNavigate();

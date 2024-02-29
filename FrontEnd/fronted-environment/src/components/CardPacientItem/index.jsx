@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import FakePacient1 from "../../assets/imgFakePacient/FakePacient1.png";
+// import FakePacient1 from "../../assets/imgFakePacient/FakePacient1.png";
 const nowInMs = Date.now();
 let today = new Date(nowInMs).toLocaleString().split(" ");
 today = today[0];
@@ -15,7 +15,7 @@ export function CardPacientItem({ user, handlerSelect }) {
 				{/* Cambiar imagen por la que venga de db */}
 				<img
 					className='object-cover object-center'
-					src={FakePacient1}
+					src={user.image}
 					alt={`Imagen de Perfil del paciente ${user?.name}`}
 				/>
 			</figure>

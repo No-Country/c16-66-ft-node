@@ -212,7 +212,7 @@ export function ViewFromLg() {
 								{doctorLogged ? "Matricula N°:" : "N° Afiliado:"}
 								<span className='ml-2  text-xs   text-darkBlue'>
 									{doctorLogged
-										? doctorLogged.registrationNumber
+										? doctorLogged.licensenumber
 										: userLogged?.id}
 								</span>
 							</div>

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import FakePacient1 from "../../assets/imgFakePacient/FakePacient1.png";
+// import FakePacient1 from "../../assets/imgFakePacient/FakePacient1.png";
 import folderIcon from "../../assets/svg/folder_shared.svg";
 import starIcon from "../../assets/svg/StarBgBlue.svg";
 
@@ -17,7 +17,7 @@ export function MedicConsult({ user }) {
 							{/* Cambiar imagen por la que venga de db */}
 							<img
 								className='object-cover object-center '
-								src={FakePacient1}
+								src={user.image}
 								alt={`Imagen de Perfil del paciente ${user?.name}`}
 							/>
 						</figure>
@@ -36,7 +36,7 @@ export function MedicConsult({ user }) {
 								</h3>
 								<h5 className=' font-normal text-xs text-gray'>
 									{" "}
-									{user.specialty} | Matrícula N°: {user.registrationNumber}
+									{user.specialty} | Matrícula N°: {user.licensenumber}
 								</h5>
 							</article>
 						)}

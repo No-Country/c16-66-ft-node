@@ -3,7 +3,7 @@ import {AsideComponent} from '../../components/aside/index'
 import { DoctorStore } from '../../StoreGeneral/DoctorsStore'
 import { UserStore } from '../../StoreGeneral/UsersStore'
 import { PerfilForm } from '../../components/PerfilForm/index'
-import doctor from '../../assets/imgFakePacient/FakePacient1.png'
+// import doctor from '../../assets/imgFakePacient/FakePacient1.png'
 import historial from '../../assets/svg/historialProfesional.svg'
 import matricula from '../../assets/svg/matricula.svg'
 import personEdit from '../../assets/svg/person_edit.svg'
@@ -53,7 +53,7 @@ export default function Perfil () {
             <section className='h-full w-10/12 lg:w-11/12 self-end bg-bgLightGreen w-inherit'>
 
                 <div className='flex flex-col justify-center items-center mx-auto md:w-2/5 md:pt-6 md:ml-0 md:h-2/6 md:justify-start'>
-                    <img src={doctor} alt='image doctor' className=' rounded-full w-1/5 md:w-1/3 h-auto lg:mb-4'></img>
+                    <img src={user.image} alt='image doctor' className=' rounded-full w-1/5 md:w-1/3 h-auto lg:mb-4'></img>
                     <h3 className='text-xs md:pt-1 md:text-sm lg:text-base font-semibold'>{user.name}</h3>
                     <p className='text-xs md:pt-1 md:text-sm lg:text-base text-gray mb-2 lg:mb-4'>{`${user.birthdate} años`}</p>
                 </div>
