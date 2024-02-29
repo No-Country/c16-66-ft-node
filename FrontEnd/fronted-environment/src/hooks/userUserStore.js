@@ -1,8 +1,9 @@
 import {
 	fetchUsers,
-	getOneUser,
+	// getOneUser,
 	addUser as addUserService,
 	updateUser,
+	logginApi,
 } from "../Service";
 import { UserStore } from "../StoreGeneral/UsersStore";
 export function useUserStore() {
@@ -13,11 +14,13 @@ export function useUserStore() {
 		await addUser(userApiResponse);
 	};
 
-	const validationUserToLogin = async (email) => {
-		const userApiResponse = await getOneUser(email);
-
+	const validationUserToLogin = async (userToLogin) => {
+		// const { email, password } = userToLogin;
+		// const userApiResponse = await getOneUser(email);
+		const userApiResponse = await logginApi(userToLogin);
 		// await addUserLogged(userApiResponse[0]);
-		return userApiResponse[0];
+		console.log("Respuesta:", userApiResponse);
+		return userApiResponse;
 	};
 
 	const addUserFromRegister = async (newUser) => {

@@ -16,7 +16,7 @@ export function useDoctorStore() {
 	const validationDoctorToLogin = async (email) => {
 		const userApiResponse = await getOneDoctor(email);
 
-		return userApiResponse[0];
+		return userApiResponse;
 	};
 	const addDoctorFromRegister = async (newDoctor) => {
 		const userApiResponse = await addDoctorService(newDoctor);
@@ -24,8 +24,6 @@ export function useDoctorStore() {
 	};
 
 	const editDoctorWithNewDate = async (newData) => {
-		console.log("en user hok");
-		console.log(newData);
 		await updateDoctor(newData);
 		addDoctorLogged(newData);
 	};

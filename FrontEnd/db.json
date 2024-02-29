@@ -15,15 +15,15 @@
       "id": "748jdbsh34h5"
     },
     {
-      
       "name": "Mario Sanz",
+      "lastName": "Sanz",
       "birthdate": "2064-02-15T15:01:12.688Z",
       "dni": "54637282",
       "tel": "666666666666",
       "email": "Mariosanz@hotmail.com",
       "password": "123456",
       "country": "Argentina",
-      "province": "Buenos Aires",
+      "province": "Cordoba",
       "address": "Benedicto Gomez 1300",
       "town": "Almagro",
       "id": "748jdblandb34h5"
@@ -35,7 +35,7 @@
       "email": "nopeMariana@hotmail.com",
       "password": "123456",
       "birthdate": "2084-02-15T15:01:12.688Z",
-      "social Security": "Ioma",
+      "socialSecurity": "Ioma",
       "weight": 56,
       "tel": 22184982930,
       "address": "Figueroa Alcorta 1670",
@@ -58,41 +58,20 @@
     }
   ],
   "doctors": [
+
     {
-      "name": "Mariana Nope",
-      "lastName": "Nope",
-      "birthdate": "2084-02-15T15:01:12.688Z",
-      "dni": "34637282",
-      "tel": "666666666666",
-      "email": "nopeMariana@hotmail.com",
+      "name": "Federico CampoAmor",
+      "lastName": "CampoAmor",
+      "birthdate": "2090-02-15T15:01:12.688Z",
+      "dni": "54637282",
+      "tel": 22463447578,
+      "email": "FedeDoc@hotmail.com",
       "password": "123456",
       "country": "Argentina",
-      "province": "Buenos Aires",
-      "address": "Figueroa Alcorta 1670",
-      "town": "Avellaneda",
-      "id": "0973hd755h5"
-    },
-    {
-      "id": "0973hd75pk5",
-      "registrationNumber": "P-565739-bg",
-      "dni": "54637282",
-      "name": "Federico CampoAmor",
-      "email": "FedeDoc@hotmail.com",
-      "specialty": "oftalmologia",
-      "password": "123456",
-      "birthdate": "2090-02-15T15:01:12.688Z",
-      "social Security Add": [
-        "Ospe",
-        "Amemop",
-        "Galeno",
-        "Pami",
-        "Osde",
-        "Swiss Medical"
-      ],
-      "tel": 22463447578,
+      "province": "Cordoba",
       "address": "Christian Sancho 6090",
-      "province": "Buenos Aires",
-      "town": "Pilar"
+      "town": "Pilar",
+      "id": "0973hd75pk5"
     },
     {
       "id": "0973huejw5pk5",

@@ -39,7 +39,6 @@ export default function LoginPage() {
 	const navigate = useNavigate();
 	const { validationUserToLogin } = useUserStore();
 	const { validationDoctorToLogin } = useDoctorStore();
-	// const { email, password, onInputChange } = useForm(formData);
 	const {
 		register,
 		handleSubmit,
@@ -54,12 +53,14 @@ export default function LoginPage() {
 			return;
 		} //segun params, ver a que service pegarle
 		params.types == "pacient"
-			? (response = await validationUserToLogin(userToLogin.email))
+			? (response = await validationUserToLogin(userToLogin))
 			: (response = await validationDoctorToLogin(userToLogin.email));
+
+		console.log("en el login la respuesta es :", response);
 
 		response == undefined &&
 			setDbErros("No se encontro el email en la Base de datos");
-		if (response.password != userToLogin.password) {
+		if (params.types == "doctor" && response.password != userToLogin.password) {
 			setDbErros(
 				"La contraseña no coincide con la guardada en la base de datos.	"
 			);
@@ -230,18 +231,6 @@ export default function LoginPage() {
 									{dbErrors}
 								</span>
 							)}
-							{/*  // pendiente pop up para manejo de errores
-   <Grid container
-   display={!!errorMessage ? "": "none"}
-   sx={{mt:1}}
-   >
-   <Grid 
-   item
-    xs={12}
-    >
-      <Alert severity="error">{errorMessage}</Alert>
-     </Grid>
-   </Grid> */}
 
 							<Grid container spacing={2} sx={{ mt: 0.5, mb: 2 }}>
 								<Grid item xs={12} sx={{ color: "#115E86" }}>

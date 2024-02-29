@@ -2,8 +2,8 @@ import { useEffect, lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useUserStore } from "./hooks/userUserStore"; //hook
 import { useDoctorStore } from "./hooks/useDoctorStore"; //hook
-import { useAdminStore } from "./hooks/userAdminStore"; //hook
-import { PerfilForm } from "./components/PerfilForm";
+// import { useAdminStore } from "./hooks/userAdminStore"; //hook
+import { CredencialMatriculaForm } from "./components/CredencialMatriculaForm/";
 //Rutas a requerimento
 const PrincipalHome = lazy(() => import("./pages/PrincipalHome/PrincipalHome"));
 const Home = lazy(() => import("./pages/home")); // en Page exportar por DEFAULT
@@ -22,11 +22,11 @@ function App() {
 
 	//carga de admins
 
-	const { getAdminApiResponse } = useAdminStore();
+	// const { getAdminApiResponse } = useAdminStore(); LE pega a la api vieja
 	useEffect(() => {
 		getUserApiResponse(); // inyecta los datos de la db en el estado.
 		getDoctorApiResponse(); // idem => doctors
-		getAdminApiResponse();
+		// getAdminApiResponse();
 	}, []);
 
 	return (
@@ -41,6 +41,7 @@ function App() {
 						<Route path='/login/:types' element={<LoginPage />} />
 						<Route path='/medical-list' element={<MedicalList />} />
 						<Route path='/perfil' element={<Perfil />} />
+						<Route path='/prueba' element={<CredencialMatriculaForm />} />
 						<Route
 							path='/*'
 							element={

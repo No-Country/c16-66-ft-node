@@ -28,8 +28,8 @@ export function PerfilForm() {
 		formState: { errors },
 	} = useForm({
 		defaultValues: {
-			name: nameArray,
-			lastName: lastNameDb,
+			name: userToEdit.name,
+			lastName: userToEdit.lastname,
 			birthdate: userToEdit.birthdate,
 			dni: userToEdit.dni,
 			tel: userToEdit.tel,

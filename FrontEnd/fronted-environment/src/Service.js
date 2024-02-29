@@ -1,17 +1,20 @@
-import axios from "axios";
+import axios from "redaxios";
 
 export const Api = axios.create({
-	baseURL: "http:///localhost:3000/",
+	// baseURL: "http:///localhost:3000/",
+	baseURL: "https://c16-66-ft-node.onrender.com",
 });
 
 // Devuelve Todo lo que haya en cada endPoint =========================
 
 export const fetchUsers = async () => {
-	const { data } = await Api.get(`/users`);
+	const { data } = await Api.get(`/pacients`);
+
 	return data;
 };
 export const fetchDoctors = async () => {
 	const { data } = await Api.get(`/doctors`);
+
 	return data;
 };
 
@@ -22,7 +25,7 @@ export const fetchAdmin = async () => {
 
 // Crean user, doctor y admin ======================================
 export const addUser = async (user) => {
-	await Api.post("/users/", user);
+	await Api.post("/pacients/signup", user);
 };
 
 export const addDoctor = async (doctor) => {
@@ -33,12 +36,23 @@ export const addAdmin = async (admin) => {
 	await Api.post("/admin/", admin);
 };
 // Solo trae uno con un email que es String===========================
-export const getOneUser = async (email) => {
-	const { data } = await Api.get(`/users?email=${email}`);
+
+// export const getOneUser = async (email) => {
+// 	const { data } = await Api.get(`/users?email=${email}`);
+// 	return data;
+// };
+
+export const logginApi = async (userToLogin) => {
+	console.log("en el service", userToLogin);
+	const { data } = await Api.post(`/pacients/login`, userToLogin);
+
+	// console.log("desde el service la data es :", data);
 	return data;
 };
+
 export const getOneDoctor = async (email) => {
 	const { data } = await Api.get(`/doctors?email=${email}`);
+	console.log("desde el service la data es :", data);
 	return data;
 };
 
@@ -50,7 +64,7 @@ export const getOneAdmin = async (email) => {
 // con un id, que es string => Borra el user, doctor o admin====================
 
 export const deleteUser = async (id) => {
-	await Api.delete(`/users/${id}`);
+	await Api.delete(`/pacients/${id}`);
 };
 export const deleteDoctor = async (id) => {
 	await Api.delete(`/doctors/${id}`);
@@ -63,7 +77,7 @@ export const deleteAdmin = async (id) => {
 export const updateUser = async (item) => {
 	console.log("en service");
 	console.log(item);
-	await Api.put(`/users/${item.id}`, item);
+	await Api.put(`/pacients/${item.id}`, item);
 };
 export const updateDoctor = async (item) => {
 	await Api.put(`/doctors/${item.id}`, item);
