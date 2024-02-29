@@ -14,7 +14,21 @@ const initializePassport = () => {
     new LocalStrategy(
       { passReqToCallback: true, usernameField: "email" },
       async (req, username, password, done) => {
-        const { name, lastname, image, city, country } = req.body;
+        const {
+          name,
+          lastname,
+          birthdate,
+          dni,
+          cuil,
+          image,
+          adress,
+          town,
+          province,
+          country,
+          tel,
+          socialSecurity,
+          planSocialSecurity,
+        } = req.body;
 
         try {
           const exists = await Pacient.findOne({
@@ -30,11 +44,19 @@ const initializePassport = () => {
           const newPacient = await Pacient.create({
             name,
             lastname,
+            birthdate,
             email: username,
             password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)),
+            dni,
+            cuil,
             image,
-            city,
+            adress,
+            town,
+            province,
             country,
+            tel,
+            socialSecurity,
+            planSocialSecurity,
           });
 
           return done(null, newPacient);
@@ -141,8 +163,17 @@ const initializePassport = () => {
   );
 
   passport.serializeUser((user, done) => {
-    const userType = user instanceof Pacient ? "Pacient" : "Doctor";
-    const userId = user.id;
+    let userType;
+    let userId;
+
+    if (user instanceof Pacient) {
+      userType = "Pacient";
+      userId = user.pacientId;
+    } else if (user instanceof Doctor) {
+      userType = "Doctor";
+      userId = user.doctorId;
+    }
+
     done(null, { userType, userId });
   });
 

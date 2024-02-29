@@ -42,11 +42,19 @@ server.listen(PORT, "0.0.0.0", () => {
         async ({
           name,
           lastname,
+          birthdate,
           email,
           password,
+          dni,
+          cuil,
           image,
-          city,
+          adress,
+          town,
+          province,
           country,
+          tel,
+          socialSecurity,
+          planSocialSecurity,
           role,
         }) => {
           await Pacient.findOrCreate({
@@ -56,11 +64,20 @@ server.listen(PORT, "0.0.0.0", () => {
             defaults: {
               name,
               lastname,
+              birthdate,
               email,
               password,
+              dni,
+              cuil,
               image,
-              city,
+              adress,
+              town,
+              province,
               country,
+              tel,
+              socialSecurity,
+              planSocialSecurity,
+              role,
             },
           });
         }
@@ -68,4 +85,3 @@ server.listen(PORT, "0.0.0.0", () => {
     });
   })
   .catch((error) => console.error(error));
-
