@@ -2,12 +2,11 @@ import {
 	fetchUsers,
 	// getOneUser,
 	addUser as addUserService,
-	updateUser,
 	logginApi,
-} from "../Service";
+} from "../Service"; //updateUser,
 import { UserStore } from "../StoreGeneral/UsersStore";
 export function useUserStore() {
-	const { addUser, addUserLogged } = UserStore();
+	const { addUser, addUserLogged, userLogged } = UserStore();
 
 	const getUserApiResponse = async () => {
 		const userApiResponse = await fetchUsers();
@@ -34,10 +33,52 @@ export function useUserStore() {
 	};
 
 	const editUserWithNewDate = async (newData) => {
-		console.log("en hook");
-		console.log(newData);
-		await addUserLogged(newData);
-		await updateUser(newData);
+		//poner async
+		const {
+			name,
+			dni,
+			cuil,
+			// licensenumber,numero de socio hay que pedir
+			socialSecurity,
+			planSocialSecurity,
+			lastname,
+			birthdate,
+			tel,
+			email,
+			password,
+			country,
+			province,
+			adress,
+			specialty,
+		} = newData;
+
+		const updatedData = {
+			...userLogged,
+			name,
+			dni,
+			cuil,
+
+			socialSecurity,
+			planSocialSecurity,
+			lastname,
+			birthdate,
+			tel,
+			email,
+			password,
+			country,
+			province,
+			adress,
+			specialty,
+		};
+		console.log("edited doc :", updatedData);
+
+		console.log("lo qie vino ", newData);
+		// await updateDoctor(newData); // Cuando tenga como editar en el service, habilitar
+
+		// console.log("en hook");
+		// console.log(newData);
+		await addUserLogged(updatedData);
+		// await updateUser(newData);
 	};
 
 	return {

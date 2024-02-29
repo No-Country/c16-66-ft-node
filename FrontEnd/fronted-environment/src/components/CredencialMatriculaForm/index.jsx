@@ -2,14 +2,14 @@
 import { useForm } from "react-hook-form";
 import { UserStore } from "../../StoreGeneral/UsersStore";
 import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
-// import { useUserStore } from "../../hooks/userUserStore";
-// import { useDoctorStore } from "../../hooks/useDoctorStore";
+import { useUserStore } from "../../hooks/userUserStore";
+import { useDoctorStore } from "../../hooks/useDoctorStore";
 import { useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 export function CredencialMatriculaForm() {
 	// const navigate = useNavigate();
-	// const { editUserWithNewDate } = useUserStore();
-	// const { editDoctorWithNewDate } = useDoctorStore();
+	const { editUserWithNewDate } = useUserStore();
+	const { editDoctorWithNewDate } = useDoctorStore();
 	const { userLogged } = UserStore();
 	const { doctorLogged } = DoctorStore();
 	console.log(userLogged);
@@ -27,26 +27,35 @@ export function CredencialMatriculaForm() {
 	} = useForm({
 		defaultValues: {
 			name: userToEdit.name,
+			lastname: userToEdit.lastname,
+			birthdate: userToEdit.birthdate,
 			dni: userToEdit.dni,
+			tel: userToEdit.tel,
+			telephone: userToEdit.telephone,
 			cuil: userToEdit.cuil,
-			socialSecurity: userLogged && userLogged.socialSecurity,
-			registrationNumber: doctorLogged && userToEdit.registrationNumber,
-			socialSecurityAdd: doctorLogged && userToEdit.socialSecurityAdd,
+			email: userToEdit.email,
+			password: userToEdit.password,
+			country: "Argentina",
+			province: userToEdit.province,
+			adress: userToEdit.adress,
+			// town: userToEdit.town,
+			specialty: doctorLogged && userToEdit.specialty,
+			socialSecurity: userToEdit.socialSecurity, //paciente sin
+			licensenumber: doctorLogged && userToEdit.licensenumber,
+			SocialSecurity: doctorLogged && userToEdit.SocialSecurity, // Doctor con mayus
 			afliedNumber: userLogged && userLogged.afliedNumber,
-			plan: userLogged && userLogged.plan,
+			planSocialSecurity: userLogged && userLogged.planSocialSecurity,
 		},
 	});
 
 	const onSubmitEdit = async (newData) => {
 		event.preventDefault();
-		console.log("en matriculas form");
-		console.log(newData);
 		// !doctorLogged
 		// 	? (newData = { ...newData, id: userLogged.id })
 		// 	: (newData = { ...newData, id: doctorLogged.id });
-		// !doctorLogged
-		// 	? await editUserWithNewDate(newData)
-		// 	: await editDoctorWithNewDate(newData);
+		!doctorLogged
+			? await editUserWithNewDate(newData)
+			: editDoctorWithNewDate(newData);
 
 		// navigate("/home");
 	};
@@ -204,21 +213,21 @@ export function CredencialMatriculaForm() {
 									</label>
 									<input
 										type='text'
-										name='plan'
+										name='planSocialSecurity'
 										className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
-										{...register("plan", {
+										{...register("planSocialSecurity", {
 											required: {
 												value: true,
 												message: "Debes completar el campo",
 											},
 										})}
 									/>
-									{errors.plan && (
+									{errors.planSocialSecurity && (
 										<span
 											className='pl-2 pt-2 flex text-xs font-bold text-red-700'
 											style={{ color: "red" }}
 										>
-											{errors.plan.message}
+											{errors.planSocialSecurity.message}
 										</span>
 									)}
 								</>
@@ -231,17 +240,17 @@ export function CredencialMatriculaForm() {
 										Obras Sociales Adheridas
 									</label>
 									<select className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'>
-										{doctorLogged?.socialSecurityAdd.map((add, i) => {
+										{doctorLogged.SocialSecurity?.map((add, i) => {
 											return <option key={i}>{add}</option>;
 										})}
 									</select>
 
-									{errors.socialSecurityAdd && (
+									{errors.SocialSecurity && (
 										<span
 											className='pl-2 pt-2 flex text-xs font-bold text-red-700'
 											style={{ color: "red" }}
 										>
-											{errors.socialSecurityAdd.message}
+											{errors.SocialSecurity.message}
 										</span>
 									)}
 								</>
@@ -282,28 +291,28 @@ export function CredencialMatriculaForm() {
 							) : (
 								<>
 									<label
-										htmlFor='specialty'
+										htmlFor='licensenumber'
 										className='ml-2  font-semibold text-base text-darkBlue '
 									>
 										N° de Matrícula
 									</label>
 									<input
 										type='text'
-										name='registrationNumber'
+										name='licensenumber'
 										className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
-										{...register("registrationNumber", {
+										{...register("licensenumber", {
 											required: {
 												value: true,
 												message: "Debes completar el campo",
 											},
 										})}
 									/>
-									{errors.registrationNumber && (
+									{errors.licensenumber && (
 										<span
 											className='pl-2 pt-2 flex text-xs font-bold text-red-700'
 											style={{ color: "red" }}
 										>
-											{errors.registrationNumber.message}
+											{errors.licensenumber.message}
 										</span>
 									)}
 								</>

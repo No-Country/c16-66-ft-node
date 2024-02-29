@@ -32,8 +32,7 @@ export function PerfilForm() {
 			birthdate: userToEdit.birthdate,
 			dni: userToEdit.dni,
 			tel: userToEdit.tel,
-			//agregar a formulario
-			telephone: userToEdit.telephone, 
+			telephone: userToEdit.telephone,
 			cuil: userToEdit.cuil,
 			email: userToEdit.email,
 			password: userToEdit.password,
@@ -41,16 +40,17 @@ export function PerfilForm() {
 			province: userToEdit.province,
 			adress: userToEdit.adress,
 			// town: userToEdit.town,
+			socialSecurity: userToEdit.socialSecurity, //paciente sin
+			licensenumber: doctorLogged && userToEdit.registrationNumber,
+			SocialSecurity: doctorLogged && userToEdit.socialSecurityAdd, // Doctor con mayus
+			afliedNumber: userLogged && userLogged.afliedNumber,
+			planSocialSecurity: userLogged && userLogged.planSocialSecurity,
 		},
 	});
 
 	const onSubmitEdit = async (newData) => {
 		event.preventDefault();
-		const fullName = [...nameArray] + " " + lastNameDb;
-		newData = { ...newData, name: fullName };
-		!doctorLogged
-			? (newData = { ...newData, id: userLogged.id })
-			: (newData = { ...newData, id: doctorLogged.id });
+
 		!doctorLogged
 			? await editUserWithNewDate(newData)
 			: await editDoctorWithNewDate(newData);
@@ -162,32 +162,59 @@ export function PerfilForm() {
 							>
 								Teléfono <span className='text-red'>*</span>
 							</label>
-							<input
-								type='text'
-								name='tel'
-								className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
-								{...register("tel", {
-									required: {
-										value: true,
-										message: "Debes completar el campo",
-									},
-									minLength: {
-										value: 12,
-										message:
-											"El telefono debe contener al menos 6 caracteres, numero de area y País",
-									},
-									// type: {
-									// 	value: Number,
-									// 	message: "Este campo solo recibe numeros",
-									// }, HACER FUNCIONAR
-								})}
-							/>
+							{userLogged ? (
+								<input
+									type='text'
+									name='tel'
+									className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
+									{...register("tel", {
+										required: {
+											value: true,
+											message: "Debes completar el campo",
+										},
+										minLength: {
+											value: 12,
+											message:
+												"El telefono debe contener al menos 6 caracteres, numero de area y País",
+										},
+										// type: {
+										// 	value: Number,
+										// 	message: "Este campo solo recibe numeros",
+										// }, HACER FUNCIONAR
+									})}
+								/>
+							) : (
+								<input
+									type='text'
+									name='telephone'
+									className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
+									{...register("telephone", {
+										required: {
+											value: true,
+											message: "Debes completar el campo",
+										},
+										minLength: {
+											value: 12,
+											message:
+												"El telefono debe contener al menos 6 caracteres, numero de area y País",
+										},
+									})}
+								/>
+							)}
 							{errors.tel && (
 								<span
 									className='pl-2 pt-2 flex text-xs font-bold text-red-700'
 									style={{ color: "red" }}
 								>
 									{errors.tel.message}
+								</span>
+							)}
+							{errors.telephone && (
+								<span
+									className='pl-2 pt-2 flex text-xs font-bold text-red-700'
+									style={{ color: "red" }}
+								>
+									{errors.telephone.message}
 								</span>
 							)}
 						</div>
