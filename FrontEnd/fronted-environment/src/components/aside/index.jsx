@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { Badge, Button } from "@mui/base";
 import close from "../../assets/svg/close.svg";
 import menu from "../../assets/svg/menu.svg";
-import isotipo from "../../assets/svg/Isotipo.svg";
+// import isotipo from "../../assets/svg/Isotipo.svg";
 import group from "../../assets/svg/group.svg";
 import person from "../../assets/svg/person.svg";
 import calendar from "../../assets/svg/calendar.svg";
 import clinicalNotes from "../../assets/svg/clinicalNotes.svg";
 import duo from "../../assets/svg/duo.svg";
 import book from "../../assets/svg/book.svg";
-import star from "../../assets/svg/star.svg";
+// import star from "../../assets/svg/star.svg";
 import notification from "../../assets/svg/notification.svg";
 import notificationUnread from "../../assets/svg/notificationUnread.svg";
 import settings from "../../assets/svg/settings.svg";
@@ -25,7 +25,7 @@ import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
 export function AsideComponent() {
 	const navigate = useNavigate();
 	const { loggOutUser, userLogged } = UserStore();
-	const { loggOutDoctor } = DoctorStore();
+	const { loggOutDoctor, doctorLogged } = DoctorStore();
 	const [openClose, setOpenClose] = useState(false);
 	const handleAsideOpenClose = () => {
 		setOpenClose(!openClose);
@@ -58,19 +58,35 @@ export function AsideComponent() {
 				}`}
 			>
 				<figure className={`w-8 h-8 rounded-full overflow-hidden ${openClose}`}>
-					<img className='objet-cover object-center' src={isotipo} />
+					{
+						doctorLogged &&
+					<img className='objet-cover object-center' src={doctorLogged.image} />
+					}
+					{
+						userLogged &&
+					<img className='objet-cover object-center' src={userLogged.image} />
+					}
 				</figure>
 				<div
 					style={{ display: openClose ? "block" : "none" }}
 					className=' textHiddenAside'
 				>
-					<p className='font-medium text-sm'>Dr. Roberto García</p>
-					<p className='font-normal text-sm'>Clínica médica</p>
+					{
+						doctorLogged && <>
+					<p className='font-medium text-sm'>{doctorLogged.name}</p>
+					<p className='font-normal text-sm'>{doctorLogged.specialty}</p>
+						</>
+					}
+					{
+						userLogged && 
+					<p className='font-medium text-sm'>{userLogged.name}</p>	
+					}
 				</div>
 			</article>
 
 			<section className={`flex flex-col justify-center items-start h-fit`}>
 				<article
+					onClick={()=>navigate('/home')} 
 					className={`flex cursor-pointer hover:bg-white p-2 rounded-xl mx-auto ${
 						openClose
 							? "w-full justify-start gap-4"
@@ -88,16 +104,34 @@ export function AsideComponent() {
 				<div className={`${openClose ? 'mx-inherit w-full' : 'mx-auto w-2/3 hover:bg-white rounded-xl'}`} onClick={()=>navigate('/perfil')} >
 					<BoxIcon openClose={openClose} text={"Mi perfil"} icon={person} />
 				</div>
+				<div className={`${openClose ? 'mx-inherit w-full' : 'mx-auto w-2/3 hover:bg-white rounded-xl'}`} onClick={()=>navigate('/my-agenda')}>
 				<BoxIcon openClose={openClose} text={"Agenda"} icon={calendar} />
-				<BoxIcon
-					openClose={openClose}
-					text={"Mis pacientes"}
-					icon={clinicalNotes}
-				/>
+				</div>
+				{
+					userLogged ? 
+					<div className={`${openClose ? 'mx-inherit w-full' : 'mx-auto w-2/3 hover:bg-white rounded-xl'}`} onClick={()=>navigate('/my-list')}>
+
+						<BoxIcon
+						openClose={openClose}
+						text={"Mis especialistas"}
+						icon={clinicalNotes}
+						
+						/> 
+					</div> :
+					<div className={`${openClose ? 'mx-inherit w-full' : 'mx-auto w-2/3 hover:bg-white rounded-xl'}`} onClick={()=>navigate('/my-list')}>
+						<BoxIcon
+						openClose={openClose}
+						text={"Mis pacientes"}
+						icon={clinicalNotes}
+						/>
+					</div>
+				}
 				<BoxIcon openClose={openClose} text={"Consulta virtual"} icon={duo} />
+				<div className={`${openClose ? 'mx-inherit w-full' : 'mx-auto w-2/3 hover:bg-white rounded-xl'}`} onClick={()=>navigate('/medical-list')}>
 				<BoxIcon openClose={openClose} text={"Cartilla médica"} icon={book} />
-				<BoxIcon openClose={openClose} text={"Mi billetera"} icon={star} 
-				/>
+				</div>
+				{/* <BoxIcon openClose={openClose} text={"Mi billetera"} icon={star} 
+				/> */}
 			</section>
 			<br />
 			<section

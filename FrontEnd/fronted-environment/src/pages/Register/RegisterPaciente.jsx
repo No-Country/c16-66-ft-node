@@ -12,7 +12,7 @@ const formData ={
   name:'',
   email:'',
   password: '',
-  DNI:'',
+  dni:'',
   }
 
 const { palette } = createTheme();
@@ -32,7 +32,7 @@ export default function RegisterPatient() {
 
 
 
-    const {email, password, onInputChange,DNI,name} = useForm(formData);
+    const {email, password, onInputChange,dni,name} = useForm(formData);
 
 
 
@@ -151,8 +151,8 @@ export default function RegisterPatient() {
        type="Number"
        placeholder="123456"
        fullWidth
-       name="DNI"
-       value={DNI}
+       name="dni"
+       value={dni}
        onChange={onInputChange}
      />
    </Grid>

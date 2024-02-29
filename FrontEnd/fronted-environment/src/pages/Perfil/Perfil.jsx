@@ -1,32 +1,34 @@
-import { useEffect, useState } from "react";
-import { AsideComponent } from "../../components/aside/index";
-import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
-import { UserStore } from "../../StoreGeneral/UsersStore";
-import { PerfilForm } from "../../components/PerfilForm/index";
-import logo from "../../assets/FakeLOGO/Logo 3.png";
-import doctor from "../../assets/imgFakePacient/FakePacient1.png";
-import historial from "../../assets/svg/historialProfesional.svg";
-import matricula from "../../assets/svg/matricula.svg";
-import personEdit from "../../assets/svg/person_edit.svg";
-import "../../pages/PrincipalHome/index.css";
-import HistoryClinic from "../../components/PerfilForm/HistoryClinic";
-import HistoryProfesional from "../../components/PerfilForm/HistoryProfesional";
+import { useEffect, useState } from 'react'
+import {AsideComponent} from '../../components/aside/index'
+import { DoctorStore } from '../../StoreGeneral/DoctorsStore'
+import { UserStore } from '../../StoreGeneral/UsersStore'
+import { PerfilForm } from '../../components/PerfilForm/index'
+// import doctor from '../../assets/imgFakePacient/FakePacient1.png'
+import historial from '../../assets/svg/historialProfesional.svg'
+import matricula from '../../assets/svg/matricula.svg'
+import personEdit from '../../assets/svg/person_edit.svg'
+import '../../pages/PrincipalHome/index.css'
+import HistoryClinic from '../../components/PerfilForm/HistoryClinic'
+import HistoryProfesional from '../../components/PerfilForm/HistoryProfesional'
+import { NavHome } from '../../components/NavComponent.js/NavHome'
 
-export default function Perfil() {
-	const { doctorLogged } = DoctorStore();
-	const { userLogged } = UserStore();
-	const [user, setUser] = useState([]);
-	const [btn1, setBtn1] = useState(true);
-	const [btn2, setBtn2] = useState(false);
-	const [btn3, setBtn3] = useState(false);
 
-	useEffect(() => {
-		if (doctorLogged !== null) {
-			setUser(doctorLogged);
-		} else if (userLogged !== null) {
-			setUser(userLogged);
-		}
-	}, [doctorLogged, userLogged]);
+export default function Perfil () {
+    const { doctorLogged } = DoctorStore();
+    const { userLogged } = UserStore();
+    const [user, setUser]= useState([])
+    const [btn1, setBtn1] = useState(true)
+    const [btn2, setBtn2] = useState(false)
+    const [btn3, setBtn3] = useState(false)
+   
+
+    useEffect(()=>{
+        if (doctorLogged !== null) {
+            setUser(doctorLogged)
+        } else if (userLogged !== null) {
+            setUser(userLogged)
+        }
+    },[doctorLogged, userLogged])
 
 	const handleClick1 = () => {
 		setBtn1(true);
@@ -47,25 +49,14 @@ export default function Perfil() {
 	return (
 		<main className='flex flex-col w-screen h-screen box-border z-0'>
 			<AsideComponent />
-			<header className='w-full footerFinal h-16 py-2.5 flex p-6 sm:px-0 justify-end sm:justify-center shadow-lg shadow-black'>
-				<img
-					className='w-auto h-10 sm:h-12'
-					src={logo}
-					alt='Imagen del logo de la empresa'
-				/>
-			</header>
-			<section className='h-full w-10/12 lg:w-11/12 self-end bg-bgLightGreen w-inherit'>
-				<div className='flex flex-col justify-center items-center mx-auto md:w-2/5 md:pt-6 md:ml-0 md:h-2/6 md:justify-start'>
-					<img
-						src={doctor}
-						alt='image doctor'
-						className=' rounded-full w-1/5 md:w-1/3 h-auto lg:mb-4'
-					></img>
-					<h3 className='text-xs md:pt-1 md:text-sm lg:text-base font-semibold'>
-						{user.name}
-					</h3>
-					<p className='text-xs md:pt-1 md:text-sm lg:text-base text-gray mb-2 lg:mb-4'>{`${user.birthdate} años`}</p>
-				</div>
+            <NavHome />
+            <section className='h-full w-10/12 lg:w-11/12 self-end bg-bgLightGreen w-inherit'>
+
+                <div className='flex flex-col justify-center items-center mx-auto md:w-2/5 md:pt-6 md:ml-0 md:h-2/6 md:justify-start'>
+                    <img src={user.image} alt='image doctor' className=' rounded-full w-1/5 md:w-1/3 h-auto lg:mb-4'></img>
+                    <h3 className='text-xs md:pt-1 md:text-sm lg:text-base font-semibold'>{user.name}</h3>
+                    <p className='text-xs md:pt-1 md:text-sm lg:text-base text-gray mb-2 lg:mb-4'>{`${user.birthdate} años`}</p>
+                </div>
 
 				<div className='flex overflow-x-auto p-1 w-full h-12 mb-4 md:flex-col md:w-2/5 md:h-fit md:items-center lg:mt-24'>
 					<button
@@ -101,17 +92,26 @@ export default function Perfil() {
 					</button>
 				</div>
 
-				<div
-					style={{ maxHeight: "615px" }}
-					className='w-11/12 mt-6 mx-auto p-2 overflow-y-auto rounded-xl md:fixed md:top-24 md:right-1 md:w-1/2'
-				>
-					{btn1 && <PerfilForm />}
-					{btn2 && <>{userLogged ? "Mi credencial" : "Mi matrícula"}</>}
-					{btn3 && (
-						<>{userLogged ? <HistoryClinic /> : <HistoryProfesional />}</>
-					)}
-				</div>
-			</section>
-		</main>
-	);
+                <div style={{ maxHeight:'600px'}} className='w-9/12 mt-6 mx-auto p-2 overflow-y-auto rounded-xl md:fixed md:top-24 md:right-1 md:w-1/2'>  
+                {
+                    btn1 && <PerfilForm userLogged={user}/>
+                }
+                { 
+                   btn2  && 
+                   <>
+                {
+                    userLogged ? 'Mi credencial' : 'Mi matrícula'
+                } 
+                   </> 
+                    
+                } 
+                { 
+                    btn3  && <>{
+                        userLogged ? <HistoryClinic /> : <HistoryProfesional />
+                    }</> 
+                }    
+                </div>    
+            </section>
+        </main>
+    )
 }

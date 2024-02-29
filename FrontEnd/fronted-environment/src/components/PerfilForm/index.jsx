@@ -6,6 +6,7 @@ import { useUserStore } from "../../hooks/userUserStore";
 import { useDoctorStore } from "../../hooks/useDoctorStore";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 export function PerfilForm() {
 	const navigate = useNavigate();
 	const { editUserWithNewDate } = useUserStore();
@@ -18,9 +19,7 @@ export function PerfilForm() {
 		userLogged ? userLogged : doctorLogged
 	);
 	useEffect(() => {}, [userLogged, doctorLogged]);
-	const nameArray = userToEdit.name.split(" ");
-	const lastNameDb = nameArray[nameArray.length - 1];
-	nameArray.pop();
+
 	const {
 		register,
 		handleSubmit,
@@ -29,17 +28,19 @@ export function PerfilForm() {
 	} = useForm({
 		defaultValues: {
 			name: userToEdit.name,
-			lastName: userToEdit.lastname,
+			lastname: userToEdit.lastname,
 			birthdate: userToEdit.birthdate,
 			dni: userToEdit.dni,
 			tel: userToEdit.tel,
+			//agregar a formulario
+			telephone: userToEdit.telephone, 
 			cuil: userToEdit.cuil,
 			email: userToEdit.email,
 			password: userToEdit.password,
 			country: "Argentina",
 			province: userToEdit.province,
-			address: userToEdit.address,
-			town: userToEdit.town,
+			adress: userToEdit.adress,
+			// town: userToEdit.town,
 		},
 	});
 
@@ -90,7 +91,7 @@ export function PerfilForm() {
 						</div>
 						<div className='w-11/12 lg:w-2/5 ml-2 pt-2'>
 							<label
-								htmlFor='lastName'
+								htmlFor='lastname'
 								className='ml-2  font-semibold text-base text-darkBlue  '
 							>
 								Apellidos <span className='text-red'>*</span>
@@ -98,7 +99,7 @@ export function PerfilForm() {
 							<input
 								type='text'
 								className=' pl-2 w-full py-1 border border-darkBlue rounded-xl bg-lightGray mt-1'
-								{...register("lastName")}
+								{...register("lastname")}
 								disabled
 							/>
 						</div>
@@ -345,21 +346,21 @@ export function PerfilForm() {
 							</label>
 							<input
 								type='text'
-								name='address'
+								name='adress'
 								className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
-								{...register("address", {
+								{...register("adress", {
 									required: {
 										value: true,
 										message: "Debes completar el campo",
 									},
 								})}
 							/>
-							{errors.address && (
+							{errors.adress && (
 								<span
 									className='pl-2 pt-2 flex text-xs font-bold text-red-700'
 									style={{ color: "red" }}
 								>
-									{errors.address.message}
+									{errors.adress.message}
 								</span>
 							)}
 						</div>
@@ -370,7 +371,7 @@ export function PerfilForm() {
 							>
 								Localidad y Código Postal <span className='text-red'>*</span>
 							</label>
-							<input
+							{/* <input
 								type='text'
 								name='town'
 								className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
@@ -388,7 +389,7 @@ export function PerfilForm() {
 								>
 									{errors.town.message}
 								</span>
-							)}
+							)} */}
 						</div>
 					</article>
 					<article className='flex justify-around lg:justify-center lg:gap-20 mt-4'>
