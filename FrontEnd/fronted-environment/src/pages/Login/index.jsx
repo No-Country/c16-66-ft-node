@@ -91,8 +91,8 @@ export default function LoginPage() {
 					item
 					xs={3}
 					sx={{
-						width: { xs: 328, sm: 550, lg: 725 },
-						minHeight: { xs: 528, sm: 900 },
+						width: { xs: 328, sm: 500 },
+						minHeight: { xs: 550 },
 						backgroundColor: alpha("#ffffff", 0.8),
 						padding: 3,
 						borderRadius: 4,
@@ -107,7 +107,7 @@ export default function LoginPage() {
 						sx={{
 							display: "flex",
 							justifyContent: "space-evenly",
-							mb: { xs: 3, sm: 5 },
+							mb: { xs: 0 },
 						}}
 					>
 						<Box component='img' alt='Logo' src={logo} />
@@ -115,8 +115,8 @@ export default function LoginPage() {
 
 					<Typography
 						sx={{
-							mb: { xs: 1, sm: 2 },
-							fontSize: 25,
+							mb: { xs: 1},
+							fontSize: 20,
 							display: "flex",
 							justifyContent: "center",
 							typography: "subtitle",
@@ -127,8 +127,8 @@ export default function LoginPage() {
 					</Typography>
 					<Typography
 						sx={{
-							mb: 1,
-							fontSize: { xs: 16, sm: 20 },
+							
+							fontSize: { xs: 13 },
 							display: "flex",
 							justifyContent: "center",
 							fontWeight: "regular",
@@ -146,9 +146,9 @@ export default function LoginPage() {
 							<Typography
 								sx={{
 									fontWeight: "bold",
-									fontSize: 20,
+									fontSize: 16,
 									color: "#115E86",
-									mt: { xs: 4 },
+									mt: { xs: 2 },
 								}}
 							>
 								Email
@@ -161,6 +161,12 @@ export default function LoginPage() {
 									placeholder='something@something.com'
 									fullWidth
 									name='email'
+									size="small"
+									InputProps={{
+										style: {
+											borderRadius:"10px",
+										}
+									}}
 									//abajo logica del react-hook-fomr
 									{...register("email", {
 										required: {
@@ -184,21 +190,27 @@ export default function LoginPage() {
 								<Typography
 									sx={{
 										fontWeight: "bold",
-										fontSize: 20,
+										fontSize: 16,
 										color: "#115E86",
-										mt: { xs: 3 },
+										mt: { xs: 2 },
 									}}
 								>
 									Contraseña
 								</Typography>
 							</Grid>
-							<Grid item xs={12} sx={{ mb: { xs: 3 } }}>
+							<Grid item xs={12} >
 								<TextField
 									label='Ingresa tu contraseña'
 									type='password'
 									placeholder='contraseña'
 									fullWidth
 									name='password'
+									size="small"
+									InputProps={{
+										style: {
+											borderRadius:"10px",
+										}
+									}}
 									//abajo logica del react-hook-fomr
 									{...register("password", {
 										required: {
@@ -230,17 +242,17 @@ export default function LoginPage() {
 								</span>
 							)}
 
-							<Grid container spacing={2} sx={{ mt: 0.5, mb: 2 }}>
+							<Grid container spacing={2} sx={{ mt: 1.5, mb: 2 }}>
 								<Grid item xs={12} sx={{ color: "#115E86" }}>
 									<Button
-										//   campo para bloquear boton durante el proceso de logueo
-										// disabled ={isAuthenticating}
+										
 										type='submit'
 										color='anger'
 										variant='contained'
 										sx={{
 											textTransform: "capitalize",
 											fontSize: { xs: 16, sm: 20 },
+											borderRadius: 3
 										}}
 										fullWidth
 									>
@@ -271,11 +283,6 @@ export default function LoginPage() {
 											Crea tu cuenta ahora
 										</Link>
 									</span>
-
-									// acomodar con las rutas adecuadas
-									/* <Link component={RouterLink} color="inherit" to="/auth/register">
-       crear una cuenta
-     </Link> */
 								}
 							</Grid>
 						</Grid>

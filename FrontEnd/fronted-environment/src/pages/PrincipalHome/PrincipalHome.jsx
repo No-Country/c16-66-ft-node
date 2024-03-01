@@ -11,16 +11,21 @@ import imgDr4 from '../../assets/svg/Imgdr4.png'
 import { Footer } from '../../components/principalHome/Footer'
 import {CarouselHome, Slide} from '../../components/principalHome/CarouselHome'
 import './index.css'
-import { useEffect, useState } from 'react'
 
 export default function PrincipalHome () {
- const [isAutoplay, setIsAutoplay] = useState(false)
 
-    useEffect(()=>{
-        if (window.location.pathname === '/'){
-            setIsAutoplay(true)
+    document.addEventListener('DOMContentLoaded', function() {
+        // Acceder al carrusel una vez que el DOM haya sido completamente cargado
+        const carouselHome = document.getElementById('carouselHome');
+        if (carouselHome !== null) {
+            carouselHome.style.display = 'block'
+            // Tu código para trabajar con el carrusel
+            console.log(carouselHome, 'aca');
+        } else {
+            console.error('El elemento con ID "carouselHome" no fue encontrado en el DOM.');
         }
-    },[])
+    });
+    
     return (
         <div className='w-screen h-screen overflow-y-scroll'>
             <Header />    
@@ -54,7 +59,7 @@ export default function PrincipalHome () {
                    
                     {window.location.pathname === '/' &&
                     
-            <CarouselHome controles={true} autoplay={isAutoplay} velocity="3000" interval="5000">
+            <CarouselHome style={{display : 'none'}} id="carouselHome" controles={true} autoplay={true} velocity="3000" interval="5000">
 				<Slide>
                     <CardStars img={imgDr1} nameDr={'Alejandro Samano Orduña'} doctorType={'Médico pediátra'} stars={5} text1={'Te explica con claridad y te genera mucha confianza, muy atento a todos los comentarios que le brindas.'} name1={'Camila García'} text2={'Muy amena la consulta, fue una ventaja tener acceso a mi historial médico porque de esa manera pudo asesorarme mejor.'} name2={'Fely Carnalla'}/>
 				</Slide>

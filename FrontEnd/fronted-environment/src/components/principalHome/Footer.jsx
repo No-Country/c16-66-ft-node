@@ -9,8 +9,11 @@ import linkedin from '../../assets/svg/devicon_linkedin.svg'
 // import suport from '../../assets/svg/support_agent.svg'
 import copyR from '../../assets/svg/ph_copyright-bold.svg'
 import vector from '../../assets/svg/Vector.svg'
+// import {Map } from '../../components/principalHome/Map'
+
 
 export function Footer () {
+
     return (
         <footer className="footer w-full h-fit">
             <section className='h-fit  w-ful'>
@@ -18,17 +21,11 @@ export function Footer () {
                     <section className='rounded-xl w-10/12 sm:w-2/5 xl:w-3/12 h-auto p-1 flex-col'>
                         <div className='flex justify-between md:flex-col items-center'>
                         <h6 className='text-base font-semibold'>Ubicación</h6>
+
                         <iframe src="https://www.google.com/maps/d/embed?mid=1NsaSVjfje-Alfk1sktD3GXxmhYc&hl=en_US&ehbc=2E312F" className='w-full h-full outline-none rounded-xl'></iframe>
-                        {/* <iframe
-                        width="600"
-                        height="450"
-                        style="border:0"
-                        loading="lazy"
-                        allowFullScreen
-                        referrerPolicy="no-referrer-when-downgrade"
-                        src="https://www.google.com/maps/embed/v1/place?key=
-                            &q=Space+Needle,Seattle+WA">
-                        </iframe> */}
+                        
+                        
+
                         </div>  
                     </section>
                     <section className='flex flex-wrap md:-pt-0 pt-4 sm:pt-0 h-fit sm:flex-nowrap justify-between w-1/2 ml-12 sm:w-10/12 xl:w-6/12'>

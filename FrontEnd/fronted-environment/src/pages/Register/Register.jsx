@@ -82,11 +82,11 @@ export default function RegisterAdmin() {
 					item
 					xs={3}
 					sx={{
-						width: { xs: 328, sm: 550, lg: 725 },
-						minHeight: { xs: 528, sm: 900 },
+						width: { xs: 328, sm: 500},
+						minHeight: { xs: 528 },
 						backgroundColor: alpha("#ffffff", 0.8),
 						padding: 3,
-						borderRadius: 4,
+						borderRadius: 6,
 						boxShadow: 3,
 						display: "flex",
 						flexDirection: "column",
@@ -96,18 +96,18 @@ export default function RegisterAdmin() {
 					<Grid
 						item
 						sx={{
+					
 							display: "flex",
-							justifyContent: "space-evenly",
-							mb: { xs: 3, sm: 5 },
+							justifyContent: "center",
 						}}
 					>
-						<Box component='img' alt='Logo' src={logo} />
+						<Box component='img' alt='Logo' src={logo}  />
 					</Grid>
 
 					<Typography
 						sx={{
-							mb: { xs: 1, sm: 2 },
-							fontSize: 25,
+							mb: { xs: 1},
+							fontSize: 20,
 							display: "flex",
 							justifyContent: "center",
 							typography: "subtitle",
@@ -118,8 +118,8 @@ export default function RegisterAdmin() {
 					</Typography>
 					<Typography
 						sx={{
-							mb: 1,
-							fontSize: { xs: 16, sm: 20 },
+				
+							fontSize: { xs: 13 },
 							display: "flex",
 							justifyContent: "center",
 							fontWeight: "regular",
@@ -137,9 +137,9 @@ export default function RegisterAdmin() {
 							<Typography
 								sx={{
 									fontWeight: "bold",
-									fontSize: 20,
+									fontSize: 16,
 									color: "#115E86",
-									mt: { xs: 4 },
+									mt: { xs: 2 },
 								}}
 							>
 								Nombre y apellido
@@ -151,6 +151,12 @@ export default function RegisterAdmin() {
 									placeholder='Juan Perez'
 									fullWidth
 									name='name'
+									size="small"
+									InputProps={{
+										style: {
+											borderRadius:"10px",
+										}
+									}}
 									{...register("name", {
 										required: {
 											value: true,
@@ -176,9 +182,9 @@ export default function RegisterAdmin() {
 							<Typography
 								sx={{
 									fontWeight: "bold",
-									fontSize: 20,
+									fontSize: 16,
 									color: "#115E86",
-									mt: { xs: 4 },
+									mt: { xs: 2 },
 								}}
 							>
 								Email
@@ -191,6 +197,12 @@ export default function RegisterAdmin() {
 									placeholder='something@something.com'
 									fullWidth
 									name='email'
+									size="small"
+									InputProps={{
+										style: {
+											borderRadius:"10px",
+										}
+									}}
 									{...register("email", {
 										required: {
 											value: true,
@@ -214,9 +226,9 @@ export default function RegisterAdmin() {
 							<Typography
 								sx={{
 									fontWeight: "bold",
-									fontSize: 20,
+									fontSize: 16,
 									color: "#115E86",
-									mt: { xs: 3 },
+									mt: { xs: 2 },
 								}}
 							>
 								Contraseña
@@ -228,6 +240,13 @@ export default function RegisterAdmin() {
 									placeholder='contraseña'
 									fullWidth
 									name='password'
+									size="small"
+									InputProps={{
+										style: {
+											borderRadius:"10px",
+										}
+									}}
+									
 									{...register("password", {
 										required: {
 											value: true,
@@ -252,9 +271,9 @@ export default function RegisterAdmin() {
 							<Typography
 								sx={{
 									fontWeight: "bold",
-									fontSize: 20,
+									fontSize: 16,
 									color: "#115E86",
-									mt: { xs: 3 },
+									mt: { xs: 2 },
 								}}
 							>
 								Numero de DNI
@@ -266,6 +285,12 @@ export default function RegisterAdmin() {
 									placeholder='123456'
 									fullWidth
 									name='dni'
+									size="small"
+									InputProps={{
+										style: {
+											borderRadius:"10px",
+										}
+									}}
 									{...register("dni", {
 										required: {
 											value: true,
@@ -303,6 +328,7 @@ export default function RegisterAdmin() {
 										sx={{
 											textTransform: "capitalize",
 											fontSize: { xs: 16, sm: 20 },
+											borderRadius: 3
 										}}
 										fullWidth
 									>
