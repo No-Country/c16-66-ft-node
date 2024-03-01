@@ -173,14 +173,18 @@ export function PerfilForm() {
 											message: "Debes completar el campo",
 										},
 										minLength: {
-											value: 12,
+											value: 8,
 											message:
-												"El telefono debe contener al menos 6 caracteres, numero de area y País",
+												"El telefono debe contener al menos 8 caracteres, numero de area y País",
 										},
-										// type: {
-										// 	value: Number,
-										// 	message: "Este campo solo recibe numeros",
-										// }, HACER FUNCIONAR
+										validate: (value) => {
+											const regex = /^[0-9]*$/;
+											const onlyNumbers = regex.test(value);
+
+											return onlyNumbers
+												? true
+												: "El campo solo admite numeros.";
+										},
 									})}
 								/>
 							) : (
@@ -194,9 +198,17 @@ export function PerfilForm() {
 											message: "Debes completar el campo",
 										},
 										minLength: {
-											value: 12,
+											value: 8,
 											message:
-												"El telefono debe contener al menos 6 caracteres, numero de area y País",
+												"El telefono debe contener al menos 8 caracteres, numero de area y País",
+										},
+										validate: (value) => {
+											const regex = /^[0-9]*$/;
+											const onlyNumbers = regex.test(value);
+
+											return onlyNumbers
+												? true
+												: "El campo solo admite numeros.";
 										},
 									})}
 								/>

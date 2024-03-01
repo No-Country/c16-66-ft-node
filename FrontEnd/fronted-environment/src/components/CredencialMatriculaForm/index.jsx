@@ -6,6 +6,27 @@ import { useUserStore } from "../../hooks/userUserStore";
 import { useDoctorStore } from "../../hooks/useDoctorStore";
 import { useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
+
+// import { Autocomplete, Stack, TextField } from "@mui/material";
+
+// const doctorLogged = {
+// 	doctorId: "7e08e02d-bb48-4a37-8fed-0aa99d23eec4",
+// 	name: "Juan",
+// 	lastname: "García",
+// 	adress: "Av. Rivadavia 1234",
+// 	birthdate: "1985-06-15T00:00:00.000Z",
+// 	dni: 15987321,
+// 	cuil: "20159873215",
+// 	province: "Buenos Aires",
+// 	telephone: "110123456",
+// 	SocialSecurity: ["Osde", "Avalian", "Swiss Medical"],
+// 	email: "juan.garcia@gmail.com",
+// 	password: "s4luD1sMed!",
+// 	licensenumber: 987654,
+// 	specialty: "General Medicine",
+// 	image:
+// 		"https://drluisalbertolee.files.wordpress.com/2018/05/foto-carnet1.jpg",
+// };
 export function CredencialMatriculaForm() {
 	// const navigate = useNavigate();
 	const { editUserWithNewDate } = useUserStore();
@@ -17,6 +38,7 @@ export function CredencialMatriculaForm() {
 	const [userToEdit, setUserToEdit] = useState(
 		userLogged ? userLogged : doctorLogged
 	);
+
 	useEffect(() => {}, [userLogged, doctorLogged]);
 
 	const {
@@ -48,13 +70,13 @@ export function CredencialMatriculaForm() {
 		},
 	});
 
-	const onSubmitEdit = async (newData) => {
+	const onSubmitEdit = (newData) => {
 		event.preventDefault();
 		// !doctorLogged
 		// 	? (newData = { ...newData, id: userLogged.id })
 		// 	: (newData = { ...newData, id: doctorLogged.id });
 		!doctorLogged
-			? await editUserWithNewDate(newData)
+			? editUserWithNewDate(newData)
 			: editDoctorWithNewDate(newData);
 
 		// navigate("/home");
@@ -153,12 +175,15 @@ export function CredencialMatriculaForm() {
 										type='text'
 										name='socialSecurity'
 										className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
-										{...register("socialSecurity", {
-											required: {
-												value: true,
-												message: "Debes completar el campo",
-											},
-										})}
+										{...register(
+											"socialSecurity"
+											// , {
+											// 	required: {
+											// 		value: true,
+											// 		message: "Debes completar el campo",
+											// 	},
+											// }
+										)}
 									/>
 									{errors.socialSecurity && (
 										<span
@@ -239,7 +264,23 @@ export function CredencialMatriculaForm() {
 									>
 										Obras Sociales Adheridas
 									</label>
-									<select className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'>
+
+									{/* <Autocomplete
+										id='free-solo-demo'
+										value='Ver obras Sociales'
+										options={doctorLogged.SocialSecurity?.map(
+											(option) => option
+										)}
+										renderInput={(socialSecurity) => (
+											<TextField {...socialSecurity} />
+										)}
+									/> */}
+
+									<select
+										id='dropdown'
+										className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1 '
+										value='Ver obas sociales'
+									>
 										{doctorLogged.SocialSecurity?.map((add, i) => {
 											return <option key={i}>{add}</option>;
 										})}

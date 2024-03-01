@@ -1,9 +1,9 @@
 import {
-	fetchUsers,
-	// getOneUser,
+	fetchUsers, // getOneUser,
+	updateUser,
 	addUser as addUserService,
 	logginApi,
-} from "../Service"; //updateUser,
+} from "../Service";
 import { UserStore } from "../StoreGeneral/UsersStore";
 export function useUserStore() {
 	const { addUser, addUserLogged, userLogged } = UserStore();
@@ -14,10 +14,7 @@ export function useUserStore() {
 	};
 
 	const validationUserToLogin = async (userToLogin) => {
-		// const { email, password } = userToLogin;
-		// const userApiResponse = await getOneUser(email);
 		const userApiResponse = await logginApi(userToLogin);
-		// await addUserLogged(userApiResponse[0]);
 		console.log("Respuesta:", userApiResponse);
 		return userApiResponse;
 	};
@@ -28,12 +25,11 @@ export function useUserStore() {
 		const userApiResponse = await addUserService(newUser);
 
 		console.log(userApiResponse);
-		// await addUserLogged(userApiResponse[0]);
-		// return userApiResponse[0];
+		//await addUserLogged(userApiResponse);
+		// return userApiResponse; no devuelve nada
 	};
 
 	const editUserWithNewDate = async (newData) => {
-		//poner async
 		const {
 			name,
 			dni,
@@ -49,7 +45,6 @@ export function useUserStore() {
 			country,
 			province,
 			adress,
-			specialty,
 		} = newData;
 
 		const updatedData = {
@@ -57,7 +52,6 @@ export function useUserStore() {
 			name,
 			dni,
 			cuil,
-
 			socialSecurity,
 			planSocialSecurity,
 			lastname,
@@ -68,16 +62,15 @@ export function useUserStore() {
 			country,
 			province,
 			adress,
-			specialty,
 		};
 		console.log("edited doc :", updatedData);
 
 		console.log("lo qie vino ", newData);
-		// await updateDoctor(newData); // Cuando tenga como editar en el service, habilitar
+		updateUser(updatedData); // Cuando tenga como editar en el service, habilitar
 
 		// console.log("en hook");
 		// console.log(newData);
-		await addUserLogged(updatedData);
+		addUserLogged(updatedData);
 		// await updateUser(newData);
 	};
 

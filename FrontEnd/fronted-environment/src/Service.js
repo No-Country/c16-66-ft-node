@@ -28,14 +28,22 @@ export const addUser = async (user) => {
 	await Api.post("/pacients/signup", user);
 };
 
-export const addDoctor = async (doctor) => {
-	await Api.post("/doctors/", doctor);
+export const userLogout = async () => {
+	// PARA DESLOGEAR DE LA DB A USUARIOS
+	const response = await Api.get("/pacients/logout");
+	console.log("logout Responde :", response);
 };
 
-export const addAdmin = async (admin) => {
-	await Api.post("/admin/", admin);
+export const addDoctorService = async (newDoctor) => {
+	console.log("en el service new doctor :", newDoctor);
+	await Api.post("/doctors/signup", newDoctor); // anda con el signup
 };
-// Solo trae uno con un email que es String===========================
+
+// export const addAdmin = async (admin) => {
+// 	await Api.post("/admin/", admin);
+// };
+
+// Solo trae uno con un email y el password que son String =================================
 
 // export const getOneUser = async (email) => {
 // 	const { data } = await Api.get(`/users?email=${email}`);
@@ -45,21 +53,21 @@ export const addAdmin = async (admin) => {
 export const logginApi = async (userToLogin) => {
 	console.log("en el service", userToLogin);
 	const { data } = await Api.post(`/pacients/login`, userToLogin);
-
-	// console.log("desde el service la data es :", data);
+	console.log("desde el service Paciente la data es :", data);
 	return data;
 };
 
-export const getOneDoctor = async (email) => {
-	const { data } = await Api.get(`/doctors?email=${email}`);
+export const getOneDoctor = async (doctorToLogin) => {
+	// Ver si mati lo cambia
+	const { data } = await Api.get(`/doctors/?email=${doctorToLogin.email}`);
 	console.log("desde el service la data es :", data);
 	return data;
 };
 
-export const getOneAdmin = async (email) => {
-	const { data } = await Api.get(`/admin?email=${email}`);
-	return data;
-};
+// export const getOneAdmin = async (email) => {
+// 	const { data } = await Api.get(`/admin?email=${email}`);
+// 	return data;
+// };
 
 // con un id, que es string => Borra el user, doctor o admin====================
 
@@ -73,18 +81,20 @@ export const deleteAdmin = async (id) => {
 	await Api.delete(`/admin/${id}`);
 };
 
-// Recibe un item, y en base al id, lo reenvia para edit.================
+// Recibe un item, y en base al id, lo reenvia para edit ================
 export const updateUser = async (item) => {
-	console.log("en service");
-	console.log(item);
-	await Api.put(`/pacients/${item.id}`, item);
+	console.log("el paciente a editar entero en el service :", item);
+	await Api.put(`/pacients/${item.id}`, item); // Funciono desde la pp y postman
 };
 export const updateDoctor = async (item) => {
-	await Api.put(`/doctors/${item.id}`, item);
+	// rebotaba el socialSecurity y el registrarion number. Probe con ponerlos en null y el social paso bien.
+	console.log("el Doctor a editar entero en el service :", item);
+	const response = await Api.put(`/doctors/`, item);
+	console.log(response);
 };
-export const updateAdmin = async (item) => {
-	await Api.put(`/admin/${item.id}`, item);
-};
+// export const updateAdmin = async (item) => {
+// 	await Api.put(`/admin/${item.id}`, item);
+// };
 
 // RUTAS REVIEW   =======================================================
 // devuelve todas

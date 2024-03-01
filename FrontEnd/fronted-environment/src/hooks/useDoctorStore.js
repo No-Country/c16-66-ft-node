@@ -1,8 +1,9 @@
 import {
 	fetchDoctors,
 	getOneDoctor,
-	addDoctor as addDoctorService,
-} from "../Service"; //updateDoctor,
+	updateDoctor,
+	addDoctorService,
+} from "../Service"; //,
 import { DoctorStore } from "../StoreGeneral/DoctorsStore";
 export function useDoctorStore() {
 	const { addDoctor, addDoctorLogged, doctorLogged } = DoctorStore();
@@ -13,16 +14,16 @@ export function useDoctorStore() {
 		await addDoctor(doctorApiResponse);
 	};
 
-	const validationDoctorToLogin = async (email) => {
-		const userApiResponse = await getOneDoctor(email);
+	const validationDoctorToLogin = async (doctorToLogin) => {
+		const userApiResponse = await getOneDoctor(doctorToLogin);
 		return userApiResponse;
 	};
 	const addDoctorFromRegister = async (newDoctor) => {
-		const userApiResponse = await addDoctorService(newDoctor);
-		console.log(userApiResponse); // CHEQUEAR SI ANDA
+		await addDoctorService(newDoctor);
+		// CHEQUEAR SI ANDA
 	};
 
-	const editDoctorWithNewDate = (newData) => {
+	const editDoctorWithNewDate = async (newData) => {
 		//poner async
 		const {
 			name,
@@ -61,7 +62,7 @@ export function useDoctorStore() {
 		console.log("edited doc :", updatedData);
 
 		console.log("lo qie vino ", newData);
-		// await updateDoctor(newData); // Cuando tenga como editar en el service, habilitar
+		await updateDoctor(updatedData); // Cuando tenga como editar en el service, habilitar
 		addDoctorLogged(updatedData);
 	};
 

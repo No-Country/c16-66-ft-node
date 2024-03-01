@@ -54,15 +54,13 @@ export default function LoginPage() {
 		} //segun params, ver a que service pegarle
 		params.types == "pacient"
 			? (response = await validationUserToLogin(userToLogin))
-			: (response = await validationDoctorToLogin(userToLogin.email));
+			: (response = await validationDoctorToLogin(userToLogin));
 
 		console.log("en el login la respuesta es :", response);
 
-		response == undefined &&
-			setDbErros("No se encontro el email en la Base de datos");
-		if (params.types == "doctor" && response.password != userToLogin.password) {
+		if (response == undefined) {
 			setDbErros(
-				"La contraseña no coincide con la guardada en la base de datos.	"
+				"No se encontro el email en la Base de datos o la contraseña es erronea. Verifique los campos"
 			);
 			return;
 		} else {
