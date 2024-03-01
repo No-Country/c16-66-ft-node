@@ -21,6 +21,7 @@ import "./index.css";
 
 import { UserStore } from "../../StoreGeneral/UsersStore";
 import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
+import { Modal, Box } from "@mui/material";
 
 export function AsideComponent() {
 	const navigate = useNavigate();
@@ -30,12 +31,14 @@ export function AsideComponent() {
 	const handleAsideOpenClose = () => {
 		setOpenClose(!openClose);
 	};
+	const [modal, setModal] = useState(false)
 
 	const logOutFuncion = () => {
-		userLogged ? loggOutUser() : loggOutDoctor();
-		navigate("/");
-	};
-
+	
+		userLogged ? loggOutUser() : loggOutDoctor()
+		navigate("/")
+	}
+	
 	return (
 		<aside
 			style={{ maxHeight: "1024px" }}
@@ -213,9 +216,63 @@ export function AsideComponent() {
 					icon={suportAgent}
 				/>
 			</section>
-			<div onClick={() => logOutFuncion()}>
+			<div onClick={() => setModal(true)}>
 				<BoxIcon openClose={openClose} text={"Cerrar sesión"} icon={logOut} />
 			</div>
+			{
+				modal && 
+				// <div className="fixed top-1/3 left-96 w-1/3 h-1/3 bg-lightBlue rounded-xl">
+				// <div className=" bg-whiteOpacity m-10 p'5 rounded-xl">
+				// 	<h2 className="text-xl text-center font-semibold text-black">¿Deseas cerrar sesión?</h2>
+				// 	<div className="mt-5 flex justify-center">
+				// 		<button className="w-fit h-auto p-2 m-1 text-center text-white bg-darkBlue rounded-xl" onClick={()=> logOutFuncion()}>Continuar</button>
+				// 		<button className="w-fit h-auto p-2 m-1 text-center bg-lightGreen text-white rounded-xl" onClick={() => setModal(false)}>Regresar</button>
+				// 	</div>
+				// </div>
+				// </div>
+				<Modal
+				open={modal === true}
+				// onClose={() => handleModalImg}
+				aria-labelledby='modal-modal-title'
+				aria-describedby='modal-modal-description'
+			>
+				<Box
+					sx={{
+						position: "absolute",
+						top: "50%",
+						left: "50%",
+						zIndex: "10",
+						transform: "translate(-50%, -50%)",
+						width: 400,
+						bgcolor: "background.paper",
+						border: "2px solid #000",
+						boxShadow: 24,
+						p: 4,
+						borderRadius: '8px' 
+					}}
+				>
+					<div className='flex flex-col gap-4'>
+						<h2 className='text-center font-semibold text-base text-black'>
+							¿Deseas cerrar sesión?
+						</h2>
+						<div className="mt-5 flex justify-center">
+							<button
+								onClick={()=> logOutFuncion()}
+								className=' border bg-mostLighthBlue w-1/2 mx-auto text-darkBlue  rounded-md border-darkBlue hover:bg-red hover:text-mostLighthBlue mr-2'
+							>
+								Continuar
+							</button>
+							<button
+								onClick={() => setModal(false)}
+								className=' border bg-mostLighthBlue w-1/2 mx-auto text-darkBlue  rounded-md border-darkBlue hover:bg-green-700 hover:text-mostLighthBlue'
+							>
+								Regresar
+							</button>
+						</div>
+					</div>
+				</Box>
+			</Modal>
+			}
 		</aside>
-	);
+	)
 }
