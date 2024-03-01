@@ -31,6 +31,7 @@ export function useUserStore() {
 
 	const editUserWithNewDate = async (newData) => {
 		const {
+			image,
 			name,
 			dni,
 			cuil,
@@ -49,6 +50,7 @@ export function useUserStore() {
 
 		const updatedData = {
 			...userLogged,
+			image,
 			name,
 			dni,
 			cuil,

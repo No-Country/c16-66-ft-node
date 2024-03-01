@@ -54,11 +54,12 @@ export default function RegisterAdmin() {
 		params.types == "pacient"
 			? await addUserFromRegister(userToRegister)
 			: params.types == "doctor" &&
-			  (await addDoctorFromRegister(userToRegister));
+			  (await addDoctorFromRegister(userToRegister),
+			  setDbErros(""),
+			  params.types == "doctor" && navigate("/login/doctor"));
 
-		setDbErros("");
 		params.types == "pacient" && navigate("/login/pacient");
-		params.types == "doctor" && navigate("/login/doctor");
+
 		// }
 	};
 
@@ -82,7 +83,7 @@ export default function RegisterAdmin() {
 					item
 					xs={3}
 					sx={{
-						width: { xs: 328, sm: 500},
+						width: { xs: 328, sm: 500 },
 						minHeight: { xs: 528 },
 						backgroundColor: alpha("#ffffff", 0.8),
 						padding: 3,
@@ -96,17 +97,16 @@ export default function RegisterAdmin() {
 					<Grid
 						item
 						sx={{
-					
 							display: "flex",
 							justifyContent: "center",
 						}}
 					>
-						<Box component='img' alt='Logo' src={logo}  />
+						<Box component='img' alt='Logo' src={logo} />
 					</Grid>
 
 					<Typography
 						sx={{
-							mb: { xs: 1},
+							mb: { xs: 1 },
 							fontSize: 20,
 							display: "flex",
 							justifyContent: "center",
@@ -118,7 +118,6 @@ export default function RegisterAdmin() {
 					</Typography>
 					<Typography
 						sx={{
-				
 							fontSize: { xs: 13 },
 							display: "flex",
 							justifyContent: "center",
@@ -151,11 +150,11 @@ export default function RegisterAdmin() {
 									placeholder='Juan Perez'
 									fullWidth
 									name='name'
-									size="small"
+									size='small'
 									InputProps={{
 										style: {
-											borderRadius:"10px",
-										}
+											borderRadius: "10px",
+										},
 									}}
 									{...register("name", {
 										required: {
@@ -197,11 +196,11 @@ export default function RegisterAdmin() {
 									placeholder='something@something.com'
 									fullWidth
 									name='email'
-									size="small"
+									size='small'
 									InputProps={{
 										style: {
-											borderRadius:"10px",
-										}
+											borderRadius: "10px",
+										},
 									}}
 									{...register("email", {
 										required: {
@@ -240,13 +239,12 @@ export default function RegisterAdmin() {
 									placeholder='contraseña'
 									fullWidth
 									name='password'
-									size="small"
+									size='small'
 									InputProps={{
 										style: {
-											borderRadius:"10px",
-										}
+											borderRadius: "10px",
+										},
 									}}
-									
 									{...register("password", {
 										required: {
 											value: true,
@@ -285,11 +283,11 @@ export default function RegisterAdmin() {
 									placeholder='123456'
 									fullWidth
 									name='dni'
-									size="small"
+									size='small'
 									InputProps={{
 										style: {
-											borderRadius:"10px",
-										}
+											borderRadius: "10px",
+										},
 									}}
 									{...register("dni", {
 										required: {
@@ -328,7 +326,7 @@ export default function RegisterAdmin() {
 										sx={{
 											textTransform: "capitalize",
 											fontSize: { xs: 16, sm: 20 },
-											borderRadius: 3
+											borderRadius: 3,
 										}}
 										fullWidth
 									>

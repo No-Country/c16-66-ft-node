@@ -26,6 +26,7 @@ export function useDoctorStore() {
 	const editDoctorWithNewDate = async (newData) => {
 		//poner async
 		const {
+			image,
 			name,
 			dni,
 			cuil,
@@ -44,6 +45,7 @@ export function useDoctorStore() {
 
 		const updatedData = {
 			...doctorLogged,
+			image,
 			name,
 			dni,
 			cuil,

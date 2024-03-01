@@ -92,8 +92,8 @@ export function CredencialMatriculaForm() {
 			</div>
 			{userToEdit ? (
 				<form onSubmit={handleSubmit(onSubmitEdit)}>
-					<article className='flex flex-col lg:flex-row justify-around gap-2'>
-						<div className='w-11/12 lg:w-2/5 ml-2 pt-2'>
+					<article className='flex flex-col lg:flex-row justify-around gap-2 '>
+						<div className='w-11/12 ml-2 pt-2'>
 							<label
 								htmlFor='name'
 								className='ml-2  font-semibold text-base text-darkBlue '
@@ -109,7 +109,7 @@ export function CredencialMatriculaForm() {
 						</div>
 					</article>
 					<article className='flex flex-col lg:flex-row justify-around gap-2'>
-						<div className='w-11/12 lg:w-2/5 ml-2 pt-2'>
+						<div className='w-11/12  ml-2 pt-2'>
 							<label
 								htmlFor='dni'
 								className='ml-2  font-semibold text-base text-darkBlue  '
@@ -147,7 +147,7 @@ export function CredencialMatriculaForm() {
 						</div>
 					</article>
 					<article className=' flex flex-col lg:flex-row justify-around gap-2'>
-						<div className='w-11/12 lg:w-2/5 ml-2 pt-2'>
+						<div className='w-11/12  ml-2 pt-2'>
 							<label
 								htmlFor='cuil'
 								className='ml-2  font-semibold text-base text-darkBlue  '
@@ -162,7 +162,7 @@ export function CredencialMatriculaForm() {
 						</div>
 					</article>
 					<article className=' flex flex-col lg:flex-row justify-around gap-2'>
-						<div className='w-11/12 lg:w-2/5 ml-2 pt-2'>
+						<div className='w-11/12  ml-2 pt-2'>
 							{!doctorLogged ? (
 								<>
 									<label
@@ -227,7 +227,7 @@ export function CredencialMatriculaForm() {
 					</article>
 					{/* Plan / obras sociales adheridas */}
 					<article className=' flex flex-col lg:flex-row justify-around gap-2'>
-						<div className='w-11/12 lg:w-2/5 ml-2 pt-2'>
+						<div className='w-11/12  ml-2 pt-2'>
 							{!doctorLogged ? (
 								<>
 									<label
@@ -300,7 +300,7 @@ export function CredencialMatriculaForm() {
 					</article>
 					{/* Numero de matricula / numero de afiliado */}
 					<article className=' flex flex-col lg:flex-row justify-around gap-2'>
-						<div className='w-11/12 lg:w-2/5 ml-2 pt-2'>
+						<div className='w-11/12  ml-2 pt-2'>
 							{!doctorLogged ? (
 								<>
 									<label

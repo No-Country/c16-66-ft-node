@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { AsideComponent } from "../../components/aside/index";
 import { ViewFromLg } from "./ViewFromLg";
 import { ViewFromSm } from "./ViewFromSm";
+import logo from "../../assets/FakeLOGO/Logo 3.png";
 //Store Zustand debajo
 import { UserStore } from "../../StoreGeneral/UsersStore";
 import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
@@ -18,9 +19,17 @@ export default function Home() {
 
 	return (
 		<>
-			<main className='flex w-screen h-screen box-border z-0'>
-				<AsideComponent />
-				<main className='hidden w-9/12 lg:flex' style={{ marginLeft: "8%" }}>
+			<AsideComponent />
+			<header className='w-screen h-16 py-2.5 flex justify-center z-0'>
+				<img
+					className='w-2.5/12 h-12 cursor-pointer'
+					src={logo}
+					alt='Imagen del logo de la empresa'
+					onClick={() => navigate("/")}
+				/>
+			</header>
+			<main className='flex w-screen h-screen box-border z-0 '>
+				<main className='hidden w-9/12 lg:flex' style={{ marginInline: "10%" }}>
 					<ViewFromLg />
 					{/* se ve a partir de 1024 px */}
 				</main>

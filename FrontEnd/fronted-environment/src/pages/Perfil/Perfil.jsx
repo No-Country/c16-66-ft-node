@@ -1,35 +1,55 @@
-import { useEffect, useState } from 'react'
-import {AsideComponent} from '../../components/aside/index'
-import { DoctorStore } from '../../StoreGeneral/DoctorsStore'
-import { UserStore } from '../../StoreGeneral/UsersStore'
-import { PerfilForm } from '../../components/PerfilForm/index'
+import { useEffect, useState } from "react";
+import { AsideComponent } from "../../components/aside/index";
+import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
+import { UserStore } from "../../StoreGeneral/UsersStore";
+import { PerfilForm } from "../../components/PerfilForm/index";
 // import doctor from '../../assets/imgFakePacient/FakePacient1.png'
-import historial from '../../assets/svg/historialProfesional.svg'
-import matricula from '../../assets/svg/matricula.svg'
-import personEdit from '../../assets/svg/person_edit.svg'
-import '../../pages/PrincipalHome/index.css'
-import HistoryClinic from '../../components/PerfilForm/HistoryClinic'
-import HistoryProfesional from '../../components/PerfilForm/HistoryProfesional'
-import { NavHome } from '../../components/NavComponent.js/NavHome'
-import { CredencialMatriculaForm } from '../../components/CredencialMatriculaForm'
+import historial from "../../assets/svg/historialProfesional.svg";
+import matricula from "../../assets/svg/matricula.svg";
+import personEdit from "../../assets/svg/person_edit.svg";
+import "../../pages/PrincipalHome/index.css";
+import HistoryClinic from "../../components/PerfilForm/HistoryClinic";
+import HistoryProfesional from "../../components/PerfilForm/HistoryProfesional";
+import { NavHome } from "../../components/NavComponent.js/NavHome";
+import { CredencialMatriculaForm } from "../../components/CredencialMatriculaForm";
 
+//cargado de img
+import { useDoctorStore } from "../../hooks/useDoctorStore";
+import { useUserStore } from "../../hooks/userUserStore";
+import defaultImgUser from "../../assets/imgFakePacient/userDefualtImg.png";
+import editImgIcon from "../../assets/svg/border_color.svg";
+import { Modal, Box } from "@mui/material";
 
-export default function Perfil () {
-    const { doctorLogged } = DoctorStore();
-    const { userLogged } = UserStore();
-    const [user, setUser]= useState([])
-    const [btn1, setBtn1] = useState(true)
-    const [btn2, setBtn2] = useState(false)
-    const [btn3, setBtn3] = useState(false)
-   
+export default function Perfil() {
+	const { editDoctorWithNewDate } = useDoctorStore();
+	const { editUserWithNewDate } = useUserStore();
+	const { doctorLogged } = DoctorStore();
+	const { userLogged } = UserStore();
+	const [user, setUser] = useState([]);
+	const [btn1, setBtn1] = useState(true);
+	const [btn2, setBtn2] = useState(false);
+	const [btn3, setBtn3] = useState(false);
+	const [inputFile, setInputFile] = useState(false); // modal para editar imagen
+	const handleModalImg = () => {
+		setInputFile(!inputFile);
+	};
+	const updateImge = async (event) => {
+		event.preventDefault();
+		let data = event.target.newImg.value;
+		const updatedUser = { ...user, image: data };
+		doctorLogged
+			? await editDoctorWithNewDate(updatedUser)
+			: await editUserWithNewDate(updatedUser);
+		setInputFile(!inputFile);
+	};
 
-    useEffect(()=>{
-        if (doctorLogged !== null) {
-            setUser(doctorLogged)
-        } else if (userLogged !== null) {
-            setUser(userLogged)
-        }
-    },[doctorLogged, userLogged])
+	useEffect(() => {
+		if (doctorLogged !== null) {
+			setUser(doctorLogged);
+		} else if (userLogged !== null) {
+			setUser(userLogged);
+		}
+	}, [doctorLogged, userLogged]);
 
 	const handleClick1 = () => {
 		setBtn1(true);
@@ -50,14 +70,76 @@ export default function Perfil () {
 	return (
 		<main className='flex flex-col w-screen h-screen box-border z-0'>
 			<AsideComponent />
-            <NavHome />
-            <section className='h-full w-10/12 lg:w-11/12 self-end bg-bgLightGreen w-inherit'>
-
-                <div className='flex flex-col justify-center items-center mx-auto md:w-2/5 md:pt-6 md:ml-0 md:h-2/6 md:justify-start'>
-                    <img src={user.image} alt='image doctor' className=' rounded-full w-1/5 md:w-1/3 h-auto lg:mb-4'></img>
-                    <h3 className='text-xs md:pt-1 md:text-sm lg:text-base font-semibold'>{user.name}</h3>
-                    <p className='text-xs md:pt-1 md:text-sm lg:text-base text-gray mb-2 lg:mb-4'>{`${user.birthdate} años`}</p>
-                </div>
+			<NavHome />
+			<section className='h-full w-10/12 lg:w-11/12 self-end bg-bgLightGreen w-inherit'>
+				<div className='flex flex-col justify-center items-center mx-auto md:w-2/5 md:pt-6 md:ml-0 md:h-2/6 md:justify-start'>
+					<div className='flex flex-col items-center '>
+						<img
+							src={user.image ? user.image : defaultImgUser}
+							alt='image doctor'
+							className=' rounded-full w-1/5 md:w-1/3 h-auto lg:mb-4'
+						></img>
+						<button
+							className='rounded-full bg-lightGray w-8 h-8 -mt-8 flex justify-center items-center'
+							onClick={handleModalImg}
+						>
+							<img
+								src={editImgIcon}
+								className='h-6 w-6 '
+								alt='Editar Imagen de perfil'
+							/>
+						</button>
+					</div>
+					<Modal
+						open={inputFile == true}
+						onClose={() => handleModalImg}
+						aria-labelledby='modal-modal-title'
+						aria-describedby='modal-modal-description'
+					>
+						<Box
+							sx={{
+								position: "absolute",
+								top: "50%",
+								left: "50%",
+								zIndex: "10",
+								transform: "translate(-50%, -50%)",
+								width: 400,
+								bgcolor: "background.paper",
+								border: "2px solid #000",
+								boxShadow: 24,
+								p: 4,
+							}}
+						>
+							<div className='flex flex-col gap-4'>
+								<h2 className=' font-semibold text-base text-black'>
+									Cambia tu foto aqui
+								</h2>
+								<form onSubmit={updateImge}>
+									<input
+										type='text'
+										name='newImg'
+										placeholder='Copie la url de su imagen aqui'
+										className='w-full border-2 border-darkBlue rounded-xl px-4 mb-4'
+									/>
+									<button
+										type='submit'
+										className=' border bg-mostLighthBlue w-1/2 mx-auto text-darkBlue  rounded-md border-darkBlue hover:bg-green-700 hover:text-mostLighthBlue'
+									>
+										Guardar
+									</button>
+								</form>
+							</div>
+						</Box>
+					</Modal>
+					<h3 className='text-xs md:pt-1 md:text-sm lg:text-base font-semibold'>
+						{user.name}
+					</h3>
+					<p className='text-xs md:pt-1 md:text-sm lg:text-base text-gray mb-2 lg:mb-4'>{`${
+						user.birthdate
+							? user.birthdate
+							: "Aún no hay datos sobre la fecha de nacimiento"
+					}`}</p>
+				</div>
 
 				<div className='flex overflow-x-auto p-1 w-full h-12 mb-4 md:flex-col md:w-2/5 md:h-fit md:items-center lg:mt-24'>
 					<button
@@ -93,22 +175,17 @@ export default function Perfil () {
 					</button>
 				</div>
 
-                <div style={{ maxHeight:'600px'}} className='w-9/12 mt-6 mx-auto p-2 overflow-y-auto rounded-xl md:fixed md:top-24 md:right-1 md:w-1/2'>  
-                {
-                    btn1 && <PerfilForm userLogged={user}/>
-                }
-                { 
-                   btn2  && 
-                  <CredencialMatriculaForm /> 
-                    
-                } 
-                { 
-                    btn3  && <>{
-                        userLogged ? <HistoryClinic /> : <HistoryProfesional />
-                    }</> 
-                }    
-                </div>    
-            </section>
-        </main>
-    )
+				<div
+					style={{ maxHeight: "600px" }}
+					className='w-9/12 mt-6 mx-auto p-2 overflow-y-auto rounded-xl md:fixed md:top-24 md:right-1 md:w-1/2'
+				>
+					{btn1 && <PerfilForm userLogged={user} />}
+					{btn2 && <CredencialMatriculaForm />}
+					{btn3 && (
+						<>{userLogged ? <HistoryClinic /> : <HistoryProfesional />}</>
+					)}
+				</div>
+			</section>
+		</main>
+	);
 }

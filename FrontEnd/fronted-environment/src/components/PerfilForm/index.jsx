@@ -39,7 +39,7 @@ export function PerfilForm() {
 			country: "Argentina",
 			province: userToEdit.province,
 			adress: userToEdit.adress,
-			// town: userToEdit.town,
+			town: userToEdit.town,
 			socialSecurity: userToEdit.socialSecurity, //paciente sin
 			licensenumber: doctorLogged && userToEdit.registrationNumber,
 			SocialSecurity: doctorLogged && userToEdit.socialSecurityAdd, // Doctor con mayus
@@ -410,7 +410,7 @@ export function PerfilForm() {
 							>
 								Localidad y Código Postal <span className='text-red'>*</span>
 							</label>
-							{/* <input
+							<input
 								type='text'
 								name='town'
 								className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
@@ -428,7 +428,7 @@ export function PerfilForm() {
 								>
 									{errors.town.message}
 								</span>
-							)} */}
+							)}
 						</div>
 					</article>
 					<article className='flex justify-around lg:justify-center lg:gap-20 mt-4'>

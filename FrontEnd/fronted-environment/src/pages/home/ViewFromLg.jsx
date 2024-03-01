@@ -11,10 +11,10 @@ import { UserStore } from "../../StoreGeneral/UsersStore";
 import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
 
 //
-import logo from "../../assets/FakeLOGO/Logo 3.png";
+// import logo from "../../assets/FakeLOGO/Logo 3.png";
 import credencialIcon from "../../assets/svg/contact_emergency.svg";
 import { Modal } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export function ViewFromLg() {
 	const { doctorLogged } = DoctorStore();
@@ -27,7 +27,7 @@ export function ViewFromLg() {
 	const [open, setOpen] = useState(false);
 	const handleModalConsult = () => setOpen(!open);
 
-	const navigate = useNavigate()
+	// const navigate = useNavigate();
 
 	const handlerSelect = (id) => {
 		let consult;
@@ -45,7 +45,7 @@ export function ViewFromLg() {
 				style={{ maxWidth: "1440px" }}
 				className='ml-4 xl:ml-6 lg:w-4/5 xl:w-5/6 h-12/12 flex-col lg:flex-nowrap'
 			>
-				<header
+				{/* <header
 					// style={{ width: "1320px" }}
 					className='-ml-28 w-screen h-16 py-2.5 flex justify-center'
 				>
@@ -53,9 +53,9 @@ export function ViewFromLg() {
 						className='w-2.5/12 h-12 cursor-pointer'
 						src={logo}
 						alt='Imagen del logo de la empresa'
-						onClick={()=>navigate('/')}
+						onClick={() => navigate("/")}
 					/>
-				</header>
+				</header> */}
 
 				{/* Seccion de Titulo de la pagina ==-=-=-=-=-=-=-==-=-=-=-=-=-= */}
 				<section className=' mt-2 mb-1 w-full h-3/12 flex-col mr-4'>
@@ -211,9 +211,7 @@ export function ViewFromLg() {
 							<div>
 								{doctorLogged ? "Matricula N°:" : "N° Afiliado:"}
 								<span className='ml-2  text-xs   text-darkBlue'>
-									{doctorLogged
-										? doctorLogged.licensenumber
-										: userLogged?.id}
+									{doctorLogged ? doctorLogged.licensenumber : userLogged?.id}
 								</span>
 							</div>
 						</article>

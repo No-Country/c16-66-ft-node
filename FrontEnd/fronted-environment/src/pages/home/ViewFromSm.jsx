@@ -12,12 +12,12 @@ import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
 
 //
 import FakePacient1 from "../../assets/imgFakePacient/FakePacient1.png";
-import logo from "../../assets/FakeLOGO/Logo 3.png";
+// import logo from "../../assets/FakeLOGO/Logo 3.png";
 import calendarIcon from "../../assets/svg/calendar.svg";
 import editIcon from "../../assets/svg/mode_edit_24px.svg";
 import credencialIcon from "../../assets/svg/contact_emergency.svg";
 import { Modal } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export function ViewFromSm() {
 	const { doctorLogged } = DoctorStore();
@@ -32,7 +32,7 @@ export function ViewFromSm() {
 	const [openCalendar, setOpenCalendar] = useState(false);
 	const handleModalCalendar = () => setOpenCalendar(!openCalendar);
 
-	const navigate = useNavigate()
+	// const navigate = useNavigate();
 
 	const handlerSelect = (id) => {
 		let consult;
@@ -47,19 +47,16 @@ export function ViewFromSm() {
 			{/* header con logo de APP =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */}
 			<div
 				style={{ maxHeight: "1024px" }}
-				className=' w-11/12 h-12/12 flex-col lg:flex-nowrap overflow-y-scroll'
+				className=' w-11/12 h-12/12 flex-col lg:flex-nowrap overflow-y-scroll overflow-x-visible'
 			>
-				<header
-					// style={{ width: "1320px" }}
-					className='-ml-28 w-screen h-16 py-2.5 flex justify-center'
-				>
+				{/* <header className='-ml-28 w-screen h-16 py-2.5 flex justify-center'>
 					<img
 						className='w-2.5/12 h-12 cursor-pointer'
 						src={logo}
 						alt='Imagen del logo de la empresa'
-						onClick={()=>navigate('/')}
+						onClick={() => navigate("/")}
 					/>
-				</header>
+				</header> */}
 
 				{/* Seccion de Titulo de la pagina ==-=-=-=-=-=-=-==-=-=-=-=-=-= */}
 				<section className=' mt-2 mb-1 h-3/12 flex-col sticky top-0 z-40 bg-white'>
@@ -177,9 +174,7 @@ export function ViewFromSm() {
 							<div>
 								{doctorLogged ? "Matricula N°:" : "N° Afiliado:"}
 								<span className='ml-2  text-xs   text-darkBlue'>
-									{doctorLogged
-										? doctorLogged.licensenumber
-										: userLogged?.id}
+									{doctorLogged ? doctorLogged.licensenumber : userLogged?.id}
 								</span>
 							</div>
 						</article>
@@ -248,9 +243,16 @@ export function ViewFromSm() {
 						<h3>Próximo turno :</h3>
 						<div className='w-11/12 h-32 mx-auto mt-2 pt-2 xs:flex justify-center items-center  rounded-lg box-border overflow-scroll'>
 							{selectTypeUser?.name != undefined ? (
-								<CardPacientItem user={selectTypeUser} />
+								<CardPacientItem
+									key={
+										selectTypeUser.doctorId
+											? selectTypeUser.doctorId
+											: selectTypeUser.pacientId
+									}
+									user={selectTypeUser}
+								/>
 							) : (
-								<CardPacientItem user={doctors[0]} />
+								<CardPacientItem key={doctors[0].doctorId} user={doctors[0]} />
 							)}
 						</div>
 
