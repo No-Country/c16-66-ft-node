@@ -140,52 +140,68 @@ export default function Perfil() {
 							: "Aún no hay datos sobre la fecha de nacimiento"
 					}`}</p>
 				</div>
+            <NavHome />
+            <section style={{maxHeight: '1024px'}} className='mt-0.5 h-full w-10/12 lg:w-11/12 self-end bg-bgLightGreen w-inherit'>
 
-				<div className='flex overflow-x-auto p-1 w-full h-12 mb-4 md:flex-col md:w-2/5 md:h-fit md:items-center lg:mt-24'>
+                <div className='flex flex-col justify-center items-center mx-auto md:w-2/5 md:pt-6 md:ml-0 md:h-2/6 md:justify-start mb-4 md:mb-0'>
+                    <img src={user.image} alt='image user' className=' rounded-full w-1/5 md:w-1/3 h-auto lg:mb-4'></img>
+                    <h3 className='text-xs md:pt-1 md:text-sm lg:text-base font-semibold'>{user.name}</h3>
+                    <p className='text-xs md:pt-1 md:text-sm lg:text-base text-gray mb-2 lg:mb-4'>{`${user.birthdate} años`}</p>
+                </div>
+
+				<div className='flex flex-nowrap mx-auto justify-between overflow-x-scroll md:overflow-hidden p-1 h-12 mb-12 md:flex-col md:mx-0 md:w-2/5 md:h-fit md:items-center lg:mt-24 md:mb-4'>
 					<button
 						onClick={handleClick1}
-						className='items-center p-1 rounded-xl bg-white md:bg-transparent hover:bg-whiteOpacity mr-1 flex text-xs w-fit md:p-7 md:text-sm md:mb-1 md:w-64 text-center lg:text-base lg:p-3 lg:'
+						className='items-center w-64 min-w-44 p-1 flex flex-nowrap rounded-xl bg-white md:bg-transparent hover:bg-whiteOpacity mr-1 text-xs md:p-7 md:text-sm md:mb-1 md:w-64 text-center lg:text-base lg:p-3 lg:'
+  
 					>
 						<img
 							src={personEdit}
-							className='h-5 md:h-6 md:pr-1 lg:h-7 lg:pr-2'
+							className='h-5 md:h-6 pr-1 lg:h-7 lg:pr-2'
 						/>
 						Mis datos personales
 					</button>
 
 					<button
 						onClick={handleClick2}
-						className='items-center p-1 rounded-xl bg-white md:bg-transparent hover:bg-whiteOpacity mr-1 flex text-xs w-fit md:p-7 md:text-sm md:mb-1 md:w-64 text-center lg:text-base lg:p-3 lg:'
+						className='items-center p-1 w-64 min-w-44 flex flex-nowrap rounded-xl bg-white md:bg-transparent hover:bg-whiteOpacity mr-1 text-xs md:p-7 md:text-sm md:mb-1 md:w-64 text-center lg:text-base lg:p-3 lg:'
+  
 					>
 						<img
 							src={matricula}
-							className='h-5 md:h-6 md:pr-1 lg:h-7 lg:pr-2'
+							className='h-5 md:h-6 pr-1 lg:h-7 lg:pr-2'
 						/>
 						{userLogged ? "Mi credencial" : "Mi matrícula"}
 					</button>
 					<button
 						onClick={handleClick3}
-						className='items-center p-1 rounded-xl bg-white md:bg-transparent hover:bg-whiteOpacity mr-1 flex text-xs w-fit md:p-7 md:text-sm md:mb-1 md:w-64 text-center lg:text-base lg:p-3 lg:'
+						className='items-center p-1 w-64 min-w-44 flex flex-nowrap rounded-xl bg-white md:bg-transparent hover:bg-whiteOpacity mr-1 text-xs md:p-7 md:text-sm md:mb-1 md:w-64 text-center lg:text-base lg:p-3 lg:'
+  
 					>
 						<img
 							src={historial}
-							className='h-5 md:h-6 md:pr-1 lg:h-7 lg:pr-2'
+							className='h-5 md:h-6 pr-1 lg:h-7 lg:pr-2'
 						/>
 						{userLogged ? "Mi historial médico" : "Mi historial profesional"}
 					</button>
 				</div>
 
-				<div
-					style={{ maxHeight: "600px" }}
-					className='w-9/12 mt-6 mx-auto p-2 overflow-y-auto rounded-xl md:fixed md:top-24 md:right-1 md:w-1/2'
-				>
-					{btn1 && <PerfilForm userLogged={user} />}
-					{btn2 && <CredencialMatriculaForm />}
-					{btn3 && (
-						<>{userLogged ? <HistoryClinic /> : <HistoryProfesional />}</>
-					)}
-				</div>
-			</section>
-		</main>
-	);
+                <div style={{ maxHeight:'470px'}} className='w-11/12 mt-6 mx-auto overflow-y-auto rounded-xl md:fixed md:top-16 md:right-5 md:w-2/5'>  
+                {
+                    btn1 && <PerfilForm userLogged={user}/>
+                }
+                { 
+                   btn2  && 
+                  <CredencialMatriculaForm /> 
+                    
+                } 
+                { 
+                    btn3  && <>{
+                        userLogged ? <HistoryClinic /> : <HistoryProfesional />
+                    }</> 
+                }    
+                </div>    
+            </section>
+        </main>
+    )
 }

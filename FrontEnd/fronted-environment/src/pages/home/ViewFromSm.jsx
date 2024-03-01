@@ -60,7 +60,7 @@ export function ViewFromSm() {
 
 				{/* Seccion de Titulo de la pagina ==-=-=-=-=-=-=-==-=-=-=-=-=-= */}
 				<section className=' mt-2 mb-1 h-3/12 flex-col sticky top-0 z-40 bg-white'>
-					<h2 className='text-2xl font-bold text-black'>
+					<h2 className='text-xl font-bold text-black'>
 						{" "}
 						Bienvenido/a
 						<span className=' text-darkBlue'>
@@ -70,11 +70,11 @@ export function ViewFromSm() {
 						</span>
 					</h2>
 					{doctorLogged ? (
-						<p className=' text-base font-normal text-gray'>
+						<p className=' text-md font-normal text-gray'>
 							¡Ten un gran día de trabajo, excelentes consultas!
 						</p>
 					) : (
-						<p className=' text-lg font-normal text-gray'>
+						<p className=' text-md font-normal text-gray'>
 							¿Estas listo/a para tu próxima cita?
 						</p>
 					)}
