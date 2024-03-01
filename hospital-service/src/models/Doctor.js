@@ -71,8 +71,7 @@ module.exports = (sequelize) => {
         type: DataTypes.ARRAY(DataTypes.STRING),
       },
       registrationNumber: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
+        type: DataTypes.STRING,
       },
       image: {
         type: DataTypes.STRING,
