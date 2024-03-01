@@ -9,8 +9,6 @@ import linkedin from '../../assets/svg/devicon_linkedin.svg'
 // import suport from '../../assets/svg/support_agent.svg'
 import copyR from '../../assets/svg/ph_copyright-bold.svg'
 import vector from '../../assets/svg/Vector.svg'
-// import {Map } from '../../components/principalHome/Map'
-
 
 export function Footer () {
 

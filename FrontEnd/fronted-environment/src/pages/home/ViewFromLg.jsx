@@ -58,8 +58,8 @@ export function ViewFromLg() {
 				</header>
 
 				{/* Seccion de Titulo de la pagina ==-=-=-=-=-=-=-==-=-=-=-=-=-= */}
-				<section className=' mt-2 mb-1 w-full h-3/12 flex-col mr-4'>
-					<h2 className='text-3xl font-bold text-black'>
+				<section className='mt-2 mb-1 w-full h-3/12 flex-col mr-4'>
+					<h2 className='text-xl font-bold text-black'>
 						{" "}
 						Bienvenido/a
 						<span className=' text-darkBlue'>
@@ -69,11 +69,11 @@ export function ViewFromLg() {
 						</span>
 					</h2>
 					{doctorLogged ? (
-						<p className=' text-lg font-normal text-gray'>
+						<p className=' text-md font-normal text-gray'>
 							¡Ten un gran día de trabajo, excelentes consultas!
 						</p>
 					) : (
-						<p className=' text-lg font-normal text-gray'>
+						<p className=' text-md font-normal text-gray'>
 							¡Ten un gran día, y accede a las mejores consultas médicas!
 						</p>
 					)}
@@ -85,7 +85,7 @@ export function ViewFromLg() {
 				</section>
 
 				{/* Seccion de reenderizado de lista de pacientes y consulta de c/u =-=-=-=-=-=-=*/}
-				<section className='w-11/12 h-80 xl:h-96 mt-4 xl:mt-2 secction__Principal-doctorHome flex py-2 px-4 items-start gap-6 shrink-0 rounded-3xl overflow-hidden'>
+				<section style={{height:'358px'}} className='w-11/12 mt-4 xl:mt-2 secction__Principal-doctorHome flex py-2 px-4 items-start gap-6 shrink-0 rounded-3xl overflow-hidden md:overflow-scroll'>
 					<div className=' w-6/12 flex-col'>
 						<h2 className=' text-2xl text-black font-medium mb-3'>
 							{doctorLogged ? "Lista de pacientes" : "Próximos turnos "}
@@ -171,8 +171,8 @@ export function ViewFromLg() {
 				</Modal>
 			</div>
 			<section className='-ml-4 xl:ml-0 mt-16 mb-2 w-5/12 h-2/5 flex-col box-border'>
-				<div className='m-auto mt-2 box-border'>
-					<CalendarComponent />
+				<div style={{ height: `calc(100vh - 4rem)` }} className='m-auto mt-2 box-border'>
+					<CalendarComponent/>
 
 					<div
 						className='mt-1 w-full h-44 pt-1 flex-col items-center bg-mostLighthBlue rounded-xl box-border hover:cursor-pointer relative'
