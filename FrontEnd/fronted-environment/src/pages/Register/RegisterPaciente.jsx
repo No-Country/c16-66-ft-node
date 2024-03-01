@@ -72,7 +72,7 @@ export default function RegisterPatient() {
   sx={{
     display: 'flex',
     justifyContent: 'space-evenly', 
-    mb:{xs: 3, sm: 5 }, 
+    mb:{xs: 0}, 
    }}
  >
  <Box
@@ -82,8 +82,14 @@ export default function RegisterPatient() {
  />
  </Grid>
  
-       <Typography  sx={{ mb:{xs: 1, sm: 2 }, fontSize:25,  display: 'flex',  justifyContent: 'center' , typography: 'subtitle', fontWeight: 'bold'}}>
-           Crea tu cuenta
+       <Typography  
+       sx={{ 
+        fontSize:25,  
+        display: 'flex',  
+        justifyContent: 'center' , 
+        typography: 'subtitle', 
+        fontWeight: 'bold'}}>
+           Crea tu cuent
          </Typography>
          <Typography  sx={{ mb: 1,fontSize:{xs: 16, sm: 20} , display: 'flex',  justifyContent: 'center', fontWeight: 'regular' }}>
             Por favor, ingresa los datos requeridos
