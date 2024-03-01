@@ -15,24 +15,41 @@ const CarouselHome = ({
 	const carouselHome = useRef(null);
 	const intervalCarouselHome = useRef(null);
 
-	const next = useCallback(() => {
-		if(carouselHome.current.children.length > 0){
+	// const next = useCallback(() => {
+	// 	if(carouselHome.current.children.length > 0){
 			
-			const firstItem = carouselHome.current.children[0];
-			carouselHome.current.style.transition = `${velocity}ms ease-out all`;
-			const sizeSlide = carouselHome.current.children[0].offsetWidth;
-			carouselHome.current.style.transform = `translateX(-${sizeSlide}px)`;
+	// 		const firstItem = carouselHome.current.children[0];
+	// 		carouselHome.current.style.transition = `${velocity}ms ease-out all`;
+	// 		const sizeSlide = carouselHome.current.children[0].offsetWidth;
+	// 		carouselHome.current.style.transform = `translateX(-${sizeSlide}px)`;
 
-			const transition = () => {
-				carouselHome.current.style.transition = 'none';
-				carouselHome.current.style.transform = `translateX(0)`;
-				carouselHome.current.appendChild(firstItem);
-				carouselHome.current.removeEventListener('transitionend', transition);
-			}
-			carouselHome.current.addEventListener('transitionend', transition);
-		}
-	}, [velocity]);
+	// 		const transition = () => {
+	// 			carouselHome.current.style.transition = 'none';
+	// 			carouselHome.current.style.transform = `translateX(0)`;
+	// 			carouselHome.current.appendChild(firstItem);
+	// 			carouselHome.current.removeEventListener('transitionend', transition);
+	// 		}
+	// 		carouselHome.current.addEventListener('transitionend', transition);
+	// 	}
+	// }, [velocity]);
 	
+	const next = useCallback(() => {
+		if (carouselHome.current && carouselHome.current.children.length > 0) {
+		const firstItem = carouselHome.current.children[0];
+		carouselHome.current.style.transition = `${velocity}ms ease-out all`;
+		const sizeSlide = carouselHome.current.children[0].offsetWidth;
+		carouselHome.current.style.transform = `translateX(-${sizeSlide}px)`;
+ 
+		const transition = () => {
+			carouselHome.current.style.transition = 'none';
+			carouselHome.current.style.transform = `translateX(0)`;
+			carouselHome.current.appendChild(firstItem);
+			carouselHome.current.removeEventListener('transitionend', transition);
+		}
+		carouselHome.current.addEventListener('transitionend', transition);
+		}
+	}, [velocity, carouselHome]);
+
 	const before = () => {
 		if(carouselHome.current.children.length > 0){
 			const index = carouselHome.current.children.length - 1;

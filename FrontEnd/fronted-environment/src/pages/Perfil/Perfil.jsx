@@ -11,6 +11,7 @@ import '../../pages/PrincipalHome/index.css'
 import HistoryClinic from '../../components/PerfilForm/HistoryClinic'
 import HistoryProfesional from '../../components/PerfilForm/HistoryProfesional'
 import { NavHome } from '../../components/NavComponent.js/NavHome'
+import { CredencialMatriculaForm } from '../../components/CredencialMatriculaForm'
 
 
 export default function Perfil () {
@@ -98,11 +99,7 @@ export default function Perfil () {
                 }
                 { 
                    btn2  && 
-                   <>
-                {
-                    userLogged ? 'Mi credencial' : 'Mi matrícula'
-                } 
-                   </> 
+                  <CredencialMatriculaForm /> 
                     
                 } 
                 { 
