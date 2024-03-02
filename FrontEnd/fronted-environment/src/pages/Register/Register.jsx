@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useUserStore } from "../../hooks/userUserStore";
 import { useDoctorStore } from "../../hooks/useDoctorStore";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import {
 	Button,
 	Box,
@@ -146,7 +146,6 @@ export default function RegisterAdmin() {
 
 							<Grid item xs={12}>
 								<TextField
-									label='Ingresa tu nombre y apellido'
 									placeholder='Juan Perez'
 									fullWidth
 									name='name'
@@ -191,7 +190,6 @@ export default function RegisterAdmin() {
 
 							<Grid item xs={12}>
 								<TextField
-									label='Ingresa tu email'
 									type='email'
 									placeholder='something@something.com'
 									fullWidth
@@ -234,7 +232,6 @@ export default function RegisterAdmin() {
 							</Typography>
 							<Grid item xs={12}>
 								<TextField
-									label='Ingresa tu contraseña'
 									type='password'
 									placeholder='contraseña'
 									fullWidth
@@ -278,7 +275,6 @@ export default function RegisterAdmin() {
 							</Typography>
 							<Grid item xs={12} sx={{ mb: { xs: 3 } }}>
 								<TextField
-									label='Ingresa tu número de DNI'
 									type='text'
 									placeholder='123456'
 									fullWidth
@@ -342,7 +338,7 @@ export default function RegisterAdmin() {
 									¿Ya tenés una cuenta?
 								</Typography>
 								{
-									<span
+									<Link
 										to={`/login/${params.types}`}
 										style={{
 											fontWeight: "bold",
@@ -353,7 +349,7 @@ export default function RegisterAdmin() {
 										className='mt-4'
 									>
 										Inicia Sesion
-									</span>
+									</Link>
 
 									// acomodar con las rutas adecuadas
 									/* <Link component={RouterLink} color="inherit" to="/auth/register">

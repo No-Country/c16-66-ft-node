@@ -33,8 +33,8 @@ const theme = createTheme({
 export default function LoginPage() {
 	const params = useParams();
 
-	const { addUserLogged } = UserStore();
-	const { addDoctorLogged } = DoctorStore();
+	const { addUserLogged, loggOutUser, userLogged } = UserStore();
+	const { addDoctorLogged, doctorLogged, loggOutDoctor } = DoctorStore();
 	const [dbErrors, setDbErros] = useState("");
 	const navigate = useNavigate();
 	const { validationUserToLogin } = useUserStore();
@@ -47,6 +47,8 @@ export default function LoginPage() {
 
 	const onSubmitLoggin = async (userToLogin) => {
 		event.preventDefault();
+		userLogged && loggOutUser();
+		doctorLogged && loggOutDoctor();
 		let response;
 		if (userToLogin.email.includes(".net")) {
 			setDbErros("La aplicacion no permite correos con el dominio '.net'");
@@ -67,6 +69,7 @@ export default function LoginPage() {
 			params.types == "pacient" && addUserLogged(response);
 			params.types == "doctor" && addDoctorLogged(response);
 			setDbErros("");
+
 			navigate("/home");
 		}
 	};
@@ -115,7 +118,7 @@ export default function LoginPage() {
 
 					<Typography
 						sx={{
-							mb: { xs: 1},
+							mb: { xs: 1 },
 							fontSize: 20,
 							display: "flex",
 							justifyContent: "center",
@@ -127,7 +130,6 @@ export default function LoginPage() {
 					</Typography>
 					<Typography
 						sx={{
-							
 							fontSize: { xs: 13 },
 							display: "flex",
 							justifyContent: "center",
@@ -161,11 +163,11 @@ export default function LoginPage() {
 									placeholder='something@something.com'
 									fullWidth
 									name='email'
-									size="small"
+									size='small'
 									InputProps={{
 										style: {
-											borderRadius:"10px",
-										}
+											borderRadius: "10px",
+										},
 									}}
 									//abajo logica del react-hook-fomr
 									{...register("email", {
@@ -198,18 +200,18 @@ export default function LoginPage() {
 									Contraseña
 								</Typography>
 							</Grid>
-							<Grid item xs={12} >
+							<Grid item xs={12}>
 								<TextField
 									label='Ingresa tu contraseña'
 									type='password'
 									placeholder='contraseña'
 									fullWidth
 									name='password'
-									size="small"
+									size='small'
 									InputProps={{
 										style: {
-											borderRadius:"10px",
-										}
+											borderRadius: "10px",
+										},
 									}}
 									//abajo logica del react-hook-fomr
 									{...register("password", {
@@ -245,14 +247,13 @@ export default function LoginPage() {
 							<Grid container spacing={2} sx={{ mt: 1.5, mb: 2 }}>
 								<Grid item xs={12} sx={{ color: "#115E86" }}>
 									<Button
-										
 										type='submit'
 										color='anger'
 										variant='contained'
 										sx={{
 											textTransform: "capitalize",
 											fontSize: { xs: 16, sm: 20 },
-											borderRadius: 3
+											borderRadius: 3,
 										}}
 										fullWidth
 									>

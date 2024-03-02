@@ -25,6 +25,7 @@ export function PerfilForm() {
 		handleSubmit,
 		reset,
 		formState: { errors },
+		formState: { isDirty },
 	} = useForm({
 		defaultValues: {
 			name: userToEdit.name,
@@ -36,7 +37,7 @@ export function PerfilForm() {
 			cuil: userToEdit.cuil,
 			email: userToEdit.email,
 			password: userToEdit.password,
-			country: "Argentina",
+			country: userToEdit.country,
 			province: userToEdit.province,
 			adress: userToEdit.adress,
 			town: userToEdit.town,
@@ -126,7 +127,8 @@ export function PerfilForm() {
 							</label>
 							<input
 								type='text'
-								className='pl-2 w-full py-1 border border-darkBlue rounded-xl bg-mostLighthBlue mt-1'
+								disabled
+								className='pl-2 w-full py-1 border border-darkBlue rounded-xl bg-lightGray mt-1'
 								{...register("dni", {
 									required: {
 										value: true,
@@ -237,11 +239,50 @@ export function PerfilForm() {
 							>
 								Cuil <span className='text-red'>*</span>
 							</label>
-							<input
-								type='text'
-								className='pl-2 w-full py-1 border border-darkBlue rounded-xl bg-lightGray mt-1'
-								disabled
-							/>
+
+							{userToEdit.cuil != null ? (
+								<input
+									disabled={true}
+									type='text'
+									className={` pl-2 w-full py-1 border border-darkBlue rounded-xl bg-lightGray mt-1`}
+									{...register("cuil")}
+								/>
+							) : (
+								<input
+									type='text'
+									className={`pl-2 w-full py-1 border border-darkBlue rounded-xl bg-mostLighthBlue mt-1`}
+									{...register("cuil", {
+										required: {
+											value: true,
+											message: "Debes completar el campo",
+										},
+										minLength: {
+											value: 12,
+											message: " El campo debe tener 12 carateres",
+										},
+										maxLength: {
+											value: 12,
+											message: " El campo debe tener 12 carateres",
+										},
+										validate: (value) => {
+											const regex = /^[0-9]*$/;
+											const onlyNumbers = regex.test(value);
+
+											return onlyNumbers
+												? true
+												: "El campo solo admite numeros.";
+										},
+									})}
+								/>
+							)}
+							{errors.cuil && (
+								<span
+									className='pl-2 pt-2 flex text-xs font-bold text-red-700'
+									style={{ color: "red" }}
+								>
+									{errors.cuil.message}
+								</span>
+							)}
 						</div>
 					</article>
 					<article className=' flex flex-col lg:flex-row justify-around gap-2'>
@@ -405,7 +446,7 @@ export function PerfilForm() {
 						</div>
 						<div className='w-11/12 lg:w-2/5 ml-2 pt-2'>
 							<label
-								htmlFor='lastaAme'
+								htmlFor='town'
 								className='ml-2  font-semibold text-base text-darkBlue  '
 							>
 								Localidad y Código Postal <span className='text-red'>*</span>
@@ -434,14 +475,22 @@ export function PerfilForm() {
 					<article className='flex justify-around lg:justify-center lg:gap-20 mt-4'>
 						<button
 							type='submit'
-							className='w-1/3 md:w-1/3 py-3 sm:text-sm md:text-lg sm:font-semibold md:font-bold px-4 border-2 border-darckBlue rounded-xl flex justify-center bg-darkBlue hover:bg-green-800 text-white hover:border-darkBlue  hover:text-mostLighthBlue hover:cursor-pointer'
+							className={`w-1/3 md:w-1/3 py-3 sm:text-sm md:text-lg sm:font-semibold md:font-bold px-4 border-2 border-darckBlue rounded-xl flex justify-center bg-darkBlue ${
+								isDirty ? "hover:bg-green-700" : "hover:bg-green-900"
+							} text-white hover:border-darkBlue  hover:text-mostLighthBlue hover:cursor-pointer`}
+							disabled={!isDirty}
 						>
-							Editar
+							{isDirty ? "Guardar" : "Editar"}
 						</button>
 
 						<button
 							type='cancel'
-							className='w-1/3 md:w-1/3 py-3 sm:text-sm md:text-lg sm:font-semibold md:font-bold px-4 border-2 rounded-xl  border-red flex justify-center bg-white text-red hover:bg-red hover:text-white	 hover:cursor-pointer'
+							className={`w-1/3 md:w-1/3 py-3 sm:text-sm md:text-lg sm:font-semibold md:font-bold px-4 border-2 rounded-xl  border-red flex justify-center bg-white text-red hover:bg-red ${
+								!isDirty
+									? "hover:bg-rose-950 hover:text-slate-600"
+									: "hover:bg-red"
+							} hover:text-white hover:cursor-pointer`}
+							disabled={!isDirty}
 							onClick={() => reset()}
 						>
 							{" "}

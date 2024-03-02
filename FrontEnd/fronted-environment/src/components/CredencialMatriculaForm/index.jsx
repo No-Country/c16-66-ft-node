@@ -5,30 +5,10 @@ import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
 import { useUserStore } from "../../hooks/userUserStore";
 import { useDoctorStore } from "../../hooks/useDoctorStore";
 import { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-// import { Autocomplete, Stack, TextField } from "@mui/material";
-
-// const doctorLogged = {
-// 	doctorId: "7e08e02d-bb48-4a37-8fed-0aa99d23eec4",
-// 	name: "Juan",
-// 	lastname: "García",
-// 	adress: "Av. Rivadavia 1234",
-// 	birthdate: "1985-06-15T00:00:00.000Z",
-// 	dni: 15987321,
-// 	cuil: "20159873215",
-// 	province: "Buenos Aires",
-// 	telephone: "110123456",
-// 	SocialSecurity: ["Osde", "Avalian", "Swiss Medical"],
-// 	email: "juan.garcia@gmail.com",
-// 	password: "s4luD1sMed!",
-// 	licensenumber: 987654,
-// 	specialty: "General Medicine",
-// 	image:
-// 		"https://drluisalbertolee.files.wordpress.com/2018/05/foto-carnet1.jpg",
-// };
 export function CredencialMatriculaForm() {
-	// const navigate = useNavigate();
+	const navigate = useNavigate();
 	const { editUserWithNewDate } = useUserStore();
 	const { editDoctorWithNewDate } = useDoctorStore();
 	const { userLogged } = UserStore();
@@ -40,16 +20,15 @@ export function CredencialMatriculaForm() {
 	);
 
 	useEffect(() => {}, [userLogged, doctorLogged]);
-
+	// userToEdit.licensenumber = null;
 	const {
 		register,
 		handleSubmit,
 		reset,
 		formState: { errors },
+		formState: { isDirty },
 	} = useForm({
 		defaultValues: {
-			name: userToEdit.name,
-			lastname: userToEdit.lastname,
 			birthdate: userToEdit.birthdate,
 			dni: userToEdit.dni,
 			tel: userToEdit.tel,
@@ -69,9 +48,14 @@ export function CredencialMatriculaForm() {
 			planSocialSecurity: userLogged && userLogged.planSocialSecurity,
 		},
 	});
+	console.log("el form data: ", FormData);
+	const fullName = userToEdit.name + " " + userToEdit.lastname;
 
 	const onSubmitEdit = (newData) => {
 		event.preventDefault();
+
+		newData.name = userToEdit.name;
+		newData.lastname = userToEdit.lastname;
 		// !doctorLogged
 		// 	? (newData = { ...newData, id: userLogged.id })
 		// 	: (newData = { ...newData, id: doctorLogged.id });
@@ -79,7 +63,7 @@ export function CredencialMatriculaForm() {
 			? editUserWithNewDate(newData)
 			: editDoctorWithNewDate(newData);
 
-		// navigate("/home");
+		navigate("/home");
 	};
 
 	return (
@@ -98,12 +82,12 @@ export function CredencialMatriculaForm() {
 								htmlFor='name'
 								className='ml-2  font-semibold text-base text-darkBlue '
 							>
-								Nombre y Apellido <span className='text-red'>*</span>
+								Nombre y Apellido
 							</label>
 							<input
 								type='text'
 								className='pl-2 w-full py-1 border border-darkBlue rounded-xl bg-lightGray mt-1'
-								{...register("name")}
+								value={fullName}
 								disabled
 							/>
 						</div>
@@ -114,27 +98,31 @@ export function CredencialMatriculaForm() {
 								htmlFor='dni'
 								className='ml-2  font-semibold text-base text-darkBlue  '
 							>
-								DNI <span className='text-red'>*</span>
+								DNI
 							</label>
 							<input
 								type='text'
-								className='pl-2 w-full py-1 border border-darkBlue rounded-xl bg-mostLighthBlue mt-1'
-								{...register("dni", {
-									required: {
-										value: true,
-										message: "Debes completar el campo",
-									},
-									minLength: {
-										value: 8,
-										message: "El Dni debe contener al menos 8 caracteres.",
-									},
-									validate: (value) => {
-										const regex = /^[0-9]*$/;
-										const onlyNumbers = regex.test(value);
+								disabled
+								className='pl-2 w-full py-1 border border-darkBlue rounded-xl bg-lightGray mt-1'
+								{...register(
+									"dni"
+									//  {
+									// 	required: {
+									// 		value: true,
+									// 		message: "Debes completar el campo",
+									// 	},
+									// 	minLength: {
+									// 		value: 8,
+									// 		message: "El Dni debe contener al menos 8 caracteres.",
+									// 	},
+									// 	validate: (value) => {
+									// 		const regex = /^[0-9]*$/;
+									// 		const onlyNumbers = regex.test(value);
 
-										return onlyNumbers ? true : "El campo solo admite numeros.";
-									},
-								})}
+									// 		return onlyNumbers ? true : "El campo solo admite numeros.";
+									// 	},
+									// }
+								)}
 							/>
 							{errors.dni && (
 								<span
@@ -152,13 +140,51 @@ export function CredencialMatriculaForm() {
 								htmlFor='cuil'
 								className='ml-2  font-semibold text-base text-darkBlue  '
 							>
-								Cuil <span className='text-red'>*</span>
+								Cuil
 							</label>
-							<input
-								type='text'
-								className='pl-2 w-full py-1 border border-darkBlue rounded-xl bg-lightGray mt-1'
-								disabled
-							/>
+							{userToEdit.cuil != null ? (
+								<input
+									disabled={true}
+									type='text'
+									className={` pl-2 w-full py-1 border border-darkBlue rounded-xl bg-lightGray mt-1`}
+									{...register("cuil")}
+								/>
+							) : (
+								<input
+									type='text'
+									className={`pl-2 w-full py-1 border border-darkBlue rounded-xl bg-mostLighthBlue mt-1`}
+									{...register("cuil", {
+										required: {
+											value: true,
+											message: "Debes completar el campo",
+										},
+										minLength: {
+											value: 12,
+											message: " El campo debe tener 12 carateres",
+										},
+										maxLength: {
+											value: 12,
+											message: " El campo debe tener 12 carateres",
+										},
+										validate: (value) => {
+											const regex = /^[0-9]*$/;
+											const onlyNumbers = regex.test(value);
+
+											return onlyNumbers
+												? true
+												: "El campo solo admite numeros.";
+										},
+									})}
+								/>
+							)}
+							{errors.cuil && (
+								<span
+									className='pl-2 pt-2 flex text-xs font-bold text-red-700'
+									style={{ color: "red" }}
+								>
+									{errors.cuil.message}
+								</span>
+							)}
 						</div>
 					</article>
 					<article className=' flex flex-col lg:flex-row justify-around gap-2'>
@@ -337,17 +363,31 @@ export function CredencialMatriculaForm() {
 									>
 										N° de Matrícula
 									</label>
-									<input
-										type='text'
-										name='licensenumber'
-										className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
-										{...register("licensenumber", {
-											required: {
-												value: true,
-												message: "Debes completar el campo",
-											},
-										})}
-									/>
+									{userToEdit.licensenumber ? (
+										<input
+											type='text'
+											name='licensenumber'
+											className={` ${
+												userToEdit.licensenumber ? "flex" : "hidden"
+											} pl-2 w-full py-1 border border-darkBlue rounded-xl bg-lightGray mt-1`}
+											disabled
+											{...register("licensenumber")}
+										/>
+									) : (
+										<input
+											type='text'
+											name='licensenumber'
+											className={` ${
+												!userToEdit.licensenumber ? "flex" : "hidden"
+											}pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1`}
+											{...register("licensenumber", {
+												required: {
+													value: true,
+													message: "Debes completar el campo",
+												},
+											})}
+										/>
+									)}
 									{errors.licensenumber && (
 										<span
 											className='pl-2 pt-2 flex text-xs font-bold text-red-700'
@@ -364,14 +404,23 @@ export function CredencialMatriculaForm() {
 					<article className='flex justify-around lg:justify-center lg:gap-20 mt-4'>
 						<button
 							type='submit'
-							className='w-1/3 md:w-1/3 py-3 sm:text-sm md:text-lg sm:font-semibold md:font-bold px-4 border-2 border-darckBlue rounded-xl flex justify-center bg-darkBlue hover:bg-green-800 text-white hover:border-darkBlue  hover:text-mostLighthBlue hover:cursor-pointer'
+							className={`w-1/3 md:w-1/3 py-3 sm:text-sm md:text-lg sm:font-semibold md:font-bold px-4 border-2 border-darckBlue rounded-xl flex justify-center bg-darkBlue ${
+								isDirty ? "hover:bg-green-700" : "hover:bg-green-900"
+							} text-white hover:border-darkBlue  hover:text-mostLighthBlue hover:cursor-pointer`}
+							disabled={!isDirty}
 						>
-							Editar
+							{" "}
+							{isDirty ? "Guardar" : "Editar"}
 						</button>
 
 						<button
 							type='cancel'
-							className='w-1/3 md:w-1/3 py-3 sm:text-sm md:text-lg sm:font-semibold md:font-bold px-4 border-2 rounded-xl  border-red flex justify-center bg-white text-red hover:bg-red hover:text-white	 hover:cursor-pointer'
+							className={`w-1/3 md:w-1/3 py-3 sm:text-sm md:text-lg sm:font-semibold md:font-bold px-4 border-2 rounded-xl  border-red flex justify-center bg-white text-red hover:bg-red ${
+								!isDirty
+									? "hover:bg-rose-950 hover:text-slate-600"
+									: "hover:bg-red"
+							} hover:text-white hover:cursor-pointer`}
+							disabled={!isDirty}
 							onClick={() => reset()}
 						>
 							{" "}
@@ -380,7 +429,7 @@ export function CredencialMatriculaForm() {
 					</article>
 				</form>
 			) : (
-				<p>Inicia Secion</p>
+				<p>Inicia Sesion</p> //solo para renderizar lo previo.
 			)}
 		</section>
 	);
