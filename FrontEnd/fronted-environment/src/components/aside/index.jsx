@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Badge, Button } from "@mui/base";
+import { Avatar } from "@mui/material";
 import close from "../../assets/svg/close.svg";
 import menu from "../../assets/svg/menu.svg";
 // import isotipo from "../../assets/svg/Isotipo.svg";
@@ -31,14 +32,13 @@ export function AsideComponent() {
 	const handleAsideOpenClose = () => {
 		setOpenClose(!openClose);
 	};
-	const [modal, setModal] = useState(false)
+	const [modal, setModal] = useState(false);
 
 	const logOutFuncion = () => {
-	
-		userLogged ? loggOutUser() : loggOutDoctor()
-		navigate("/")
-	}
-	
+		userLogged ? loggOutUser() : loggOutDoctor();
+		navigate("/");
+	};
+
 	return (
 		<aside
 			style={{ maxHeight: "1024px" }}
@@ -62,13 +62,17 @@ export function AsideComponent() {
 			>
 				<figure className={`w-8 h-8 rounded-full overflow-hidden ${openClose}`}>
 					{doctorLogged && (
-						<img
+						<Avatar
+							sx={{ width: 25, height: 25 }}
 							className='objet-cover object-center'
 							src={doctorLogged.image}
 						/>
 					)}
 					{userLogged && (
-						<img className='objet-cover object-center' src={userLogged.image} />
+						<Avatar
+							className='objet-cover object-center'
+							src={userLogged.image}
+						/>
 					)}
 				</figure>
 				<div
@@ -219,8 +223,7 @@ export function AsideComponent() {
 			<div onClick={() => setModal(true)}>
 				<BoxIcon openClose={openClose} text={"Cerrar sesión"} icon={logOut} />
 			</div>
-			{
-				modal && 
+			{modal && (
 				// <div className="fixed top-1/3 left-96 w-1/3 h-1/3 bg-lightBlue rounded-xl">
 				// <div className=" bg-whiteOpacity m-10 p'5 rounded-xl">
 				// 	<h2 className="text-xl text-center font-semibold text-black">¿Deseas cerrar sesión?</h2>
@@ -231,48 +234,48 @@ export function AsideComponent() {
 				// </div>
 				// </div>
 				<Modal
-				open={modal === true}
-				// onClose={() => handleModalImg}
-				aria-labelledby='modal-modal-title'
-				aria-describedby='modal-modal-description'
-			>
-				<Box
-					sx={{
-						position: "absolute",
-						top: "50%",
-						left: "50%",
-						zIndex: "10",
-						transform: "translate(-50%, -50%)",
-						width: 400,
-						bgcolor: "background.paper",
-						border: "2px solid #000",
-						boxShadow: 24,
-						p: 4,
-						borderRadius: '8px' 
-					}}
+					open={modal === true}
+					// onClose={() => handleModalImg}
+					aria-labelledby='modal-modal-title'
+					aria-describedby='modal-modal-description'
 				>
-					<div className='flex flex-col gap-4'>
-						<h2 className='text-center font-semibold text-base text-black'>
-							¿Deseas cerrar sesión?
-						</h2>
-						<div className="mt-5 flex justify-center">
-							<button
-								onClick={()=> logOutFuncion()}
-								className=' border bg-mostLighthBlue w-1/2 mx-auto text-darkBlue  rounded-md border-darkBlue hover:bg-red hover:text-mostLighthBlue mr-2'
-							>
-								Continuar
-							</button>
-							<button
-								onClick={() => setModal(false)}
-								className=' border bg-mostLighthBlue w-1/2 mx-auto text-darkBlue  rounded-md border-darkBlue hover:bg-green-700 hover:text-mostLighthBlue'
-							>
-								Regresar
-							</button>
+					<Box
+						sx={{
+							position: "absolute",
+							top: "50%",
+							left: "50%",
+							zIndex: "10",
+							transform: "translate(-50%, -50%)",
+							width: 400,
+							bgcolor: "background.paper",
+							border: "2px solid #000",
+							boxShadow: 24,
+							p: 4,
+							borderRadius: "8px",
+						}}
+					>
+						<div className='flex flex-col gap-4'>
+							<h2 className='text-center font-semibold text-base text-black'>
+								¿Deseas cerrar sesión?
+							</h2>
+							<div className='mt-5 flex justify-center'>
+								<button
+									onClick={() => logOutFuncion()}
+									className=' border bg-mostLighthBlue w-1/2 mx-auto text-darkBlue  rounded-md border-darkBlue hover:bg-red hover:text-mostLighthBlue mr-2'
+								>
+									Continuar
+								</button>
+								<button
+									onClick={() => setModal(false)}
+									className=' border bg-mostLighthBlue w-1/2 mx-auto text-darkBlue  rounded-md border-darkBlue hover:bg-green-700 hover:text-mostLighthBlue'
+								>
+									Regresar
+								</button>
+							</div>
 						</div>
-					</div>
-				</Box>
-			</Modal>
-			}
+					</Box>
+				</Modal>
+			)}
 		</aside>
-	)
+	);
 }
