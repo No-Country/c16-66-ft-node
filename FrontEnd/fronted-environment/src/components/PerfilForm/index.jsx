@@ -6,6 +6,7 @@ import { useUserStore } from "../../hooks/userUserStore";
 import { useDoctorStore } from "../../hooks/useDoctorStore";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Toaster, toast } from 'sonner'
 
 export function PerfilForm() {
 	const navigate = useNavigate();
@@ -52,10 +53,12 @@ export function PerfilForm() {
 	const onSubmitEdit = async (newData) => {
 		event.preventDefault();
 
+		toast.success(
+			'Usuario editado'	
+		)
 		!doctorLogged
 			? await editUserWithNewDate(newData)
 			: await editDoctorWithNewDate(newData);
-
 		navigate("/home");
 	};
 
@@ -496,6 +499,7 @@ export function PerfilForm() {
 							{" "}
 							Cancelar
 						</button>
+						<Toaster richColors />
 					</article>
 				</form>
 			) : (

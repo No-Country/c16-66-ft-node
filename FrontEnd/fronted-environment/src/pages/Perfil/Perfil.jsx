@@ -111,6 +111,7 @@ export default function Perfil() {
 								border: "2px solid #000",
 								boxShadow: 24,
 								p: 4,
+								borderRadius: '8px' 
 							}}
 						>
 							<div className='flex flex-col gap-4'>

@@ -17,6 +17,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import background from "../../assets/AuthBG/RBackground.png";
 import logo from "../../assets/FakeLOGO/Logo 3.png";
+import { Toaster, toast } from 'sonner'
 
 const { palette } = createTheme();
 const { augmentColor } = palette;
@@ -51,6 +52,9 @@ export default function RegisterAdmin() {
 			setDbErros("La aplicacion no permite correos con el dominio '.net'");
 			return;
 		} //segun params, ver a que service pegarle
+		toast.success(
+			'Usuario registrado'	
+		)
 		params.types == "pacient"
 			? await addUserFromRegister(userToRegister)
 			: params.types == "doctor" &&
@@ -328,6 +332,7 @@ export default function RegisterAdmin() {
 									>
 										Registrarme
 									</Button>
+									<Toaster richColors />
 								</Grid>
 							</Grid>
 							<Grid
