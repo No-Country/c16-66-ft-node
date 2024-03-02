@@ -3,6 +3,8 @@
 // import FakePacient1 from "../../assets/imgFakePacient/FakePacient1.png";
 import folderIcon from "../../assets/svg/folder_shared.svg";
 import starIcon from "../../assets/svg/StarBgBlue.svg";
+import defaultImg from "../../assets/imgFakePacient/userDefualtImg.png";
+import { Avatar } from "@mui/material";
 
 // eslint-disable-next-line react/prop-types
 export function MedicConsult({ user }) {
@@ -15,9 +17,9 @@ export function MedicConsult({ user }) {
 					<article className='w-full h-fit my-2 p-2 flex align-middle gap-2 rounded-2xl  bg-white hover:bg-mostLighthBlue '>
 						<figure className='w-20 h-12 m-auto rounded-full overflow-hidden overflow-x-hidden'>
 							{/* Cambiar imagen por la que venga de db */}
-							<img
+							<Avatar
 								className='object-cover object-center '
-								src={user.image}
+								src={user.image ? user.image : defaultImg}
 								alt={`Imagen de Perfil del paciente ${user?.name}`}
 							/>
 						</figure>
