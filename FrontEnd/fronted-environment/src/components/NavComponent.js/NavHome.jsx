@@ -8,6 +8,7 @@ export function NavHome () {
 				<img
 					className='w-auto h-10 sm:h-12 cursor-pointer'
 					src={logo}
+					title='Ir a inicio'
 					alt='Imagen del logo de la empresa'
                     onClick={()=>navigate('/')}
 				/>

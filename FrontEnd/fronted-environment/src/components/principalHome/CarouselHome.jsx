@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-
 import {useRef, useEffect, useCallback} from 'react';
 import arrowBack from '../../assets/svg/arrow_back.png';
 import arrowNext from '../../assets/svg/arrow_next.png';
@@ -15,24 +14,6 @@ const CarouselHome = ({
 	const carouselHome = useRef(null);
 	const intervalCarouselHome = useRef(null);
 
-	// const next = useCallback(() => {
-	// 	if(carouselHome.current.children.length > 0){
-			
-	// 		const firstItem = carouselHome.current.children[0];
-	// 		carouselHome.current.style.transition = `${velocity}ms ease-out all`;
-	// 		const sizeSlide = carouselHome.current.children[0].offsetWidth;
-	// 		carouselHome.current.style.transform = `translateX(-${sizeSlide}px)`;
-
-	// 		const transition = () => {
-	// 			carouselHome.current.style.transition = 'none';
-	// 			carouselHome.current.style.transform = `translateX(0)`;
-	// 			carouselHome.current.appendChild(firstItem);
-	// 			carouselHome.current.removeEventListener('transitionend', transition);
-	// 		}
-	// 		carouselHome.current.addEventListener('transitionend', transition);
-	// 	}
-	// }, [velocity]);
-	
 	const next = useCallback(() => {
 		if (carouselHome.current && carouselHome.current.children.length > 0) {
 		const firstItem = carouselHome.current.children[0];
@@ -103,46 +84,44 @@ const CarouselHome = ({
 
 const Container = styled.div`
 	position: relative;
-	width:80%;
+	width:90%;
 	margin:auto;
-	background: var(
-		--Background-Background-pgina-de-inicio,
-		linear-gradient(
-			180deg,
-			rgba(198, 241, 191, 0.56) 0%,
-			rgba(103, 189, 234, 0.38) 90.92%,
-			rgba(255, 255, 255, 0.75) 127.47%
-		),
-		#fff
-	);
-	backdrop-filter: blur(2px);
+	// background: 
+	// 	linear-gradient(
+	// 		180deg,
+	// 		rgba(198, 241, 191, 0.56) 0%,
+	// 		rgba(103, 189, 234, 0.38) 90.92%,
+	// 		rgba(255, 255, 255, 0.75) 127.47%
+	// 	),
+	// 	#fff;
+	// backdrop-filter: blur(2px);
 	overflow: hidden;
-	// width:96%;
-	// height: auto;
-	// margin: auto;
-	
+	border-radius: 10px;
 `;
 
 const ContainerCarousel = styled.div`
 	display: flex;
 	flex-wrap: nowrap;
-	// width:100%;
-	// height:auto;
-	// max-width: 100vw;
-	// overflow: hidden;
-	// margin: 10px 2px
 `;
 
 const Slide = styled.div`
-	min-width: 100%;
 	overflow: hidden;
 	transition: .9s ease all;
 	z-index: 10;
-	// max-height: 400px; 
 	position: relative;
 	CardStars {
 		width: 100%;
 		vertical-align: top;
+	};
+	
+	@media screen and (max-width: 422px) {
+		min-width: 100%;
+	}
+	@media screen and (min-width: 422px) and (max-width: 991px) {
+		min-width: 70%;
+	}
+	@media screen and (min-width: 992px) {
+		min-width: 40%;
 	}
 `;
 

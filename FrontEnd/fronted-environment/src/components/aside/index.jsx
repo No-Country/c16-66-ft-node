@@ -162,7 +162,7 @@ export function AsideComponent() {
 							? "mx-inherit w-full"
 							: "mx-auto w-2/3 hover:bg-white rounded-xl"
 					}`}
-					onClick={() => navigate("/medical-list")}
+					onClick={() => navigate("/")}
 				>
 					<BoxIcon openClose={openClose} text={"Cartilla médica"} icon={book} />
 				</div>
