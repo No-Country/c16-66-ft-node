@@ -18,7 +18,7 @@ import { useDoctorStore } from "../../hooks/useDoctorStore";
 import { useUserStore } from "../../hooks/userUserStore";
 import defaultImgUser from "../../assets/imgFakePacient/userDefualtImg.png";
 import editImgIcon from "../../assets/svg/border_color.svg";
-import { Modal, Box } from "@mui/material";
+import { Modal, Box, Avatar, Badge } from "@mui/material";
 
 export default function Perfil() {
 	const { editDoctorWithNewDate } = useDoctorStore();
@@ -77,21 +77,23 @@ export default function Perfil() {
 			>
 				<div className='flex flex-col justify-center items-center mx-auto md:w-2/5 md:pt-6 md:ml-0 md:h-2/6 md:justify-start'>
 					<div className='flex flex-col items-center '>
-						<img
+						<Avatar
 							src={user.image ? user.image : defaultImgUser}
 							alt='image doctor'
-							className=' rounded-full w-1/5 md:w-1/3 h-auto lg:mb-4'
-						></img>
-						<button
-							className='rounded-full bg-white border border-darkBlue w-6 h-6 -mt-6 md:w-8 md:h-8  md:-mt-8 flex justify-center items-center'
+							sx={{ width: 120, height: 120 }}
+							// className=' rounded-full w-1/5 md:w-1/3 h-auto lg:mb-4'
+						></Avatar>
+						<Badge
+							className='rounded-full bg-whiteOpacity border border-darkBlue w-6 h-6 -mt-4 md:w-8 md:h-8   flex justify-center items-center'
 							onClick={handleModalImg}
 						>
-							<img
+							<Avatar
 								src={editImgIcon}
+								sx={{ width: 25, height: 25 }}
 								className='h-4 w-4 md:h-6 md:w-6'
 								alt='Editar Imagen de perfil'
 							/>
-						</button>
+						</Badge>
 					</div>
 					<Modal
 						open={inputFile == true}
@@ -111,7 +113,7 @@ export default function Perfil() {
 								border: "2px solid #000",
 								boxShadow: 24,
 								p: 4,
-								borderRadius: '8px' 
+								borderRadius: "8px",
 							}}
 						>
 							<div className='flex flex-col gap-4'>

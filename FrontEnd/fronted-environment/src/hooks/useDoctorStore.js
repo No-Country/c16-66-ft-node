@@ -25,8 +25,8 @@ export function useDoctorStore() {
 
 	const editDoctorWithNewDate = async (newData) => {
 		//poner async
+		let img;
 		const {
-			image,
 			name,
 			dni,
 			cuil,
@@ -41,11 +41,11 @@ export function useDoctorStore() {
 			province,
 			adress,
 			specialty,
+			town,
 		} = newData;
 
-		const updatedData = {
+		let updatedData = {
 			...doctorLogged,
-			image,
 			name,
 			dni,
 			cuil,
@@ -60,11 +60,19 @@ export function useDoctorStore() {
 			province,
 			adress,
 			specialty,
+			town,
 		};
-		console.log("edited doc :", updatedData);
-
+		if (newData.image) {
+			img = newData.image;
+			updatedData = {
+				...doctorLogged,
+				image: img,
+			};
+		}
+		console.log("lo qie hania ", doctorLogged);
 		console.log("lo qie vino ", newData);
-		await updateDoctor(updatedData); // Cuando tenga como editar en el service, habilitar
+		console.log("edited doctor :", updatedData);
+		updateDoctor(updatedData); // Cuando tenga como editar en el service, habilitar
 		addDoctorLogged(updatedData);
 	};
 

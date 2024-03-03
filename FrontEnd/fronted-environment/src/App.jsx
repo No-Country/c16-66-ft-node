@@ -47,7 +47,6 @@ function App() {
 						<Route path='/perfil' element={<Perfil />} />
 						<Route path='/my-list' element={<PatientsOrSpecialists />} />
 						<Route path='/my-agenda' element={<MyAgenda />} />
-
 						<Route
 							path='/*'
 							element={

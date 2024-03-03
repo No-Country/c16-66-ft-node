@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 // import FakePacient1 from "../../assets/imgFakePacient/FakePacient1.png";
+import defaultImg from "../../assets/imgFakePacient/userDefualtImg.png";
+import { Avatar } from "@mui/material";
 const nowInMs = Date.now();
 let today = new Date(nowInMs).toLocaleString().split(" ");
 today = today[0];
@@ -13,9 +15,9 @@ export function CardPacientItem({ user, handlerSelect }) {
 		>
 			<figure className='w-11 h-11 rounded-full m-auto overflow-hidden'>
 				{/* Cambiar imagen por la que venga de db */}
-				<img
+				<Avatar
 					className='object-cover object-center'
-					src={user.image}
+					src={user.image ? user.image : defaultImg}
 					alt={`Imagen de Perfil del paciente ${user?.name}`}
 				/>
 			</figure>
