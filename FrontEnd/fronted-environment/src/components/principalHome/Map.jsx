@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 import { UserStore } from '../../StoreGeneral/UsersStore'
+import { DoctorStore } from '../../StoreGeneral/DoctorsStore';
 
 
 const initializeMap = (centerCoordinates) => {
@@ -66,66 +67,74 @@ const addHospitalMarkers = (map) => {
 
 const Map = () => {
     const {userLogged}=UserStore()
+    const {doctorLogged}= DoctorStore()
+
     useEffect(() => {
        
         let centerCoordinates = [-58.3816, -34.6037];
-        if (userLogged !== undefined && userLogged !== null) {
+        let province = '';
+        
+        if (userLogged !== null && userLogged.province) {
+            province = userLogged.province.toUpperCase();
+        } else if (doctorLogged !== null && doctorLogged.province) {
+            province = doctorLogged.province.toUpperCase();
+        }
                    
-            if (userLogged.province.toUpperCase() == 'BUENOS AIRES') {
+            if (province === 'BUENOS AIRES') {
                 centerCoordinates = [-58.3816, -34.6037]; 
-            } else if (userLogged.province.toUpperCase() == 'CATAMARCA') {
+            } else if (province === 'CATAMARCA') {
                 centerCoordinates = [-65.78524, -28.46957]; 
-            } else if (userLogged.province.toUpperCase() == 'CHACO') {
+            } else if (province === 'CHACO') {
                 centerCoordinates = [-58.98389, -27.46056]; 
-            } else if (userLogged.province.toUpperCase() == 'CHUBUT') {
+            } else if (province === 'CHUBUT') {
                 centerCoordinates = [-65.10228, -43.30016]; 
-            } else if (userLogged.province.toUpperCase() == 'CORDOBA') {
+            } else if (province === 'CORDOBA') {
                 centerCoordinates = [-64.1833, -31.4167]; 
-            } else if (userLogged.province.toUpperCase() == 'CORRIENTES') {
+            } else if (province === 'CORRIENTES') {
                 centerCoordinates = [-58.8344, -27.46784]; 
-            } else if (userLogged.province.toUpperCase() == 'ENTRE RIOS') {
+            } else if (province === 'ENTRE RIOS') {
                 centerCoordinates = [-58.14426, -32.22312]; 
-            } else if (userLogged.province.toUpperCase() == 'FORMOSA') {
+            } else if (province === 'FORMOSA') {
                 centerCoordinates = [-58.17313, -26.18489]; 
-            } else if (userLogged.province.toUpperCase() == 'JUJUY') {
+            } else if (province === 'JUJUY') {
                 centerCoordinates = [-65.29712, -24.19457]; 
-            } else if (userLogged.province.toUpperCase() == 'LA PAMPA') {
+            } else if (province === 'LA PAMPA') {
                 centerCoordinates = [-64.28333, -36.61667]; 
-            } else if (userLogged.province.toUpperCase() == 'LA RIOJA') {
+            } else if (province === 'LA RIOJA') {
                 centerCoordinates = [-66.85067, -29.41105]; 
-            } else if (userLogged.province.toUpperCase() == 'MENDOZA') {
+            } else if (province === 'MENDOZA') {
                 centerCoordinates = [-68.82717, -32.89084]; 
-            } else if (userLogged.province.toUpperCase() == 'MISIONES') {
+            } else if (province === 'MISIONES') {
                 centerCoordinates = [-55.89608, -27.36708]; 
-            } else if (userLogged.province.toUpperCase() == 'NEUQUEN') {
+            } else if (province === 'NEUQUEN') {
                 centerCoordinates = [-68.0591, -38.95161]; 
-            } else if (userLogged.province.toUpperCase() == 'RIO NEGRO') {
+            } else if (province === 'RIO NEGRO') {
                 centerCoordinates = [-62.99668, -40.81345]; 
-            } else if (userLogged.province.toUpperCase() == 'SALTA') {
+            } else if (province === 'SALTA') {
                 centerCoordinates = [-65.41166, -24.7859]; 
-            } else if (userLogged.province.toUpperCase() == 'SAN JUAN') {
+            } else if (province === 'SAN JUAN') {
                 centerCoordinates = [-68.53639, -31.5375]; 
-            } else if (userLogged.province.toUpperCase() == 'SAN LUIS') {
+            } else if (province === 'SAN LUIS') {
                 centerCoordinates = [-66.33563, -33.29501]; 
-            } else if (userLogged.province.toUpperCase() == 'SANTA CRUZ') {
+            } else if (province === 'SANTA CRUZ') {
                 centerCoordinates = [-69.21813, -51.62261]; 
-            } else if (userLogged.province.toUpperCase() == 'SANTA FE') {
+            } else if (province === 'SANTA FE') {
                 centerCoordinates = [-60.70868, -31.64881]; 
-            }else if (userLogged.province.toUpperCase() == 'SANTIAGO DEL ESTERO') {
+            }else if (province === 'SANTIAGO DEL ESTERO') {
                 centerCoordinates = [-64.26149, -27.79511]; 
-            } else if (userLogged.province.toUpperCase() == 'TIERRA DEL FUEGO') {
+            } else if (province === 'TIERRA DEL FUEGO') {
                 centerCoordinates = [-68.31591, -54.81084]; 
-            } else if (userLogged.province.toUpperCase() == 'TUCUMAN') {
+            } else if (province === 'TUCUMAN') {
                 centerCoordinates = [-65.2226, -26.82414]; 
             } 
-        }
+        
         
         const map = initializeMap(centerCoordinates);
         addHospitalMarkers(map);
 
         return () => map.remove();
 
-    }, [userLogged]);
+    }, [userLogged, doctorLogged]);
 
     return <div id="map" style={{ width: '96%', height: '150px', borderRadius: '10px', marginBottom:'3px' }}></div>;
 }

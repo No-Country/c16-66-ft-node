@@ -7,11 +7,16 @@ import { ModalMenu } from './ModalMenu'
 import '../../pages/PrincipalHome/index.css'
 import RegisterButton from './RegisterButton'
 import arrowDownBlue from '../../assets/svg/arrowDownBlue.svg'
+import { UserStore } from '../../StoreGeneral/UsersStore'
+import { DoctorStore } from '../../StoreGeneral/DoctorsStore'
 
 export function NavPrincipalHome () {
     const navigate = useNavigate()
     const [openModal, setOpenModal] = useState(false)
+    const { userLogged }= UserStore()
+    const { doctorLogged } = DoctorStore()
 
+    console.log('acaa', userLogged, doctorLogged)
     const goSession = () => {
         navigate('/autogestion')
     }
@@ -23,6 +28,7 @@ export function NavPrincipalHome () {
     }
     function goTo(contacto) {
         location.hash = "#" + contacto;
+        
     }
     
     return (
@@ -42,7 +48,14 @@ export function NavPrincipalHome () {
             <a href='#contacto' onClick={()=>{goTo('contacto')}} className='text-xs lg:text-lg p-2 rounded-xl hover:bg-whiteOpacity hidden lg:flex'>
                 Contactos
             </a>
-            <RegisterButton arrowDown={arrowDownBlue} className={`hidden lg:inline-flex items-center lg:text-lg p-2 rounded-xl border-2 text-darkBlue hover:bg-whiteOpacity`}text={'REGISTRÁTE'} className2={`hidden text-xs p-2 bg-whiteOpacity rounded-xl fixed top-20 left-80 lg:flex flex-col items-start lg:text-base h-fit`} btn={`hover:bg-darkBlue p-2 rounded-xl hover:text-white`}/>
+            {
+                userLogged || doctorLogged ? 
+                <Link to='/home' className='text-xs lg:text-lg p-2 rounded-xl hover:bg-whiteOpacity hidden lg:flex'>
+                Home
+                </Link> :
+                <>
+
+                <RegisterButton arrowDown={arrowDownBlue} className={`hidden lg:inline-flex items-center lg:text-lg p-2 rounded-xl border-2 text-darkBlue hover:bg-whiteOpacity relative`}text={'REGISTRÁTE'} className2={`hidden text-xs p-4 bg-whiteOpacity rounded-xl absolute top-20 right-80 lg:flex flex-col items-start lg:text-base h-fit`} btn={`hover:bg-darkBlue p-2 rounded-xl hover:text-white`}/>
             <button 
                 className='hidden lg:flex items-center bg-darkBlue text-white rounded-xl p-2 text-center hover:bg-primaryBlue -xs lg:text-lg' 
                 onClick={goSession} 
@@ -50,6 +63,8 @@ export function NavPrincipalHome () {
                 AUTOGESTIÓN
                 <img src={person} className='h-5 text-center lg:h-6 xl:h-7' alt='icono de persona'/>
             </button> 
+                </>
+            }
         </nav>
     )
 }

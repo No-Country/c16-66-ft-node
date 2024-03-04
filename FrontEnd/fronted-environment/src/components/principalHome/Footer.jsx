@@ -7,27 +7,27 @@ import youtube from '../../assets/svg/mdi_youtube.svg'
 import facebook from '../../assets/svg/logos_facebook.svg'
 import linkedin from '../../assets/svg/devicon_linkedin.svg'
 import arrowDown from '../../assets/svg/arrowDown.svg'
-import suport from '../../assets/svg/support_agent.svg'
+import suportIcon from '../../assets/svg/support_agent.svg'
+// import { Modal, Box, Input } from "@mui/material";
 import copyR from '../../assets/svg/ph_copyright-bold.svg'
 import vector from '../../assets/svg/Vector.svg'
 import RegisterButton from './RegisterButton'
 import Map from './Map'
 import '../../pages/PrincipalHome/index.css'
+import { useState } from 'react'
+import ModalSuport from './ModalSuport'
 
 
 export function Footer () {
     
     const { userLogged } = UserStore()
+    const [suport, setSuport] = useState(false)
 
     const handleSuport = () => {
-        const popupContainer = document.getElementById('popupContainer');
-        const popup = document.getElementById('popup');
-        popupContainer.style.display = 'flex';
-        setTimeout(function() {
-            popupContainer.style.display = 'none';
-        }, 3000);
+        console.log('click', suport)
+        setSuport(true)
     }
-
+    
     return (
         <footer className="footer w-full h-fit">
             <section className='h-fit  w-ful'>
@@ -74,30 +74,35 @@ export function Footer () {
                     </div>
                 </section>
                     <button onClick={handleSuport} id="sendMessageButton" className='self-end pb-1'>
-                        <img src={suport} alt='Suport button' className='bg-white rounded-full p-2 h-9'/>
+                        <img src={suportIcon} alt='Suport button' className='bg-white rounded-full p-2 h-9'/>
                     </button> 
-                    {
-                        <div className="popup-container" id="popupContainer">
+
+                {
+                    suport && <ModalSuport suport={suport} setSuport={setSuport}/>
+
+                }
+                {
+                    <div className="popup-container" id="popupContainer">
                         <div className="popup" id="popup">
                             <div className="popup-content">
-                                <h2 className='text-base text-darkGreen font-semibold'>Contactando con soporte...</h2>
+                                <h2 className='text-base text-darkGreen font-semibold'>Enviando su comentario</h2>
                                 <div className="loader"></div>
-                                <p className='text-base text-gray'>Espere un momento...</p>
+                                <p className='text-base text-gray'>Espere un momento y nos comunicaremos con usted...</p>
                             </div>
                         </div>
-                        </div>
-                    }
+                    </div>
+                }
                 </div>
             </section>
             <section className='footerFinal h-fit md:h-1/6 w-full flex flex-wrap sm:flex-nowrap justify-around items-center p-1'>
                 <img src={logo} alt='logo MedConnect' className="w-20 sm:w-30 lg:w-1/12 h-auto"/>
                 <p className='text-xs font-extralight flex justify-center items-center'><img src={copyR} className='mr-1' /> 2024 creado por  <strong className='mx-1'> MedConnet </strong> - información adicional </p>
-                <div className='flex justify-center'>
+                <div id='contacto' className='flex justify-center'>
                     <Link to='https://github.com/No-Country/c16-66-ft-node'><img src={instagram} className='h-auto w-1/2'/></Link>
                     <Link to='https://github.com/No-Country/c16-66-ft-node'><img src={redX} className='h-auto w-1/2'/></Link>
                     <Link to='https://github.com/No-Country/c16-66-ft-node'><img src={youtube} className='h-auto w-1/2'/></Link>
                     <Link to='https://github.com/No-Country/c16-66-ft-node'><img src={facebook} className='h-auto w-1/2'/></Link>
-                    <Link id='contacto' to='https://github.com/No-Country/c16-66-ft-node'><img src={linkedin} className='h-auto w-1/2'/></Link>
+                    <Link to='https://github.com/No-Country/c16-66-ft-node'><img src={linkedin} className='h-auto w-1/2'/></Link>
                 </div>
             </section>
         </footer>
