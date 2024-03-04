@@ -2,21 +2,31 @@ import { useNavigate } from "react-router-dom";
 import { AsideComponent } from "../../components/aside/index";
 import { ViewFromLg } from "./ViewFromLg";
 import { ViewFromSm } from "./ViewFromSm";
+import { ViewFromXs } from "./ViewFromXs";
 import logo from "../../assets/FakeLOGO/Logo 3.png";
 //Store Zustand debajo
 import { UserStore } from "../../StoreGeneral/UsersStore";
 import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
+import { AppoinmentStore } from "../../StoreGeneral/AppoinmentStore";
+import { useAppointmentStore } from "../../hooks/useAppointmentStore";
 import "./home.css";
+import { useEffect } from "react";
 // import { Footer } from "../../components/principalHome/Footer";
 
 export default function Home() {
 	const navigate = useNavigate();
+	const { getAppointmentResponse } = useAppointmentStore();
 	const { userLogged } = UserStore();
 	const { doctorLogged } = DoctorStore();
+	const { appoinments } = AppoinmentStore();
+	console.log("turnos desde home :", appoinments);
 	if (!userLogged && !doctorLogged) {
 		navigate("/autogestion");
 	}
 
+	useEffect(() => {
+		getAppointmentResponse();
+	}, []);
 	return (
 		<>
 			<AsideComponent />
@@ -28,16 +38,26 @@ export default function Home() {
 					onClick={() => navigate("/")}
 				/>
 			</header>
-			<main className='flex w-screen h-screen box-border z-0 '>
-				<main className='hidden w-9/12 lg:flex' style={{ marginInline: "10%" }}>
+			<main
+				style={{ height: "615px" }}
+				className='lg:ml-10 xl:ml-14 flex w-screen  box-border z-0  overflow-scroll 2xl:overflow-visible'
+			>
+				<main className='hidden w-full lg:flex lg:mr-8 lg:ml-16 xl:ml-20 xl:mr-14  2xl:ml-32 2xl:mt-12'>
 					<ViewFromLg />
 					{/* se ve a partir de 1024 px */}
 				</main>
 				<main
-					className='hidden w-10/12 xs:hidden sm:flex lg:hidden xl:hidden'
-					style={{ marginLeft: "20%" }}
+					className='hidden w-full xs:hidden sm:flex lg:hidden xl:hidden'
+					style={{ marginLeft: "15%" }}
 				>
 					<ViewFromSm />
+					{/* se renderiza a partir de 640px  */}
+				</main>
+				<main
+					className='w-10/12 xs:flex sm:hidden lg:hidden xl:hidden'
+					style={{ marginLeft: "21%" }}
+				>
+					<ViewFromXs />
 					{/* se renderiza a partir de 640px  */}
 				</main>
 			</main>

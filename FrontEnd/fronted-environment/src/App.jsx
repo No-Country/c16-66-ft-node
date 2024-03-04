@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useUserStore } from "./hooks/userUserStore"; //hook
 import { useDoctorStore } from "./hooks/useDoctorStore"; //hook
 // import { useAdminStore } from "./hooks/userAdminStore"; //hook
+import { useReviewsStore } from "./hooks/useReviews"; //hook
 
 //Rutas a requerimento
 const PrincipalHome = lazy(() => import("./pages/PrincipalHome/PrincipalHome"));
@@ -24,12 +25,14 @@ function App() {
 	// carga de Doctors
 	const { getDoctorApiResponse } = useDoctorStore(); //hook
 
-	//carga de admins
+	//carga de reviews
+	const { getReviewResponse } = useReviewsStore();
 
 	// const { getAdminApiResponse } = useAdminStore(); LE pega a la api vieja
 	useEffect(() => {
 		getUserApiResponse(); // inyecta los datos de la db en el estado.
 		getDoctorApiResponse(); // idem => doctors
+		getReviewResponse();
 		// getAdminApiResponse();
 	}, []);
 

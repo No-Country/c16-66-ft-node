@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 
 import { CardPacientItem } from "../../components/CardPacientItem";
 import { MedicConsult } from "../../components/MedicCosult";
-// import { AsideComponent } from "../../components/AsideComponent/index";
+import { MedicConsultModal } from "../../components/MedicCosult/MedicConsultModal";
+
 import { CalendarComponent } from "../../components/CalendarComponent/index";
 import { HomeHiglights } from "../../components/homeHiglihts";
 //
@@ -11,30 +12,27 @@ import { UserStore } from "../../StoreGeneral/UsersStore";
 import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
 
 //
-// import logo from "../../assets/FakeLOGO/Logo 3.png";
+
 import credencialIcon from "../../assets/svg/contact_emergency.svg";
 import { Modal } from "@mui/material";
-// import { useNavigate } from "react-router-dom";
 
 export function ViewFromLg() {
-	const { doctorLogged } = DoctorStore();
+	const { doctorLogged, doctors } = DoctorStore();
 	const { users, userLogged } = UserStore();
-
-	const { doctors } = DoctorStore();
 	const [selectTypeUser, setSelectTypeUser] = useState({});
-	const [credAnim, setCredAnim] = useState(false);
+	const [credAnim, setCredAnim] = useState(false); //destapa credencial
 
 	const [open, setOpen] = useState(false);
 	const handleModalConsult = () => setOpen(!open);
 
-	// const navigate = useNavigate();
-
 	const handlerSelect = (id) => {
+		console.log("el id es :", id);
 		let consult;
 		doctorLogged
-			? (consult = users.filter((user) => user.id === id))
-			: (consult = doctors.filter((user) => user.id === id));
-		setSelectTypeUser(...consult);
+			? (consult = users.filter((pacient) => pacient.pacientId === id))
+			: (consult = doctors.filter((doctor) => doctor.doctorId === id));
+		setSelectTypeUser(consult[0]);
+		console.log("se selecciono a : ", consult);
 	};
 	useEffect(() => {}, [userLogged]);
 
@@ -43,7 +41,7 @@ export function ViewFromLg() {
 			{/* header con logo de APP =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */}
 			<div
 				style={{ maxWidth: "1440px" }}
-				className='ml-4 xl:ml-6 lg:w-4/5 xl:w-5/6 h-12/12 flex-col lg:flex-nowrap'
+				className=' lg:w-4/5 xl:w-6/6 h-12/12 flex-col lg:flex-nowrap lg:pr-12 xl:pr-6 2xl:mr-10 '
 			>
 				{/* <header
 					// style={{ width: "1320px" }}
@@ -58,8 +56,8 @@ export function ViewFromLg() {
 				</header> */}
 
 				{/* Seccion de Titulo de la pagina ==-=-=-=-=-=-=-==-=-=-=-=-=-= */}
-				<section className='mt-2 mb-1 w-full h-3/12 flex-col mr-4'>
-					<h2 className='text-xl font-bold text-black'>
+				<section className='mt-2 mb-2 w-full h-3/12 2xl:h-4/12 flex-col mr-4 '>
+					<h2 className='text-xl 2xl:text-3xl font-bold text-black'>
 						{" "}
 						Bienvenido/a
 						<span className=' text-darkBlue'>
@@ -69,7 +67,7 @@ export function ViewFromLg() {
 						</span>
 					</h2>
 					{doctorLogged ? (
-						<p className=' text-md font-normal text-gray'>
+						<p className=' text-md 2xl:text-xl font-normal text-gray'>
 							¡Ten un gran día de trabajo, excelentes consultas!
 						</p>
 					) : (
@@ -80,25 +78,28 @@ export function ViewFromLg() {
 				</section>
 
 				{/* Seccion de  higlights? =-=-=-=-=-=-=-= */}
-				<section className='w-11/12 h-1/6 max-h-32 gap-4 flex rounded-3xl bg-celestBgWrapper justify-around px-2'>
+				<section className='w-full h-1/6 max-h-32 2xl:h-3/6 gap-4 flex rounded-3xl bg-celestBgWrapper justify-around px-2 mb-4 '>
 					<HomeHiglights />
 				</section>
 
 				{/* Seccion de reenderizado de lista de pacientes y consulta de c/u =-=-=-=-=-=-=*/}
-				<section style={{height:'358px'}} className='w-11/12 mt-4 xl:mt-2 secction__Principal-doctorHome flex py-2 px-4 items-start gap-6 shrink-0 rounded-3xl overflow-hidden md:overflow-scroll'>
-					<div className=' w-6/12 flex-col'>
+				<section
+					style={{ height: "410px" }}
+					className='w-full mt-4 xl:mt-2 secction__Principal-doctorHome flex py-2 px-4 items-start gap-6 shrink-0 rounded-3xl overflow-hidden md:overflow-scroll 2xl:h-96 2xl:px-0 '
+				>
+					<div className=' w-6/12 h-full flex flex-col justify-around'>
 						<h2 className=' text-2xl text-black font-medium mb-3'>
 							{doctorLogged ? "Lista de pacientes" : "Próximos turnos "}
 						</h2>
-						<section className='w-full h-64 xl:h-72 flex-col overflow-scroll'>
+						<section className='w-full h-72 flex-col overflow-scroll'>
 							{doctorLogged ? (
 								<div className='w-full'>
 									{users?.map((user) => {
 										return (
 											<CardPacientItem
-												key={user.id}
+												key={user.pacientId}
 												user={user}
-												handlerSelect={handlerSelect}
+												handlerSelect={() => handlerSelect(user.pacientId)}
 											/>
 										);
 									})}
@@ -108,9 +109,9 @@ export function ViewFromLg() {
 									{doctors?.map((doctor) => {
 										return (
 											<CardPacientItem
-												key={doctor.id}
+												key={doctor.doctorId}
 												user={doctor}
-												handlerSelect={handlerSelect}
+												handlerSelect={() => handlerSelect(doctor.doctorId)}
 											/>
 										);
 									})}
@@ -119,15 +120,7 @@ export function ViewFromLg() {
 						</section>
 					</div>
 					{/* -=-=segundo bloque de la seccion - Turno/ doctor info --=-=-=- */}
-					<div className='hidden w-full h-32  m-auto mt-2 pt-2 xs:flex justify-center items-center bg-mostLighthBlue rounded-lg box-border overflow-scroll'>
-						{selectTypeUser?.name != undefined ? (
-							<CardPacientItem user={selectTypeUser} />
-						) : (
-							<CardPacientItem user={users[0]} />
-						)}
-					</div>
-
-					<div className='w-6/12 h-full flex-col gap-6'>
+					<div className='w-6/12 gap-6 h-full flex flex-col  justify-around'>
 						<div className='flex justify-between'>
 							<h2 className=' font-medium text-xl text-black'>
 								Consulta Médica
@@ -158,24 +151,27 @@ export function ViewFromLg() {
 				>
 					<section
 						style={{ marginTop: "2%", marginLeft: "33%" }}
-						className='absolute   w-96 bg-mostLighthBlue rounded-2xl border-2 shadow-2xl p-4'
+						className='absolute w-fit h-fit bg-mostLighthBlue rounded-2xl border-2 shadow-2xl p-4 overflow-x-hidden'
 					>
 						{selectTypeUser?.name != undefined ? (
-							<MedicConsult user={selectTypeUser} />
+							<MedicConsultModal user={selectTypeUser} open={open} />
 						) : doctorLogged ? (
-							<MedicConsult user={users[0]} />
+							<MedicConsultModal user={users[0]} open={open} />
 						) : (
-							<MedicConsult user={doctors[0]} />
+							<MedicConsultModal user={doctors[0]} open={open} />
 						)}
 					</section>
 				</Modal>
 			</div>
-			<section className='-ml-4 xl:ml-0 mt-16 mb-2 w-5/12 h-2/5 flex-col box-border'>
-				<div style={{ height: `calc(100vh - 4rem)` }} className='m-auto mt-2 box-border'>
-					<CalendarComponent/>
+			<section className='-ml-4 xl:ml-0 mb-2 w-5/12 h-2/5 flex-col box-border 2xl:w-2/5 2xl:mt-12'>
+				<div
+					style={{ height: `calc(100vh - 4rem)` }}
+					className='m-auto mt-2 box-border 2xl:ml-2'
+				>
+					<CalendarComponent />
 
 					<div
-						className='mt-1 w-full h-44 pt-1 flex-col items-center bg-mostLighthBlue rounded-xl box-border hover:cursor-pointer relative'
+						className='ml-1 mt-1 w-9/12 2xl:max-w-80 h-44 pt-1 flex-col items-center bg-mostLighthBlue rounded-xl box-border hover:cursor-pointer relative'
 						onClick={() => setCredAnim(!credAnim)}
 					>
 						<h3 className='ml-4 text-lg font-semibold text-black over'>

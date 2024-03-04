@@ -30,7 +30,7 @@ export function CardPacientItem({ user, handlerSelect }) {
 						{user?.name}
 					</h3>
 				</div>
-				<section className='h-5/6 w-full pl-1 flex justify-between'>
+				<section className='h-full sm:h-5/6 w-full pl-1 flex justify-between'>
 					<div>
 						{user.specialty != "" && <strong> {user?.specialty} </strong>}
 						{!user.specialty && <p>Turno :</p>}

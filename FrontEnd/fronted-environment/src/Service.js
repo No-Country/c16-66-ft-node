@@ -105,6 +105,7 @@ export const fetchReviews = async () => {
 
 // crea una review
 export const addReviews = async (review) => {
+	console.log("reviews desde el service :", review);
 	await Api.post("/reviews/", review);
 };
 // trae solo una
@@ -122,4 +123,10 @@ export const deleteReview = async (id) => {
 // edita review
 export const updatReview = async (item) => {
 	await Api.put(`/reviews/${item._id}`, item);
+};
+
+//Rutas apointment
+export const fetchAppoinment = async () => {
+	const { data } = await Api.get(`/appoinment`);
+	return data;
 };

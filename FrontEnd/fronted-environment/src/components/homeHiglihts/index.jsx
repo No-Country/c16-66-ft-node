@@ -70,8 +70,8 @@ export function HomeHiglights() {
 			) : (
 				// Renderizado condicional, abajo si ha Paciente Logeado
 				<>
-					<div className='w-1/3 sm:h-2/3 lg:h-3/4 rounded-lg my-auto agendaWraperBg'>
-						<div className='sm:w-9/12 lg:w-7/12 h-3/6 rounded-lg m-auto mt-7 bg-white flex justify-evenly items-center'>
+					<div className='w-full h-16 sm:w-1/3 sm:h-2/3 lg:h-3/4 rounded-lg my-auto agendaWraperBg'>
+						<div className='w-3/5 m-auto sm:w-9/12 lg:w-7/12 h-4/6 rounded-lg  mt-2 sm:mt-7 bg-whiteOpacity flex justify-evenly items-center shadow-lg'>
 							<div className='w-fit h-fit p-1 rounded-full bg-lightBlue flex justify-center'>
 								<img
 									className='objet-cover objet-center inline'
@@ -86,8 +86,8 @@ export function HomeHiglights() {
 							</div>
 						</div>
 					</div>
-					<div className='w-1/3 h-3/4 rounded-lg cartillaWraperBg my-auto'>
-						<div className='sm:w-9/12 lg:w-7/12 h-3/6 rounded-lg m-auto mt-7 bg-white flex justify-evenly items-center'>
+					<div className='w-full h-16 sm:w-1/3 sm:h-3/4 rounded-lg cartillaWraperBg my-auto shadow-lg'>
+						<div className='w-3/5 m-auto sm:w-9/12 lg:w-7/12 h-4/6 rounded-lg  mt-2 sm:mt-7 bg-whiteOpacity flex justify-evenly items-center'>
 							<div className='w-fit h-fit p-1 rounded-full bg-lightBlue flex justify-center'>
 								<img
 									className='objet-cover objet-center inline'
@@ -102,8 +102,8 @@ export function HomeHiglights() {
 							</div>
 						</div>
 					</div>
-					<div className='w-1/3 h-3/4 rounded-lg turnosWraperBg my-auto'>
-						<div className='sm:w-9/12 lg:w-7/12 h-3/6 rounded-lg m-auto mt-7 bg-white flex justify-evenly items-center'>
+					<div className='w-full h-16 sm:w-1/3 sm:h-3/4 rounded-lg turnosWraperBg my-auto shadow-lg'>
+						<div className='w-3/5 m-auto sm:w-9/12 lg:w-7/12 h-4/6 rounded-lg  mt-2 sm:mt-7 bg-whiteOpacity flex justify-evenly items-center'>
 							<div className='w-fit h-fit p-1 rounded-full bg-lightBlue flex justify-center'>
 								<img
 									className='objet-cover objet-center inline'
