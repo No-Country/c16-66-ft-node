@@ -1,55 +1,43 @@
 .header {
-	background: var(
-		--Background-Background-pgina-de-inicio,
-		linear-gradient(
+	background: linear-gradient(
 			180deg,
 			rgba(198, 241, 191, 0.56) 0%,
 			rgba(103, 189, 234, 0.38) 90.92%,
 			rgba(255, 255, 255, 0.75) 127.47%
 		),
-		#fff
-	);
+		#fff;
 	backdrop-filter: blur(2px);
 }
 .nav {
-	background: var(
-		--Background-Background-Header,
-		linear-gradient(
+	background: linear-gradient(
 			180deg,
 			rgba(198, 241, 191, 0.56) 0%,
 			rgba(103, 189, 234, 0) 471.67%
 		),
-		#fff
-	);
+		#fff;
 	box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
 }
 .modal {
-	background: var(
-		--Background-Background-Side-menu,
-		linear-gradient(
+	background: linear-gradient(
 			180deg,
 			rgba(198, 241, 191, 0.56) 0%,
 			rgba(103, 189, 234, 0.38) 49.99%,
 			rgba(188, 236, 195, 0.56) 99.99%
 		),
-		#fff
-	);
+		#fff;
 	backdrop-filter: blur(2px);
 }
 .shadow {
 	box-shadow: 6px 6px 8px 0px rgba(70, 123, 62, 0.3);
 }
 .footer {
-	background: var(
-		--Background-Background-Footer-web,
-		linear-gradient(
+	background: linear-gradient(
 			180deg,
 			rgba(198, 241, 191, 0.56) 0%,
 			rgba(103, 189, 234, 0.38) 90.92%,
 			rgba(255, 255, 255, 0.75) 127.47%
 		),
-		#fff
-	);
+		#fff;
 	backdrop-filter: blur(2px);
 }
 .footerFinal {
@@ -58,6 +46,56 @@
 			rgba(198, 241, 191, 0.56) 0%,
 			rgba(103, 189, 234, 0) 471.67%
 		),
-		var(--color-gray-10, #fff);
+		#fff;
 	box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+}
+body {
+	font-family: Arial, sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+}
+.popup-container {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1000;
+}
+
+.popup {
+	background-color: #fff;
+	width: 300px;
+	padding: 20px;
+	margin: auto;
+	border-radius: 10px;
+	box-shadow: 0 0 10px #c6f1bfbf;
+}
+
+.popup-content {
+	text-align: center;
+}
+
+.loader {
+	border: 6px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 6px solid #82c3e4;
+	width: 50px;
+	height: 50px;
+	animation: spin 2s linear infinite;
+	margin: 0 auto 20px;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }

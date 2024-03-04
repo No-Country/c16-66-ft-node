@@ -23,6 +23,8 @@ import "./index.css";
 import { UserStore } from "../../StoreGeneral/UsersStore";
 import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
 import { Modal, Box } from "@mui/material";
+import ModalSuport from "../principalHome/ModalSuport";
+import { Toaster, toast } from 'sonner'
 
 export function AsideComponent() {
 	const navigate = useNavigate();
@@ -36,8 +38,17 @@ export function AsideComponent() {
 
 	const logOutFuncion = () => {
 		userLogged ? loggOutUser() : loggOutDoctor();
+		toast.success(
+			'Cerraste sesiòn'	
+		)
 		navigate("/");
 	};
+
+	const [suport, setSuport] = useState(false)
+
+    const handleSuport = () => {
+        setSuport(true)
+    }
 
 	return (
 		<aside
@@ -55,6 +66,7 @@ export function AsideComponent() {
 					<img src={menu} className='mx-auto' />
 				)}
 			</Button>
+			<Toaster richColors />
 			<article
 				className={`flex mx-auto w-full ${
 					openClose ? "justify-start gap-4" : "justify-center"
@@ -159,17 +171,31 @@ export function AsideComponent() {
 						/>
 					</div>
 				)}
-				<BoxIcon openClose={openClose} text={"Consulta virtual"} icon={duo} />
+				<div
+					className={`${
+					openClose
+						? "mx-inherit w-full"
+						: "mx-auto w-2/3 hover:bg-white rounded-xl"
+					}`}
+					onClick={() => navigate("/video-llamada")}
+					>
+
+					<BoxIcon openClose={openClose} text={"Consulta virtual"} icon={duo} />
+				</div>
+				
+				{
+					userLogged &&
 				<div
 					className={`${
 						openClose
 							? "mx-inherit w-full"
 							: "mx-auto w-2/3 hover:bg-white rounded-xl"
 					}`}
-					onClick={() => navigate("/medical-list")}
+					onClick={() => navigate("/cartilla-medica")}
 				>
 					<BoxIcon openClose={openClose} text={"Cartilla médica"} icon={book} />
 				</div>
+				}
 				{/* <BoxIcon openClose={openClose} text={"Mi billetera"} icon={star} 
 				/> */}
 			</section>
@@ -214,25 +240,42 @@ export function AsideComponent() {
 					</div>
 				</div>
 				<BoxIcon openClose={openClose} text={"Configuración"} icon={settings} />
-				<BoxIcon
-					openClose={openClose}
-					text={"Centro de ayuda"}
-					icon={suportAgent}
-				/>
+				<div
+					className={`${
+						openClose
+							? "mx-inherit w-full"
+							: "mx-auto w-2/3 hover:bg-white rounded-xl"
+					}`}
+					onClick={handleSuport}
+				>
+					<BoxIcon
+						openClose={openClose}
+						text={"Centro de ayuda"}
+						icon={suportAgent}
+					/>
+				</div>
+
+				{
+                    suport && <ModalSuport suport={suport} setSuport={setSuport}/>
+
+                }
+                {
+                    <div className="popup-container" id="popupContainer">
+                        <div className="popup" id="popup">
+                            <div className="popup-content">
+                                <h2 className='text-base text-darkGreen font-semibold'>Enviando su comentario</h2>
+                                <div className="loader"></div>
+                                <p className='text-base text-gray'>Espere un momento y nos comunicaremos con usted...</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+
 			</section>
 			<div onClick={() => setModal(true)}>
 				<BoxIcon openClose={openClose} text={"Cerrar sesión"} icon={logOut} />
 			</div>
 			{modal && (
-				// <div className="fixed top-1/3 left-96 w-1/3 h-1/3 bg-lightBlue rounded-xl">
-				// <div className=" bg-whiteOpacity m-10 p'5 rounded-xl">
-				// 	<h2 className="text-xl text-center font-semibold text-black">¿Deseas cerrar sesión?</h2>
-				// 	<div className="mt-5 flex justify-center">
-				// 		<button className="w-fit h-auto p-2 m-1 text-center text-white bg-darkBlue rounded-xl" onClick={()=> logOutFuncion()}>Continuar</button>
-				// 		<button className="w-fit h-auto p-2 m-1 text-center bg-lightGreen text-white rounded-xl" onClick={() => setModal(false)}>Regresar</button>
-				// 	</div>
-				// </div>
-				// </div>
 				<Modal
 					open={modal === true}
 					// onClose={() => handleModalImg}
