@@ -2,7 +2,7 @@ const {createAppoinment} = require("../controllers/appoinment/createAppoinment")
 const {Doctor, Pacient} = require("../db")
 
 const createRandomAppointments = async () => {
-    const NUM_APPOINTMENTS = 30; 
+    const NUM_APPOINTMENTS = 60; 
   
     const doctors = await Doctor.findAll();
     const patients = await Pacient.findAll();

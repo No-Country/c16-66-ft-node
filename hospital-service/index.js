@@ -4,6 +4,7 @@ const { Doctor, Pacient } = require("./src/db");
 const api = require("./api/doctors.json");
 const api2 = require("./api/pacient.json");
 const { createRandomAppointments } = require("./src/utils/createRamdonAppoinments");
+const { createRamdonReview } = require("./src/utils/createRamdonReviews");
 
 const PORT = process.env.PORT || 3001;
 
@@ -104,8 +105,9 @@ conn
     // Esperar la finalización de ambas operaciones
     await Promise.all([doctorsPromise, patientsPromise]);
 
-    // Llamar a la función para crear citas aleatorias después de cargar médicos y pacientes
+    // Llamar a la función para crear citas y reviews aleatorias después de cargar médicos y pacientes
     await createRandomAppointments();
+    await createRamdonReview();
 
     // Iniciar el servidor
     server.listen(PORT, "0.0.0.0", () => {
