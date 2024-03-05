@@ -6,12 +6,14 @@ import {
 } from "../Service"; //,
 import { DoctorStore } from "../StoreGeneral/DoctorsStore";
 export function useDoctorStore() {
-	const { addDoctor, addDoctorLogged, doctorLogged } = DoctorStore();
+	const { addDoctor, addDoctorLogged, doctorLogged, doctors } = DoctorStore();
 
 	console.log("hoo original doc.", doctorLogged);
 	const getDoctorApiResponse = async () => {
-		const doctorApiResponse = await fetchDoctors();
-		await addDoctor(doctorApiResponse);
+		if (!doctors) {
+			const doctorApiResponse = await fetchDoctors();
+			await addDoctor(doctorApiResponse);
+		}
 	};
 
 	const validationDoctorToLogin = async (doctorToLogin) => {

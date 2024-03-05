@@ -10,15 +10,16 @@ import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
 import { AppoinmentStore } from "../../StoreGeneral/AppoinmentStore";
 import { useAppointmentStore } from "../../hooks/useAppointmentStore";
 import "./home.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 // import { Footer } from "../../components/principalHome/Footer";
 
 export default function Home() {
 	const navigate = useNavigate();
-	const { getAppointmentResponse } = useAppointmentStore();
+	const { getAppointmentResponse, appointmentForId } = useAppointmentStore();
 	const { userLogged } = UserStore();
 	const { doctorLogged } = DoctorStore();
 	const { appoinments } = AppoinmentStore();
+	const [userAppointments, setUserAppointments] = useState([]);
 	console.log("turnos desde home :", appoinments);
 	if (!userLogged && !doctorLogged) {
 		navigate("/autogestion");
@@ -26,7 +27,21 @@ export default function Home() {
 
 	useEffect(() => {
 		getAppointmentResponse();
+		let filteredAppointments;
+		if (userLogged) {
+			filteredAppointments = appointmentForId(userLogged.pacientId, "pacient");
+			setUserAppointments(filteredAppointments);
+			console.log("que retorna esto :", filteredAppointments);
+		} else {
+			filteredAppointments = appointmentForId(doctorLogged.doctorId, "doctor");
+			console.log("que retorna esto :", filteredAppointments);
+			setUserAppointments(filteredAppointments);
+		}
+
+		console.log("que retorna esto :", filteredAppointments);
 	}, []);
+
+	// console.log("Citas filtradas en el home", userAppointments);
 	return (
 		<>
 			<AsideComponent />
