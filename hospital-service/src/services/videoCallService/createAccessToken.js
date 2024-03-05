@@ -1,6 +1,6 @@
 const AccessToken = require("twilio").jwt.AccessToken;
 const { faker } = require("@faker-js/faker");
-const { Pacient, Doctor } = require("../db");
+const { Pacient, Doctor } = require("../../db");
 require("dotenv").config();
 
 const { ACCOUNT_SID, API_KEY, API_SECRET } = process.env;
@@ -20,7 +20,7 @@ const createAccessToken = async (req, res) => {
       identity = `Doctor: ${user.name} ${user.lastname}`;
     } else if (req.session.passport.user.userType === "Pacient") {
       user = await Pacient.findByPk(userId);
-      identity = `Paciente: ${user.name} ${user.lastname}`
+      identity = `Paciente: ${user.name} ${user.lastname}`;
     }
 
     // identity = user.name + user.lastname;

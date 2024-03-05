@@ -75,11 +75,13 @@ const {
 
 const { getCurrentUser } = require("../utils/getCurrentUser");
 
-const { createRoom } = require("../utils/createRoom");
+const { createRoom } = require("../services/videoCallService/createRoom");
 
-const { createAccessToken } = require("../utils/createAccessToken");
+const {
+  createAccessToken,
+} = require("../services/videoCallService/createAccessToken");
 
-const { getToken } = require("../utils/getToken");
+const { getToken } = require("../services/videoCallService/getToken");
 
 //express config
 const { Router } = require("express");
