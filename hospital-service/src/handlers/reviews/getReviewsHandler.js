@@ -12,9 +12,9 @@ const getAllReviesHandler = async (req, res) => {
 
         //Filtrar por nombre, nombres que CONTIENEN la letra proporcionada por parametro
         const matchingreviews = reviews.filter((review) =>
-        review.doctorId = doctorId
+        review.doctorId === doctorId
         );
-
+        
         if (matchingreviews.length > 0) {
                 return res.status(200).json(matchingreviews);
             } 

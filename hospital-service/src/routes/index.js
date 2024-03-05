@@ -95,7 +95,7 @@ router.get("/doctors/:id", getDoctorsByIdHandler);
 
 router.post("/doctors", createDoctorHandler);
 
-router.put("/doctors/:doctorId", updateDoctorHandler);
+router.put("/doctors", updateDoctorHandler);
 
 router.delete("/doctors/:doctorId", deleteDoctorByIdHandler);
 

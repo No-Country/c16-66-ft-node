@@ -1,27 +1,19 @@
 {
   "pacient": [
     {
-      "name": "Leanne",
-      "lastname": "Graham",
-      "birthdate": "2010-12-12",
-      "email": "Leanne@gmail.com",
-      "password": "asd123",
-      "dni": 10101010,
-      "cuil": "2410101011",
-      "image": "asd.jpg",
-      "adress": "Panamericana 123",
-      "town": "Tierras inhospitas del conurbano",
-      "province": "Buenos Aires",
-      "country": "Argentina",
-      "tel": "1212121212",
-      "socialSecurity": "OSDE",
-      "planSocialSecurity": "Student"
+      "name": "Leanne Graham"
     },
     {
       "name": "Martin Martinez"
     },
     {
       "name": "Sebastian Ameno"
+    },
+    {
+      "name": "Alejo Santana"
+    },
+    {
+      "name": "Mariel Melani"
     }
   ]
 }

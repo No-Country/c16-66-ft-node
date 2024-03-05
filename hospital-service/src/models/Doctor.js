@@ -23,7 +23,6 @@ module.exports = (sequelize) => {
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       password: {
         type: DataTypes.STRING,
@@ -52,7 +51,6 @@ module.exports = (sequelize) => {
       },
       licensenumber: {
         type: DataTypes.INTEGER,
-        allowNull: false,
       },
       specialty: {
         type: DataTypes.ENUM(
@@ -73,8 +71,7 @@ module.exports = (sequelize) => {
         type: DataTypes.ARRAY(DataTypes.STRING),
       },
       registrationNumber: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
+        type: DataTypes.STRING,
       },
       image: {
         type: DataTypes.STRING,

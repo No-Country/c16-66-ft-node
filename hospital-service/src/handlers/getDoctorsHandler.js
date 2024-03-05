@@ -12,7 +12,7 @@ const getAllDoctors = async (req, res) => {
 
         if (name) {
         
-            //Filtrar por nombre, nombres que CONTIENEN la letra proporcionada por parametro
+        //Filtrar por nombre, nombres que CONTIENEN la letra proporcionada por parametro
         const matchingdoctors = doctors.filter((doctor) =>
         doctor.name.toLowerCase().includes(name.toLowerCase())
         );
