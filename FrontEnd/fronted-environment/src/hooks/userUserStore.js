@@ -6,13 +6,11 @@ import {
 } from "../Service";
 import { UserStore } from "../StoreGeneral/UsersStore";
 export function useUserStore() {
-	const { addUser, addUserLogged, userLogged, users } = UserStore();
+	const { addUser, addUserLogged, userLogged } = UserStore();
 
 	const getUserApiResponse = async () => {
-		if (!users) {
-			const userApiResponse = await fetchUsers();
-			await addUser(userApiResponse);
-		}
+		const userApiResponse = await fetchUsers();
+		await addUser(userApiResponse);
 	};
 
 	const validationUserToLogin = async (userToLogin) => {

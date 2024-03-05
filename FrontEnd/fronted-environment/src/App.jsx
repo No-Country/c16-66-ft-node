@@ -13,12 +13,12 @@ const LoginPage = lazy(() => import("./pages/Login"));
 const RegisterPatient = lazy(() => import("./pages/Register/Register"));
 const Autogestion = lazy(() => import("./pages/autogestion/Autogestion"));
 const MedicalList = lazy(() => import("./pages/cartillaMedica/MedicalList"));
-const MyCartillaMedica = lazy ( () => import("./pages/MyCartillaMedica"))
+const MyCartillaMedica = lazy(() => import("./pages/MyCartillaMedica"));
 const Perfil = lazy(() => import("./pages/Perfil/Perfil"));
 const PatientsOrSpecialists = lazy(() =>
 	import("./components/PerfilForm/PatientsOrSpecialists")
 );
-const VideoCall =lazy(() => import("./pages/VideoCall"));
+const VideoCall = lazy(() => import("./pages/VideoCall"));
 const MyAgenda = lazy(() => import("./pages/MyAgenda"));
 
 function App() {

@@ -28,7 +28,7 @@ export default function Home() {
 	useEffect(() => {
 		getAppointmentResponse();
 		let filteredAppointments;
-		if (userLogged) {
+		if (userLogged && appoinments) {
 			filteredAppointments = appointmentForId(userLogged.pacientId, "pacient");
 			setUserAppointments(filteredAppointments);
 			console.log("que retorna esto :", filteredAppointments);
@@ -38,7 +38,7 @@ export default function Home() {
 			setUserAppointments(filteredAppointments);
 		}
 
-		console.log("que retorna esto :", filteredAppointments);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	// console.log("Citas filtradas en el home", userAppointments);

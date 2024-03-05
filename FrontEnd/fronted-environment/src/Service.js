@@ -130,3 +130,26 @@ export const fetchAppoinment = async () => {
 	const { data } = await Api.get(`/appoinment`);
 	return data;
 };
+
+/// Rutas Video Call
+
+export const createRoom = async (roomName) => {
+	console.log(roomName);
+	const { data } = await Api.post("/createRoom", { roomName: roomName });
+	console.log("respuesta de la room :", data);
+	return data.room.uniqueName;
+};
+
+export const createToken = async (identity, room) => {
+	console.log(identity, room);
+	const { data } = await Api.post("/tokenB", {
+		identity: identity,
+		room: room,
+	});
+	return data;
+};
+
+export const getToken = async (roomData) => {
+	const { data } = await Api.get(`/tokenB/?room=${roomData}`);
+	console.log("data del token es :", data);
+};
