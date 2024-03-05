@@ -75,13 +75,19 @@ const {
 
 const { getCurrentUser } = require("../utils/getCurrentUser");
 
-const { createRoom } = require("../services/videoCallService/createRoom");
+//services videoCalls controllers
+
+const { createRoom } = require("../services/videoCallService-A/createRoom");
 
 const {
   createAccessToken,
-} = require("../services/videoCallService/createAccessToken");
+} = require("../services/videoCallService-A/createAccessToken");
 
-const { getToken } = require("../services/videoCallService/getToken");
+const { getToken } = require("../services/videoCallService-A/getToken");
+
+const {
+  tokenGenerator,
+} = require("../services/videoCallService-B/tokenGenerator");
 
 //express config
 const { Router } = require("express");
@@ -175,10 +181,26 @@ router.get("/logout", destroySessionHandler);
 
 router.get("/currentUser", getCurrentUser);
 
+//videocalls routes
+
 router.post("/createRoom", createRoom);
 
 router.post("/token", createAccessToken);
 
 router.get("/token", getToken);
+
+router.post("/tokenB", (req, res) => {
+  const { identity, room } = req.body;
+  const token = tokenGenerator(identity, room);
+
+  res.send({ token: token });
+});
+
+router.get("/tokenB", (req, res) => {
+  const room = req.query.room;
+  const token = tokenGenerator(room);
+
+  res.send({ token: token });
+});
 
 module.exports = router;
