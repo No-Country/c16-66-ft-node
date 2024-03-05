@@ -16,11 +16,13 @@ import Map from './Map'
 import '../../pages/PrincipalHome/index.css'
 import { useState } from 'react'
 import ModalSuport from './ModalSuport'
+import { DoctorStore } from '../../StoreGeneral/DoctorsStore'
 
 
 export function Footer () {
     
     const { userLogged } = UserStore()
+    const { doctorLogged } = DoctorStore()
     const [suport, setSuport] = useState(false)
 
     const handleSuport = () => {
@@ -36,8 +38,16 @@ export function Footer () {
                         <div className='mt-2 mx-auto bg-lightGreen rounded-xl items-center w-11/12 h-auto flex  flex-col'>
 
                        {
-                        userLogged ? <h6 className='text-xs font-semibold'> 
+                        userLogged &&
+                        userLogged.province ? <h6 className='text-xs font-semibold'> 
                         Busque los centros de atención en {userLogged.province.toUpperCase()}</h6>
+                        : <h6 className='text-xs font-semibold'> Ubicación</h6>
+                       }
+
+                       {
+                        doctorLogged && 
+                        doctorLogged.province ? <h6 className='text-xs font-semibold'> 
+                        Centros de atención en {doctorLogged.province.toUpperCase()}</h6>
                         : <h6 className='text-xs font-semibold'> Ubicación</h6>
                        }
                         

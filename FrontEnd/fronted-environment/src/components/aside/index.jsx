@@ -37,10 +37,10 @@ export function AsideComponent() {
 	const [modal, setModal] = useState(false);
 
 	const logOutFuncion = () => {
-		userLogged ? loggOutUser() : loggOutDoctor();
 		toast.success(
 			'Cerraste sesiòn'	
 		)
+		userLogged ? loggOutUser() : loggOutDoctor();
 		navigate("/");
 	};
 

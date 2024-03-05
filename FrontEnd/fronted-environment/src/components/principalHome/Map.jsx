@@ -74,12 +74,11 @@ const Map = () => {
         let centerCoordinates = [-58.3816, -34.6037];
         let province = '';
         
-        if (userLogged !== null && userLogged.province) {
+        if (userLogged && userLogged.province !== null) {
             province = userLogged.province.toUpperCase();
-        } else if (doctorLogged !== null && doctorLogged.province) {
+        } else if (doctorLogged && doctorLogged.province !== null) {
             province = doctorLogged.province.toUpperCase();
-        }
-                   
+        }        
             if (province === 'BUENOS AIRES') {
                 centerCoordinates = [-58.3816, -34.6037]; 
             } else if (province === 'CATAMARCA') {
