@@ -198,6 +198,8 @@ const initializePassport = () => {
     } else if (user instanceof Doctor) {
       userType = "Doctor";
       userId = user.doctorId;
+    } else{
+      userType = "Admin"
     }
 
     done(null, { userType, userId });

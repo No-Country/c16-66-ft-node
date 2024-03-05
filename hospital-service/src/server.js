@@ -49,6 +49,8 @@ server.use(passport.session());
 initializePassport();
 server.use(passport.initialize());
 
+sessionStore.sync();
+
 server.get("/", (req, res) => {
   res.status(200).send("Server OK!!");
 });

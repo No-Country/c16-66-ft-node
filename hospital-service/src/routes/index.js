@@ -73,6 +73,14 @@ const {
   destroySessionHandler,
 } = require("../handlers/session/destroySessionHandler");
 
+const { getCurrentUser } = require("../utils/getCurrentUser");
+
+const { createRoom } = require("../utils/createRoom");
+
+const { createAccessToken } = require("../utils/createAccessToken");
+
+const { getToken } = require("../utils/getToken");
+
 //express config
 const { Router } = require("express");
 
@@ -162,5 +170,13 @@ router.get("/reviews", getAllReviesHandler);
 router.get("/session", checkSessionHandler);
 
 router.get("/logout", destroySessionHandler);
+
+router.get("/currentUser", getCurrentUser);
+
+router.post("/createRoom", createRoom);
+
+router.post("/token", createAccessToken);
+
+router.get("/token", getToken);
 
 module.exports = router;

@@ -6,7 +6,9 @@ const checkSessionHandler = (req, res) => {
         sesionId: req.session.id,
         cookieMaxAge: req.session.cookie.maxAge,
         cookieExpires: req.session.cookie.expires,
+        userId: req.session.passport.user.userId,
       };
+
       console.log(req.session);
       console.log(sessionDTO);
       res.status(200).send({ status: "sesion OK", payload: sessionDTO });

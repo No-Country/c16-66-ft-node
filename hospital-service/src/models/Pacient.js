@@ -47,7 +47,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
       tel: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
       },
       socialSecurity: {
         type: DataTypes.ENUM("Ioma", "OSDE", "Swiss Medical"),
