@@ -11,6 +11,7 @@ export function useDoctorStore() {
 	console.log("hoo original doc.", doctorLogged);
 	const getDoctorApiResponse = async () => {
 		const doctorApiResponse = await fetchDoctors();
+		console.log("desde el hook :", doctorApiResponse);
 		await addDoctor(doctorApiResponse);
 	};
 

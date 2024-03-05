@@ -4,7 +4,8 @@ import { useUserStore } from "./hooks/userUserStore"; //hook
 import { useDoctorStore } from "./hooks/useDoctorStore"; //hook
 // import { useAdminStore } from "./hooks/userAdminStore"; //hook
 import { useReviewsStore } from "./hooks/useReviews"; //hook
-
+import { UserStore } from "./StoreGeneral/UsersStore";
+import { DoctorStore } from "./StoreGeneral/DoctorsStore";
 //Rutas a requerimento
 const PrincipalHome = lazy(() => import("./pages/PrincipalHome/PrincipalHome"));
 const Home = lazy(() => import("./pages/home")); // en Page exportar por DEFAULT
@@ -24,12 +25,15 @@ const MyAgenda = lazy(() => import("./pages/MyAgenda"));
 function App() {
 	//carga general de Users.
 	const { getUserApiResponse } = useUserStore(); //hook
+	const { users } = UserStore();
+	console.log(users);
 	// carga de Doctors
 	const { getDoctorApiResponse } = useDoctorStore(); //hook
-
+	const { doctors } = DoctorStore();
+	console.log(doctors);
 	//carga de reviews
-	const { getReviewResponse } = useReviewsStore();
-
+	const { getReviewResponse, reviews } = useReviewsStore();
+	console.log(reviews);
 	// const { getAdminApiResponse } = useAdminStore(); LE pega a la api vieja
 	useEffect(() => {
 		getUserApiResponse(); // inyecta los datos de la db en el estado.

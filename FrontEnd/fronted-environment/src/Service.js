@@ -1,20 +1,19 @@
 import axios from "redaxios";
 
 export const Api = axios.create({
-	// baseURL: "http:///localhost:3000/",
-	baseURL: "https://c16-66-ft-node.onrender.com",
+	baseURL: "http:///localhost:3001",
+	// baseURL: "https://c16-66-ft-node.onrender.com",
 });
 
 // Devuelve Todo lo que haya en cada endPoint =========================
 
 export const fetchUsers = async () => {
 	const { data } = await Api.get(`/pacients`);
-
+	console.log("desde el service a ver que onda :", data);
 	return data;
 };
 export const fetchDoctors = async () => {
 	const { data } = await Api.get(`/doctors`);
-
 	return data;
 };
 
