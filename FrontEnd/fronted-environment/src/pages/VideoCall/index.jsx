@@ -29,17 +29,12 @@ export default function VideoCall() {
 	return (
 		<main className='flex flex-col w-screen h-screen box-border z-0'>
 			<AsideComponent />
-<<<<<<< HEAD
-            <NavHome />
-            <section style={{ maxHeight: '1024px',height: `calc(100vh - 4rem)` }} className='h-full mt-0.5 self-end w-full asideWidth'>
-=======
 			<NavHome />
 			<section
 				style={{ maxHeight: "1024px", height: `calc(100vh - 4rem)` }}
 				className='h-full w-10/12 mt-0.5 lg:w-11/12 self-end w-inherit'
 			>
 				<h1>videollamadaaa</h1>
->>>>>>> 255a1fc3f5c8ba8dc3a92cd73aac925b1feb4614
 
 				<button onClick={createVideoSubmit}> Crear video Llamada </button>
 				<button onClick={getTokenForCall}> Traer Token </button>
