@@ -1,9 +1,5 @@
-const loginDoctorHandler = (req, res) => {
+const registerDoctorHandler = (req, res) => {
   try {
-    console.log(req.session);
-    console.log(req.user);
-    console.log(req.session.id);
-
     const newDoctorDTO = {
       id: req.user.doctorId,
       name: req.user.name,
@@ -24,13 +20,12 @@ const loginDoctorHandler = (req, res) => {
       registrationNumber: req.user.registrationNumber,
       role: req.user.role,
     };
-    req.session.isLogged = true;
-
-    res.status(200).send(newDoctorDTO);
+    res
+      .status(200)
+      .send({ message: "Doctor Registrado", payload: newDoctorDTO });
   } catch (err) {
-    res.status(500).send("Error al loguear");
-    throw new Error(err);
+    res.status(500).send("Error al registrar al Doctor", err.message);
   }
 };
 
-module.exports = { loginDoctorHandler };
+module.exports = { registerDoctorHandler };

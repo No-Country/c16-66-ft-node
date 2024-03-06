@@ -15,7 +15,6 @@ const { DB_PASSWORD } = process.env;
 
 const sessionStore = new SequelizeStore({
   db: conn,
-  expiration: 30 * 60 * 1000,
 });
 
 server.use(
@@ -45,9 +44,13 @@ server.use(
   })
 );
 
-server.use(passport.session());
-initializePassport();
-server.use(passport.initialize());
+// server.use(passport.session());
+// initializePassport();
+// server.use(passport.initialize());
+
+initializePassport(); // Primero inicializa Passport
+server.use(passport.initialize()); // Luego usa el middleware de Passport
+server.use(passport.session()); //
 
 sessionStore.sync();
 

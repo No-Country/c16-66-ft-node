@@ -91,6 +91,12 @@ const { storeTokenMiddleware } = require("../middlewares/storeToken");
 
 //express config
 const { Router } = require("express");
+const {
+  registerPacientHandler,
+} = require("../handlers/pacients/registerPacientHandler");
+const {
+  registerDoctorHandler,
+} = require("../handlers/doctors/registerDoctorHandler");
 
 const router = Router();
 
@@ -110,13 +116,7 @@ router.post(
   passport.authenticate("registerDoctor", {
     failureRedirect: "/failregister",
   }),
-  (req, res) => {
-    try {
-      res.status(200).send("Doctor Registrado");
-    } catch (err) {
-      res.status(500).send("Error al registrar al Doctor", err.message);
-    }
-  }
+  registerDoctorHandler
 );
 
 router.post(
@@ -141,14 +141,7 @@ router.post(
   passport.authenticate("registerPacient", {
     failureRedirect: "/failregister",
   }),
-  (req, res) => {
-    try {
-      res.status(200).send("Paciente Registrado");
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send("Error al registrar al Paciente");
-    }
-  }
+  registerPacientHandler
 );
 
 router.post(

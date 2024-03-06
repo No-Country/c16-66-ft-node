@@ -62,7 +62,7 @@ const initializePassport = () => {
           return done(null, newPacient);
         } catch (err) {
           console.error(err.message);
-          return done(err);
+          return done({ error: err.message });
         }
       }
     )
@@ -126,7 +126,7 @@ const initializePassport = () => {
 
           return done(null, newDoctor);
         } catch (err) {
-          return done(err);
+          return done({ error: err.message });
         }
       }
     )
@@ -154,7 +154,7 @@ const initializePassport = () => {
 
           return done(null, user);
         } catch (err) {
-          return done(err);
+          return done({ error: err.message });
         }
       }
     )
@@ -182,7 +182,7 @@ const initializePassport = () => {
 
           return done(null, user);
         } catch (err) {
-          return done(err);
+          return done({ error: err.message });
         }
       }
     )
@@ -198,8 +198,8 @@ const initializePassport = () => {
     } else if (user instanceof Doctor) {
       userType = "Doctor";
       userId = user.doctorId;
-    } else{
-      userType = "Admin"
+    } else {
+      userType = "Admin";
     }
 
     done(null, { userType, userId });
