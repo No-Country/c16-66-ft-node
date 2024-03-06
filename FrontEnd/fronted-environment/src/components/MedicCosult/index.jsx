@@ -13,7 +13,7 @@ export function MedicConsult({ user }) {
 		<>
 			{doctorLogged && (
 				<>
-					<article className='w-full h-fit my-2 p-2 flex align-middle gap-2 rounded-2xl  bg-white hover:bg-mostLighthBlue '>
+					<article className='w-full h-fit p-2 flex align-middle rounded-2xl bg-white hover:bg-mostLighthBlue '>
 						<figure className='w-20 h-12 m-auto rounded-full overflow-hidden overflow-x-hidden'>
 							{/* Cambiar imagen por la que venga de db */}
 							<Avatar
@@ -44,7 +44,7 @@ export function MedicConsult({ user }) {
 					</article>
 					{/* Seccion de Informacion de Doctro, o de Turno de paciente. depende quien esta loggeado */}
 					{doctorLogged.specialty ? (
-						<section className='w-full max-h-96 flex flex-col items-start gap-4 overflow-scroll '>
+						<section className='w-full max-h-96 flex flex-col items-start gap-4 overflow-scroll xl:overflow-hidden'>
 							<article className='w-full h-fit flex flex-col  gap-4 items-start'>
 								<div className='w-full flex justify-start'>
 									<h3 className=' text-black font-medium text-base'>
@@ -135,7 +135,7 @@ export function MedicConsult({ user }) {
 							</div> */}
 						</section>
 					) : (
-						<section className='w-full max-h-96 flex flex-col items-start gap-4 overflow-scroll '>
+						<section className='w-full max-h-96 flex flex-col items-start gap-4 overflow-scroll xl:overflow-hidden '>
 							<article className='w-full h-fit flex flex-col  gap-2 items-start'>
 								<div>
 									<h3 className='text-black font-medium text-base'>Sintomas</h3>

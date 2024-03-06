@@ -3,6 +3,7 @@ import { NavHome } from "../../components/NavComponent.js/NavHome"
 import { UserStore } from "../../StoreGeneral/UsersStore"
 import BoxImgAndText from "../cartillaMedica/BoxImgAndText"
 import Rectangle from"../../assets/FakeLOGO/Rectangle 250.png"
+import '../../pages/PrincipalHome/index.css'
 
 export default function MyCartillaMedica () {
     const {userLogged} = UserStore()
@@ -12,7 +13,7 @@ export default function MyCartillaMedica () {
 			<NavHome />
 			<section
 				style={{ maxHeight: "1024px" }}
-				className='mt-0.5 h-full w-10/12 lg:w-11/12 self-end bg-bgLightGreen w-inherit'
+				className='mt-0.5 h-full w-full asideWidth self-end bg-bgLightGreen'
 			>
                 {
                 userLogged.planSocialSecurity  ? 

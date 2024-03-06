@@ -65,74 +65,74 @@ export function PerfilForm() {
 
 	return (
 		<section
-			// style={{ maxWidth: "720px", maxHeight: "700px" }}
-			className='overflow-scroll flex flex-col bg-whiteOpacity border-2 shadow-xl rounded-2xl border-gray p-8 xl:overflow-hidden'
+			style={{ boxShadow: '0px 0px 12px 0px rgba(0, 0, 0, 0.20)', backdropFilter: "blur(12.5px)" }}
+			className='overflow-scroll flex flex-col bg-whiteOpacity border-2 border-transparent rounded-2xl p-8 xl:p-1 xl:overflow-hidden'
 		>
 			{" "}
-			<div className='flex-col mb-1'>
-				<h3 className='text-lg font-medium lg:text-2xl text-black'>
+			<div className='flex-col mb-1 xl:pl-6'>
+				<h3 className='text-sm font-medium text-black'>
 					Mis Datos Personales
 				</h3>
-				<p className='text-gray text-lg font-normal'>
+				<p className='text-gray text-sm font-normal'>
 					<span className='text-red'>*</span> Campo obligatorio
 				</p>
 			</div>
 			{userToEdit ? (
 				<form onSubmit={handleSubmit(onSubmitEdit)}>
 					<article className='flex flex-col lg:flex-row justify-around gap-2'>
-						<div className='w-11/12 lg:w-2/5 ml-2 pt-2'>
+						<div className='w-11/12 lg:w-2/5 ml-2 pt-2 xl:pt-0'>
 							<label
 								htmlFor='name'
-								className='ml-2  font-semibold text-base text-darkBlue '
+								className='ml-2 font-semibold text-xs text-darkBlue'
 							>
 								Nombre <span className='text-red'>*</span>
 							</label>
 							<input
 								type='text'
-								className='pl-2 w-full py-1 border border-darkBlue rounded-xl bg-lightGray mt-1'
+								className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl bg-lightGray mt-1'
 								{...register("name")}
 								disabled
 							/>
 						</div>
-						<div className='w-11/12 lg:w-2/5 ml-2 pt-2'>
+						<div className='w-11/12 lg:w-2/5 ml-2 pt-2 xl:pt-0'>
 							<label
 								htmlFor='lastname'
-								className='ml-2  font-semibold text-base text-darkBlue  '
+								className='ml-2  font-semibold text-xs text-darkBlue  '
 							>
 								Apellidos <span className='text-red'>*</span>
 							</label>
 							<input
 								type='text'
-								className=' pl-2 w-full py-1 border border-darkBlue rounded-xl bg-lightGray mt-1'
+								className=' pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl bg-lightGray mt-1'
 								{...register("lastname")}
 								disabled
 							/>
 						</div>
 					</article>
 					<article className='flex flex-col lg:flex-row justify-around gap-2'>
-						<div className='w-11/12 lg:w-2/5 ml-2 pt-2'>
+						<div className='w-11/12 lg:w-2/5 ml-2 pt-2 xl:pt-0'>
 							<label
 								htmlFor='birthdate'
-								className='ml-2  font-semibold text-base text-darkBlue '
+								className='ml-2  font-semibold text-xs text-darkBlue '
 							>
 								Fecha de nacimiento <span className='text-red'>*</span>
 							</label>
 							<input
 								type='date'
-								className='pl-2 w-full py-1 border border-darkBlue rounded-xl bg-mostLighthBlue mt-1'
+								className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl bg-mostLighthBlue mt-1'
 							/>
 						</div>
-						<div className='w-11/12 lg:w-2/5 ml-2 pt-2'>
+						<div className='w-11/12 lg:w-2/5 ml-2 pt-2 xl:pt-0'>
 							<label
 								htmlFor='dni'
-								className='ml-2  font-semibold text-base text-darkBlue  '
+								className='ml-2  font-semibold text-xs text-darkBlue  '
 							>
 								DNI <span className='text-red'>*</span>
 							</label>
 							<input
 								type='text'
 								disabled
-								className='pl-2 w-full py-1 border border-darkBlue rounded-xl bg-lightGray mt-1'
+								className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl bg-lightGray mt-1'
 								{...register("dni", {
 									required: {
 										value: true,
@@ -161,10 +161,10 @@ export function PerfilForm() {
 						</div>
 					</article>
 					<article className=' flex flex-col lg:flex-row justify-around gap-2'>
-						<div className='w-11/12 lg:w-2/5 ml-2 pt-2'>
+						<div className='w-11/12 lg:w-2/5 ml-2 pt-2 xl:pt-0'>
 							<label
 								htmlFor='telefono'
-								className='ml-2  font-semibold text-base text-darkBlue '
+								className='ml-2  font-semibold text-xs text-darkBlue '
 							>
 								Teléfono <span className='text-red'>*</span>
 							</label>
@@ -172,7 +172,7 @@ export function PerfilForm() {
 								<input
 									type='text'
 									name='tel'
-									className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
+									className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
 									{...register("tel", {
 										required: {
 											value: true,
@@ -197,7 +197,7 @@ export function PerfilForm() {
 								<input
 									type='text'
 									name='telephone'
-									className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
+									className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
 									{...register("telephone", {
 										required: {
 											value: true,
@@ -236,10 +236,10 @@ export function PerfilForm() {
 								</span>
 							)}
 						</div>
-						<div className='w-11/12 lg:w-2/5 ml-2 pt-2'>
+						<div className='w-11/12 lg:w-2/5 ml-2 pt-2 xl:pt-0'>
 							<label
 								htmlFor='cuil'
-								className='ml-2  font-semibold text-base text-darkBlue  '
+								className='ml-2  font-semibold text-xs text-darkBlue  '
 							>
 								Cuil <span className='text-red'>*</span>
 							</label>
@@ -248,13 +248,13 @@ export function PerfilForm() {
 								<input
 									disabled={true}
 									type='text'
-									className={` pl-2 w-full py-1 border border-darkBlue rounded-xl bg-lightGray mt-1`}
+									className={` pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl bg-lightGray mt-1`}
 									{...register("cuil")}
 								/>
 							) : (
 								<input
 									type='text'
-									className={`pl-2 w-full py-1 border border-darkBlue rounded-xl bg-mostLighthBlue mt-1`}
+									className={`pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl bg-mostLighthBlue mt-1`}
 									{...register("cuil", {
 										required: {
 											value: true,
@@ -290,17 +290,17 @@ export function PerfilForm() {
 						</div>
 					</article>
 					<article className=' flex flex-col lg:flex-row justify-around gap-2'>
-						<div className='w-11/12 lg:w-2/5 ml-2 pt-2'>
+						<div className='w-11/12 lg:w-2/5 ml-2 pt-2 xl:pt-0'>
 							<label
 								htmlFor='email'
-								className='ml-2  font-semibold text-base text-darkBlue '
+								className='ml-2  font-semibold text-xs text-darkBlue '
 							>
 								Email
 							</label>
 							<input
 								type='text'
 								name='email'
-								className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
+								className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
 								{...register("email", {
 									required: {
 										value: true,
@@ -325,17 +325,17 @@ export function PerfilForm() {
 								</span>
 							)}
 						</div>
-						<div className='w-11/12 lg:w-2/5 ml-2 pt-2'>
+						<div className='w-11/12 lg:w-2/5 ml-2 pt-2 xl:pt-0'>
 							<label
 								htmlFor='password'
-								className='ml-2  font-semibold text-base text-darkBlue '
+								className='ml-2  font-semibold text-xs text-darkBlue '
 							>
 								Contraseña
 							</label>
 							<input
 								type='password'
 								name='password'
-								className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
+								className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
 								{...register("password", {
 									required: {
 										value: true,
@@ -358,24 +358,24 @@ export function PerfilForm() {
 							)}
 						</div>
 					</article>
-					<div className='flex-col mt-3'>
-						<h3 className=' font-medium text-2xl text-black'>Direccíon</h3>
-						<p className='text-gray text-lg font-normal'>
+					<div className='flex-col mt-3 xl:mt-2 xl:pl-6'>
+						<h3 className=' font-medium text-sm text-black'>Direccíon</h3>
+						<p className='text-gray text-sm font-normal'>
 							<span className='text-red'>*</span> Campo obligatorio
 						</p>
 					</div>
 					<article className=' flex flex-col lg:flex-row justify-around gap-2'>
-						<div className='w-11/12 lg:w-2/5 ml-2 pt-2'>
+						<div className='w-11/12 lg:w-2/5 ml-2 pt-2 xl:pt-0'>
 							<label
 								htmlFor='pais'
-								className='ml-2  font-semibold text-base text-darkBlue '
+								className='ml-2  font-semibold text-xs text-darkBlue '
 							>
 								País <span className='text-red'>*</span>
 							</label>
 							<input
 								type='text'
 								name='country'
-								className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
+								className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
 								{...register("country", {
 									required: {
 										value: true,
@@ -392,17 +392,17 @@ export function PerfilForm() {
 								</span>
 							)}
 						</div>
-						<div className='w-11/12 lg:w-2/5 ml-2 pt-2'>
+						<div className='w-11/12 lg:w-2/5 ml-2 pt-2 xl:pt-0'>
 							<label
 								htmlFor='province'
-								className='ml-2  font-semibold text-base text-darkBlue  '
+								className='ml-2  font-semibold text-xs text-darkBlue  '
 							>
 								Provincia <span className='text-red'>*</span>
 							</label>
 							<input
 								type='text'
 								name='province'
-								className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
+								className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
 								{...register("province", {
 									required: {
 										value: true,
@@ -421,17 +421,17 @@ export function PerfilForm() {
 						</div>
 					</article>
 					<article className=' flex flex-col lg:flex-row justify-around gap-2'>
-						<div className='w-11/12 lg:w-2/5 ml-2 pt-2'>
+						<div className='w-11/12 lg:w-2/5 ml-2 pt-2 xl:pt-0'>
 							<label
 								htmlFor='adress'
-								className='ml-2  font-semibold text-base text-darkBlue '
+								className='ml-2  font-semibold text-xs text-darkBlue '
 							>
 								Dirección <span className='text-red'>*</span>
 							</label>
 							<input
 								type='text'
 								name='adress'
-								className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
+								className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
 								{...register("adress", {
 									required: {
 										value: true,
@@ -448,17 +448,17 @@ export function PerfilForm() {
 								</span>
 							)}
 						</div>
-						<div className='w-11/12 lg:w-2/5 ml-2 pt-2'>
+						<div className='w-11/12 lg:w-2/5 ml-2 pt-2 xl:pt-0'>
 							<label
 								htmlFor='town'
-								className='ml-2  font-semibold text-base text-darkBlue  '
+								className='ml-2  font-semibold text-xs text-darkBlue  '
 							>
 								Localidad y Código Postal <span className='text-red'>*</span>
 							</label>
 							<input
 								type='text'
 								name='town'
-								className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
+								className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
 								{...register("town", {
 									required: {
 										value: true,
@@ -476,10 +476,10 @@ export function PerfilForm() {
 							)}
 						</div>
 					</article>
-					<article className='flex justify-around lg:justify-center lg:gap-20 mt-4'>
+					<article className='flex justify-around lg:justify-center lg:gap-20 mt-4 xl:mt-1 '>
 						<button
 							type='submit'
-							className={`w-1/3 md:w-1/3 py-3 sm:text-sm md:text-lg sm:font-semibold md:font-bold px-4 border-2 border-darckBlue rounded-xl flex justify-center bg-darkBlue ${
+							className={`w-1/3 py-3 sm:text-sm xl:w-1/4 xl:m-auto xl:p-1 sm:font-semibold md:font-bold px-4 border-2 border-darckBlue rounded-xl flex justify-center bg-darkBlue ${
 								isDirty ? "hover:bg-green-700" : "hover:bg-green-900"
 							} text-white hover:border-darkBlue  hover:text-mostLighthBlue hover:cursor-pointer`}
 							disabled={!isDirty}
@@ -489,7 +489,7 @@ export function PerfilForm() {
 
 						<button
 							type='cancel'
-							className={`w-1/3 md:w-1/3 py-3 sm:text-sm md:text-lg sm:font-semibold md:font-bold px-4 border-2 rounded-xl  border-red flex justify-center bg-white text-red hover:bg-red ${
+							className={`w-1/3 py-3 xl:w-1/4 xl:m-auto xl:p-1 sm:text-sm sm:font-semibold md:font-bold px-4 border-2 rounded-xl  border-darkBlue flex justify-center bg-white text-darkBlue hover:bg-red ${
 								!isDirty
 									? "hover:bg-rose-950 hover:text-slate-600"
 									: "hover:bg-red"

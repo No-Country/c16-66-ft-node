@@ -46,7 +46,7 @@ export function ViewFromSm() {
 			{/* header con logo de APP =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */}
 			<div
 				style={{ maxHeight: "1024px" }}
-				className=' w-11/12 h-12/12 flex-col lg:flex-nowrap overflow-y-scroll overflow-x-visible'
+				className='w-full flex-col lg:flex-nowrap overflow-y-scroll overflow-x-visible'
 			>
 				{/* Seccion de Titulo de la pagina ==-=-=-=-=-=-=-==-=-=-=-=-=-= */}
 				<section className=' mt-2 mb-1 h-3/12 flex-col sticky top-0 z-40 bg-white'>
@@ -76,8 +76,8 @@ export function ViewFromSm() {
 				</section>
 
 				{/* Seccion calendario y Card de matricula o credencial        */}
-				<section className='mt-2 mb-2 sm:2/5 md:h-2/6  p-1 pr-4 ml-4 flex flex-row box-border'>
-					<article className='w-1/2 mr-4 p-2 h-full rounded-xl bg-mostLighthBlue'>
+				<section className='mt-2 mb-2  flex flex-row box-border'>
+					<article className='w-1/2 mr-4 p-6 h-full rounded-xl bg-mostLighthBlue'>
 						<section>
 							<h2 className='pl-1 font-semibold'> Calendario </h2>
 							<div className='flex justify-between px-2'>
@@ -100,7 +100,7 @@ export function ViewFromSm() {
 								alt='Imagen de perfil'
 								className='w-12 h-12 '
 							/>
-							<div className='w-full ml-2 md:ml-7 flex-col'>
+							<div className='w-full pb-5 ml-2 md:ml-7 flex-col'>
 								<h4 className=' text-sm font-bold text-black'>
 									Nombre de Usuario
 								</h4>
@@ -125,7 +125,7 @@ export function ViewFromSm() {
 					</article>
 					<div
 						//el div tiene el click para destapar la caja del credencial o matricula
-						className='w-1/2 p-2 sm:min-h-60 md:h-full md:min-h-48 flex-col items-center bg-mostLighthBlue rounded-xl box-border hover:cursor-pointer relative '
+						className='w-1/2 p-2 sm:min-h-56 md:h-full md:min-h-48 flex-col items-center bg-mostLighthBlue rounded-xl box-border hover:cursor-pointer relative '
 						onClick={() => setCredAnim(!credAnim)}
 					>
 						<h3 className='ml-4 text-lg font-semibold text-black over'>
@@ -274,7 +274,7 @@ export function ViewFromSm() {
 				>
 					<section
 						style={{ top: "5%", left: "25%" }}
-						className='absolute  w-96 bg-mostLighthBlue rounded-2xl border-2 shadow-2xl p-4'
+						className='absolute w-96 bg-mostLighthBlue rounded-2xl border-2 shadow-2xl p-4'
 					>
 						{selectTypeUser?.name != undefined ? (
 							<MedicConsultModal user={selectTypeUser} />

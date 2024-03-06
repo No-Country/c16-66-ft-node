@@ -71,10 +71,11 @@ export function CredencialMatriculaForm() {
 	};
 
 	return (
-		<section className='overflow-scroll flex flex-col bg-whiteOpacity border-2 shadow-xl rounded-2xl border-gray p-8 xl:overflow-hidden'>
+		<section style={{ boxShadow: '0px 0px 12px 0px rgba(0, 0, 0, 0.20)', backdropFilter: "blur(12.5px)" }} 
+		className='overflow-scroll flex flex-col bg-whiteOpacity border-2 border-transparent rounded-2xl border-gray p-8 xl:p-2 xl:overflow-hidden xl:w-8/12 xl:ml-24'>
 			{" "}
-			<div className='flex-col mb-1'>
-				<h3 className='text-lg font-medium lg:text-2xl text-black'>
+			<div className='flex-col mb-1 xl:pl-6'>
+				<h3 className='text-sm font-medium text-black'>
 					{userLogged ? " Mi Credencial" : "Mi Matrícula"}
 				</h3>
 			</div>
@@ -84,13 +85,13 @@ export function CredencialMatriculaForm() {
 						<div className='w-11/12 ml-2 pt-2'>
 							<label
 								htmlFor='name'
-								className='ml-2  font-semibold text-base text-darkBlue '
+								className='ml-2  font-semibold text-xs text-darkBlue '
 							>
 								Nombre y Apellido
 							</label>
 							<input
 								type='text'
-								className='pl-2 w-full py-1 border border-darkBlue rounded-xl bg-lightGray mt-1'
+								className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl bg-lightGray mt-1'
 								value={fullName}
 								disabled
 							/>
@@ -100,14 +101,14 @@ export function CredencialMatriculaForm() {
 						<div className='w-11/12  ml-2 pt-2'>
 							<label
 								htmlFor='dni'
-								className='ml-2  font-semibold text-base text-darkBlue  '
+								className='ml-2  font-semibold text-xs text-darkBlue  '
 							>
 								DNI
 							</label>
 							<input
 								type='text'
 								disabled
-								className='pl-2 w-full py-1 border border-darkBlue rounded-xl bg-lightGray mt-1'
+								className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl bg-lightGray mt-1'
 								{...register(
 									"dni"
 									//  {
@@ -142,7 +143,7 @@ export function CredencialMatriculaForm() {
 						<div className='w-11/12  ml-2 pt-2'>
 							<label
 								htmlFor='cuil'
-								className='ml-2  font-semibold text-base text-darkBlue  '
+								className='ml-2  font-semibold text-xs text-darkBlue  '
 							>
 								Cuil
 							</label>
@@ -150,13 +151,13 @@ export function CredencialMatriculaForm() {
 								<input
 									disabled={true}
 									type='text'
-									className={` pl-2 w-full py-1 border border-darkBlue rounded-xl bg-lightGray mt-1`}
+									className={` pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl bg-lightGray mt-1`}
 									{...register("cuil")}
 								/>
 							) : (
 								<input
 									type='text'
-									className={`pl-2 w-full py-1 border border-darkBlue rounded-xl bg-mostLighthBlue mt-1`}
+									className={`pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl bg-mostLighthBlue mt-1`}
 									{...register("cuil", {
 										required: {
 											value: true,
@@ -197,14 +198,14 @@ export function CredencialMatriculaForm() {
 								<>
 									<label
 										htmlFor='password'
-										className='ml-2  font-semibold text-base text-darkBlue '
+										className='ml-2  font-semibold text-xs text-darkBlue '
 									>
 										Obra Social
 									</label>
 									<input
 										type='text'
 										name='socialSecurity'
-										className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
+										className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
 										{...register(
 											"socialSecurity"
 											// , {
@@ -228,14 +229,14 @@ export function CredencialMatriculaForm() {
 								<>
 									<label
 										htmlFor='specialty'
-										className='ml-2  font-semibold text-base text-darkBlue '
+										className='ml-2  font-semibold text-xs text-darkBlue '
 									>
 										Especializacíon
 									</label>
 									<input
 										type='text'
 										name='specialty'
-										className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
+										className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
 										{...register("specialty", {
 											required: {
 												value: true,
@@ -262,14 +263,14 @@ export function CredencialMatriculaForm() {
 								<>
 									<label
 										htmlFor='plan'
-										className='ml-2  font-semibold text-base text-darkBlue '
+										className='ml-2  font-semibold text-xs text-darkBlue '
 									>
 										Plan
 									</label>
 									<input
 										type='text'
 										name='planSocialSecurity'
-										className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
+										className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
 										{...register("planSocialSecurity", {
 											required: {
 												value: true,
@@ -290,7 +291,7 @@ export function CredencialMatriculaForm() {
 								<>
 									<label
 										htmlFor='specialty'
-										className='ml-2  font-semibold text-base text-darkBlue '
+										className='ml-2  font-semibold text-xs text-darkBlue '
 									>
 										Obras Sociales Adheridas
 									</label>
@@ -308,7 +309,7 @@ export function CredencialMatriculaForm() {
 
 									<select
 										id='dropdown'
-										className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1 '
+										className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1 '
 										value='Ver obas sociales'
 									>
 										{doctorLogged.SocialSecurity?.map((add, i) => {
@@ -335,14 +336,14 @@ export function CredencialMatriculaForm() {
 								<>
 									<label
 										htmlFor='afliedNumber'
-										className='ml-2  font-semibold text-base text-darkBlue '
+										className='ml-2  font-semibold text-xs text-darkBlue '
 									>
 										N° de Afiliado
 									</label>
 									<input
 										type='text'
 										name='afliedNumber'
-										className='pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
+										className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
 										{...register("afliedNumber", {
 											required: {
 												value: true,
@@ -363,7 +364,7 @@ export function CredencialMatriculaForm() {
 								<>
 									<label
 										htmlFor='licensenumber'
-										className='ml-2  font-semibold text-base text-darkBlue '
+										className='ml-2  font-semibold text-xs text-darkBlue '
 									>
 										N° de Matrícula
 									</label>
@@ -373,7 +374,7 @@ export function CredencialMatriculaForm() {
 											name='licensenumber'
 											className={` ${
 												userToEdit.licensenumber ? "flex" : "hidden"
-											} pl-2 w-full py-1 border border-darkBlue rounded-xl bg-lightGray mt-1`}
+											} pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl bg-lightGray mt-1`}
 											disabled
 											{...register("licensenumber")}
 										/>
@@ -383,7 +384,7 @@ export function CredencialMatriculaForm() {
 											name='licensenumber'
 											className={` ${
 												!userToEdit.licensenumber ? "flex" : "hidden"
-											}pl-2 w-full py-1 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1`}
+											}pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1`}
 											{...register("licensenumber", {
 												required: {
 													value: true,
@@ -408,7 +409,7 @@ export function CredencialMatriculaForm() {
 					<article className='flex justify-around lg:justify-center lg:gap-20 mt-4'>
 						<button
 							type='submit'
-							className={`w-1/3 md:w-1/3 py-3 sm:text-sm md:text-lg sm:font-semibold md:font-bold px-4 border-2 border-darckBlue rounded-xl flex justify-center bg-darkBlue ${
+							className={`w-1/3 py-3 xl:w-1/4 xl:m-auto xl:p-1 sm:text-sm sm:font-semibold md:font-bold px-4 border-2 border-darckBlue rounded-xl flex justify-center bg-darkBlue ${
 								isDirty ? "hover:bg-green-700" : "hover:bg-green-900"
 							} text-white hover:border-darkBlue  hover:text-mostLighthBlue hover:cursor-pointer`}
 							disabled={!isDirty}
@@ -419,7 +420,7 @@ export function CredencialMatriculaForm() {
 						<Toaster richColors />
 						<button
 							type='cancel'
-							className={`w-1/3 md:w-1/3 py-3 sm:text-sm md:text-lg sm:font-semibold md:font-bold px-4 border-2 rounded-xl  border-red flex justify-center bg-white text-red hover:bg-red ${
+							className={`w-1/3 py-3 xl:w-1/4 xl:m-auto xl:p-1 sm:text-sm sm:font-semibold md:font-bold px-4 border-2 rounded-xl  border-darkBlue flex justify-center bg-white text-darkBlue hover:bg-red ${
 								!isDirty
 									? "hover:bg-rose-950 hover:text-slate-600"
 									: "hover:bg-red"
