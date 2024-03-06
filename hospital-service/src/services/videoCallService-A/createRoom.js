@@ -13,7 +13,7 @@ const createRoom = async (req, res) => {
     type: "group",
     uniqueName: roomName,
   });
-
+  //crea el atributo room dentro de la sessión y le asigna el valor del room creado.
   req.session.room = room;
 
   res.send({ room: room });

@@ -85,9 +85,9 @@ const {
 
 const { getToken } = require("../services/videoCallService-A/getToken");
 
-const {
-  tokenGenerator,
-} = require("../services/videoCallService-B/tokenGenerator");
+const { decodeTwilioToken } = require("../utils/decodeTwilioToken");
+
+const { storeTokenMiddleware } = require("../middlewares/storeToken");
 
 //express config
 const { Router } = require("express");
@@ -189,18 +189,32 @@ router.post("/token", createAccessToken);
 
 router.get("/token", getToken);
 
-router.post("/tokenB", (req, res) => {
-  const { identity, room } = req.body;
-  const token = tokenGenerator(identity, room);
+//let cachedToken;
 
-  res.send({ token: token });
+router.post("/tokenB", storeTokenMiddleware, (req, res) => {
+  const token = req.customToken; // Accede al token almacenado en la solicitud
+
+  console.log(token);
+
+  res.send(token);
 });
 
-router.get("/tokenB", (req, res) => {
-  const room = req.query.room;
-  const token = tokenGenerator(room);
+// Ruta GET para decodificar el token y verificar la información
+router.get("/tokenB", storeTokenMiddleware, (req, res) => {
+  const token = req.customToken; // Accede al token almacenado en la solicitud
 
-  res.send({ token: token });
+  console.log(token);
+
+  if (token) {
+    const decodedToken = decodeTwilioToken(token);
+    if (decodedToken) {
+      res.send(decodedToken);
+    } else {
+      res.status(500).send("Error al decodificar el token");
+    }
+  } else {
+    res.status(404).send("Token not found");
+  }
 });
 
 module.exports = router;
