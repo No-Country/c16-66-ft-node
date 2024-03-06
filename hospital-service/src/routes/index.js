@@ -97,6 +97,7 @@ const {
 const {
   registerDoctorHandler,
 } = require("../handlers/doctors/registerDoctorHandler");
+const { checkSessionMiddleware } = require("../middlewares/checkSession");
 
 const router = Router();
 
@@ -147,6 +148,7 @@ router.post(
 router.post(
   "/pacients/login",
   passport.authenticate("loginPacient", { failureRedirect: "/failureLogin" }),
+  checkSessionMiddleware,
   loginPacientHandler
 );
 
@@ -168,7 +170,7 @@ router.get("/reviews", getAllReviesHandler);
 
 //sessions routes
 
-router.get("/session", checkSessionHandler);
+router.get("/session", checkSessionMiddleware, checkSessionHandler);
 
 router.get("/logout", destroySessionHandler);
 
