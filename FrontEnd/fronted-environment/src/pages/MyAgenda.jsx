@@ -36,11 +36,6 @@ export default function MyAgenda () {
         <main className='flex flex-col w-screen h-screen box-border z-0'>
         <AsideComponent />
         <NavHome />
-<<<<<<< HEAD
-        <section style={{ maxHeight: '1024px',height: `calc(100vh - 4rem)` }} className='w-full asideWidth mt-0.5 self-end bg-bgLightGreen w-inherit'>
-        <div className="p-2 sm:px-4 md:px-6 lg:px-14">
-            <h2 className=" text-base font-semibold mb-4 lg:text-lg">AGENDA VER QUE VA ACA</h2>
-=======
         <section style={{ maxHeight: '1024px',height: `calc(100vh - 4rem)` }} className='w-10/12 lg:w-11/12 mt-0.5 self-end bg-white w-inherit'>
 
         <section className='mt-2 mb-2 w-full h-3/12 2xl:h-4/12 flex-col mr-4 p-2 sm:px-4 md:px-6 lg:px-14'>
@@ -88,7 +83,6 @@ export default function MyAgenda () {
 								</div>
 							)}
 						</section>
->>>>>>> 255a1fc3f5c8ba8dc3a92cd73aac925b1feb4614
         </div>
                     
                 </div>

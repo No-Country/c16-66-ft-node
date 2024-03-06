@@ -11,12 +11,8 @@ import { AppoinmentStore } from "../../StoreGeneral/AppoinmentStore";
 import { useAppointmentStore } from "../../hooks/useAppointmentStore";
 import { NavHome } from "../../components/NavComponent.js/NavHome";
 import "./home.css";
-<<<<<<< HEAD
 import '../../pages/PrincipalHome/index.css'
-import { useEffect } from "react";
-=======
 import { useEffect, useState } from "react";
->>>>>>> 255a1fc3f5c8ba8dc3a92cd73aac925b1feb4614
 // import { Footer } from "../../components/principalHome/Footer";
 
 export default function Home() {
