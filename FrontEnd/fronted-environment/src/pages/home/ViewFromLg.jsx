@@ -40,8 +40,8 @@ export function ViewFromLg() {
 		<>
 			{/* header con logo de APP =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */}
 			<div
-				style={{ maxWidth: "1440px" }}
-				className=' lg:w-4/5 xl:w-6/6 h-12/12 flex-col lg:flex-nowrap lg:pr-12 xl:pr-6 2xl:mr-10 '
+				// style={{ maxWidth: "1440px" }}
+				className='p-2 lg:w-11/12 h-inherit flex-col lg:flex-nowrap'
 			>
 				{/* <header
 					// style={{ width: "1320px" }}
@@ -78,20 +78,22 @@ export function ViewFromLg() {
 				</section>
 
 				{/* Seccion de  higlights? =-=-=-=-=-=-=-= */}
-				<section className='w-full h-1/6 max-h-32 2xl:h-3/6 gap-4 flex rounded-3xl bg-celestBgWrapper justify-around px-2 mb-4 '>
+				<section className='w-full h-1/6 max-h-32 p-2 xl:max-h-56 gap-4 flex rounded-3xl bg-celestBgWrapper justify-around px-2 mb-4 '>
 					<HomeHiglights />
 				</section>
 
 				{/* Seccion de reenderizado de lista de pacientes y consulta de c/u =-=-=-=-=-=-=*/}
 				<section
-					style={{ height: "410px" }}
-					className='w-full mt-4 xl:mt-2 secction__Principal-doctorHome flex py-2 px-4 items-start gap-6 shrink-0 rounded-3xl overflow-hidden md:overflow-scroll 2xl:h-96 2xl:px-0 '
+					// style={{ height: "410px" }}
+					className='w-full secction__Principal-doctorHome flex py-2 px-4 items-start gap-6 shrink-0 rounded-3xl overflow-hidden md:overflow-scroll xl:overflow-hidden h-full '
 				>
 					<div className=' w-6/12 h-full flex flex-col justify-around'>
-						<h2 className=' text-2xl text-black font-medium mb-3'>
+						<h2 className='text-xl text-black font-medium '>
 							{doctorLogged ? "Lista de pacientes" : "Próximos turnos "}
 						</h2>
-						<section className='w-full h-72 flex-col overflow-scroll'>
+						<section
+						// style={{height:"450px"}} 
+						className=' w-full h-96 flex-col overflow-y-auto'>
 							{doctorLogged ? (
 								<div className='w-full'>
 									{users?.map((user) => {
@@ -122,7 +124,7 @@ export function ViewFromLg() {
 					{/* -=-=segundo bloque de la seccion - Turno/ doctor info --=-=-=- */}
 					<div className='w-6/12 gap-6 h-full flex flex-col  justify-around'>
 						<div className='flex justify-between'>
-							<h2 className=' font-medium text-xl text-black'>
+							<h2 className='font-medium text-xl text-black'>
 								Consulta Médica
 							</h2>
 							<button
@@ -150,8 +152,8 @@ export function ViewFromLg() {
 					aria-describedby='modal-modal-description'
 				>
 					<section
-						style={{ marginTop: "2%", marginLeft: "33%" }}
-						className='absolute w-fit h-fit bg-mostLighthBlue rounded-2xl border-2 shadow-2xl p-4 overflow-x-hidden'
+						style={{ marginTop: "2%", marginLeft: "30%" }}
+						className='absolute w-5/12 h-fit bg-mostLighthBlue rounded-2xl shadow-2xl p-4 overflow-x-hidden'
 					>
 						{selectTypeUser?.name != undefined ? (
 							<MedicConsultModal user={selectTypeUser} open={open} />
@@ -163,15 +165,14 @@ export function ViewFromLg() {
 					</section>
 				</Modal>
 			</div>
-			<section className='-ml-4 xl:ml-0 mb-2 w-5/12 h-2/5 flex-col box-border 2xl:w-2/5 2xl:mt-12'>
+			<section className='p-4 w-4/12 h-sfit flex-col box-border'>
 				<div
-					style={{ height: `calc(100vh - 4rem)` }}
-					className='m-auto mt-2 box-border 2xl:ml-2'
+					className='m-auto mt-2 box-border'
 				>
 					<CalendarComponent />
 
 					<div
-						className='ml-1 mt-1 w-9/12 2xl:max-w-80 h-44 pt-1 flex-col items-center bg-mostLighthBlue rounded-xl box-border hover:cursor-pointer relative'
+						className='m-auto mt-8 w-full h-48 pt-1 flex-col items-center bg-mostLighthBlue rounded-xl box-border hover:cursor-pointer relative'
 						onClick={() => setCredAnim(!credAnim)}
 					>
 						<h3 className='ml-4 text-lg font-semibold text-black over'>
@@ -211,7 +212,7 @@ export function ViewFromLg() {
 								</span>
 							</div>
 						</article>
-						<article className='w-5/6 h-10/12 rounded-xl flex  m-auto mt-6 pl-6'>
+						<article className='w-5/6 h-10/12 rounded-xl flex  m-auto mt-9 pl-9'>
 							<div
 								className={`bg-blue flex  ${
 									credAnim ? "opacity-0 z-0" : "opacity-100 z-20"

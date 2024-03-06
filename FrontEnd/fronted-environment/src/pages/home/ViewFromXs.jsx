@@ -44,7 +44,7 @@ export function ViewFromXs() {
 			{/* header con logo de APP =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */}
 			<div
 				style={{ maxHeight: "1024px" }}
-				className=' w-11/12 h-12/12 flex-col lg:flex-nowrap overflow-y-scroll overflow-x-visible'
+				className='p-2 w-full h-12/12 flex-col lg:flex-nowrap overflow-y-scroll overflow-x-visible'
 			>
 				{/* Seccion de Titulo de la pagina ==-=-=-=-=-=-=-==-=-=-=-=-=-= */}
 				<section className=' mt-2 mb-1 h-3/12 flex-col sticky top-0 z-40 bg-white'>
@@ -255,7 +255,7 @@ export function ViewFromXs() {
 					aria-describedby='modal-modal-description'
 				>
 					<section
-						style={{ top: "10%", left: "25%" }}
+						style={{ top: "10%", left: "3%" }}
 						className='absolute w-96 p-x4 h-fit	 bg-mostLighthBlue rounded-2xl border-2 shadow-2xl p-4 overflow-x-hidden'
 					>
 						{selectTypeUser?.name != undefined ? (

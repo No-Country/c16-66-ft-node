@@ -4,6 +4,7 @@ import { UserStore } from "../../StoreGeneral/UsersStore"
 import { AsideComponent } from "../aside"
 import { NavHome } from "../NavComponent.js/NavHome"
 import CardPatients from "./CardPatients"
+import '../../pages/PrincipalHome/index.css'
 
 const Patients = [{
     image: 'https://www.wilsoncenter.org/sites/default/files/styles/large/public/media/images/person/james-person-1.webp',
@@ -67,15 +68,15 @@ export default function PatientsOrSpecialists () {
         <main className='flex flex-col w-screen h-screen box-border z-0'>
 			<AsideComponent />
             <NavHome />
-            <section style={{ maxHeight: '1024px',height: `calc(100vh - 4rem)` }} className='h-full w-10/12 mt-0.5 lg:w-11/12 self-end w-inherit'>
-            <div className="sm:px-4 md:px-6 ">
+            <section style={{ maxHeight: '1024px',height: `calc(100vh - 4rem)` }} className='h-full w-full asideWidth mt-0.5 lg:w-11/12 self-end w-inherit p-2'>
+            {/* <div className="sm:px-4 md:px-6 border-2"> */}
 
-                <div style={{ maxHeight: '1024px',height: `calc(100vh - 4rem)` }}  className="w-full sm:flex rounded-xl bg-whiteOpacity">
+                <div style={{ maxHeight: '1024px',height: `calc(100vh - 5rem)` }}  className="w-full -mb-5 sm:flex rounded-xl bg-whiteOpacity">
                     {/* vista cuando es un paciente */}
                     {
                         userLogged && 
                         <section className="mx-auto h-full w-full sm:w-2/3 overflow-y-auto">
-                        <h2 className="font-semibold text-base">Historial de mis consultas</h2>
+                        <h2 className="font-semibold text-base border-2">Historial de mis consultas</h2>
                         <div className="sm:flex justify-between items-end">
                             <h3 className="text-xs">Mis doctores</h3>
                             <input 
@@ -85,7 +86,7 @@ export default function PatientsOrSpecialists () {
                                 onChange={handleSearch}
                             />
                         </div>
-                        <div className="flex flex-col">
+                        <div className="flex flex-col overflow-y-auto h-3/4 sm:h-full sm:mt-5 lg:h-full">
                             <div className="w-full h-1/2">
                             {searchResults.length > 0 ? (
                                  <div className="h-fit w-full flex flex-wrap gap-2 mt-2 justify-center">
@@ -110,18 +111,20 @@ export default function PatientsOrSpecialists () {
                     {
                         doctorLogged &&
                     <>
-                    <section className="mx-auto h-full w-full sm:w-2/3 overflow-y-auto">
+                    <section className="mx-auto h-1/2 sm:h-5/6 w-full sm:w-2/3">
+                        <div className="">
                         <h2 className="font-semibold text-base">Historial de pacientes</h2>
                         <div className="sm:flex justify-between items-end">
                             <h3 className="text-xs">Fichas médicas de los pacientes</h3>
                             <input 
-                                className="p-1 border-2 w-56 outline-none rounded-3xl border-gray text-xs" 
+                                className="p-1 border-2 w-56 sm:w-fit outline-none rounded-3xl border-gray text-xs" 
                                 placeholder="Buscar paciente por apellido..."
                                 value={searchPatient}
                                 onChange={handleSearch}
                             />
                         </div>
-                        <div className="flex flex-col">
+                        </div> 
+                        <div className="flex flex-col overflow-y-auto h-3/4 sm:h-full sm:mt-5 lg:h-full">
                             <div className="w-full h-1/2">
                             {searchResults.length > 0 ? (
                                  <div className="h-fit w-full flex flex-wrap gap-2 mt-2 justify-center">
@@ -141,9 +144,9 @@ export default function PatientsOrSpecialists () {
                             </div>
                         </div>
                     </section> 
-                    <div className="w-full sm:w-1/3 h-full overflow-y-auto pt-7">
-                        <h2 className="font-semibold text-center text-base">Próximas citas </h2>
-                        <div className="h-fit w-full flex flex-wrap gap-2 mt-2 justify-center">
+                    <div className="w-full sm:w-1/3 h-2/5 sm:h-5/6 lg:pt-9">
+                        <h2 className="font-semibold text-center text-base sm:mt-6">Próximas citas </h2>
+                        <div className="pt-4 md:pt-0 w-full flex flex-wrap gap-2 mt-2 justify-center overflow-y-auto h-full lg:h-full sm:mt-5">
                             {Patients.map((patient, index) => (
                                 <CardPatients key={index} patient={patient} />
                             ))}
@@ -152,7 +155,7 @@ export default function PatientsOrSpecialists () {
                     </>
                     }
                 </div>
-            </div>
+            {/* </div> */}
             </section>
         </main>
     )

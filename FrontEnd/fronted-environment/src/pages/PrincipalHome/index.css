@@ -99,3 +99,10 @@ body {
 		transform: rotate(360deg);
 	}
 }
+/* para el ancho de las vistas luego de slir del principal home */
+
+@media screen and (min-width: 640px) {
+	.asideWidth {
+		width: calc(100vw - 4rem);
+	}
+}

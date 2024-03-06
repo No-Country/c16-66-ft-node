@@ -72,10 +72,10 @@ export default function Perfil() {
 			<AsideComponent />
 			<NavHome />
 			<section
-				style={{ maxHeight: "1024px" }}
-				className='mt-0.5 h-full w-10/12 lg:w-11/12 self-end bg-bgLightGreen w-inherit'
+				style={{ maxHeight: "1024px", maxWidth: "100vw"}}
+				className='mt-0.5 w-full asideWidth h-full self-end bg-bgLightGreen'
 			>
-				<div className='flex flex-col justify-center items-center mx-auto md:w-2/5 md:pt-6 md:ml-0 md:h-2/6 md:justify-start'>
+				<div className='flex mt-1 flex-col justify-center items-center mx-auto md:w-2/5 md:pt-6 md:ml-0 md:h-2/6 md:justify-start'>
 					<div className='flex flex-col items-center '>
 						<Avatar
 							src={user.image ? user.image : defaultImgUser}
@@ -84,13 +84,13 @@ export default function Perfil() {
 							// className=' rounded-full w-1/5 md:w-1/3 h-auto lg:mb-4'
 						></Avatar>
 						<Badge
-							className='rounded-full bg-whiteOpacity border border-darkBlue w-6 h-6 -mt-4 md:w-8 md:h-8   flex justify-center items-center'
+							className='rounded-full bg-whiteOpacity border-darkBlue w-6 h-6 -mt-4 md:w-8 md:h-8   flex justify-center items-center'
 							onClick={handleModalImg}
 						>
 							<Avatar
 								src={editImgIcon}
 								sx={{ width: 25, height: 25 }}
-								className='h-4 w-4 md:h-6 md:w-6'
+								className='h-4 w-4 md:h-6 md:w-6 bg-white p-1 border-2 border-darkBlue'
 								alt='Editar Imagen de perfil'
 							/>
 						</Badge>
@@ -150,7 +150,7 @@ export default function Perfil() {
 				<div className='flex flex-nowrap mx-auto justify-between overflow-x-scroll md:overflow-hidden p-1 h-12 mb-12 md:flex-col md:mx-0 md:w-2/5 md:h-fit md:items-center lg:mt-24 md:mb-4'>
 					<button
 						onClick={handleClick1}
-						className='items-center w-64 min-w-44 p-1 flex flex-nowrap rounded-xl bg-white md:bg-transparent hover:bg-whiteOpacity mr-1 text-xs md:p-7 md:text-sm md:mb-1 md:w-64 text-center lg:text-base lg:p-3 lg:'
+						className='items-center w-64 min-w-44 p-1 flex flex-nowrap rounded-xl bg-white md:bg-transparent hover:bg-mostLighthBlue mr-1 text-xs md:p-4 md:text-sm md:mb-1 md:w-64 text-center lg:text-base lg:p-3 lg:'
 					>
 						<img src={personEdit} className='h-5 md:h-6 pr-1 lg:h-7 lg:pr-2' />
 						Mis datos personales
@@ -158,14 +158,14 @@ export default function Perfil() {
 
 					<button
 						onClick={handleClick2}
-						className='items-center p-1 w-64 min-w-44 flex flex-nowrap rounded-xl bg-white md:bg-transparent hover:bg-whiteOpacity mr-1 text-xs md:p-7 md:text-sm md:mb-1 md:w-64 text-center lg:text-base lg:p-3 lg:'
+						className='items-center p-1 w-64 min-w-44 flex flex-nowrap rounded-xl bg-white md:bg-transparent hover:bg-mostLighthBlue mr-1 text-xs md:p-4 md:text-sm md:mb-1 md:w-64 text-center lg:text-base lg:p-3 lg:'
 					>
 						<img src={matricula} className='h-5 md:h-6 pr-1 lg:h-7 lg:pr-2' />
 						{userLogged ? "Mi credencial" : "Mi matrícula"}
 					</button>
 					<button
 						onClick={handleClick3}
-						className='items-center p-1 w-64 min-w-44 flex flex-nowrap rounded-xl bg-white md:bg-transparent hover:bg-whiteOpacity mr-1 text-xs md:p-7 md:text-sm md:mb-1 md:w-64 text-center lg:text-base lg:p-3 lg:'
+						className='items-center p-1 w-64 min-w-44 flex flex-nowrap rounded-xl bg-white md:bg-transparent hover:bg-mostLighthBlue mr-1 text-xs md:p-4 md:text-sm md:mb-1 md:w-64 text-center lg:text-base lg:p-3 lg:'
 					>
 						<img src={historial} className='h-5 md:h-6 pr-1 lg:h-7 lg:pr-2' />
 						{userLogged ? "Mi historial médico" : "Mi historial profesional"}
@@ -174,7 +174,7 @@ export default function Perfil() {
 
 				<div
 					style={{ maxHeight: "470px" }}
-					className='w-11/12 mt-6 mx-auto overflow-y-auto rounded-xl md:fixed md:top-16 md:right-5 md:w-2/5'
+					className='w-11/12 mt-6 mx-auto overflow-y-auto rounded-xl md:fixed md:top-24 lg:top-20 md:right-5 md:w-2/5 md:max-h-full lg:w-7/12'
 				>
 					{btn1 && <PerfilForm userLogged={user} />}
 					{btn2 && <CredencialMatriculaForm />}
