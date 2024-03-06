@@ -13,7 +13,7 @@ export default function VideoCall() {
 	);
 	const [roomData, setRoomData] = useState({});
 	const [token, setToken] = useState(null);
-	const { getRoom, createNewToken } = useVideoCall();
+	const { getRoom, createNewToken, getTokenFn } = useVideoCall();
 
 	const createVideoSubmit = async () => {
 		const responseRoom = await getRoom(logged);
@@ -21,7 +21,9 @@ export default function VideoCall() {
 		const tokenResponse = await createNewToken(logged, roomData);
 		setToken(tokenResponse);
 	};
-
+	const getTokenForCall = () => {
+		getTokenFn(roomData);
+	};
 	console.log(roomData);
 	console.log("token desde la view:", token);
 	return (
@@ -35,6 +37,7 @@ export default function VideoCall() {
 				<h1>videollamadaaa</h1>
 
 				<button onClick={createVideoSubmit}> Crear video Llamada </button>
+				<button onClick={getTokenForCall}> Traer Token </button>
 			</section>
 		</main>
 	);

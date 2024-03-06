@@ -65,12 +65,20 @@ export default function LoginPage() {
 				"No se encontro el email en la Base de datos o la contraseña es erronea. Verifique los campos"
 			);
 			return;
+		} else if (
+			params.types == "doctor" &&
+			response.password != userToLogin.password
+		) {
+			setDbErros(
+				"La contraseña no coincide con la guardada en la Base de Datos"
+			);
+			return;
 		} else {
 			params.types == "pacient" && addUserLogged(response);
 			params.types == "doctor" && addDoctorLogged(response);
 			setDbErros("");
 
-			navigate("/home");
+			navigate(`/home`);
 		}
 	};
 

@@ -10,10 +10,14 @@ export function useVideoCall() {
 
 	const createNewToken = async (logged, roomData) => {
 		const fullname = logged.name + logged.lastname;
-		createToken(fullname, roomData);
-		const tokenResponse = await getToken(roomData);
-		return tokenResponse;
+		const responsePostToken = await createToken(fullname, roomData);
+		console.log(responsePostToken);
 	};
 
-	return { getRoom, createNewToken };
+	const getTokenFn = async (roomData) => {
+		const responseGetToken = await getToken(roomData);
+		console.log("respesta del get token desde el hook:", responseGetToken);
+	};
+
+	return { getRoom, createNewToken, getTokenFn };
 }
