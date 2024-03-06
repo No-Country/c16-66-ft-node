@@ -11,24 +11,43 @@ import { AppoinmentStore } from "../../StoreGeneral/AppoinmentStore";
 import { useAppointmentStore } from "../../hooks/useAppointmentStore";
 import { NavHome } from "../../components/NavComponent.js/NavHome";
 import "./home.css";
+<<<<<<< HEAD
 import '../../pages/PrincipalHome/index.css'
 import { useEffect } from "react";
+=======
+import { useEffect, useState } from "react";
+>>>>>>> 255a1fc3f5c8ba8dc3a92cd73aac925b1feb4614
 // import { Footer } from "../../components/principalHome/Footer";
 
 export default function Home() {
 	const navigate = useNavigate();
-	const { getAppointmentResponse } = useAppointmentStore();
+	const { getAppointmentResponse, appointmentForId } = useAppointmentStore();
 	const { userLogged } = UserStore();
 	const { doctorLogged } = DoctorStore();
 	const { appoinments } = AppoinmentStore();
+	const [userAppointments, setUserAppointments] = useState([]);
 	console.log("turnos desde home :", appoinments);
-	if (!userLogged && !doctorLogged) {
+	if (userLogged == null && doctorLogged == null) {
 		navigate("/autogestion");
 	}
 
 	useEffect(() => {
 		getAppointmentResponse();
+		let filteredAppointments;
+		if (userLogged && appoinments) {
+			filteredAppointments = appointmentForId(userLogged.pacientId, "pacient");
+			setUserAppointments(filteredAppointments);
+			console.log("que retorna esto :", filteredAppointments);
+		} else {
+			filteredAppointments = appointmentForId(doctorLogged?.doctorId, "doctor"); // doctorLoged? para que dfuncione el reenvio si no hay doctor logeado
+			console.log("que retorna esto :", filteredAppointments);
+			setUserAppointments(filteredAppointments);
+		}
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	console.log("Citas filtradas en el home", userAppointments);
 	return (
 		<main className='flex flex-col w-screen h-screen box-border z-0 p-0'>
 			<AsideComponent />
