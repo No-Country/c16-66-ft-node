@@ -11,57 +11,55 @@ const { createRamdonReview } = require("./src/utils/createRamdonReviews");
 const PORT = process.env.PORT || 3001;
 
 conn
-	.sync({ force: true })
-	.then(async () => {
-		// Cargar médicos y pacientes en paralelo
-		const doctorsPromise = Promise.all(
-			api.doctors.map(
-				async ({
-					name,
-					lastname,
-					birthdate,
-					email,
-					password,
-					dni,
-					cuil,
-					adress,
-					town,
-					province,
-					country,
-					telephone,
-					licensenumber,
-					specialty,
-					socialSecurity,
-					registrationNumber,
-					image,
-					role,
-				}) => {
-					await Doctor.findOrCreate({
-						where: { name },
-						defaults: {
-							name,
-							lastname,
-							birthdate,
-							email,
-							password,
-							dni,
-							cuil,
-							adress,
-							town,
-							province,
-							country,
-							telephone,
-							licensenumber,
-							specialty,
-							socialSecurity,
-							registrationNumber,
-							image,
-							role,
-						},
-					});
-				}
-			)
-		);
+  .sync({ force: false })
+  .then(async () => {
+    // Cargar médicos y pacientes en paralelo
+    const doctorsPromise = Promise.all(
+      api.doctors.map(async ({
+        name,
+        lastname,
+        birthdate,
+        email,
+        password,
+        dni,
+        cuil,
+        adress,
+        town,
+        province,
+        country,
+        telephone,
+        licensenumber,
+        specialty,
+        socialSecurity,
+        registrationNumber,
+        image,
+        role,
+      }) => {
+        await Doctor.findOrCreate({
+          where: { name },
+          defaults: {
+            name,
+            lastname,
+            birthdate,
+            email,
+            password,
+            dni,
+            cuil,
+            adress,
+            town,
+            province,
+            country,
+            telephone,
+            licensenumber,
+            specialty,
+            socialSecurity,
+            registrationNumber,
+            image,
+            role,
+          },
+        });
+      })
+    );
 
 		const patientsPromise = Promise.all(
 			api2.pacient.map(
@@ -111,9 +109,10 @@ conn
 		// Esperar la finalización de ambas operaciones
 		await Promise.all([doctorsPromise, patientsPromise]);
 
-		// Llamar a la función para crear citas y reviews aleatorias después de cargar médicos y pacientes
-		// await createRandomAppointments();
-		// await createRamdonReview();
+    // Llamar a la función para crear citas y reviews aleatorias después de cargar médicos y pacientes
+
+    // await createRandomAppointments();
+    // await createRamdonReview();
 
 		// Iniciar el servidor
 		server.listen(PORT, "0.0.0.0", () => {
