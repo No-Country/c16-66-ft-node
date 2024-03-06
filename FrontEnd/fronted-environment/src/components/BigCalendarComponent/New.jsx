@@ -12,6 +12,7 @@ import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
 
 
 
+
 const events =[{
   title: 'cita con doctor2', 
   id: "84198441-bad3-42c9-a083-61997c4deba5",
@@ -68,10 +69,11 @@ export const New = () => {
       //realizar validacion para que solo muestre los eventos 
       //que pertenescan al id logueado 
       display: 'flex', 
-      backgroundColor: '#347CF5', 
+      backgroundColor: 'white', 
       borderRadius: '5px',
       opacity: 0.8,
-      color: 'white'
+      color: 'black',
+      fontFamily: 'Roboto'
     }
     return { style }
   }
@@ -102,7 +104,7 @@ export const New = () => {
         culture='es'
         localizer={localizer}
         events={events}  //lista de eventos que se renderizan, esto se debe conectar con la lista de turnos del usuario loguado
-        defaultView={'day'}
+        defaultView={'week'}
         startAccessor="start"
         endAccessor="end"
         style={{ height: 'calc(100vh - 200px )' }} //ajustar tama;o
@@ -113,9 +115,7 @@ export const New = () => {
          }}
          views={['month','week','day']}
          formats={{
-          dayHeaderFormat: date =>{
-            return format(date,'EEEE dd - MMMM - yyyy')
-          }
+       
          }}
        // onDoubleClickEvent={ onDoubleClick }
        // onSelectEvent={onSelect}
