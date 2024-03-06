@@ -46,7 +46,7 @@ export const addUser = async (user) => {
 	try {
 		await Api.post("/pacients/signup", user);
 	} catch (err) {
-		console.log("errors en : ", err);
+		console.log("errors en creacion de usuarios service: ", err);
 	}
 };
 
@@ -85,12 +85,12 @@ export const addDoctorService = async (newDoctor) => {
 export const logginApi = async (userToLogin) => {
 	// NO ANDA NI ACA NI EN POSTMAN
 	try {
-		console.log("en el service", userToLogin);
+		console.log("en service el login paciente llega ", userToLogin);
 		const { data } = await Api.post(`/pacients/login`, userToLogin);
 		console.log("desde el service Paciente la data es :", data);
 		return data;
 	} catch (err) {
-		console.log("errors en : ", err);
+		console.log("errors en login de pacientes Service: ", err);
 	}
 };
 
