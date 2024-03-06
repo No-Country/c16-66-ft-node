@@ -10,14 +10,11 @@ import { DoctorStore } from "../StoreGeneral/DoctorsStore";
 
 
 
-
-
-
-
 export default function MyAgenda () {
 
 
     const { doctorLogged, doctors } = DoctorStore();
+    console.log(doctors)
     const { users, userLogged } = UserStore();
 
     const [selectTypeUser, setSelectTypeUser] = useState({});
@@ -49,14 +46,14 @@ export default function MyAgenda () {
 				
 				</section>
                 <div className='flex' >
-                <div className="p-2 sm:px-4 md:px-6 lg:px-14 w-8/12">
+                <div className="p-2 sm:px-4 w-9/12">
             <New/>
          
 
 
         </div>
-        <div className=" border rounded-3xl">
-        <section style={{ maxHeight: '1024px',height: `calc(100vh - 200px)` }} className='w-full flex-col overflow-scroll bg-bgLightGreen p-2 rounded-3xl'>
+        <div className="border-slate-300 rounded-3xl w-3/12">
+        <section style={{ maxHeight: '1024px',height: `calc(100vh - 200px)` }} className='w-full flex-col overflow-y-auto bg-bgLightGreen p-2 rounded-3xl mr-2'>
 							{doctorLogged ? (
 								<div className='w-full'>
 									{users?.map((user) => {
