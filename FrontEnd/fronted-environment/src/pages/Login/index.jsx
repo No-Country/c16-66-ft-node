@@ -54,32 +54,17 @@ export default function LoginPage() {
 			setDbErros("La aplicacion no permite correos con el dominio '.net'");
 			return;
 		} //segun params, ver a que service pegarle
-		params.types == "pacient"
-			? (response = await validationUserToLogin(userToLogin))
-			: (response = await validationDoctorToLogin(userToLogin));
+		if (params.types == "pacient") {
+			response = await validationUserToLogin(userToLogin);
+			addUserLogged(response);
+		} else if (params.types == "doctor") {
+			response = await validationDoctorToLogin(userToLogin);
 
-		console.log("en el login la respuesta es :", response);
-
-		if (response == undefined) {
-			setDbErros(
-				"No se encontro el email en la Base de datos o la contraseña es erronea. Verifique los campos"
-			);
-			return;
-		} else if (
-			params.types == "doctor" &&
-			response.password != userToLogin.password
-		) {
-			setDbErros(
-				"La contraseña no coincide con la guardada en la Base de Datos"
-			);
-			return;
-		} else {
-			params.types == "pacient" && addUserLogged(response);
-			params.types == "doctor" && addDoctorLogged(response);
-			setDbErros("");
-
-			navigate(`/home`);
+			addDoctorLogged(response);
 		}
+		setDbErros("");
+		navigate(`/home`);
+		//}
 	};
 
 	return (
