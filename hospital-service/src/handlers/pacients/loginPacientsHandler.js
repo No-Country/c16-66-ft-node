@@ -54,7 +54,7 @@ const loginPacientHandler = (req, res) => {
     // req.session.role = req.user.role;
     // req.session.isLogged = true;
 
-    res.redirect("/session");
+    res.send("Revisa la sesión a ver si funca");
   } catch (err) {
     res.status(500).send("Error al loguear");
     throw new Error(err);
