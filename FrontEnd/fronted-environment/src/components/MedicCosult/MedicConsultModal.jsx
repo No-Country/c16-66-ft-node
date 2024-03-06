@@ -64,7 +64,7 @@ export function MedicConsultModal({ user }) {
 		<>
 			{doctorLogged && (
 				<>
-					<article className='w-full h-fit my-2 py-2 flex align-middle gap-2 rounded-2xl  bg-white hover:bg-mostLighthBlue overflow-x-hidden box-content'>
+					<article className=' w-full h-fit my-2 py-2 flex align-middle gap-2 rounded-2xl  bg-white hover:bg-mostLighthBlue overflow-x-hidden box-content'>
 						<figure className='w-20 h-12 m-auto rounded-full overflow-hidden overflow-x-hidden'>
 							{/* Cambiar imagen por la que venga de db */}
 							<Avatar
@@ -95,7 +95,7 @@ export function MedicConsultModal({ user }) {
 					</article>
 					{/* Seccion de Informacion de Doctro, o de Turno de paciente. depende quien esta loggeado */}
 					{doctorLogged.specialty ? (
-						<section className='w-96 max-w-96 overflow-x-auto max-h-96 flex flex-col items-start gap-4 overflow-scroll  '>
+						<section className=' w-11/12 overflow-x-auto max-h-96 flex flex-col items-start gap-4 overflow-scroll 2xl:max-h-5/6 2xl:max-w-fit mx-auto '>
 							<article className='w-full h-fit flex flex-col  gap-4 items-start'>
 								<div className='w-full flex justify-start'>
 									<h3 className=' text-black font-medium text-base'>
@@ -339,26 +339,26 @@ export function MedicConsultModal({ user }) {
 								</ul>
 							</article>
 							{/* Seccion de botones abajo  */}
-							<div className='w-full h-20 flex justify-around'>
+							<div className='w-full h-20 mt-2 flex justify-around'>
 								<div
 									className='w-6/12 h-11/12 m-auto mr-1 border-2 flex flex-col justify-center border-darkBlue rounded-2xl py-1 px-2  shadow-sm bg-whiteOpacity hover:cursor-pointer hover:bg-darkBlue hover:text-white'
 									onClick={() => openReviewForm()}
 								>
-									<p className='w-fit h-fit m-auto font-semibold text-black'>
+									<p className='w-fit h-fit m-auto font-semibold text-black text-xs'>
 										{" "}
 										Opina sobre :
 									</p>
-									<strong className='w-fit h-fit m-auto'>
+									<strong className='w-fit h-fit m-auto text-xs'>
 										{user.name} {user.lastname}
 									</strong>
 								</div>
 								<div className='w-6/12 h-11/12 m-auto ml-1 border-2 flex flex-col justify-center  border-darkBlue rounded-2xl py-1 px-2 shadow-sm bg-whiteOpacity hover:cursor-pointer'>
 									{" "}
-									<p className=' h-fit m-auto font-semibold text-black'>
+									<p className=' h-fit m-auto font-semibold text-black text-xs'>
 										Calificación
 									</p>
 									<div className='flex justify-center'>
-										<strong className='w-fit h-fit mr-1 text-darkBlue'>
+										<strong className='w-fit h-fit mr-1 text-darkBlue text-xs'>
 											4.8{" "}
 										</strong>
 										<img
