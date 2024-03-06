@@ -11,6 +11,26 @@ export const Api = axios.create({
 	baseURL: "http://localhost:3001",
 	// baseURL: "https://c16-66-ft-node.onrender.com",
 });
+// chequea si hay secion iniciada
+
+export const isSessionActive = async () => {
+	try {
+		const { data } = await Api.get(`/session`);
+		console.log("desde el service a ver que onda :", data);
+		return data;
+	} catch (err) {
+		console.log(err);
+	}
+};
+
+// Cierra sesion si hay alguien logeado
+export const loggoutFromDb = async () => {
+	try {
+		await Api.get(`/logout`);
+	} catch (err) {
+		console.log(err);
+	}
+};
 
 // Devuelve Todo lo que haya en cada endPoint =========================
 
@@ -43,8 +63,10 @@ export const fetchAdmin = async () => {
 
 // Crean user, doctor y admin ======================================
 export const addUser = async (user) => {
+	console.log("llega eso :", user);
 	try {
-		await Api.post("/pacients/signup", user);
+		const { data } = await Api.post("/pacients/signup", user);
+		console.log("esto me devuelve la respesta del pacientrs/singnup:", data);
 	} catch (err) {
 		console.log("errors en creacion de usuarios service: ", err);
 	}
@@ -67,20 +89,11 @@ export const addDoctorService = async (newDoctor) => {
 		console.log("en el service new doctor :", newDoctor);
 		await Api.post("/doctors/signup", newDoctor);
 	} catch (err) {
-		console.log("errors en : ", err);
+		console.log("errors en creear doctor: ", err);
 	}
 };
 
-// export const addAdmin = async (admin) => {
-// 	await Api.post("/admin/", admin);
-// };
-
 // Solo trae uno con un email y el password que son String =================================
-
-// export const getOneUser = async (email) => {
-// 	const { data } = await Api.get(`/users?email=${email}`);
-// 	return data;
-// };
 
 export const logginApi = async (userToLogin) => {
 	// NO ANDA NI ACA NI EN POSTMAN
@@ -96,12 +109,13 @@ export const logginApi = async (userToLogin) => {
 
 export const getOneDoctor = async (doctorToLogin) => {
 	// Funciona en postman y aca. Problema password de los neuvos xq devuelve hash
+
 	try {
-		const { data } = await Api.get(`/doctors/?email=${doctorToLogin.email}`);
+		const { data } = await Api.post(`/doctors/login`, doctorToLogin);
 		console.log("desde el service la data es :", data);
 		return data;
 	} catch (err) {
-		console.log("errors en : ", err);
+		console.log("errors en login doctor: ", err);
 	}
 };
 
@@ -201,9 +215,9 @@ export const fetchAppoinment = async () => {
 export const createRoom = async (roomName) => {
 	try {
 		console.log(roomName);
-		const { data } = await Api.post("/createRoom", { roomName: roomName });
+		const { data } = await Api.post("/createRoom");
 		console.log("respuesta de la room :", data);
-		return data.room.uniqueName;
+		return data;
 	} catch (err) {
 		console.log("errors en : ", err);
 	}
@@ -212,10 +226,7 @@ export const createRoom = async (roomName) => {
 export const createToken = async (identity, room) => {
 	try {
 		console.log(identity, room);
-		const { data } = await Api.post("/tokenB", {
-			identity: identity,
-			room: room,
-		});
+		const { data } = await Api.post("/token");
 		// console.log("data del post token es :", data);
 		return data;
 	} catch (err) {
@@ -223,9 +234,9 @@ export const createToken = async (identity, room) => {
 	}
 };
 
-export const getToken = async (roomData) => {
+export const getToken = async () => {
 	try {
-		const { data } = await Api.get(`/tokenB/?room=${roomData}`);
+		const { data } = await Api.get(`/token`);
 		console.log("data del get token es :", data);
 	} catch (err) {
 		console.log("errors en : ", err);

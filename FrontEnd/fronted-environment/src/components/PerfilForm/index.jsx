@@ -5,11 +5,11 @@ import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
 import { useUserStore } from "../../hooks/userUserStore";
 import { useDoctorStore } from "../../hooks/useDoctorStore";
 import { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
-import { Toaster, toast } from 'sonner'
+import { useNavigate } from "react-router-dom";
+import { Toaster, toast } from "sonner";
 
 export function PerfilForm() {
-	// const navigate = useNavigate();
+	const navigate = useNavigate();
 	const { editUserWithNewDate } = useUserStore();
 	const { editDoctorWithNewDate } = useDoctorStore();
 	const { userLogged } = UserStore();
@@ -53,26 +53,25 @@ export function PerfilForm() {
 	const onSubmitEdit = async (newData) => {
 		event.preventDefault();
 
-		!doctorLogged
-		? await editUserWithNewDate(newData)
-		: await editDoctorWithNewDate(newData);
-		
-		toast.success(
-			'Usuario editado'	
-		)
-		// navigate("/home");
+		doctorLogged == null
+			? await editUserWithNewDate(newData)
+			: await editDoctorWithNewDate(newData);
+
+		toast.success("Usuario editado");
+		navigate("/home");
 	};
 
 	return (
 		<section
-			style={{ boxShadow: '0px 0px 12px 0px rgba(0, 0, 0, 0.20)', backdropFilter: "blur(12.5px)" }}
+			style={{
+				boxShadow: "0px 0px 12px 0px rgba(0, 0, 0, 0.20)",
+				backdropFilter: "blur(12.5px)",
+			}}
 			className='overflow-scroll flex flex-col bg-whiteOpacity border-2 border-transparent rounded-2xl p-8 xl:p-1 xl:overflow-hidden'
 		>
 			{" "}
 			<div className='flex-col mb-1 xl:pl-6'>
-				<h3 className='text-sm font-medium text-black'>
-					Mis Datos Personales
-				</h3>
+				<h3 className='text-sm font-medium text-black'>Mis Datos Personales</h3>
 				<p className='text-gray text-sm font-normal'>
 					<span className='text-red'>*</span> Campo obligatorio
 				</p>
