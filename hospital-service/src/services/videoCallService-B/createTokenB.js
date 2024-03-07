@@ -1,10 +1,10 @@
-const createTokenB = (req, res) => {
+const { tokenGenerator } = require("../videoCallService-B/tokenGenerator");
+
+const createTokenB = async (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   try {
-    const token = req.customToken; // Accede al token almacenado en la solicitud
-
-    console.log(token);
-    
+    const { identity, room } = req.body;
+    const token = await tokenGenerator(identity, room);
 
     res.send(token);
   } catch (err) {
