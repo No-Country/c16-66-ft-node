@@ -24,7 +24,7 @@ if (role ==='pacient') {
             start: startDate,
             end: addHours(startDate,1) 
         }
- console.log(event.end)
+
         return event
     })
 

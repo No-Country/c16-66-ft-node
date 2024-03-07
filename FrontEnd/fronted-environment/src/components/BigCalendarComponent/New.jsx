@@ -1,4 +1,4 @@
-//import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Calendar } from 'react-big-calendar'//npm i react-big-calendar requerido
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { addHours,format} from 'date-fns'
@@ -23,20 +23,34 @@ export const New = () => {
  const { doctorLogged,doctors } = DoctorStore();
  const { appoinments } = AppoinmentStore();
  const {getAppointmentResponse, appointmentForId} = useAppointmentStore()
+ const [events, setEvents] = useState([]);
 
 
 
+ useEffect(() => {
+  getAppointmentResponse();
+  let filteredAppointments;
+  if (userLogged && appoinments) {
+    filteredAppointments = dbApoinmentsToEvents(appointmentForId(userLogged.pacientId, "pacient"),"pacient")
+    setEvents(filteredAppointments);
+    console.log("que retorna esto :", filteredAppointments);
+  } else {
+    filteredAppointments = dbApoinmentsToEvents(appointmentForId(doctorLogged?.doctorId, "doctor"),"doctor")// doctorLoged? para que dfuncione el reenvio si no hay doctor logeado
+    console.log("que retorna esto :", filteredAppointments);
+    setEvents(filteredAppointments);
+  }
+console.log(events)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
- //trae array de 100 elementos
 
 
-let mockRole='pacient' //rol de usuario logueado
-let mockId = '67154a0a-ff65-4146-aab5-3c5bce137082' //id de usuario logueado
-let mockApoinments = appointmentForId(mockId,mockRole) //funciona
- //EVENTOS A RENDERIZAR------------------------------------------
-const events = dbApoinmentsToEvents(mockApoinments,mockRole) //cuando se pueda loguear se debe de cambiar los mocks por el userlogged/doctorlogged  y el user.role
+// let role='pacient' //rol de usuario logueado
+// let id = '67154a0a-ff65-4146-aab5-3c5bce137082' //id de usuario logueado
+// let mockApoinments = appointmentForId(id,role) //funciona
 
-console.log(userLogged)
+//EVENTOS A RENDERIZAR------------------------------------------
+// const events = dbApoinmentsToEvents(mockApoinments,role) //cuando se pueda loguear se debe de cambiar los mocks por el userlogged/doctorlogged  y el user.role
 
 
  if (!userLogged && !doctorLogged) {
@@ -64,7 +78,7 @@ console.log(userLogged)
       <Calendar
         culture='es'
         localizer={localizer}
-        events={events}  //lista de eventos que se renderizan, esto se debe conectar con la lista de turnos del usuario loguado
+        events={events}  
         defaultView={'week'}
         startAccessor="start"
         endAccessor="end"
