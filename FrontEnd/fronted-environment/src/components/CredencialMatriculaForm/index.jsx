@@ -14,7 +14,7 @@ export function CredencialMatriculaForm() {
 	const { editDoctorWithNewDate } = useDoctorStore();
 	const { userLogged } = UserStore();
 	const { doctorLogged } = DoctorStore();
-	console.log(userLogged);
+	//console.log(userLogged);
 	// eslint-disable-next-line no-unused-vars
 	const [userToEdit, setUserToEdit] = useState(
 		userLogged ? userLogged : doctorLogged
@@ -49,7 +49,7 @@ export function CredencialMatriculaForm() {
 			planSocialSecurity: userLogged && userLogged.planSocialSecurity,
 		},
 	});
-	console.log("el form data: ", FormData);
+	//console.log("el form data: ", FormData);
 	const fullName = userToEdit.name + " " + userToEdit.lastname;
 
 	const onSubmitEdit = (newData) => {

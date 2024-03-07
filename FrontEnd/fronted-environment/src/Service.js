@@ -37,7 +37,7 @@ export const loggoutFromDb = async () => {
 export const fetchUsers = async () => {
 	try {
 		const { data } = await Api.get(`/pacients`);
-		console.log("desde el service a ver que onda :", data);
+		console.log("Pacientes desde el service a ver que onda :", data);
 		return data;
 	} catch (err) {
 		console.log(err);

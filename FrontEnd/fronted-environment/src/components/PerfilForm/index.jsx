@@ -14,7 +14,7 @@ export function PerfilForm() {
 	const { editDoctorWithNewDate } = useDoctorStore();
 	const { userLogged } = UserStore();
 	const { doctorLogged } = DoctorStore();
-	console.log(userLogged);
+	//console.log(userLogged);
 	// eslint-disable-next-line no-unused-vars
 	const [userToEdit, setUserToEdit] = useState(
 		userLogged ? userLogged : doctorLogged

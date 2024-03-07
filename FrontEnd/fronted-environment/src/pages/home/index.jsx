@@ -22,7 +22,7 @@ export default function Home() {
 	const { doctorLogged } = DoctorStore();
 	const { appoinments } = AppoinmentStore();
 	const [userAppointments, setUserAppointments] = useState([]);
-	console.log("turnos desde home :", appoinments);
+	//console.log("turnos desde home :", appoinments);
 	if (userLogged == null && doctorLogged == null) {
 		navigate("/autogestion");
 	}
@@ -33,7 +33,7 @@ export default function Home() {
 		if (userLogged && appoinments) {
 			filteredAppointments = appointmentForId(userLogged.pacientId, "pacient");
 			setUserAppointments(filteredAppointments);
-			console.log("que retorna esto :", filteredAppointments);
+			//console.log("que retorna esto :", filteredAppointments);
 		} else {
 			filteredAppointments = appointmentForId(doctorLogged?.doctorId, "doctor"); // doctorLoged? para que dfuncione el reenvio si no hay doctor logeado
 			console.log("que retorna esto :", filteredAppointments);
@@ -43,7 +43,7 @@ export default function Home() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	console.log("Citas filtradas en el home", userAppointments);
+	//console.log("Citas filtradas en el home", userAppointments);
 	return (
 		<main className='flex flex-col w-screen h-screen box-border z-0 p-0'>
 			<AsideComponent />

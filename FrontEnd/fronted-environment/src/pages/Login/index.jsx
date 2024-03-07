@@ -57,7 +57,7 @@ export default function LoginPage() {
 		} //segun params, ver a que service pegarle
 		if (params.types == "pacient") {
 			response = await validationUserToLogin(userToLogin);
-			addUserLogged(response);
+			await addUserLogged(response);
 		} else if (params.types == "doctor") {
 			console.log("estoy aca");
 			response = await validationDoctorToLogin(userToLogin);
