@@ -16,6 +16,10 @@ const {
 } = require("../handlers/doctors/deleteDoctorByIdHandler");
 
 const {
+  registerDoctorHandler,
+} = require("../handlers/doctors/registerDoctorHandler");
+
+const {
   loginDoctorHandler,
 } = require("../handlers/doctors/loginDoctorHandler");
 
@@ -37,6 +41,10 @@ const {
 const {
   updatePacientHandler,
 } = require("../handlers/pacients/updatePacientHandler");
+
+const {
+  registerPacientHandler,
+} = require("../handlers/pacients/registerPacientHandler");
 
 const {
   loginPacientHandler,
@@ -85,19 +93,24 @@ const {
 
 const { getToken } = require("../services/videoCallService-A/getToken");
 
-const { decodeTwilioToken } = require("../utils/decodeTwilioToken");
-
 const { storeTokenMiddleware } = require("../middlewares/storeToken");
+
+const { getTokenB } = require("../services/videoCallService-B/getTokenB");
+
+const { createTokenB } = require("../services/videoCallService-B/createTokenB");
+
+//controllers admin
+
+const { createAdminHandler } = require("../handlers/admin/createAdminHandler");
+
+const { getAdminHandler } = require("../handlers/admin/getAdminHandler");
+
+//controllers sessions
+
+const { checkSessionMiddleware } = require("../middlewares/checkSession");
 
 //express config
 const { Router } = require("express");
-const {
-  registerPacientHandler,
-} = require("../handlers/pacients/registerPacientHandler");
-const {
-  registerDoctorHandler,
-} = require("../handlers/doctors/registerDoctorHandler");
-const { checkSessionMiddleware } = require("../middlewares/checkSession");
 
 const router = Router();
 
@@ -152,6 +165,12 @@ router.post(
   loginPacientHandler
 );
 
+//admin routes
+
+router.post("/admin", createAdminHandler);
+
+router.get("/admin", getAdminHandler);
+
 //appoinment routes
 router.get("/appoinment", getAllAppoinment);
 
@@ -184,32 +203,9 @@ router.post("/token", createAccessToken);
 
 router.get("/token", getToken);
 
-//let cachedToken;
-
-router.post("/tokenB", storeTokenMiddleware, (req, res) => {
-  const token = req.customToken; // Accede al token almacenado en la solicitud
-
-  console.log(token);
-
-  res.send(token);
-});
+router.post("/tokenB", storeTokenMiddleware, createTokenB);
 
 // Ruta GET para decodificar el token y verificar la información
-router.get("/tokenB", storeTokenMiddleware, (req, res) => {
-  const token = req.customToken; // Accede al token almacenado en la solicitud
-
-  console.log(token);
-
-  if (token) {
-    const decodedToken = decodeTwilioToken(token);
-    if (decodedToken) {
-      res.send(decodedToken);
-    } else {
-      res.status(500).send("Error al decodificar el token");
-    }
-  } else {
-    res.status(404).send("Token not found");
-  }
-});
+router.get("/tokenB", storeTokenMiddleware, getTokenB);
 
 module.exports = router;

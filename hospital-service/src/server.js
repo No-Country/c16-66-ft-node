@@ -18,6 +18,14 @@ const sessionStore = new SequelizeStore({
 });
 
 server.use(
+  cors({
+    origin: "*",
+    methods: "GET,PUT,PATCH,HEAD,DELETE,POST",
+    credentials: true,
+  })
+);
+
+server.use(
   session({
     store: sessionStore,
     secret: DB_PASSWORD,
@@ -35,14 +43,6 @@ server.use(morgan("dev"));
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 server.use(bodyParser.json());
-
-server.use(
-  cors({
-    origin: "*",
-    methods: "GET,PUT,PATCH,HEAD,DELETED,POST",
-    credentials: true,
-  })
-);
 
 // server.use(passport.session());
 // initializePassport();

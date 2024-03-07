@@ -42,7 +42,7 @@ let capsEntries = entries.map((entry) => [
 
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Pacient, Doctor, Appoinment, Review } = sequelize.models;
+const { Pacient, Doctor, Appoinment, Review, Admin } = sequelize.models;
 
 /*1:N*/
 Appoinment.belongsTo(Doctor, { foreignKey: "doctorId" });
@@ -57,12 +57,12 @@ Pacient.hasMany(Review, { foreignKey: "pacientId" });
 Review.belongsTo(Doctor, { foreignKey: "doctorId" });
 Doctor.hasMany(Review, { foreignKey: "doctorId" });
 
-
 module.exports = {
   ...sequelize.models,
   Doctor,
   Appoinment,
   Pacient,
   Review,
+  Admin,
   conn: sequelize,
 };

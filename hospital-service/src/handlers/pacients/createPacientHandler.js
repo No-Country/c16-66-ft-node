@@ -19,6 +19,8 @@ const createPacientHandler = async (req, res) => {
       socialSecurity,
       planSocialSecurity,
     } = req.body;
+
+    console.log("Fecha de nacimiento recibida:", birthdate);
     const newPacient = await createPacient(
       name,
       lastname,
