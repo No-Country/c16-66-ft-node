@@ -21,12 +21,20 @@ module.exports = (sequelize) => {
       },
       password: {
         type: DataTypes.STRING,
+        allowNull: true, //por el momento
       },
-      role: {
-        type: DataTypes.STRING,
-        defaultValue: "Admin",
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW, // o puedes usar Sequelize.literal('NOW()') para obtener el tiempo actual del servidor PostgreSQL
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
       },
     },
     { timestamps: false }
   );
 };
+

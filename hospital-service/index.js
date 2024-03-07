@@ -1,8 +1,9 @@
 const server = require("./src/server");
-const { conn } = require("./src/db");
+const { conn, Admin } = require("./src/db");
 const { Doctor, Pacient } = require("./src/db");
 const api = require("./api/doctors.json");
 const api2 = require("./api/pacient.json");
+const api3 = require("./api/admin.json");
 const { createRandomAppointments } = require("./src/utils/createRamdonAppoinments");
 const { createRamdonReview } = require("./src/utils/createRamdonReviews");
 
@@ -102,8 +103,24 @@ conn
       })
     );
 
+    const adminPromise = Promise.all(
+      api3.admin.map(async ({
+        name, 
+        lastname,
+        email, 
+        password,
+      }) => {await Admin.findOrCreate({
+        where: { name },
+          defaults: {
+            name,
+            lastname,
+            email,
+            password,
+      }})})
+    )
+
     // Esperar la finalización de ambas operaciones
-    await Promise.all([doctorsPromise, patientsPromise]);
+    await Promise.all([doctorsPromise, patientsPromise, adminPromise]);
 
     // Llamar a la función para crear citas y reviews aleatorias después de cargar médicos y pacientes
 
