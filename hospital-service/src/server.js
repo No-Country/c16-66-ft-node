@@ -9,7 +9,6 @@ const router = require("./routes");
 require("dotenv").config();
 const cors = require("cors");
 const { initializePassport } = require("../src/config/passport.config");
-const cookieParser = require("cookie-parser");
 
 const server = express();
 const { DB_PASSWORD } = process.env;
@@ -28,8 +27,6 @@ server.use(
       httpOnly: true,
       maxAge: 30 * 60 * 1000,
       expires: new Date(Date.now() + 30 * 60 * 1000),
-      sameSite: "none",
-      secure: true,
     },
   })
 );
@@ -43,7 +40,6 @@ server.use(
   cors({
     origin: "*",
     methods: "GET,PUT,PATCH,HEAD,DELETED,POST",
-    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
@@ -53,7 +49,6 @@ server.use(
 // server.use(passport.initialize());
 
 initializePassport(); // Primero inicializa Passport
-server.use(cookieParser());
 server.use(passport.initialize()); // Luego usa el middleware de Passport
 server.use(passport.session()); //
 
