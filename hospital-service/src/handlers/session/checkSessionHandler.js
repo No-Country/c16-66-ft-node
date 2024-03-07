@@ -1,4 +1,5 @@
 const checkSessionHandler = (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
   try {
     if (req.session.isLogged) {
       const sessionDTO = {
