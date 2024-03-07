@@ -84,8 +84,8 @@ export function ViewFromLg() {
 
 				{/* Seccion de reenderizado de lista de pacientes y consulta de c/u =-=-=-=-=-=-=*/}
 				<section
-					// style={{ height: "410px" }}
-					className='w-full secction__Principal-doctorHome flex py-2 px-4 items-start gap-6 shrink-0 rounded-3xl overflow-hidden md:overflow-scroll xl:overflow-hidden h-full '
+					style={{ maxHeight: "680px" }}
+					className='w-full secction__Principal-doctorHome flex py-2 px-4 items-start gap-6 rounded-3xl overflow-hidden md:overflow-scroll xl:overflow-hidden h-full '
 				>
 					<div className=' w-6/12 h-full flex flex-col justify-around'>
 						<h2 className='text-xl text-black font-medium '>
@@ -93,7 +93,8 @@ export function ViewFromLg() {
 						</h2>
 						<section
 							// style={{height:"450px"}}
-							className=' w-full h-96 flex-col overflow-y-auto'
+							// style={{ maxHeight: "1024px", maxWidth: "100vw", height: `calc(100vh - 4rem)`}}
+							className='w-full h-96 xl:h-5/6 flex-col overflow-y-auto'
 						>
 							{doctorLogged ? (
 								<div className='w-full'>
@@ -123,26 +124,31 @@ export function ViewFromLg() {
 						</section>
 					</div>
 					{/* -=-=segundo bloque de la seccion - Turno/ doctor info --=-=-=- */}
-					<div className='w-6/12 gap-6 h-full flex flex-col  justify-around'>
-						<div className='flex justify-between'>
+					<div className=' w-6/12 gap-6 h-full flex flex-col  justify-around xl:justify-start'>
+						<div className=' flex justify-between '>
 							<h2 className='font-medium text-xl text-black'>
 								Consulta Médica
 							</h2>
 							<button
-								className='text-darkBlue mr-2 hover:cursor-pointer'
+								className='text-darkBlue mr-2 hover:cursor-pointer 2xl:hidden'
 								onClick={handleModalConsult}
 							>
 								{" "}
 								Ver más..{" "}
 							</button>
 						</div>
-						{selectTypeUser?.name != undefined ? (
-							<MedicConsult user={selectTypeUser} />
-						) : userLogged ? (
-							<MedicConsult user={doctors[0]} />
-						) : (
-							<MedicConsult user={users[0]} />
-						)}
+						<div className='hidden 2xl:flex 2xl:flex-col'>
+							<MedicConsultModal user={selectTypeUser} open={open} />
+						</div>
+						<div className='2xl:hidden'>
+							{selectTypeUser?.name != undefined ? (
+								<MedicConsult user={selectTypeUser} />
+							) : userLogged ? (
+								<MedicConsult user={doctors[0]} />
+							) : (
+								<MedicConsult user={users[0]} />
+							)}
+						</div>
 					</div>
 				</section>
 				{/* Modal de Ver Mas =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */}

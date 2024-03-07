@@ -70,8 +70,8 @@ export function HomeHiglights() {
 			) : (
 				// Renderizado condicional, abajo si ha Paciente Logeado
 				<>
-					<div className='w-full h-16 sm:w-1/3 sm:h-2/3 lg:h-3/4 rounded-lg my-auto agendaWraperBg p-3'>
-						<div className='w-3/5 m-auto sm:w-9/12 lg:w-7/12 h-4/6 rounded-lg  mt-2 sm:mt-7 bg-whiteOpacity flex justify-evenly xl:mt-0 p-1 items-center shadow-lg'>
+					<div className='w-full h-16 sm:w-1/3 sm:h-2/3 lg:h-fit rounded-lg my-auto agendaWraperBg p-3'>
+						<div className='w-3/5 m-auto sm:w-9/12 lg:w-fit lg:h-fit h-4/6 rounded-lg  mt-2 sm:mt-7 bg-whiteOpacity flex justify-evenly xl:mt-0 p-1 items-center shadow-lg'>
 							<div className='w-fit h-fit p-1 rounded-full bg-lightBlue flex justify-center'>
 								<img
 									className='objet-cover objet-center inline'
@@ -86,8 +86,8 @@ export function HomeHiglights() {
 							</div>
 						</div>
 					</div>
-					<div className='w-full h-16 sm:w-1/3 sm:h-3/4 rounded-lg cartillaWraperBg my-auto shadow-lg p-3'>
-						<div className='w-3/5 m-auto sm:w-9/12 lg:w-7/12 h-4/6 rounded-lg  mt-2 sm:mt-7 xl:mt-0 bg-whiteOpacity flex justify-evenly items-center p-1'>
+					<div className='w-full h-16 sm:w-1/3 sm:h-3/4 rounded-lg cartillaWraperBg my-auto shadow-lg p-3 lg:h-fit'>
+						<div className='w-3/5 m-auto sm:w-9/12 lg:w-fit lg:h-fit h-4/6 rounded-lg  mt-2 sm:mt-7 xl:mt-0 bg-whiteOpacity flex justify-evenly items-center p-1'>
 							<div className='w-fit h-fit p-1 rounded-full bg-lightBlue flex justify-center'>
 								<img
 									className='objet-cover objet-center inline'
@@ -102,8 +102,8 @@ export function HomeHiglights() {
 							</div>
 						</div>
 					</div>
-					<div className='w-full h-16 sm:w-1/3 sm:h-3/4 rounded-lg turnosWraperBg my-auto shadow-lg p-3'>
-						<div className='w-3/5 m-auto sm:w-9/12 lg:w-7/12 h-4/6 rounded-lg  mt-2 sm:mt-7 xl:mt-0 bg-whiteOpacity flex justify-evenly items-center p-1'>
+					<div className='w-full h-16 sm:w-1/3 sm:h-3/4 lg:h-fit rounded-lg turnosWraperBg my-auto shadow-lg p-3'>
+						<div className='w-3/5 m-auto sm:w-9/12 h-4/6 rounded-lg  mt-2 sm:mt-7 xl:mt-0 bg-whiteOpacity flex justify-evenly items-center p-1 lg:w-fit lg:h-fit'>
 							<div className='w-fit h-fit p-1 rounded-full bg-lightBlue flex justify-center'>
 								<img
 									className='objet-cover objet-center inline'

@@ -273,8 +273,8 @@ export function ViewFromSm() {
 					aria-describedby='modal-modal-description'
 				>
 					<section
-						style={{ top: "5%", left: "25%" }}
-						className='absolute w-96 bg-mostLighthBlue rounded-2xl border-2 shadow-2xl p-4'
+						style={{ top: "5%", left: "15%" }}
+						className='absolute w-9/12 bg-mostLighthBlue rounded-2xl shadow-2xl p-4'
 					>
 						{selectTypeUser?.name != undefined ? (
 							<MedicConsultModal user={selectTypeUser} />

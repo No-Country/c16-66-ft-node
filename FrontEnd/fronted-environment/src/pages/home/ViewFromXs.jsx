@@ -256,7 +256,7 @@ export function ViewFromXs() {
 				>
 					<section
 						style={{ top: "10%", left: "3%" }}
-						className='absolute w-96 p-x4 h-fit	 bg-mostLighthBlue rounded-2xl border-2 shadow-2xl p-4 overflow-x-hidden'
+						className='absolute w-11/12 p-x4 h-fit bg-mostLighthBlue rounded-2xl shadow-2xl p-4 overflow-x-hidden'
 					>
 						{selectTypeUser?.name != undefined ? (
 							<MedicConsultModal user={selectTypeUser} />

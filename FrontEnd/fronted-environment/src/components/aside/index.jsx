@@ -95,7 +95,7 @@ export function AsideComponent() {
 						}`}
 					>
 						<figure
-							className={`w-10 h-auto ml-3 rounded-full overflow-hidden ${openClose}`}
+							className={`w-11 h-auto  rounded-full overflow-hidden ${openClose}`}
 						>
 							{doctorLogged && (
 								<Avatar
@@ -243,16 +243,6 @@ export function AsideComponent() {
 							</div>
 						</div>
 						<div
-							className={`${
-								openClose
-									? "mx-inherit w-full"
-									: "mx-auto w-2/3 hover:bg-white rounded-xl"
-							}`}
-							onClick={() => navigate("/")}
-						>
-							<BoxIcon openClose={openClose} text={"Inicio"} icon={arrowBack} />
-						</div>
-						<div
 							className={`${openClose ? "mx-inherit w-full" : "hidden"}`}
 							onClick={handleSuport}
 						>
@@ -280,6 +270,19 @@ export function AsideComponent() {
 							</div>
 						}
 					</section>
+					<div
+							className={`${
+								openClose
+									? "mx-inherit w-full"
+									: "hidden"
+							}`}
+							onClick={() => navigate("/")}
+						>
+							<div className={`flex cursor-pointer hover:bg-white p-2 rounded-xl mx-auto ${openClose ? 'w-full justify-start gap-4' : 'w-2/3 h-auto justify-center'}`}>
+							<img src={arrowBack} className="max-w-none w-5" title={"Inicio"}/>
+							<p style={{display: openClose ? 'block': 'none'}} className='text-sm'>{"Inicio"}</p>
+							</div>
+						</div>
 					<div
 						className={`${openClose ? "mx-inherit w-full -mb-8" : "hidden"}`}
 						onClick={() => setModal(true)}
@@ -358,7 +361,7 @@ export function AsideComponent() {
 						}`}
 					>
 						<figure
-							className={`w-10 h-auto ml-3 rounded-full overflow-hidden ${openClose}`}
+							className={`w-11 h-auto rounded-full overflow-hidden ${openClose}`}
 						>
 							{doctorLogged && (
 								<Avatar
@@ -542,16 +545,6 @@ export function AsideComponent() {
 									? "mx-inherit w-full"
 									: "mx-auto w-2/3 hover:bg-white rounded-xl"
 							}`}
-							onClick={() => navigate("/")}
-						>
-							<BoxIcon openClose={openClose} text={"Inicio"} icon={arrowBack} />
-						</div>
-						<div
-							className={`${
-								openClose
-									? "mx-inherit w-full"
-									: "mx-auto w-2/3 hover:bg-white rounded-xl"
-							}`}
 							onClick={handleSuport}
 						>
 							<BoxIcon
@@ -559,6 +552,19 @@ export function AsideComponent() {
 								text={"Centro de ayuda"}
 								icon={suportAgent}
 							/>
+						</div>
+						<div
+							className={`${
+								openClose
+									? "mx-inherit w-full"
+									: "mx-auto w-2/3 hover:bg-white rounded-xl"
+							}`}
+							onClick={() => navigate("/")}
+						>
+							<div className={`flex cursor-pointer hover:bg-white p-2 rounded-xl mx-auto ${openClose ? 'w-full justify-start gap-4' : 'w-2/3 h-auto justify-center'}`}>
+							<img src={arrowBack} className="max-w-none w-5" title={"Inicio"}/>
+							<p style={{display: openClose ? 'block': 'none'}} className='text-sm'>{"Inicio"}</p>
+							</div>
 						</div>
 
 						{suport && <ModalSuport suport={suport} setSuport={setSuport} />}

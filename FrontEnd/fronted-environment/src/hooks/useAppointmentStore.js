@@ -2,7 +2,9 @@ import { fetchAppoinment } from "../Service";
 import { AppoinmentStore } from "../StoreGeneral/AppoinmentStore";
 
 export function useAppointmentStore() {
+	
 	const { addAppoinments, appoinments } = AppoinmentStore();
+
 	const getAppointmentResponse = async () => {
 		const adminApiResponse = await fetchAppoinment();
 		await addAppoinments(adminApiResponse);

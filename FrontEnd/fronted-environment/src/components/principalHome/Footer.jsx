@@ -48,7 +48,7 @@ export function Footer () {
                         doctorLogged && 
                         doctorLogged.province ? <h6 className='text-xs font-semibold'> 
                         Centros de atención en {doctorLogged.province.toUpperCase()}</h6>
-                        : <h6 className='text-xs font-semibold'> Ubicación</h6>
+                        : <></>
                        }
                         
                         <Map />
