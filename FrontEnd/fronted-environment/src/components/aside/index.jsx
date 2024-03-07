@@ -99,13 +99,14 @@ export function AsideComponent() {
 						>
 							{doctorLogged && (
 								<Avatar
-									sx={{ width: 25, height: 25 }}
+									sx={{ width: 25, height: 25, margin:'auto' }}
 									className='objet-cover object-center'
 									src={doctorLogged.image}
 								/>
 							)}
 							{userLogged && (
 								<Avatar
+									sx={{ width: 25, height: 25, margin:'auto' }}
 									className='objet-cover object-center'
 									src={userLogged.image}
 								/>
@@ -155,7 +156,7 @@ export function AsideComponent() {
 						>
 							<BoxIcon openClose={openClose} text={"Agenda"} icon={calendar} />
 						</div>
-						{userLogged ? (
+						{userLogged && (
 							<div
 								className={`${openClose ? "mx-inherit w-full" : "hidden"}`}
 								onClick={() => navigate("/my-list")}
@@ -166,18 +167,20 @@ export function AsideComponent() {
 									icon={clinicalNotes}
 								/>
 							</div>
-						) : (
-							<div
-								className={`${openClose ? "mx-inherit w-full" : "hidden"}`}
-								onClick={() => navigate("/my-list")}
-							>
-								<BoxIcon
-									openClose={openClose}
-									text={"Mis pacientes"}
-									icon={clinicalNotes}
-								/>
-							</div>
-						)}
+						) 
+						// : (
+						// 	<div
+						// 		className={`${openClose ? "mx-inherit w-full" : "hidden"}`}
+						// 		onClick={() => navigate("/my-list")}
+						// 	>
+						// 		<BoxIcon
+						// 			openClose={openClose}
+						// 			text={"Mis pacientes"}
+						// 			icon={clinicalNotes}
+						// 		/>
+						// 	</div>
+						// )
+						}
 						<div
 							className={`${openClose ? "mx-inherit w-full" : "hidden"}`}
 							onClick={() => navigate("/video-llamada")}
@@ -365,13 +368,14 @@ export function AsideComponent() {
 						>
 							{doctorLogged && (
 								<Avatar
-									sx={{ width: 25, height: 25 }}
+									sx={{ width: 25, height: 25, margin:'auto' }}
 									className='objet-cover object-center'
 									src={doctorLogged.image}
 								/>
 							)}
 							{userLogged && (
 								<Avatar
+									sx={{ width: 25, height: 25, margin:'auto' }}
 									className='objet-cover object-center'
 									src={userLogged.image}
 								/>
@@ -432,7 +436,7 @@ export function AsideComponent() {
 						>
 							<BoxIcon openClose={openClose} text={"Agenda"} icon={calendar} />
 						</div>
-						{userLogged ? (
+						{userLogged && (
 							<div
 								className={`${
 									openClose
@@ -447,22 +451,24 @@ export function AsideComponent() {
 									icon={clinicalNotes}
 								/>
 							</div>
-						) : (
-							<div
-								className={`${
-									openClose
-										? "mx-inherit w-full"
-										: "mx-auto w-2/3 hover:bg-white rounded-xl"
-								}`}
-								onClick={() => navigate("/my-list")}
-							>
-								<BoxIcon
-									openClose={openClose}
-									text={"Mis pacientes"}
-									icon={clinicalNotes}
-								/>
-							</div>
-						)}
+						) 
+						// : (
+						// 	<div
+						// 		className={`${
+						// 			openClose
+						// 				? "mx-inherit w-full"
+						// 				: "mx-auto w-2/3 hover:bg-white rounded-xl"
+						// 		}`}
+						// 		onClick={() => navigate("/my-list")}
+						// 	>
+						// 		<BoxIcon
+						// 			openClose={openClose}
+						// 			text={"Mis pacientes"}
+						// 			icon={clinicalNotes}
+						// 		/>
+						// 	</div>
+						// )
+						}
 						<div
 							className={`${
 								openClose

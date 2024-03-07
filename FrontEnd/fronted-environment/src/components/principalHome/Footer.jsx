@@ -70,7 +70,7 @@ export function Footer () {
                     <div className='flex flex-col items-starts pb-4 sm:pb-0 w-fit'>
                         <h4 className='text-xs mb-2 font-semibold'>Autogestión</h4>
                         <hr className='text-black h-2 w-11/12'/>
-                        <Link to='/login/patient' className='text-xs flex flex-wrap hover:text-darkBlue'>  <img src={vector} className='w-2 pr-1' /> Paciente </Link>
+                        <Link to='/login/pacient' className='text-xs flex flex-wrap hover:text-darkBlue'>  <img src={vector} className='w-2 pr-1' /> Paciente </Link>
                         <Link to='/login/doctor' className='text-xs flex flex-wrap hover:text-darkBlue'>  <img src={vector} className='w-2 pr-1' /> Especialista médico </Link>
                         <Link to='/login/admin' className='text-xs flex flex-wrap hover:text-darkBlue'>  <img src={vector} className='w-2 pr-1' /> Administrador </Link>
                         

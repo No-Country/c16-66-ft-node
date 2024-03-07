@@ -21,7 +21,7 @@ export function CardAutogestion({ img, border, user }) {
 			onClick={handleLogin}
 		>
 			<img src={img} className='h-fit' />
-			<h3 className='text-2xl p-10 text-center font-bold'>{user}</h3>
+			<h3 className='text-xl p-10 text-center font-bold'>{user}</h3>
 		</div>
 	);
 }
