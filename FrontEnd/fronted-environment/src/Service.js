@@ -212,9 +212,8 @@ export const fetchAppoinment = async () => {
 
 /// Rutas Video Call
 
-export const createRoom = async (roomName) => {
+export const createRoom = async () => {
 	try {
-		console.log(roomName);
 		const { data } = await Api.post("/createRoom");
 		console.log("respuesta de la room :", data);
 		return data;
@@ -223,21 +222,56 @@ export const createRoom = async (roomName) => {
 	}
 };
 
-export const createToken = async (identity, room) => {
+export const createToken = async ({ username, roomName }) => {
+	console.log(
+		"lo que le llega al token POST en el serive es :",
+		username,
+		roomName
+	);
+	//por query
 	try {
-		console.log(identity, room);
-		const { data } = await Api.post("/token");
-		// console.log("data del post token es :", data);
-		return data;
+		const data = await Api.post(
+			`/tokenB?identity=${username}&room=${roomName}`
+		);
+		console.log("data del get token es :", data);
 	} catch (err) {
 		console.log("errors en : ", err);
 	}
+
+	//por body
+	// try {
+	// 	const { data } = await Api.post("/tokenB", {
+	// 		identity: username,
+	// 		room: roomName,
+	// 	});
+	// 	// console.log("data del post token es :", data);
+	// 	return data;
+	// } catch (err) {
+	// 	console.log("errors en : ", err);
+	// }
 };
 
-export const getToken = async () => {
+export const getToken = async (username, roomName) => {
+	console.log(
+		"lo que le llega al token GET en el serive es :",
+		username,
+		roomName
+	);
+	//por query
 	try {
-		const { data } = await Api.get(`/token`);
+		const data = await Api.get(`/tokenB?identity=${username}&room=${roomName}`);
 		console.log("data del get token es :", data);
+	} catch (err) {
+		console.log("errors en : ", err);
+	}
+	//por body
+	try {
+		const { data } = await Api.get("/tokenB", {
+			identity: username,
+			room: roomName,
+		});
+		// console.log("data del post token es :", data);
+		return data;
 	} catch (err) {
 		console.log("errors en : ", err);
 	}

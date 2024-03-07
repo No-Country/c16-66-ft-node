@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import logo from "../../assets/FakeLOGO/Logo 3.png";
 
 import background from "../../assets/AuthBG/loginBG.png";
-
+import { loggoutFromDb } from "../../Service";
 import { useUserStore } from "../../hooks/userUserStore";
 import { useDoctorStore } from "../../hooks/useDoctorStore";
 import { UserStore } from "../../StoreGeneral/UsersStore";
@@ -49,6 +49,7 @@ export default function LoginPage() {
 		event.preventDefault();
 		userLogged && loggOutUser();
 		doctorLogged && loggOutDoctor();
+		loggoutFromDb();
 		let response;
 		if (userToLogin.email.includes(".net")) {
 			setDbErros("La aplicacion no permite correos con el dominio '.net'");
@@ -58,9 +59,12 @@ export default function LoginPage() {
 			response = await validationUserToLogin(userToLogin);
 			addUserLogged(response);
 		} else if (params.types == "doctor") {
+			console.log("estoy aca");
 			response = await validationDoctorToLogin(userToLogin);
-
-			addDoctorLogged(response);
+			console.log(response);
+			!response
+				? setDbErros("Tenemos un error en la Base de datos")
+				: await addDoctorLogged(response);
 		}
 		setDbErros("");
 		navigate(`/home`);
