@@ -1,4 +1,5 @@
 const createTokenB = (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
   try {
     const token = req.customToken; // Accede al token almacenado en la solicitud
 

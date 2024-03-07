@@ -161,7 +161,6 @@ router.post(
 router.post(
   "/pacients/login",
   passport.authenticate("loginPacient", { failureRedirect: "/failureLogin" }),
-  checkSessionMiddleware,
   loginPacientHandler
 );
 
@@ -189,7 +188,7 @@ router.get("/reviews", getAllReviesHandler);
 
 //sessions routes
 
-router.get("/session", checkSessionMiddleware, checkSessionHandler);
+router.get("/session", checkSessionHandler);
 
 router.get("/logout", destroySessionHandler);
 

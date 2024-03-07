@@ -4,6 +4,7 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const { conn } = require("./db");
 const passport = require("passport");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const router = require("./routes");
 require("dotenv").config();
@@ -31,11 +32,6 @@ server.use(
   })
 );
 
-server.use(morgan("dev"));
-server.use(express.json());
-server.use(express.urlencoded({ extended: true }));
-server.use(bodyParser.json());
-
 server.use(
   cors({
     origin: "*",
@@ -44,13 +40,18 @@ server.use(
   })
 );
 
- server.use(passport.session());
- initializePassport();
- server.use(passport.initialize());
+initializePassport();
 
-// initializePassport(); // Primero inicializa Passport
-// server.use(passport.initialize()); // Luego usa el middleware de Passport
-// server.use(passport.session()); //
+// Middleware de Passport
+server.use(passport.initialize());
+server.use(passport.session());
+
+server.use(morgan("dev"));
+server.use(express.json());
+server.use(express.urlencoded({ extended: true }));
+server.use(bodyParser.json());
+server.use(cookieParser());
+
 
 sessionStore.sync();
 

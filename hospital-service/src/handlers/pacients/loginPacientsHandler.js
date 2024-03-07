@@ -52,7 +52,7 @@ const loginPacientHandler = (req, res) => {
     // req.session.image = req.user.image;
     // req.session.city = req.user.city;
     // req.session.role = req.user.role;
-    // req.session.isLogged = true;
+    req.session.isLogged = true;
 
     res.status(200).send({ status: "success", payload: newPacientDTO });
   } catch (err) {
