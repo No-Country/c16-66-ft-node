@@ -16,8 +16,9 @@ export function useDoctorStore() {
 	};
 
 	const validationDoctorToLogin = async (doctorToLogin) => {
-		const userApiResponse = await getOneDoctor(doctorToLogin);
-		return userApiResponse;
+		const doctorApiResponse = await getOneDoctor(doctorToLogin);
+		console.log("pasiente devuelto por login :", doctorApiResponse);
+		return doctorApiResponse;
 	};
 	const addDoctorFromRegister = async (newDoctor) => {
 		await addDoctorService(newDoctor);

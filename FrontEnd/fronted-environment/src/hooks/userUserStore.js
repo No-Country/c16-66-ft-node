@@ -3,7 +3,7 @@ import {
 	updateUser,
 	addUser as addUserService,
 	logginApi,
-	isSessionActive,
+	// isSessionActive,
 } from "../Service";
 import { UserStore } from "../StoreGeneral/UsersStore";
 export function useUserStore() {
@@ -17,8 +17,8 @@ export function useUserStore() {
 	const validationUserToLogin = async (userToLogin) => {
 		const userApiResponse = await logginApi(userToLogin);
 		console.log("Respuesta:", userApiResponse);
-		const session = await isSessionActive();
-		console.log("llega la secion al user hook:", session);
+		// const session = await isSessionActive();
+		// console.log("llega la secion al user hook:", session);
 		return userApiResponse;
 	};
 
