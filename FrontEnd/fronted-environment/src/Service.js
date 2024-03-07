@@ -210,6 +210,18 @@ export const fetchAppoinment = async () => {
 	}
 };
 
+
+
+export const addApoinment = async (newAppoinment) => {
+	
+	try {
+		console.log("en el service new doctor :", newAppoinment);
+		await Api.post("/appoinment", newAppoinment);
+	} catch (err) {
+		console.log("errors en creear doctor: ", err);
+	}
+};
+
 /// Rutas Video Call
 
 export const createRoom = async () => {
