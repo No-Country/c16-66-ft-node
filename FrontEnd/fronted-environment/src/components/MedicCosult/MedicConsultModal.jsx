@@ -58,7 +58,7 @@ export function MedicConsultModal({ user }) {
 		setDoctorReviews(doctorsReviewsFilterd);
 	}, [user]);
 
-	console.log("reviews desde el modal :", doctroReviews);
+	//console.log("reviews desde el modal :", doctroReviews);
 
 	return (
 		<>

@@ -14,7 +14,6 @@ export default function MyAgenda () {
 
 
     const { doctorLogged, doctors } = DoctorStore();
-    console.log(doctors)
     const { users, userLogged } = UserStore();
 
     const [selectTypeUser, setSelectTypeUser] = useState({});

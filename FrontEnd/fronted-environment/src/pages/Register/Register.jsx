@@ -57,10 +57,12 @@ export default function RegisterAdmin() {
 			addUserFromRegister(userToRegister);
 			toast.success("Paciente registrado");
 			setDbErros("");
+			navigate(`/login/${params.types}`);
 			return;
 		} else if (params.types == "doctor") {
 			addDoctorFromRegister(userToRegister), setDbErros("");
 			toast.success("Doctor registrado");
+			navigate(`/login/${params.types}`);
 		}
 
 		navigate(`/login/${params.types}`);

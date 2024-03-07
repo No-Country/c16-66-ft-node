@@ -92,9 +92,10 @@ export function ViewFromLg() {
 							{doctorLogged ? "Lista de pacientes" : "Próximos turnos "}
 						</h2>
 						<section
-						// style={{height:"450px"}} 
-						// style={{ maxHeight: "1024px", maxWidth: "100vw", height: `calc(100vh - 4rem)`}}
-						className='w-full h-96 xl:h-5/6 flex-col overflow-y-auto'>
+							// style={{height:"450px"}}
+							// style={{ maxHeight: "1024px", maxWidth: "100vw", height: `calc(100vh - 4rem)`}}
+							className='w-full h-96 xl:h-5/6 flex-col overflow-y-auto'
+						>
 							{doctorLogged ? (
 								<div className='w-full'>
 									{users?.map((user) => {
@@ -112,7 +113,7 @@ export function ViewFromLg() {
 									{doctors?.map((doctor) => {
 										return (
 											<CardPacientItem
-												key={doctor.doctorId}
+												key={doctor?.doctorId}
 												user={doctor}
 												handlerSelect={() => handlerSelect(doctor.doctorId)}
 											/>
@@ -136,19 +137,18 @@ export function ViewFromLg() {
 								Ver más..{" "}
 							</button>
 						</div>
-						<div className="hidden 2xl:flex 2xl:flex-col">
+						<div className='hidden 2xl:flex 2xl:flex-col'>
 							<MedicConsultModal user={selectTypeUser} open={open} />
 						</div>
-						<div className="2xl:hidden">
-						{selectTypeUser?.name != undefined ? (
-							<MedicConsult user={selectTypeUser} />
-						) : userLogged ? (
-							<MedicConsult user={doctors[0]} />
-						) : (
-							<MedicConsult user={users[0]} />
-						)}
+						<div className='2xl:hidden'>
+							{selectTypeUser?.name != undefined ? (
+								<MedicConsult user={selectTypeUser} />
+							) : userLogged ? (
+								<MedicConsult user={doctors[0]} />
+							) : (
+								<MedicConsult user={users[0]} />
+							)}
 						</div>
-
 					</div>
 				</section>
 				{/* Modal de Ver Mas =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */}
@@ -173,9 +173,7 @@ export function ViewFromLg() {
 				</Modal>
 			</div>
 			<section className='p-4 w-4/12 h-sfit flex-col box-border'>
-				<div
-					className='m-auto mt-2 box-border'
-				>
+				<div className='m-auto mt-2 box-border'>
 					<CalendarComponent />
 
 					<div
