@@ -202,7 +202,7 @@ router.post("/token", createAccessToken);
 
 router.get("/token", getToken);
 
-router.post("/tokenB", storeTokenMiddleware, createTokenB);
+router.post("/tokenB", createTokenB);
 
 // Ruta GET para decodificar el token y verificar la información
 router.get("/tokenB", storeTokenMiddleware, getTokenB);
