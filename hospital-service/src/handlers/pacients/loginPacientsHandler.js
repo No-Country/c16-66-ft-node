@@ -54,7 +54,7 @@ const loginPacientHandler = (req, res) => {
     // req.session.role = req.user.role;
     req.session.isLogged = true;
 
-    res.status(200).send({ status: "success", payload: newPacientDTO });
+    res.status(200).send(newPacientDTO);
   } catch (err) {
     res.status(500).send("Error al loguear");
     throw new Error(err);
