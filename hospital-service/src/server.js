@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const { conn } = require("./db");
@@ -8,11 +9,13 @@ const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const router = require("./routes");
 require("dotenv").config();
-const cors = require("cors");
+
 const { initializePassport } = require("../src/config/passport.config");
 
 const server = express();
 const { DB_PASSWORD } = process.env;
+
+server.use(cors());
 
 const sessionStore = new SequelizeStore({
   db: conn,
@@ -32,13 +35,13 @@ server.use(
   })
 );
 
-server.use(
-  cors({
-    origin: "*",
-    methods: "GET,PUT,PATCH,HEAD,DELETE,POST",
-    credentials: true,
-  })
-);
+// server.use(
+//   cors({
+//     origin: "*",
+//     methods: "GET,PUT,PATCH,HEAD,DELETE,POST",
+//     credentials: true,
+//   })
+// );
 
 initializePassport();
 
