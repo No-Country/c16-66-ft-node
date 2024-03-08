@@ -8,7 +8,24 @@ const getTokenB = (req, res) => {
     if (token) {
       const decodedToken = decodeTwilioToken(token);
       if (decodedToken) {
-        res.status(200).send(decodedToken);
+        console.log(decodedToken);
+        console.log(decodedToken.jti);
+        console.log(decodedToken.grants);
+        console.log(decodedToken.iat);
+        console.log(decodedToken.exp);
+        console.log(decodedToken.iss);
+        console.log(decodedToken.sub);
+
+        const tokenDTO = {
+          jti: decodedToken.jti,
+          grants: decodedToken.grants,
+          iat: decodedToken.iat,
+          exp: decodedToken.exp,
+          iss: decodedToken.iss,
+          sub: decodedToken.sub,
+        };
+
+        res.status(200).send({ token: tokenDTO });
       } else {
         res.status(500).send("Error al decodificar el token");
       }
