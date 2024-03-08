@@ -15,6 +15,7 @@ const getTokenB = (req, res) => {
         console.log(decodedToken.exp);
         console.log(decodedToken.iss);
         console.log(decodedToken.sub);
+        console.log()
 
         const tokenDTO = {
           jti: decodedToken.jti,
