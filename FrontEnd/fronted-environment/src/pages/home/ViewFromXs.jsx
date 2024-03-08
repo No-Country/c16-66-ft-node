@@ -86,7 +86,7 @@ export function ViewFromXs() {
 						<div className=' flex justify-between bg-mostLighthBlue	'>
 							<h3 className='pl-1 font-semibold'> Próximo turno :</h3>
 							<span
-								className='text-darkBlue mr-4 hover:cursor-pointer'
+								className='text-darkBlue cursor-pointer mr-4 hover:cursor-pointer'
 								onClick={handleModalCalendar}
 							>
 								Ver mas..
@@ -94,11 +94,18 @@ export function ViewFromXs() {
 						</div>
 
 						<Modal
-							sx={{ top: "15%", left: "35%" }}
+							sx={{ top: "15%", left: "10%" }}
 							open={openCalendar}
 							onClose={handleModalCalendar}
 						>
-							<CalendarComponent />
+							{/* <CalendarComponent /> */}
+							{selectTypeUser?.name != undefined ? (
+							<CalendarComponent user={selectTypeUser}/>
+						) : doctorLogged ? (
+							<CalendarComponent user={users[0]}/>
+						) : (
+							<CalendarComponent user={doctors[0]}/>
+						)}
 						</Modal>
 					</article>
 					<section className='mt-3 mb-2 h-56 bg-mostLighthBlue rounded-2xl'>

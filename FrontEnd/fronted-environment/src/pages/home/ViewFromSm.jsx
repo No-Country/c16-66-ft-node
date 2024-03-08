@@ -88,7 +88,7 @@ export function ViewFromSm() {
 						<div className='mt-6 md:mt-1 flex justify-between md:justify-around  bg-mostLighthBlue	'>
 							<h3 className='pl-1 font-semibold'> Próximo turno :</h3>
 							<span
-								className='text-darkBlue mr-4 hover:cursor-pointer'
+								className='text-darkBlue cursor-pointer mr-4 hover:cursor-pointer'
 								onClick={handleModalCalendar}
 							>
 								Ver mas..
@@ -116,11 +116,18 @@ export function ViewFromSm() {
 						</div>
 
 						<Modal
-							sx={{ top: "15%", left: "35%" }}
+							sx={{ top: "15%", left: "35%"}}
 							open={openCalendar}
 							onClose={handleModalCalendar}
 						>
-							<CalendarComponent />
+							{/* <CalendarComponent /> */}
+							{selectTypeUser?.name != undefined ? (
+							<CalendarComponent user={selectTypeUser}/>
+						) : doctorLogged ? (
+							<CalendarComponent user={users[0]}/>
+						) : (
+							<CalendarComponent user={doctors[0]}/>
+						)}
 						</Modal>
 					</article>
 					<div

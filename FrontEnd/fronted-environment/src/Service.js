@@ -37,7 +37,7 @@ export const loggoutFromDb = async () => {
 export const fetchUsers = async () => {
 	try {
 		const { data } = await Api.get(`/pacients`);
-		console.log("desde el service a ver que onda :", data);
+		console.log("Pacientes desde el service a ver que onda :", data);
 		return data;
 	} catch (err) {
 		console.log(err);
@@ -207,6 +207,18 @@ export const fetchAppoinment = async () => {
 		return data;
 	} catch (err) {
 		console.log("errors en : ", err);
+	}
+};
+
+
+
+export const addApoinment = async (newAppoinment) => {
+	
+	try {
+		console.log("en el service new doctor :", newAppoinment);
+		await Api.post("/appoinment", newAppoinment);
+	} catch (err) {
+		console.log("errors en creear doctor: ", err);
 	}
 };
 

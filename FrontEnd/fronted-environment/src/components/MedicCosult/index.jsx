@@ -44,7 +44,7 @@ export function MedicConsult({ user }) {
 					</article>
 					{/* Seccion de Informacion de Doctro, o de Turno de paciente. depende quien esta loggeado */}
 					{doctorLogged.specialty ? (
-						<section className='w-full max-h-96 flex flex-col items-start gap-4 overflow-scroll xl:overflow-hidden'>
+						<section className='mt-2 p-2 w-full max-h-96 flex flex-col items-start gap-4 overflow-scroll xl:overflow-hidden'>
 							<article className='w-full h-fit flex flex-col  gap-4 items-start'>
 								<div className='w-full flex justify-start'>
 									<h3 className=' text-black font-medium text-base'>
@@ -52,16 +52,24 @@ export function MedicConsult({ user }) {
 									</h3>
 								</div>
 								<div className='w-full'>
-									<p className=' text-gray text-justify, text-sm font-normal '>
+									<p className=' text-gray text-justify, text-sm font-normal mb-1'>
 										Lorem ipsum dolor, sit amet consectetur adipisicing elit.
 										Labore optio quia veritatis, dolore debitis beatae ad sit!
 										Dignissimos magnam quia vitae error in? Sequi soluta
 										inventore rem et eos voluptate! lorem
 									</p>
+									<p className=' text-gray text-justify, text-sm font-normal '>
+										Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+										Labore optio quia veritatis, dolore debitis beatae ad sit!
+										Dignissimos magnam quia vitae error in? Sequi soluta
+										inventore rem et eos voluptate! lorem.
+										Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+										Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+									</p>
 								</div>
 							</article>
 
-							<article className='w-full h-fit flex flex-col gap-2 items-start '>
+							{/* <article className='w-full h-fit flex flex-col gap-2 items-start '>
 								<div>
 									<h3 className='text-black font- text-base'>
 										Úiltima revisión
@@ -76,7 +84,7 @@ export function MedicConsult({ user }) {
 										10-Noviembre-2023 9:45hs
 									</p>
 								</div>
-							</article>
+							</article> */}
 							{/* <article className='w-full h-fit flex flex-col gap-2 items-start '>
 								<div>
 									<h3 className='text-black font-medium text-base'>
@@ -138,7 +146,7 @@ export function MedicConsult({ user }) {
 						<section className='w-full max-h-96 flex flex-col items-start gap-4 overflow-scroll xl:overflow-hidden '>
 							<article className='w-full h-fit flex flex-col  gap-2 items-start'>
 								<div>
-									<h3 className='text-black font-medium text-base'>Sintomas</h3>
+									<h3 className='text-black mt-2 p-2 font-medium text-base'>Sintomas</h3>
 								</div>
 								<div className='w-full'>
 									<p className=' text-gray text-justify, text-sm font-normal '>

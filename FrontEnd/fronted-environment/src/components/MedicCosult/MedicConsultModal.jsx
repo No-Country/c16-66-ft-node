@@ -58,13 +58,13 @@ export function MedicConsultModal({ user }) {
 		setDoctorReviews(doctorsReviewsFilterd);
 	}, [user]);
 
-	console.log("reviews desde el modal :", doctroReviews);
+	//console.log("reviews desde el modal :", doctroReviews);
 
 	return (
 		<>
 			{doctorLogged && (
 				<>
-					<article className=' w-full h-fit my-2 py-2 flex align-middle gap-2 rounded-2xl  bg-white hover:bg-mostLighthBlue overflow-x-hidden box-content'>
+					<article className='w-full h-fit my-2 py-2 flex align-middle gap-2 rounded-2xl  bg-white hover:bg-mostLighthBlue overflow-x-hidden box-content'>
 						<figure className='w-20 h-12 m-auto rounded-full overflow-hidden overflow-x-hidden'>
 							{/* Cambiar imagen por la que venga de db */}
 							<Avatar
@@ -95,7 +95,7 @@ export function MedicConsultModal({ user }) {
 					</article>
 					{/* Seccion de Informacion de Doctro, o de Turno de paciente. depende quien esta loggeado */}
 					{doctorLogged.specialty ? (
-						<section className=' w-11/12 overflow-x-auto max-h-96 flex flex-col items-start gap-4 overflow-scroll 2xl:max-h-5/6 2xl:max-w-fit mx-auto '>
+						<section className='w-11/12 overflow-x-auto max-h-96 flex flex-col items-start gap-4 overflow-scroll 2xl:max-h-5/6 2xl:max-w-fit mx-auto '>
 							<article className='w-full h-fit flex flex-col  gap-4 items-start'>
 								<div className='w-full flex justify-start'>
 									<h3 className=' text-black font-medium text-base'>
@@ -112,7 +112,7 @@ export function MedicConsultModal({ user }) {
 								</div>
 							</article>
 
-							<article className='w-full h-fit flex flex-col gap-2 items-start '>
+							{/* <article className='w-full h-fit flex flex-col gap-2 items-start '>
 								<div>
 									<h3 className='text-black font- text-base'>
 										Úiltima revisión
@@ -127,8 +127,8 @@ export function MedicConsultModal({ user }) {
 										10-Noviembre-2023 9:45hs
 									</p>
 								</div>
-							</article>
-							<article className='w-full h-fit flex flex-col gap-2 items-start '>
+							</article> */}
+							{/* <article className='w-full h-fit flex flex-col gap-2 items-start '>
 								<div>
 									<h3 className='text-black font-medium text-base'>
 										Observación
@@ -142,8 +142,8 @@ export function MedicConsultModal({ user }) {
 										inventore rem et eos voluptate! lorem
 									</p>
 								</div>
-							</article>
-							<article className='w-full h-fit flex flex-col gap-2 items-start'>
+							</article> */}
+							{/* <article className='w-full h-fit flex flex-col gap-2 items-start'>
 								<div>
 									<h3 className='text-black font-medium text-base'>
 										Prescripcíon
@@ -155,10 +155,10 @@ export function MedicConsultModal({ user }) {
 										Labore optio quia veritatis, dolore debitis beatae ad sit!
 									</p>
 								</div>
-							</article>
+							</article> */}
 							{/* Seccion de reseñas */}
 
-							<section className='flex-col'>
+							<section className='flex-col w-full p-2'>
 								<h3 className=' text-black font-medium text-base py-1 mb-1 inline'>
 									Reseñas de nuestros pacientes :
 								</h3>
@@ -167,7 +167,7 @@ export function MedicConsultModal({ user }) {
 										overflowX: "auto",
 										whiteSpace: "nowrap",
 									}}
-									className=' w-96 flex flex-row h-fit mt-2 mb-2'
+									className='w-full mx-auto flex flex-row h-fit mt-2 mb-2'
 								>
 									{!reviewForm ? (
 										<>
@@ -175,7 +175,7 @@ export function MedicConsultModal({ user }) {
 												doctroReviews.map((review, i) => {
 													return (
 														<article
-															className='  min-w-80 min-h-44  mx-3  flex flex-col px-3  bg-white border-lightGreen border-2 rounded-xl '
+															className=' min-w-80 min-h-44  flex flex-col px-3  bg-white border-lightGreen border-2 rounded-xl '
 															key={i}
 														>
 															<h3 className='text-black font-medium text-base py-1 mb-1 inline'>

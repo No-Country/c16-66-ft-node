@@ -1,36 +1,75 @@
 import { Box, Modal } from "@mui/material"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import close from '../../assets/svg/close.svg'
 import duo from '../../assets/svg/duo.svg'
 import { useNavigate } from "react-router-dom"
+import { DoctorStore } from "../../StoreGeneral/DoctorsStore"
+// import { UserStore } from "../../StoreGeneral/UsersStore"
 
 /* eslint-disable react/prop-types */
-export default function CardPatients ({patient}) {
+export default function CardPatients ({appoinment, userLogged}) {
     const[modal, setModal] = useState(false)
+    const [data, setData]=useState([])
     const navigate = useNavigate()
+    const {doctors} = DoctorStore()
+    // const {users} = UserStore()
+
+    const doctorsFactsAppoinment = ()=>{
+
+        let doctorData;
+        doctorData = doctors.filter(doc => doc.doctorId === appoinment.doctorId)
+        let finalDoctor = doctorData[0] 
+       
+        setData(finalDoctor)
+        
+    }
+
+    useEffect(()=>{
+        doctorsFactsAppoinment()
+    },[])
+
+    // const usersFactsAppoinment = ()=>{
+
+    //     let userData;
+    //     userData = users.filter(pat => pat.pacientId === appoinment.pacientId)
+    //     let finalUser = userData[0] 
+       
+    //     setData(finalUser)
+        
+    // }
+
+    // useEffect(()=>{
+    //     usersFactsAppoinment()
+    // },[])
+
     return (
         <section className=" bg-bgLightGreen rounded-xl h-fit w-52 p-2">
             <div className="flex justify-around">
-                <img src={patient.image} alt="Image user" className=" w-9 h-auto rounded-full" />
-                <div className="flex flex-col">
-                    <h3 className="text-xs font-semibold">{patient.name} {patient.lastname}</h3>
-                    <h4 className="text-xs">{patient.birthdate}</h4>
+            <img src={data?.image} alt="Image user" className=" w-11 h-11 rounded-full" />
+                <div className="flex flex-col mb-2">
+                    <h3 className="text-xs font-semibold">{data?.name} {data?.lastname}</h3>
+                    {/* <h4 className="text-xs">{data?.birthdate}</h4> */}
+                    <h4 className="text-xs">{data?.specialty}</h4>
                 </div>
             </div>
-                <div className="flex flex-col items-start mb-3">
-                    <p className="text-xs">Número de historia: 4562596</p>
-                    <p className="text-xs">DNI:{patient.dni}</p>
-                    <p className="text-xs">Apellido:{patient.lastname}</p>
+                <div className="flex flex-col p-2 items-start mt-3 mb-3 w-fit h-48">
+                    <p className="text-xs mb-2">N.historia:   {appoinment?.id}</p>
+                    <p className="text-xs mb-2">Fecha: {appoinment?.date}</p>
+                    <p className="text-xs mb-2">Matricula: {data?.licensenumber}</p>
+                    <p className="text-xs mb-2">Email: {data?.email}</p>
+                    <p className="text-xs mb-2">Telefono: {data?.telephone}</p>
+                    <p className="text-xs mb-2">Obra sociales: {data?.socialSecurity?.join(", ")}</p>
+                    {/* <p className="text-xs">Apellido:{patient.lastname}</p>
                     <p className="text-xs">Nombre:{patient.name}</p>
                     <p className="text-xs">Ocupación: Abogada</p>
                     <p className="text-xs">Fecha de nacimiento: {patient.birthdate}</p>
                     <p className="text-xs">Estado civil: Soltera</p>
                     <p className="text-xs">País: Argentina</p>
-                    <p className="text-xs -mb-3">Residencia actual:{patient.adress}</p>
-                </div>
+                    <p className="text-xs -mb-3">Residencia actual:{patient.adress}</p> */}
                 <button 
                 onClick={()=>setModal(true)}
-                className="text-xs font-semibold ml-2 border-b">Consultar ficha completa</button>
+                className="text-xs m-auto w-fit font-semibold border-b"> Ver consulta</button>
+                </div>
                 {
                     <Modal
                     open={modal === true}
@@ -54,10 +93,10 @@ export default function CardPatients ({patient}) {
                             <button onClick={()=>setModal(false)}><img className="h-3" src={close} alt="button close"/></button>
                             </div>
                             <div className="flex justify-start">
-                            <img src={patient.image} alt="Image user" className=" w-16 h-auto rounded-md" />
+                            <img src={userLogged?.image} alt="Image user" className=" w-14 h-14 rounded-md" />
                             <div className="flex flex-col justify-center pl-3">
-                                <h3 className="text-xs font-semibold">{patient.name} {patient.lastname}</h3>
-                                <h4 className="text-xs">{patient.birthdate}</h4>
+                                <h3 className="text-xs font-semibold">{userLogged?.name} {userLogged?.lastname}</h3>
+                                <h4 className="text-xs">{userLogged?.birthdate}</h4>
                             </div>
                             </div>
                             <section className="flex flex-col mt-4">
@@ -78,12 +117,12 @@ export default function CardPatients ({patient}) {
                                 </div>
 
                                 <button
-                                onClick={()=>navigate('/video-llamada')}
+                                onClick={()=>navigate(`/video-llamada`)}
                                 className="text-xs border-2 border-gray p-1 w-fit mx-auto flex items-center rounded-xl bg-white"><img src={duo} alt="boton para iniciar videollamada" />Iniciar videoconsulta</button>
                             </section>
                         </Box>
                     </Modal>
-                }
+                } 
         </section>
     )
 }

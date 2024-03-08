@@ -8,10 +8,10 @@ import { DoctorStore } from "../StoreGeneral/DoctorsStore";
 export function useDoctorStore() {
 	const { addDoctor, addDoctorLogged, doctorLogged } = DoctorStore();
 
-	console.log("hoo original doc.", doctorLogged);
+	console.log("hook original doc.", doctorLogged);
 	const getDoctorApiResponse = async () => {
 		const doctorApiResponse = await fetchDoctors();
-		console.log("desde el hook :", doctorApiResponse);
+		console.log("doctores desde el hook :", doctorApiResponse);
 		await addDoctor(doctorApiResponse);
 	};
 
