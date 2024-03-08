@@ -212,6 +212,7 @@ export function AsideComponent() {
 						}`}
 					>
 						<div
+							onClick={() => navigate("/notificaciones")}
 							className={`flex hover:bg-white p-2 rounded-xl mx-auto ${
 								openClose ? "w-full justify-start gap-4" : "hidden"
 							}`}
@@ -510,6 +511,7 @@ export function AsideComponent() {
 						}`}
 					>
 						<div
+							onClick={() => navigate("/notificaciones")}
 							className={`flex hover:bg-white p-2 rounded-xl mx-auto ${
 								openClose
 									? "w-full justify-start gap-4"

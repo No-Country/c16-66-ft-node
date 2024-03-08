@@ -19,7 +19,7 @@ export function CredencialMatriculaForm() {
 	const [userToEdit, setUserToEdit] = useState(
 		userLogged ? userLogged : doctorLogged
 	);
-
+	
 	useEffect(() => {}, [userLogged, doctorLogged]);
 	// userToEdit.licensenumber = null;
 	const {
@@ -68,6 +68,21 @@ export function CredencialMatriculaForm() {
 		toast.success(
 			'Usuario editado correctamente'	
 		)
+	};
+
+	// para guardar la especialidad seleccionada
+	const [selectedOptionSpecialty, setSelectedOptionSpecialty] = useState('Ver especialidades');
+
+	const handleChangeSpecialty = (event) => {
+		setSelectedOptionSpecialty(event.target.value);
+	};
+
+	// idem pero con obra social 
+
+	const [selectedOptionSocialSecurity, setSelectedOptionSocialSecurity] = useState('Ver obra sociales');
+
+	const handleChangeSocialSecurity = (event) => {
+		setSelectedOptionSocialSecurity(event.target.value);
 	};
 
 	return (
@@ -233,7 +248,7 @@ export function CredencialMatriculaForm() {
 									>
 										Especializacíon
 									</label>
-									<input
+									{/* <input
 										type='text'
 										name='specialty'
 										className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1'
@@ -243,7 +258,25 @@ export function CredencialMatriculaForm() {
 												message: "Debes completar el campo",
 											},
 										})}
-									/>
+									/> */}
+									<select
+										id='dropdown'
+										className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1 '
+										value={selectedOptionSpecialty}
+										onChange={handleChangeSpecialty}
+									>
+										<option disabled>Ver especialidades</option>
+										<option>General Medicine</option>
+										<option>Pediatrics</option>
+										<option>Gynecology and Obstetrics</option>
+										<option>Internal Medicine</option>
+										<option>General Surgery</option>
+										<option>Orthopedics</option>
+										<option>Dermatology</option>
+										<option>Ophthalmology</option>
+										<option>Psychiatry</option>
+										<option>Cardiology</option>
+									</select>
 									{errors.specialty && (
 										<span
 											className='pl-2 pt-2 flex text-xs font-bold text-red-700'
@@ -307,14 +340,25 @@ export function CredencialMatriculaForm() {
 										)}
 									/> */}
 
-									<select
+									{/* <select
 										id='dropdown'
 										className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1 '
 										value='Ver obas sociales'
-									>
-										{doctorLogged.SocialSecurity?.map((add, i) => {
+									> */}
+										{/* {doctorLogged.SocialSecurity?.map((add, i) => {
 											return <option key={i}>{add}</option>;
-										})}
+										})} */}
+									{/* </select> */}
+									<select
+										id='dropdown'
+										className='pl-2 w-full py-1 xl:py-0 border border-darkBlue rounded-xl  bg-mostLighthBlue mt-1 '
+										value={selectedOptionSocialSecurity}
+										onChange={handleChangeSocialSecurity}
+									>
+										<option disabled>Ver obras sociales</option>
+										<option>Ioma</option>
+										<option>OSDE</option>
+										<option>Swiss Medical</option>
 									</select>
 
 									{errors.SocialSecurity && (

@@ -20,6 +20,7 @@ const PatientsOrSpecialists = lazy(() =>
 	import("./components/PerfilForm/PatientsOrSpecialists")
 );
 const VideoCall = lazy(() => import("./pages/VideoCall"));
+const Notifications = lazy(() => import("./pages/Notifications"));
 const MyAgenda = lazy(() => import("./pages/MyAgenda"));
 
 function App() {
@@ -57,11 +58,12 @@ function App() {
 						<Route path='/perfil' element={<Perfil />} />
 						<Route path='/my-list' element={<PatientsOrSpecialists />} />
 						<Route path='/video-llamada' element={<VideoCall />} />
+						<Route path='/notificaciones' element={<Notifications />} />
 						<Route path='/my-agenda' element={<MyAgenda />} />
 						<Route
 							path='/*'
 							element={
-								<h2 className=' font-bold'>Error 404. Page not Found ...</h2>
+								<h2 className='text-lg text-darkBlue font-bold'>Error 404. Page not Found ...</h2>
 							}
 						/>
 						{/* Aqui solo rutas */}
