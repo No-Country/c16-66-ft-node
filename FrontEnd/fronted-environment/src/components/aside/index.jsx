@@ -192,7 +192,7 @@ export function AsideComponent() {
 							/>
 						</div>
 
-						{userLogged && (
+						{/* {userLogged && (
 							<div
 								className={`${openClose ? "mx-inherit w-full" : "hidden"}`}
 								onClick={() => navigate("/cartilla-medica")}
@@ -203,7 +203,7 @@ export function AsideComponent() {
 									icon={book}
 								/>
 							</div>
-						)}
+						)} */}
 					</section>
 					<br />
 					<section
@@ -484,7 +484,7 @@ export function AsideComponent() {
 							/>
 						</div>
 
-						{userLogged && (
+						{/* {userLogged && (
 							<div
 								className={`${
 									openClose
@@ -499,7 +499,7 @@ export function AsideComponent() {
 									icon={book}
 								/>
 							</div>
-						)}
+						)} */}
 						{/* <BoxIcon openClose={openClose} text={"Mi billetera"} icon={star} 
 				/> */}
 					</section>

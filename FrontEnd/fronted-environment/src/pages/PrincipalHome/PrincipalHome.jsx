@@ -93,6 +93,13 @@ export default function PrincipalHome() {
 							velocity='3000'
 							interval='5000'
 						>
+							{
+								reviews?.map((review, index) => (
+									<Slide key={index}>
+										<CardStars review={review}/>
+									</Slide>))
+							}
+							
 							<Slide>
 								<CardStars
 									img={imgDr1}
