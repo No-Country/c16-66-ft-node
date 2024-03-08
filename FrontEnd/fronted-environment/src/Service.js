@@ -210,10 +210,7 @@ export const fetchAppoinment = async () => {
 	}
 };
 
-
-
 export const addApoinment = async (newAppoinment) => {
-	
 	try {
 		console.log("en el service new doctor :", newAppoinment);
 		await Api.post("/appoinment", newAppoinment);
@@ -255,7 +252,7 @@ export const createToken = async (username, roomName) => {
 			identity: username,
 			room: roomName,
 		});
-		console.log("data del post token es :", data);
+		console.log("data del post token en el service es :", data);
 		return data;
 	} catch (err) {
 		console.log("errors en : ", err);

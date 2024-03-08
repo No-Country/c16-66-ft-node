@@ -8,16 +8,15 @@ import { DoctorStore } from "../StoreGeneral/DoctorsStore";
 export function useDoctorStore() {
 	const { addDoctor, addDoctorLogged, doctorLogged } = DoctorStore();
 
-	console.log("hook original doc.", doctorLogged);
 	const getDoctorApiResponse = async () => {
 		const doctorApiResponse = await fetchDoctors();
-		console.log("doctores desde el hook :", doctorApiResponse);
-		await addDoctor(doctorApiResponse);
+		console.log("recibe el hook de login doctor, esto :", doctorApiResponse);
+		(await doctorApiResponse) != undefined && addDoctor(doctorApiResponse);
+		return doctorApiResponse;
 	};
 
 	const validationDoctorToLogin = async (doctorToLogin) => {
 		const doctorApiResponse = await getOneDoctor(doctorToLogin);
-		console.log("pasiente devuelto por login :", doctorApiResponse);
 		return doctorApiResponse;
 	};
 	const addDoctorFromRegister = async (newDoctor) => {
@@ -71,9 +70,7 @@ export function useDoctorStore() {
 				image: img,
 			};
 		}
-		console.log("lo qie hania ", doctorLogged);
-		console.log("lo qie vino ", newData);
-		console.log("edited doctor :", updatedData);
+
 		updateDoctor(updatedData); // Cuando tenga como editar en el service, habilitar
 		addDoctorLogged(updatedData);
 	};

@@ -26,15 +26,12 @@ function App() {
 	//carga general de Users.
 	const { getUserApiResponse } = useUserStore(); //hook
 	const { users } = UserStore();
-	//console.log(users);
-	// carga de Doctors
+
 	const { getDoctorApiResponse } = useDoctorStore(); //hook
 	const { doctors } = DoctorStore();
-	//console.log(doctors);
-	//carga de reviews
+
 	const { getReviewResponse, reviews } = useReviewsStore();
-	//console.log(reviews);
-	// const { getAdminApiResponse } = useAdminStore(); LE pega a la api vieja
+
 	useEffect(() => {
 		getUserApiResponse(); // inyecta los datos de la db en el estado.
 		getDoctorApiResponse(); // idem => doctors

@@ -57,14 +57,26 @@ export default function LoginPage() {
 		} //segun params, ver a que service pegarle
 		if (params.types == "pacient") {
 			response = await validationUserToLogin(userToLogin);
-			await addUserLogged(response);
+			if (response != undefined) {
+				await addUserLogged(response);
+			} else {
+				setDbErros(
+					"No podemos logear al paciente tenemos un error en la Base de datos.Intente mas tarde"
+				);
+				return;
+			}
 		} else if (params.types == "doctor") {
-			console.log("estoy aca");
 			response = await validationDoctorToLogin(userToLogin);
 			console.log(response);
-			!response
-				? setDbErros("Tenemos un error en la Base de datos")
-				: await addDoctorLogged(response);
+			if (response != undefined) {
+				await addDoctorLogged(response);
+			} else {
+				console.log("response de doctor en la view login:", response);
+				setDbErros(
+					"No podemos logear al doctor, tenemos un error en la Base de datos.Intente mas tarde"
+				);
+				return;
+			}
 		}
 		setDbErros("");
 		navigate(`/home`);

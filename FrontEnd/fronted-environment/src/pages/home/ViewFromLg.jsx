@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { CardPacientItem } from "../../components/CardPacientItem";
@@ -10,7 +11,7 @@ import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
 import credencialIcon from "../../assets/svg/contact_emergency.svg";
 import { Modal } from "@mui/material";
 
-export function ViewFromLg() {
+export function ViewFromLg({ userAppointments }) {
 	const { doctorLogged, doctors } = DoctorStore();
 	const { users, userLogged } = UserStore();
 	const [selectTypeUser, setSelectTypeUser] = useState({});
@@ -19,13 +20,11 @@ export function ViewFromLg() {
 	const handleModalConsult = () => setOpen(!open);
 
 	const handlerSelect = (id) => {
-		console.log("el id es :", id);
 		let consult;
 		doctorLogged
 			? (consult = users.filter((pacient) => pacient.pacientId === id))
 			: (consult = doctors.filter((doctor) => doctor.doctorId === id));
 		setSelectTypeUser(consult[0]);
-		console.log("se selecciono a : ", consult);
 	};
 	useEffect(() => {}, [userLogged]);
 
@@ -66,32 +65,61 @@ export function ViewFromLg() {
 				>
 					<div className=' w-6/12 h-full flex flex-col justify-around'>
 						<h2 className='text-xl text-black font-medium '>
-							{doctorLogged ? "Lista de pacientes" : "Próximos turnos "}
+							{doctorLogged
+								? "Lista de pacientes"
+								: userAppointments.length > 0
+								? "Próximos turnos "
+								: "Conoce a Nuestros Profesionales"}
 						</h2>
 						<section className='w-full h-96 xl:h-5/6 flex-col overflow-y-auto'>
-							{doctorLogged ? (
-								<div className='w-full'>
-									{users?.map((user) => {
+							{/* bloque de codigo nuevo el de abajo para pasar al resto de vistas */}
+							{doctorLogged &&
+								(userAppointments.length > 0 ? (
+									userAppointments?.map((date) => {
 										return (
 											<CardPacientItem
-												key={user.pacientId}
-												user={user}
-												handlerSelect={() => handlerSelect(user.pacientId)}
+												key={date?.id}
+												user={date.relationInfo}
+												date={date}
+												handlerSelect={() => handlerSelect(date.doctorId)}
 											/>
 										);
-									})}
-								</div>
-							) : (
+									})
+								) : (
+									<div className='w-full'>
+										{users?.map((user) => {
+											return (
+												<CardPacientItem
+													key={user.pacientId}
+													user={user}
+													handlerSelect={() => handlerSelect(user.pacientId)}
+												/>
+											);
+										})}
+									</div>
+								))}
+							{userLogged != null && (
 								<div className='ml-2'>
-									{doctors?.map((doctor) => {
-										return (
-											<CardPacientItem
-												key={doctor?.doctorId}
-												user={doctor}
-												handlerSelect={() => handlerSelect(doctor.doctorId)}
-											/>
-										);
-									})}
+									{userAppointments.length > 0
+										? userAppointments.map((date) => {
+												return (
+													<CardPacientItem
+														key={date?.id}
+														user={date.relationInfo}
+														date={date}
+														handlerSelect={() => handlerSelect(date.doctorId)}
+													/>
+												);
+										  })
+										: doctors?.map((doctor) => {
+												return (
+													<CardPacientItem
+														key={doctor?.doctorId}
+														user={doctor}
+														handlerSelect={() => handlerSelect(doctor.doctorId)}
+													/>
+												);
+										  })}
 								</div>
 							)}
 						</section>
@@ -149,12 +177,12 @@ export function ViewFromLg() {
 				<div className='m-auto mt-2 box-border'>
 					{/* <CalendarComponent  /> */}
 					{selectTypeUser?.name != undefined ? (
-							<CalendarComponent user={selectTypeUser}/>
-						) : doctorLogged ? (
-							<CalendarComponent user={users[0]}/>
-						) : (
-							<CalendarComponent user={doctors[0]}/>
-						)}
+						<CalendarComponent user={selectTypeUser} />
+					) : doctorLogged ? (
+						<CalendarComponent user={users[0]} />
+					) : (
+						<CalendarComponent user={doctors[0]} />
+					)}
 
 					<div
 						className='m-auto mt-8 w-full h-48 pt-1 flex-col items-center bg-mostLighthBlue rounded-xl box-border hover:cursor-pointer relative'

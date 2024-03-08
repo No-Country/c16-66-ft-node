@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 
@@ -18,7 +19,7 @@ import editIcon from "../../assets/svg/mode_edit_24px.svg";
 import credencialIcon from "../../assets/svg/contact_emergency.svg";
 import { Modal } from "@mui/material";
 
-export function ViewFromSm() {
+export function ViewFromSm({ userAppointments }) {
 	const { doctorLogged, doctors } = DoctorStore();
 
 	const { users, userLogged } = UserStore();
@@ -116,18 +117,18 @@ export function ViewFromSm() {
 						</div>
 
 						<Modal
-							sx={{ top: "15%", left: "35%"}}
+							sx={{ top: "15%", left: "35%" }}
 							open={openCalendar}
 							onClose={handleModalCalendar}
 						>
 							{/* <CalendarComponent /> */}
 							{selectTypeUser?.name != undefined ? (
-							<CalendarComponent user={selectTypeUser}/>
-						) : doctorLogged ? (
-							<CalendarComponent user={users[0]}/>
-						) : (
-							<CalendarComponent user={doctors[0]}/>
-						)}
+								<CalendarComponent user={selectTypeUser} />
+							) : doctorLogged ? (
+								<CalendarComponent user={users[0]} />
+							) : (
+								<CalendarComponent user={doctors[0]} />
+							)}
 						</Modal>
 					</article>
 					<div
@@ -203,32 +204,60 @@ export function ViewFromSm() {
 				<section className='w-12/12 mt-3 secction__Principal-doctorHome flex flex-col-reverse py-2 px-2 gap-4 shrink-0 rounded-3xl overflow-hidden'>
 					<div className=' w-10/12 mx-auto flex-col '>
 						<h2 className=' text-2xl text-black font-medium mb-3'>
-							{doctorLogged ? "Lista de pacientes" : "Próximos turnos "}
+							{doctorLogged
+								? "Lista de pacientes"
+								: userAppointments.length > 0
+								? "Próximos turnos "
+								: "Conoce a Nuestros Profesionales"}
 						</h2>
 						<section className='w-full h-64 xl:h-72 flex-col overflow-scroll pl-4 md:pl-6'>
-							{doctorLogged ? (
-								<div className='w-full'>
-									{users?.map((user) => {
+							{doctorLogged &&
+								(userAppointments.length > 0 ? (
+									userAppointments?.map((date) => {
 										return (
 											<CardPacientItem
-												key={user.pacientId}
-												user={user}
-												handlerSelect={() => handlerSelect(user.pacientId)}
+												key={date?.id}
+												user={date.relationInfo}
+												date={date}
+												handlerSelect={() => handlerSelect(date.doctorId)}
 											/>
 										);
-									})}
-								</div>
-							) : (
+									})
+								) : (
+									<div className='w-full'>
+										{users?.map((user) => {
+											return (
+												<CardPacientItem
+													key={user.pacientId}
+													user={user}
+													handlerSelect={() => handlerSelect(user.pacientId)}
+												/>
+											);
+										})}
+									</div>
+								))}
+							{userLogged != null && (
 								<div className='ml-2'>
-									{doctors?.map((doctor) => {
-										return (
-											<CardPacientItem
-												key={doctor.doctorId}
-												user={doctor}
-												handlerSelect={() => handlerSelect(doctor.doctorId)}
-											/>
-										);
-									})}
+									{userAppointments.length > 0
+										? userAppointments.map((date) => {
+												return (
+													<CardPacientItem
+														key={date?.id}
+														user={date.relationInfo}
+														date={date}
+														handlerSelect={() => handlerSelect(date.doctorId)}
+													/>
+												);
+										  })
+										: doctors?.map((doctor) => {
+												return (
+													<CardPacientItem
+														key={doctor?.doctorId}
+														user={doctor}
+														handlerSelect={() => handlerSelect(doctor.doctorId)}
+													/>
+												);
+										  })}
 								</div>
 							)}
 						</section>

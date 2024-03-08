@@ -10,7 +10,7 @@ import { AppoinmentStore } from "../../StoreGeneral/AppoinmentStore";
 import { useAppointmentStore } from "../../hooks/useAppointmentStore";
 import { NavHome } from "../../components/NavComponent.js/NavHome";
 import "./home.css";
-import '../../pages/PrincipalHome/index.css'
+import "../../pages/PrincipalHome/index.css";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -19,6 +19,7 @@ export default function Home() {
 	const { userLogged } = UserStore();
 	const { doctorLogged } = DoctorStore();
 	const { appoinments } = AppoinmentStore();
+
 	const [userAppointments, setUserAppointments] = useState([]);
 	//console.log("turnos desde home :", appoinments);
 	if (userLogged == null && doctorLogged == null) {
@@ -28,42 +29,36 @@ export default function Home() {
 	useEffect(() => {
 		getAppointmentResponse();
 		let filteredAppointments;
-		if (userLogged && appoinments) {
-			filteredAppointments = appointmentForId(userLogged.pacientId, "pacient");
-			setUserAppointments(filteredAppointments);
-			//console.log("que retorna esto :", filteredAppointments);
+		if (userLogged != null && appoinments) {
+			filteredAppointments = appointmentForId(userLogged, "pacient");
 		} else {
 			filteredAppointments = appointmentForId(doctorLogged?.doctorId, "doctor"); // doctorLoged? para que dfuncione el reenvio si no hay doctor logeado
-			console.log("que retorna esto :", filteredAppointments);
-			setUserAppointments(filteredAppointments);
 		}
-
+		setUserAppointments(filteredAppointments);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-
-	//console.log("Citas filtradas en el home", userAppointments);
 	return (
 		<main className='flex flex-col w-screen h-screen box-border z-0 p-0'>
 			<AsideComponent />
 			<NavHome />
 			<section
-				style={{ maxHeight: "1024px", maxWidth: "100vw", height: `calc(100vh - 4rem)`}}
+				style={{
+					maxHeight: "1024px",
+					maxWidth: "100vw",
+					height: `calc(100vh - 4rem)`,
+				}}
 				className='mt-0.5 w-full flex box-border z-0 overflow-y-auto 2xl:overflow-visible asideWidth self-end p-2'
 			>
 				<main className='hidden w-full lg:flex'>
-					<ViewFromLg />
+					<ViewFromLg userAppointments={userAppointments} />
 					{/* se ve a partir de 1024 px */}
 				</main>
-				<main
-					className='hidden w-full xs:hidden sm:flex lg:hidden xl:hidden'
-				>
-					<ViewFromSm />
+				<main className='hidden w-full xs:hidden sm:flex lg:hidden xl:hidden'>
+					<ViewFromSm userAppointments={userAppointments} />
 					{/* se renderiza a partir de 640px  */}
 				</main>
-				<main
-					className='w-full xs:flex sm:hidden lg:hidden xl:hidden'
-				>
-					<ViewFromXs />
+				<main className='w-full xs:flex sm:hidden lg:hidden xl:hidden'>
+					<ViewFromXs userAppointments={userAppointments} />
 					{/* se renderiza a partir de 640px  */}
 				</main>
 			</section>

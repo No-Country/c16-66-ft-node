@@ -6,8 +6,13 @@ const nowInMs = Date.now();
 let today = new Date(nowInMs).toLocaleString().split(" ");
 today = today[0];
 
-export function CardPacientItem({ user, handlerSelect }) {
-	
+export function CardPacientItem({ user, handlerSelect, date }) {
+	const getHour = (hour) => {
+		const array = hour.split(":");
+		const finalHouer = [array[0], array[1]].join(":");
+		return finalHouer;
+	};
+	let houer = date ? getHour(date.hour) : null;
 	return (
 		<div
 			className='cursor-pointer w-11/12 h-2/3 mb-4 py-1 px-2 flex  gap-1 rounded-2xl  bg-white hover:bg-mostLighthBlue flex-nowrap'
@@ -36,7 +41,7 @@ export function CardPacientItem({ user, handlerSelect }) {
 						{user.specialty != "" && <strong> {user?.specialty} </strong>}
 						{!user.specialty && <p>Turno :</p>}
 						<p className='text-gray text-sm font-light truncate'>
-							{today}
+							{date ? date.date : today}
 							{/* Cambiar today por fecha del turno */}
 						</p>
 					</div>
@@ -52,7 +57,7 @@ export function CardPacientItem({ user, handlerSelect }) {
 								}}
 								className=' text-darkBlue text-center font-normal truncate'
 							>
-								10:00 hs.
+								{houer ? houer + " Am" : 10 + " Am"}
 								{/* Cambiar por horario del turno */}
 							</p>
 						</div>

@@ -16,19 +16,17 @@ export function useUserStore() {
 
 	const validationUserToLogin = async (userToLogin) => {
 		const userApiResponse = await logginApi(userToLogin);
-		console.log("Respuesta:", userApiResponse);
+
 		// const session = await isSessionActive();
 		// console.log("llega la secion al user hook:", session);
 		return userApiResponse;
 	};
 
 	const addUserFromRegister = async (newUser) => {
-		console.log("desde el add hook");
-		console.log(newUser);
-		const userApiResponse = await addUserService(newUser);
+		// const userApiResponse =
+		await addUserService(newUser);
 
-		console.log(userApiResponse);
-		//await addUserLogged(userApiResponse);
+		// await addUserLogged(userApiResponse);
 		// return userApiResponse; no devuelve nada
 	};
 

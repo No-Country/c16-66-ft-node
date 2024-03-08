@@ -39,12 +39,12 @@ export default function VideoCall() {
 
 		console.log("username", username.lastname);
 		console.log("newRoomData :", newRoomData.room.uniqueName);
-		await createNewToken(username.lastname, newRoomData.room.uniqueName);
-		const token = await getTokenFn(
+		const token = await createNewToken(
 			username.lastname,
 			newRoomData.room.uniqueName
 		);
-		// let decodedToken = await decodeTwilioToken(token);
+		// await getTokenFn(username.lastname, newRoomData.room.uniqueName);
+		let decodedToken = await decodeTwilioToken(token);
 		// decodedToken.grants = {
 		// 	...decodedToken.grants,
 		// 	identity: username.lastname,
@@ -53,7 +53,7 @@ export default function VideoCall() {
 		// 	...decodedToken.grants.Video,
 		// 	room: newRoomData.room.uniqueName,
 		// };
-		console.log("token para video connect", token); // Lo deja exacto como llega en postman
+		console.log("token para video connect", decodedToken); // Lo deja exacto como llega en postman
 		// const stringDecodedToken = JSON.stringify(decodedToken);
 		// console.log("token para video connect", stringDecodedToken);
 		Video.connect(token, {
