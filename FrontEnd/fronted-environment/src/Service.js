@@ -222,33 +222,32 @@ export const createRoom = async () => {
 	}
 };
 
-export const createToken = async ({ username, roomName }) => {
+export const createToken = async (username, roomName) => {
 	console.log(
 		"lo que le llega al token POST en el serive es :",
 		username,
 		roomName
 	);
 	//por query
-	try {
-		const data = await Api.post(
-			`/tokenB?identity=${username}&room=${roomName}`
-		);
-		console.log("data del get token es :", data);
-	} catch (err) {
-		console.log("errors en : ", err);
-	}
-
-	//por body
 	// try {
-	// 	const { data } = await Api.post("/tokenB", {
-	// 		identity: username,
-	// 		room: roomName,
-	// 	});
-	// 	// console.log("data del post token es :", data);
-	// 	return data;
+	// 	const data = await Api.post(
+	// 		`/tokenB?identity=${username}&room=${roomName}`
+	// 	);
+	// 	console.log("data del get token es :", data);
 	// } catch (err) {
 	// 	console.log("errors en : ", err);
 	// }
+	//por body
+	try {
+		const { data } = await Api.post("/tokenB", {
+			identity: username,
+			room: roomName,
+		});
+		console.log("data del post token es :", data);
+		return data;
+	} catch (err) {
+		console.log("errors en : ", err);
+	}
 };
 
 export const getToken = async (username, roomName) => {
@@ -258,19 +257,19 @@ export const getToken = async (username, roomName) => {
 		roomName
 	);
 	//por query
-	try {
-		const data = await Api.get(`/tokenB?identity=${username}&room=${roomName}`);
-		console.log("data del get token es :", data);
-	} catch (err) {
-		console.log("errors en : ", err);
-	}
+	// try {
+	// 	const data = await Api.get(`/tokenB?identity=${username}&room=${roomName}`);
+	// 	console.log("data del get token es :", data);
+	// } catch (err) {
+	// 	console.log("errors en : ", err);
+	// }
 	//por body
 	try {
 		const { data } = await Api.get("/tokenB", {
 			identity: username,
 			room: roomName,
 		});
-		// console.log("data del post token es :", data);
+		console.log("data del post token es :", data);
 		return data;
 	} catch (err) {
 		console.log("errors en : ", err);

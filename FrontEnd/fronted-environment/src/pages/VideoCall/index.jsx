@@ -19,7 +19,14 @@ export default function VideoCall() {
 	const [username, setUsername] = useState(
 		userLogged != null ? userLogged : doctorLogged
 	);
-	const { getRoom, createNewToken, getTokenFn, isAnyLoged } = useVideoCall();
+	const {
+		getRoom,
+		createNewToken,
+		getTokenFn,
+		isAnyLoged,
+		decodeTwilioToken,
+		enodeTwilioToken,
+	} = useVideoCall();
 	// fin seteos app nuestra
 	const [roomName, setRoomName] = useState("");
 	const [room, setRoom] = useState(null);
@@ -30,32 +37,31 @@ export default function VideoCall() {
 		setConnecting(true);
 		const newRoomData = await getRoom();
 
-		// const data = await fetch("/video/token", {
-		// 	method: "POST",
-		// 	body: JSON.stringify({
-		// 		identity: username,
-		// 		room: roomName,
-		// 	}),
-		// 	headers: {
-		// 		"Content-Type": "application/json",
-		// 	},
-		// }).then((res) => res.json());
 		console.log("username", username.lastname);
 		console.log("newRoomData :", newRoomData.room.uniqueName);
-		await createNewToken(username.lastname, newRoomData.room.uniqueName); // no esta llegando
+		await createNewToken(username.lastname, newRoomData.room.uniqueName);
 		const token = await getTokenFn(
 			username.lastname,
 			newRoomData.room.uniqueName
 		);
-		console.log("desde la funcion token por get:", token);
-
+		// let decodedToken = await decodeTwilioToken(token);
+		// decodedToken.grants = {
+		// 	...decodedToken.grants,
+		// 	identity: username.lastname,
+		// };
+		// decodedToken.grants.Video = {
+		// 	...decodedToken.grants.Video,
+		// 	room: newRoomData.room.uniqueName,
+		// };
+		console.log("token para video connect", token); // Lo deja exacto como llega en postman
+		// const stringDecodedToken = JSON.stringify(decodedToken);
+		// console.log("token para video connect", stringDecodedToken);
 		Video.connect(token, {
-			// lo obtendria de las api de lucas
 			name: roomName.uniqueName,
 		})
 			.then((room) => {
-				// setConnecting(false);
-				// setRoom(room);
+				setConnecting(false);
+				setRoom(room);
 				console.log("room que llega", room);
 			})
 			.catch((err) => {
