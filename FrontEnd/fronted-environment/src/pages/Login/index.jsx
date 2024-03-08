@@ -59,6 +59,7 @@ export default function LoginPage() {
 			response = await validationUserToLogin(userToLogin);
 			if (response != undefined) {
 				await addUserLogged(response);
+				navigate(`/home`);
 			} else {
 				setDbErros(
 					"No podemos logear al paciente tenemos un error en la Base de datos.Intente mas tarde"
@@ -70,16 +71,17 @@ export default function LoginPage() {
 			console.log(response);
 			if (response != undefined) {
 				await addDoctorLogged(response);
+				navigate(`/home`);
 			} else {
 				console.log("response de doctor en la view login:", response);
 				setDbErros(
 					"No podemos logear al doctor, tenemos un error en la Base de datos.Intente mas tarde"
 				);
-				return;
 			}
+			return;
 		}
 		setDbErros("");
-		navigate(`/home`);
+
 		//}
 	};
 
