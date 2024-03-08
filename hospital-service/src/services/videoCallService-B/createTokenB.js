@@ -7,7 +7,7 @@ const createTokenB = async (req, res) => {
     const { identity, room } = req.body;
     const token = await tokenGenerator(identity, room);
 
-    const decodedToken = decodeTwilioToken(token);
+    const decodedToken = await decodeTwilioToken(token);
 
     const tokenDTO = {
       jti: decodedToken.jti,
