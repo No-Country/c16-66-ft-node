@@ -23,34 +23,34 @@ export const New = () => {
  const { doctorLogged,doctors } = DoctorStore();
  const { appoinments } = AppoinmentStore();
  const {getAppointmentResponse, appointmentForId} = useAppointmentStore()
- const [events, setEvents] = useState([]);
+// const [events, setEvents] = useState([]);
 
 
 
- useEffect(() => {
-  getAppointmentResponse();
-  let filteredAppointments;
-  if (userLogged && appoinments) {
-    filteredAppointments = dbApoinmentsToEvents(appointmentForId(userLogged.pacientId, "pacient"),"pacient")
-    setEvents(filteredAppointments);
-    console.log("que retorna esto :", filteredAppointments);
-  } else {
-    filteredAppointments = dbApoinmentsToEvents(appointmentForId(doctorLogged?.doctorId, "doctor"),"doctor")// doctorLoged? para que dfuncione el reenvio si no hay doctor logeado
-    console.log("que retorna esto :", filteredAppointments);
-    setEvents(filteredAppointments);
-  }
-console.log(events)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-}, []);
+//  useEffect(() => {
+//   getAppointmentResponse();
+//   let filteredAppointments;
+//   if (userLogged && appoinments) {
+//     filteredAppointments = dbApoinmentsToEvents(appointmentForId(userLogged.pacientId, "pacient"),"pacient")
+//     setEvents(filteredAppointments);
+//     console.log("que retorna esto :", filteredAppointments);
+//   } else {
+//     filteredAppointments = dbApoinmentsToEvents(appointmentForId(doctorLogged?.doctorId, "doctor"),"doctor")// doctorLoged? para que dfuncione el reenvio si no hay doctor logeado
+//     console.log("que retorna esto :", filteredAppointments);
+//     setEvents(filteredAppointments);
+//   }
+// console.log(events)
+//   // eslint-disable-next-line react-hooks/exhaustive-deps
+// }, []);
 
 
 
-// let role='pacient' //rol de usuario logueado
-// let id = '67154a0a-ff65-4146-aab5-3c5bce137082' //id de usuario logueado
-// let mockApoinments = appointmentForId(id,role) //funciona
+let role='doctor' //rol de usuario logueado
+let id = 'bb48dd6c-4480-4074-8490-edd1c157aba2' //id de usuario logueado
+let mockApoinments = appointmentForId(id,role) //funciona
 
 //EVENTOS A RENDERIZAR------------------------------------------
-// const events = dbApoinmentsToEvents(mockApoinments,role) //cuando se pueda loguear se debe de cambiar los mocks por el userlogged/doctorlogged  y el user.role
+const events = dbApoinmentsToEvents(mockApoinments,role) //cuando se pueda loguear se debe de cambiar los mocks por el userlogged/doctorlogged  y el user.role
 
 
  if (!userLogged && !doctorLogged) {
@@ -64,10 +64,10 @@ console.log(events)
 
     const style = {
       display: 'flex', 
-      backgroundColor: 'white', 
+      backgroundColor: '#115E86', 
       borderRadius: '5px',
       opacity: 0.8,
-      color: 'black',
+      color: 'white',
       fontFamily: 'Roboto'
     }
     return { style }
