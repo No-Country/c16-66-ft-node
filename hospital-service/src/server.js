@@ -15,7 +15,12 @@ const { initializePassport } = require("../src/config/passport.config");
 const server = express();
 const { DB_PASSWORD } = process.env;
 
-server.use(cors());
+server.use(
+  cors({
+    origin: "*",
+    credentials: true,
+  })
+);
 
 const sessionStore = new SequelizeStore({
   db: conn,
@@ -31,6 +36,7 @@ server.use(
       httpOnly: true,
       maxAge: 30 * 60 * 1000,
       expires: new Date(Date.now() + 30 * 60 * 1000),
+      sameSite: "none",
     },
   })
 );
