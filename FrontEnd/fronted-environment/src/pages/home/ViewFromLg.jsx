@@ -1,18 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-
 import { CardPacientItem } from "../../components/CardPacientItem";
 import { MedicConsult } from "../../components/MedicCosult";
 import { MedicConsultModal } from "../../components/MedicCosult/MedicConsultModal";
-
 import { CalendarComponent } from "../../components/CalendarComponent/index";
 import { HomeHiglights } from "../../components/homeHiglihts";
-//
 import { UserStore } from "../../StoreGeneral/UsersStore";
 import { DoctorStore } from "../../StoreGeneral/DoctorsStore";
-
-//
-
 import credencialIcon from "../../assets/svg/contact_emergency.svg";
 import { Modal } from "@mui/material";
 
@@ -21,7 +15,6 @@ export function ViewFromLg() {
 	const { users, userLogged } = UserStore();
 	const [selectTypeUser, setSelectTypeUser] = useState({});
 	const [credAnim, setCredAnim] = useState(false); //destapa credencial
-
 	const [open, setOpen] = useState(false);
 	const handleModalConsult = () => setOpen(!open);
 
@@ -38,23 +31,7 @@ export function ViewFromLg() {
 
 	return (
 		<>
-			{/* header con logo de APP =-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */}
-			<div
-				// style={{ maxWidth: "1440px" }}
-				className='p-2 lg:w-11/12 h-inherit flex-col lg:flex-nowrap'
-			>
-				{/* <header
-					// style={{ width: "1320px" }}
-					className='-ml-28 w-screen h-16 py-2.5 flex justify-center'
-				>
-					<img
-						className='w-2.5/12 h-12 cursor-pointer'
-						src={logo}
-						alt='Imagen del logo de la empresa'
-						onClick={() => navigate("/")}
-					/>
-				</header> */}
-
+			<div className='p-2 lg:w-11/12 h-inherit flex-col lg:flex-nowrap'>
 				{/* Seccion de Titulo de la pagina ==-=-=-=-=-=-=-==-=-=-=-=-=-= */}
 				<section className='mt-2 mb-2 w-full h-3/12 2xl:h-4/12 flex-col mr-4 '>
 					<h2 className='text-xl 2xl:text-3xl font-bold text-black'>
@@ -91,11 +68,7 @@ export function ViewFromLg() {
 						<h2 className='text-xl text-black font-medium '>
 							{doctorLogged ? "Lista de pacientes" : "Próximos turnos "}
 						</h2>
-						<section
-							// style={{height:"450px"}}
-							// style={{ maxHeight: "1024px", maxWidth: "100vw", height: `calc(100vh - 4rem)`}}
-							className='w-full h-96 xl:h-5/6 flex-col overflow-y-auto'
-						>
+						<section className='w-full h-96 xl:h-5/6 flex-col overflow-y-auto'>
 							{doctorLogged ? (
 								<div className='w-full'>
 									{users?.map((user) => {
@@ -124,7 +97,7 @@ export function ViewFromLg() {
 						</section>
 					</div>
 					{/* -=-=segundo bloque de la seccion - Turno/ doctor info --=-=-=- */}
-					<div className=' w-6/12 gap-6 h-full flex flex-col  justify-around xl:justify-start'>
+					<div className='w-6/12 gap-6 h-full flex flex-col  justify-around xl:justify-start'>
 						<div className=' flex justify-between '>
 							<h2 className='font-medium text-xl text-black'>
 								Consulta Médica
@@ -174,7 +147,14 @@ export function ViewFromLg() {
 			</div>
 			<section className='p-4 w-4/12 h-sfit flex-col box-border'>
 				<div className='m-auto mt-2 box-border'>
-					<CalendarComponent />
+					{/* <CalendarComponent  /> */}
+					{selectTypeUser?.name != undefined ? (
+							<CalendarComponent user={selectTypeUser}/>
+						) : doctorLogged ? (
+							<CalendarComponent user={users[0]}/>
+						) : (
+							<CalendarComponent user={doctors[0]}/>
+						)}
 
 					<div
 						className='m-auto mt-8 w-full h-48 pt-1 flex-col items-center bg-mostLighthBlue rounded-xl box-border hover:cursor-pointer relative'
