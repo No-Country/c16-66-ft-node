@@ -40,7 +40,7 @@ export default function PrincipalHome() {
 					</h2>
 					<p className='text-xs lg:text-base'>
 						En MedConnect contamos con atención en más de 30 especialidades y
-						más de mil médicos estaán a tu servicio como: psicologos,
+						más de mil médicos están a tu servicio como: psicólogos,
 						dermatólogos, oftalmólogos, urólogos, ortopedistas, pediatras,
 						psiquiatras y muchos más.{" "}
 					</p>
