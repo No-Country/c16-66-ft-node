@@ -65,14 +65,10 @@ sessionStore.sync();
 
 server.options("/tokenB", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
 });
 
 server.options("/session", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
 });
 
 server.get("/", (req, res) => {
