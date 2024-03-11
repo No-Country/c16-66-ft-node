@@ -22,8 +22,8 @@ const ACCEPTED_ORIGINS = [
   "http://localhost:3000",
   "http://localhost:3001",
   "http://localhost:5173",
-  "https://65eb559cc1caadcd7924f097--cerulean-kangaroo-60f8e4.netlify.app/",
-  "https://c16-66-ft-node.onrender.com/",
+  "https://65eb559cc1caadcd7924f097--cerulean-kangaroo-60f8e4.netlify.app",
+  "https://c16-66-ft-node.onrender.com",
 ];
 
 server.use(
