@@ -15,12 +15,36 @@ const { initializePassport } = require("../src/config/passport.config");
 const server = express();
 const { DB_PASSWORD } = process.env;
 
+server.use(morgan("dev"));
+
+const ACCEPTED_ORIGINS = [
+  "http://localhost:8080",
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "http://localhost:5173",
+  "https://65eb559cc1caadcd7924f097--cerulean-kangaroo-60f8e4.netlify.app/",
+  "https://c16-66-ft-node.onrender.com/",
+];
+
 server.use(
   cors({
-    origin: "*",
+    origin: (origin, callback) => {
+      if (ACCEPTED_ORIGINS.includes(origin)) {
+        callback(null, true); // Origin permitido
+      } else if (!origin) {
+        callback(null, false); // No se proporcionó un origen (puede ser una solicitud CORS simple)
+      } else {
+        callback(new Error("Not permitted by CORS")); // Origin no permitido
+      }
+    },
     credentials: true,
   })
 );
+
+server.use(express.json());
+server.use(express.urlencoded({ extended: true }));
+server.use(bodyParser.json());
+server.use(cookieParser());
 
 const sessionStore = new SequelizeStore({
   db: conn,
@@ -41,6 +65,8 @@ server.use(
   })
 );
 
+sessionStore.sync();
+
 // server.use(
 //   cors({
 //     origin: "*",
@@ -55,24 +81,25 @@ initializePassport();
 server.use(passport.initialize());
 server.use(passport.session());
 
-server.use(morgan("dev"));
-server.use(express.json());
-server.use(express.urlencoded({ extended: true }));
-server.use(bodyParser.json());
-server.use(cookieParser());
+// server.use(morgan("dev"));
+// server.use(express.json());
+// server.use(express.urlencoded({ extended: true }));
+// server.use(bodyParser.json());
+// server.use(cookieParser());
 
-sessionStore.sync();
-
-server.options("/tokenB", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
-});
-
-server.options("/session", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
-});
+// sessionStore.sync();
 
 server.get("/", (req, res) => {
   res.status(200).send("Server OK!!");
+});
+
+server.use((req, res, next) => {
+  const origin = req.header("origin");
+  if (ACCEPTED_ORIGINS.includes(origin) || !origin) {
+    res.header("Access-Control-Allow-Origin", origin);
+  }
+  res.header("Access-Control-Allow-Methods", "GET,PUT,PATCH,HEAD,DELETE,POST");
+  next();
 });
 
 server.use(router);

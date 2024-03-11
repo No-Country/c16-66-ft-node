@@ -3,7 +3,6 @@ const { decodeTwilioToken } = require("../../utils/decodeTwilioToken");
 const getTokenB = (req, res) => {
   try {
     const token = req.customToken; // Accede al token almacenado en la solicitud
-    res.header("Access-Control-Allow-Origin", "*");
     console.log(token);
 
     // if (token) {

@@ -188,7 +188,7 @@ router.get("/reviews", getAllReviesHandler);
 
 //sessions routes
 
-router.post("/session", checkSessionHandler);
+router.get("/session", checkSessionHandler);
 
 router.get("/logout", destroySessionHandler);
 
